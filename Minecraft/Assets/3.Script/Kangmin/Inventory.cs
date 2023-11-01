@@ -17,40 +17,52 @@ public class Inventory : MonoBehaviour
 {
     private Dictionary<ItemCode, InventoryData> Dict;
 
-    [SerializeField] private List<int> playerHandList = new List<int>(9); // 플레이어 손에 들려있는 아이템 리스트
+    Vector2 mousePos;
 
-    [SerializeField] private List<int> playerInventoryList = new List<int>(27); // 플레이어 인벤토리 아이템 리스트
+    [SerializeField] private List<int> playerHandList = new List<int>(36); // 아이템 리스트
 
     public Image inventoryImage, menuImage;
-
     public List<Sprite> spriteImage;
 
-    Transform[] children;
+    private Transform[] children;
+    private Button[] button;
 
     private bool isOptionOpen = false;
-    private bool isInventoryOpen;
+    private bool isMouseOver;
+    private bool isInventoryOpen = false;
+    private int currentIndex; // 클릭했을때 저장되는 인덱스 숫자
     private int maxStackCount = 64;
+
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
 
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
+        button = FindObjectsOfType<Button>();
 
         for (int i = 1; i < children.Length; i++) // 0번째 인덱스 = Canvas
         {
             children[i].gameObject.SetActive(false);
         }
-        //inventoryImage.enabled = true;
-        isInventoryOpen = false;
+        for(int i = 0; i < button.Length; i++)
+        {
+            button[i].onClick.AddListener(OnClickItem);
+            Debug.Log(button[i].name);
+        }
     }
-
     private void Update()
     {
+        mousePos = Input.mousePosition;
+
         InventoryInteraction();
     }
-
     /*-------------------- 플레이어 키입력 ---------------------*/
     private void InventoryInteraction()
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isInventoryOpen == false)
@@ -61,6 +73,10 @@ public class Inventory : MonoBehaviour
                 }
                 //inventoryImage.enabled = true;
                 isInventoryOpen = true;
+                Cursor.visible = true;
+
+                Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
+                Cursor.SetCursor(null, screenCenter, CursorMode.Auto);
             }
             else if (isInventoryOpen == true)
             {
@@ -70,27 +86,37 @@ public class Inventory : MonoBehaviour
                 }
                 //inventoryImage.enabled = false;
                 isInventoryOpen = false;
+                Cursor.visible = false;
             }
         }
     }
-    private void OptionInteraction()
+    //private void OptionInteraction()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        if (!isInventoryOpen)
+    //        {
+    //            menuImage.enabled = true;
+    //            isInventoryOpen = true;
+    //        }
+    //        else if (isInventoryOpen)
+    //        {
+    //            menuImage.enabled = false;
+    //            isInventoryOpen = false;
+    //        }
+    //    }
+    //}
+    /*-------------------- 아이템 상호작용 ---------------------*/
+    private void OnClickItem()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!isInventoryOpen)
-            {
-                menuImage.enabled = true;
-                isInventoryOpen = true;
-            }
-            else if (isInventoryOpen)
-            {
-                menuImage.enabled = false;
-                isInventoryOpen = false;
-            }
-        }
+        Debug.Log("마우스 클릭 위치 = " + mousePos);
     }
-
-    /*-------------------- 아이템 이미지 데이터 ---------------------*/
+    private void SwapItems(int beforeIndex, int afterIndex)
+    {
+        int tmp = playerHandList[beforeIndex];
+        playerHandList[beforeIndex] = playerHandList[afterIndex];
+        playerHandList[afterIndex] = tmp;
+    }
 }
 
 
