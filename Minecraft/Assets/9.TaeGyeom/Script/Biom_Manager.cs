@@ -9,6 +9,7 @@ public class Biom_Manager : MonoBehaviour
     [SerializeField] public int chunk_size;
     [SerializeField] public int render_distance;
     [SerializeField] public List<GameObject> block_prefab_list;
+    [SerializeField] public GameObject chunk_prefab;
     [SerializeField] private GameObject player;
     private void Awake()
     {
@@ -40,15 +41,17 @@ public class Biom_Manager : MonoBehaviour
         int render_chunk_num = render_distance / chunk_size;
         Vector3Int now_chunk_pos = Vector3Int.zero;
         for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++) {
-            for (int j = start_chunk_pos.y - 1; j < start_chunk_pos.y; j++)
+            for (int j = start_chunk_pos.y - 1; j < start_chunk_pos.y + 1; j++)
             {
                 for (int k = start_chunk_pos.z- render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
                 {
-                    Chunk_TG new_chunk = new Chunk_TG(chunk_size);
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
                     now_chunk_pos.z = k;
-                    new_chunk.generate_blocks(now_chunk_pos);
+                    Chunk_TG new_chunk = Instantiate(chunk_prefab, chunk2world_pos(now_chunk_pos), Quaternion.identity).GetComponent<Chunk_TG>();
+                    new_chunk.transform.SetParent(transform);
+                    new_chunk.init(chunk_size, now_chunk_pos);                    
+                    new_chunk.generate_blocks();
                 }
             }
         }        

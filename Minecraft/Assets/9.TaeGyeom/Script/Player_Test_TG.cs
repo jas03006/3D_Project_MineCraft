@@ -19,7 +19,14 @@ public class Player_Test_TG : MonoBehaviour
         if (Input.anyKey) {
             float hor = Input.GetAxis("Horizontal");
             float ver = Input.GetAxis("Vertical");
-            transform.Translate((hor* transform.right + ver*transform.forward)*Time.deltaTime* speed);
+            float tilt = 0f;
+            if (Input.GetKey(KeyCode.E))
+            {
+                tilt = 1f;
+            } else if (Input.GetKey(KeyCode.Q)) {
+                tilt = -1f;
+            }
+            transform.Translate((hor* transform.right + ver*transform.forward + tilt*transform.up) *Time.deltaTime* speed);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("jump");
