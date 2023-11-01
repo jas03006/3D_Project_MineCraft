@@ -5,10 +5,11 @@ using UnityEngine;
 public class Biom_Manager : MonoBehaviour
 {
     public static Biom_Manager instance = null;
-    [SerializeField] private Vector3Int start_pos = Vector3Int.zero;
+    [SerializeField] private Vector3Int start_chunk_pos = Vector3Int.zero;
     [SerializeField] public int chunk_size;
+    [SerializeField] public int render_distance;
     [SerializeField] public List<GameObject> block_prefab_list;
-
+    [SerializeField] private GameObject player;
     private void Awake()
     {
         if (instance == null)
@@ -28,12 +29,29 @@ public class Biom_Manager : MonoBehaviour
     }
     private void update_start_pos() {
         //Vector3Int temp_pos = new Vector3Int(start_pos.x, start_pos.y-1,start_pos.z);
-        //start_pos = temp_pos;
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null) {
+            start_chunk_pos = world2chunk_pos(player.transform.position);
+        }
+        
     }
 
     private void generate_start_map() {
-        Chunk_TG new_chunk = new Chunk_TG(chunk_size);
-        new_chunk.generate_blocks(start_pos, block_prefab_list);
+        int render_chunk_num = render_distance / chunk_size;
+        Vector3Int now_chunk_pos = Vector3Int.zero;
+        for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++) {
+            for (int j = start_chunk_pos.y - 1; j < start_chunk_pos.y; j++)
+            {
+                for (int k = start_chunk_pos.z- render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
+                {
+                    Chunk_TG new_chunk = new Chunk_TG(chunk_size);
+                    now_chunk_pos.x = i;
+                    now_chunk_pos.y = j;
+                    now_chunk_pos.z = k;
+                    new_chunk.generate_blocks(now_chunk_pos);
+                }
+            }
+        }        
     }
     
 
