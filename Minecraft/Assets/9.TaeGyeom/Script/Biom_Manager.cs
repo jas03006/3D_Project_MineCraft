@@ -25,6 +25,7 @@ public class Biom_Manager : MonoBehaviour
     [SerializeField] public ID2Block_TG block_prefabs_SO;
     [SerializeField] public GameObject chunk_prefab;
     [SerializeField] private GameObject player;
+    private List<Vector3Int> mountain_point_list;
 
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private void Awake()
@@ -40,14 +41,21 @@ public class Biom_Manager : MonoBehaviour
         }
         
         render_chunk_num = render_distance / chunk_size;
-        update_start_pos();
+        
         
     }
 
     private void Start()
     {
+        
         chunk_data = new Dictionary<Vector3Int, Chunk_TG>();
+        mountain_point_list = new List<Vector3Int>();       
+        decide_mountain_point();
+        update_start_pos();
+        player.GetComponent<Player_Test_TG>().deactivate_gravity();
         generate_start_map();
+        player.GetComponent<Player_Test_TG>().activate_gravity();
+
     }
 
     private void Update()
@@ -56,7 +64,7 @@ public class Biom_Manager : MonoBehaviour
         if (now_update_co == null && chunk_update_timer > chunk_update_time)
         {
             chunk_update_timer = 0f;
-            current_chunk_pos = get_player_chunk_pos();
+            current_chunk_pos = get_player_chunk_pos();            
             now_update_co = StartCoroutine(generate_map_update_co());
         }
 
@@ -68,6 +76,10 @@ public class Biom_Manager : MonoBehaviour
         if (player != null)
         {
             current_chunk_pos = get_player_chunk_pos();
+            int h = get_mountain_height(current_chunk_pos, get_player_block_pos());
+            current_chunk_pos.y = h / chunk_size;
+            start_chunk_pos = current_chunk_pos;
+            player.transform.Translate(Vector3.up * h);
         }
 
     }
@@ -117,9 +129,10 @@ public class Biom_Manager : MonoBehaviour
     private IEnumerator generate_map_update_co() {
         Vector3Int now_chunk_pos = Vector3Int.zero;
         Chunk_TG new_chunk;
+        int y_render_range = (current_chunk_pos.y >=0 ? render_chunk_num: 2);
         for (int i = current_chunk_pos.x - render_chunk_num; i < current_chunk_pos.x + render_chunk_num; i++)
         {
-            for (int j = current_chunk_pos.y - 1; j < current_chunk_pos.y + 1; j++)
+            for (int j = current_chunk_pos.y - 1; j < current_chunk_pos.y + y_render_range; j++)
             {
                 for (int k = current_chunk_pos.z - render_chunk_num; k < current_chunk_pos.z + render_chunk_num; k++)
                 {
@@ -196,5 +209,44 @@ public class Biom_Manager : MonoBehaviour
     private Vector3Int get_player_chunk_pos() {
 
         return world2chunk_pos(player.transform.position);
+    }
+    private Vector3Int get_player_block_pos()
+    {
+
+        return new Vector3Int((int)player.transform.position.x%chunk_size, (int)player.transform.position.y % chunk_size, (int)player.transform.position.z % chunk_size);
+    }
+
+    public int get_mountain_height(Vector3Int chunk_pos, Vector3Int block_pos) {
+        Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
+        temp_pos.y = 0;
+        int h = 0;
+        int temp_h=0;
+        for (int i = 0; i < mountain_point_list.Count; i++) {
+            temp_pos = mountain_point_list[i] - temp_pos;
+            int d = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
+            if (temp_pos.y * temp_pos.y < d)
+            {
+                temp_h = 0;
+            }
+            else {
+                temp_h = temp_pos.y - (int)Mathf.Sqrt(d);
+                //Debug.Log(temp_h);
+            }
+            if (temp_h > h) {
+                h = temp_h;
+            }
+        }
+        
+        return h;
+    }
+
+    private void decide_mountain_point() {
+        int mountain_generate_range = 50;
+        int mountain_num = 40;
+        int mountain_max_height = 32;
+        int mountain_min_height = 48;
+        for (int i =0; i < mountain_num; i++) {
+            mountain_point_list.Add(new Vector3Int(Random.Range(-mountain_generate_range, mountain_generate_range), Random.Range(mountain_min_height, mountain_max_height), Random.Range(-mountain_generate_range, mountain_generate_range)));
+        }
     }
 }

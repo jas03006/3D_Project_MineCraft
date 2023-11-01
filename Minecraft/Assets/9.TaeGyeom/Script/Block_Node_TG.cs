@@ -34,6 +34,9 @@ public class Block_Node_TG : MonoBehaviour
 
     public void show()
     {
+        if (gameObject.layer == 0) {
+            return;
+        }
         gameObject.layer = 0;
         for (int ch = 0; ch < transform.childCount; ch++)
         {
@@ -42,6 +45,10 @@ public class Block_Node_TG : MonoBehaviour
     }
     public void hide()
     {
+        if (gameObject.layer == LayerMask.NameToLayer("Hidden_Block"))
+        {
+            return;
+        }
         gameObject.layer = LayerMask.NameToLayer("Hidden_Block");
         for (int ch = 0; ch < transform.childCount; ch++)
         {

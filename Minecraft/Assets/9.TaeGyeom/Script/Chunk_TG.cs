@@ -15,6 +15,7 @@ public class Chunk_TG: MonoBehaviour
         chunk_pos = chunk_pos_;
         chunk_size = chunk_size_;
         block_data = new Block_Node_TG[chunk_size, chunk_size, chunk_size];
+        is_open_checked = false;
     }
     public void generate_blocks()
     {
@@ -42,12 +43,14 @@ public class Chunk_TG: MonoBehaviour
     public IEnumerator generate_blocks_co()
     {
         Vector3Int origin_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos);
+        //float start_time = Time.time;
         for (int i = 0; i < chunk_size; i++)
         {
             for (int j = 0; j < chunk_size; j++)
             {
                 for (int k = 0; k < chunk_size; k++)
                 {
+                    
                     Item_ID_TG temp_index = get_prefabs_index(i, j, k);
                     if (temp_index == Item_ID_TG.None)
                     {
@@ -57,7 +60,7 @@ public class Chunk_TG: MonoBehaviour
                     go.transform.SetParent(transform);
                     block_data[i, j, k] = go.GetComponent<Block_Node_TG>();
                     block_data[i, j, k].set_local_pos(i, j, k);
-                }                
+                }
             }
             yield return null;
         }
@@ -86,20 +89,51 @@ public class Chunk_TG: MonoBehaviour
     public void destory_and_show_adjacents(int x, int y, int z) {
         int[] dir = { -1, 1 };
         block_data[x, y, z] = null;
+        Block_Node_TG bn;
         for (int i_ = 0; i_ < dir.Length; i_++)
         {
             int i = dir[i_];
-            if (is_in_range(x + i, y , z ) && block_data[x + i, y , z] != null)
+            if (is_in_range(x + i, y, z))
             {
-                block_data[x + i, y, z ].show();
+                if (block_data[x + i, y, z] != null)
+                {
+                    block_data[x + i, y, z].show();
+                }
             }
-            if (is_in_range(x , y + i, z) && block_data[x , y + i, z] != null)
-            {
-                block_data[x , y + i, z].show();
+            else {
+                bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y, z));
+                if (bn != null) {
+                    bn.show();
+                }
             }
-            if (is_in_range(x , y, z + i) && block_data[x , y, z + i] != null)
+            if (is_in_range(x , y + i, z) )
             {
-                block_data[x, y, z + i].show();
+                if (block_data[x, y + i, z] != null) {
+                    block_data[x, y + i, z].show();
+                }
+                
+            }
+            else
+            {
+                bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y + i, z));
+                if (bn != null)
+                {
+                    bn.show();
+                }
+            }
+            if (is_in_range(x , y, z + i) )
+            {
+                if (block_data[x, y, z + i] != null) {
+                    block_data[x, y, z + i].show();
+                }                
+            }
+            else
+            {
+                bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y, z + i));
+                if (bn != null)
+                {
+                    bn.show();
+                }
             }
         }
     }
@@ -181,14 +215,29 @@ public class Chunk_TG: MonoBehaviour
     }
 
     private Item_ID_TG get_prefabs_index(int x, int y, int z) {
-        int chunk_world_y = Biom_Manager.instance.chunk2world_pos_int(chunk_pos).y;
-        if (chunk_world_y + y >= 0) {
-            return Item_ID_TG.None;
+        int world_y = Biom_Manager.instance.chunk2world_pos_int(chunk_pos).y + y;
+        if (world_y == -1)
+        {
+            return Item_ID_TG.dirt;
         }
-        if (chunk_world_y + y== -1) {
+        else if (world_y < -1)
+        {
+            Item_ID_TG temp_id = Item_ID_TG.dirt;
+            if (Random.Range(0, 3) > 1 )
+            {
+                return Item_ID_TG.None;
+            }
+            return temp_id;
+        }
+
+        int h = Biom_Manager.instance.get_mountain_height(chunk_pos, new Vector3Int(x,y,z));
+        if (h > world_y) {
+            return Item_ID_TG.dirt;
+        } else if (h == world_y) {
             return Item_ID_TG.grass;
         }
-        return Item_ID_TG.dirt;
+
+        return Item_ID_TG.None;
     }
 
 }

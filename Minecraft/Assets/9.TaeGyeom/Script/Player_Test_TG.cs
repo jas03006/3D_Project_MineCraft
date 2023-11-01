@@ -11,6 +11,7 @@ public class Player_Test_TG : MonoBehaviour
     void Start()
     {
         rigid_body = GetComponent<Rigidbody>();
+        deactivate_gravity();
     }
 
     // Update is called once per frame
@@ -35,5 +36,12 @@ public class Player_Test_TG : MonoBehaviour
         }
     }
 
+    public void deactivate_gravity()
+    {
+        rigid_body.useGravity = false;
+    }
+    public void activate_gravity() {
+        rigid_body.useGravity = true;
+    }
     
 }
