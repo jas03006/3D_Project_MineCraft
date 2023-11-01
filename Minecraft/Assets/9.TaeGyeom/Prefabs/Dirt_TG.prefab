@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4861730266974659016}
   - component: {fileID: 6354003121456301936}
   m_Layer: 6
-  m_Name: Item
+  m_Name: Dirt_TG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,6 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   child: {fileID: 0}
+  local_pos_in_chunk: {x: -1, y: -1, z: -1}
+  is_blocking: 1
 --- !u!1 &4861730267139153788
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +332,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7577318854229401845, guid: d477bbbdeee6e7f46a5c56335f302819, type: 3}
+  - {fileID: 6516057406655893509, guid: 5193e988950ef054baff645d775923de, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -465,8 +465,7 @@ MonoBehaviour:
   start_chunk_pos: {x: 0, y: 0, z: 0}
   chunk_size: 16
   render_distance: 32
-  block_prefab_list:
-  - {fileID: 4861730266974659017, guid: a5b9416fad15370489015a1918324322, type: 3}
+  block_prefabs_SO: {fileID: 11400000, guid: 3511a637eb9a13e4bb09df0a304fd6de, type: 2}
   chunk_prefab: {fileID: 2185991642140033117, guid: 089f737e68cfa6e41a983c4903459e18, type: 3}
   player: {fileID: 0}
 --- !u!1 &2093385718
