@@ -328,12 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39790a45e348f3045815d274571e95cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHandList: 000000000000000000000000000000000000000000000000000000000000000000000000
-  playerInventoryList: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  image: {fileID: 0}
-  isOptionOpen: 0
-  isInventoryOpen: 0
-  maxStackCount: 0
+  playerHandList: 
+  playerInventoryList: 
+  image: {fileID: 899795708}
 --- !u!1 &1140957037
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,10 +719,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotCamXAxisSpeed: 5
   rotCamYAxisSpeed: 5
-  limitMinX: -80
-  limitMaxX: 50
-  eulerAngleX: 0
-  eulerAngleY: 0
 --- !u!114 &1448936498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,8 +732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rb: {fileID: 0}
-  rotateToMouse: {fileID: 0}
 --- !u!1 &1532523879
 GameObject:
   m_ObjectHideFlags: 0
