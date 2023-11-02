@@ -27,10 +27,12 @@ public class Block_Node_TG
     public void set_gameobject(GameObject go) {
         gameObject = go;
         transform = go.transform;
+        //open_flag = 1;
     }
     public void remove_gameobject() {
         gameObject = null;
         transform = null;
+        //open_flag = -1;
     }
     public void destroy_block()
     {
@@ -43,12 +45,12 @@ public class Block_Node_TG
             child.parent = null;
             child.destroy_block();
         }
-        transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
+       // transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
     }    
 
     public void show()
     {
-        if (gameObject == null || gameObject.layer == 0) {
+        if (gameObject == null ) {
             return;
         }
         gameObject.layer = 0;
@@ -60,7 +62,7 @@ public class Block_Node_TG
     }
     public void hide()
     {
-        if (gameObject == null || gameObject.layer == LayerMask.NameToLayer("Hidden_Block"))
+        if (gameObject == null )
         {
             return;
         }

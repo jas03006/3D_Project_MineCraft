@@ -32,6 +32,7 @@ public class Biom_Manager : MonoBehaviour
 
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private Queue<GameObject>[] pool_list;
+    private Vector3 pool_position = new Vector3(1000f, 1000f, 1000f);
     private Queue<Block_Node_TG> block_ready_queue;
      private int block_ready_cnt = 150000;
      private int ready_block_generate_cnt = 10000;
@@ -137,7 +138,6 @@ public class Biom_Manager : MonoBehaviour
 
     private void init_pool_list() {
         pool_list = new Queue<GameObject>[ Enum.GetValues(typeof(Item_ID_TG)).Length ];
-        Vector3 pool_position = new Vector3(1000f, 1000f, 1000f);
         int pool_num = 5000;
         foreach (Item_ID_TG e in Enum.GetValues(typeof(Item_ID_TG)))
         {
@@ -161,14 +161,15 @@ public class Biom_Manager : MonoBehaviour
     }
 
     public void pool_return(Item_ID_TG id, GameObject go) {
+        
         if (id == Item_ID_TG.None)
         {
             return;
         }
-        go.SetActive(false);
-        //Debug.Log("pool back");
+        go.transform.position = pool_position;
         pool_list[block_prefabs_SO.ID2index(id)].Enqueue(go);
-        go.transform.SetParent(pool_transform);
+       // go.transform.SetParent(pool_transform);
+        go.SetActive(false);
     }
     public GameObject pool_get(Item_ID_TG id) {
         if (id == Item_ID_TG.None)
@@ -331,12 +332,14 @@ public class Biom_Manager : MonoBehaviour
 
     public Vector3Int world2chunk_pos(Vector3 world_pos)
     {
-        Vector3Int pos = new Vector3Int((int)world_pos.x / chunk_size, (int)world_pos.y / chunk_size, (int)world_pos.z / chunk_size);
+        
+        Vector3Int pos = new Vector3Int((int)world_pos.x / chunk_size + (world_pos.x<0? -1:0), (int)world_pos.y / chunk_size + (world_pos.y < 0 ? -1 : 0), (int)world_pos.z / chunk_size + (world_pos.z < 0 ? -1 : 0));
         return pos;
     }
     public Vector3Int world2block_pos(Vector3 world_pos)
     {
-        Vector3Int pos = new Vector3Int((int)world_pos.x % chunk_size,  (int)world_pos.y % chunk_size,  (int)world_pos.z % chunk_size);
+        
+        Vector3Int pos = new Vector3Int(((int)world_pos.x % chunk_size + chunk_size)% chunk_size, ((int)world_pos.y % chunk_size + chunk_size) % chunk_size, ((int)world_pos.z % chunk_size + chunk_size) % chunk_size);
         return pos;
     }
 
@@ -348,9 +351,9 @@ public class Biom_Manager : MonoBehaviour
     }
 
     public Block_Node_TG get_block(Vector3Int chunk_pos, Vector3Int block_pos) {
-        chunk_pos.x += (block_pos.x) / chunk_size; 
-        chunk_pos.y += (block_pos.y) / chunk_size; 
-        chunk_pos.z += (block_pos.z) / chunk_size;
+        chunk_pos.x += (block_pos.x) / chunk_size + (block_pos.x < 0 ? -1 : 0); 
+        chunk_pos.y += (block_pos.y) / chunk_size + (block_pos.y < 0 ? -1 : 0); 
+        chunk_pos.z += (block_pos.z) / chunk_size + (block_pos.z < 0 ? -1 : 0);
         Chunk_TG ch = get_chunk(chunk_pos);
         if (ch == null) {
             return null;

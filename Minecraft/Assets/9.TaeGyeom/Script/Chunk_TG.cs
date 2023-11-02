@@ -165,12 +165,14 @@ public class Chunk_TG: MonoBehaviour
                     if (block_data[i,j,k] != null && block_data[i, j, k].id != Item_ID_TG.None )
                     {
                         if (is_open(i, j, k)) {
-                            new_pos.x = origin_pos.x + i;
-                            new_pos.y = origin_pos.y + j;
-                            new_pos.z = origin_pos.z + k;
-                            GameObject go = Biom_Manager.instance.pool_get(block_data[i, j, k].id, new_pos, Quaternion.identity);
-                            //go.transform.SetParent(transform);
-                            block_data[i, j, k].set_gameobject(go);
+                            if (block_data[i, j, k].gameObject == null) {
+                                new_pos.x = origin_pos.x + i;
+                                new_pos.y = origin_pos.y + j;
+                                new_pos.z = origin_pos.z + k;
+                                GameObject go = Biom_Manager.instance.pool_get(block_data[i, j, k].id, new_pos, Quaternion.identity);
+                                //go.transform.SetParent(transform);
+                                block_data[i, j, k].set_gameobject(go);
+                            }                            
                             block_data[i, j, k].show();
                         }
                         else
@@ -202,18 +204,21 @@ public class Chunk_TG: MonoBehaviour
                     {
                         if (is_open(i, j, k))
                         {
-                            new_pos.x = origin_pos.x + i;
-                            new_pos.y = origin_pos.y + j;
-                            new_pos.z = origin_pos.z + k;
-                            GameObject go = Biom_Manager.instance.pool_get(block_data[i, j, k].id, new_pos, Quaternion.identity);
-                            //go.transform.SetParent(transform);
-                            block_data[i, j, k].set_gameobject(go);
+                            if (block_data[i, j, k].gameObject == null)
+                            {
+                                new_pos.x = origin_pos.x + i;
+                                new_pos.y = origin_pos.y + j;
+                                new_pos.z = origin_pos.z + k;
+                                GameObject go = Biom_Manager.instance.pool_get(block_data[i, j, k].id, new_pos, Quaternion.identity);
+                                //go.transform.SetParent(transform);
+                                block_data[i, j, k].set_gameobject(go);
+                            }
                             block_data[i, j, k].show();
                         }
-                        else
+                        /*else
                         {
                             block_data[i, j, k].hide();
-                        }
+                        }*/
                     }
 
                 }
@@ -222,53 +227,94 @@ public class Chunk_TG: MonoBehaviour
         yield return null;
     }
     public void destory_and_show_adjacents(int x, int y, int z) {
+        
+        Block_Node_TG bn = block_data[x, y, z];
+        if (bn.id == Item_ID_TG.None )
+        {
+            return;
+            
+        }
+
+        if (bn.gameObject != null) {
+            bn.hide();
+            Biom_Manager.instance.pool_return(bn.id, bn.gameObject);
+            
+        }        
+        bn.id = Item_ID_TG.None;
+        bn.remove_gameobject();
+
+
+        Vector3Int origin_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos);
+        Vector3 new_pos = new Vector3();
         int[] dir = { -1, 1 };
-        block_data[x, y, z] = null;
-        Block_Node_TG bn;
+        //block_data[x, y, z] = null;
+
         for (int i_ = 0; i_ < dir.Length; i_++)
         {
             int i = dir[i_];
+
+            new_pos.x = origin_pos.x + x + i;
+            new_pos.y = origin_pos.y + y;
+            new_pos.z = origin_pos.z + z;
+            bn = null;
             if (is_in_range(x + i, y, z))
             {
-                if (block_data[x + i, y, z] != null)
-                {
-                    block_data[x + i, y, z].show();
-                }
+                bn = block_data[x + i, y, z];
             }
             else {
                 bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y, z));
-                if (bn != null) {
-                    bn.show();
-                }
             }
+            if (bn != null && bn.id != Item_ID_TG.None)
+            {
+                if (bn.gameObject == null) {
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    bn.set_gameobject(go);
+                }                
+                bn.show();
+            }
+
+            new_pos.x = origin_pos.x + x ;
+            new_pos.y = origin_pos.y + y + i;
+            new_pos.z = origin_pos.z + z;
+            bn = null;
             if (is_in_range(x , y + i, z) )
             {
-                if (block_data[x, y + i, z] != null) {
-                    block_data[x, y + i, z].show();
-                }
-                
+                bn = block_data[x, y + i, z];
             }
             else
             {
                 bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y + i, z));
-                if (bn != null)
-                {
-                    bn.show();
-                }
             }
+            if (bn != null && bn.id != Item_ID_TG.None)
+            {
+                if (bn.gameObject == null)
+                {
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    bn.set_gameobject(go);
+                }
+                bn.show();
+            }
+
+            new_pos.x = origin_pos.x + x;
+            new_pos.y = origin_pos.y + y;
+            new_pos.z = origin_pos.z + z + i;
+            bn = null;
             if (is_in_range(x , y, z + i) )
             {
-                if (block_data[x, y, z + i] != null) {
-                    block_data[x, y, z + i].show();
-                }                
+                bn = block_data[x, y, z + i];
             }
             else
             {
                 bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y, z + i));
-                if (bn != null)
+            }
+            if (bn != null && bn.id != Item_ID_TG.None)
+            {
+                if (bn.gameObject == null)
                 {
-                    bn.show();
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    bn.set_gameobject(go);
                 }
+                bn.show();
             }
         }
     }
@@ -358,6 +404,16 @@ public class Chunk_TG: MonoBehaviour
         {
             return Item_ID_TG.dirt;
         }
+        else if (world_y < -5)
+        {
+            Item_ID_TG temp_id = Item_ID_TG.stone;
+            if (Random.Range(0, 7) < 1)
+            {
+                return Item_ID_TG.coal;
+            }
+            return temp_id;
+            
+        }
         else if (world_y < -1)
         {
             Item_ID_TG temp_id = Item_ID_TG.dirt;
@@ -365,15 +421,6 @@ public class Chunk_TG: MonoBehaviour
             {
                 return Item_ID_TG.None;
             }*/
-            return temp_id;
-        }
-        else if (world_y < -5)
-        {
-            Item_ID_TG temp_id = Item_ID_TG.stone;
-            if (Random.Range(0, 7) > 1 )
-            {
-                return Item_ID_TG.coal;
-            }
             return temp_id;
         }
 
