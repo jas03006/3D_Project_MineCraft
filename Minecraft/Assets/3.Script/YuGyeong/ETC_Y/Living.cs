@@ -5,18 +5,29 @@ using UnityEngine;
 public class Living : MonoBehaviour
 {
     [Header("체력")]
-    private int curhealth;
-    private int starthealth;
+    public int starthealth = 20;
+    public int curhealth { get; protected set; }
+    public bool isDead { get; protected set; }
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void OnEnable()
     {
+        isDead = false;
         curhealth = starthealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnDamage(int Damage)
     {
-        
+        curhealth -= Damage;
+        //죽었는지 안죽었는지
+        if (curhealth <= 0 && !isDead)
+        {
+            //죽는 메소드를 호출
+            Die();
+        }
+    }
+
+    public virtual void Die()
+    {
+        isDead = true;
     }
 }
