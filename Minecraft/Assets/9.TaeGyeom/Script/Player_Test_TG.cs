@@ -50,7 +50,10 @@ public class Player_Test_TG : MonoBehaviour
     private float mouseX;
     private float mouseY;
     [SerializeField] private float r_speed;
-
+    
+    
+    [SerializeField] private float interaction_range = 4f;
+    private float attck_timer = 1f;
     private void Start()
     {
         TryGetComponent(out rigid);
@@ -63,7 +66,13 @@ public class Player_Test_TG : MonoBehaviour
         runspeed = 10f;
         r_speed = 1f;
         currentspeed = walkspeed;
+        if (interaction_range <=0) {
+            interaction_range = 8;
+        }
         deactivate_gravity();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
     void Update()
     {
@@ -79,7 +88,7 @@ public class Player_Test_TG : MonoBehaviour
         rigid.MovePosition(rigid.position + moveVec);
 
         //점프
-        if (!isjump && Input.GetButtonDown("Jump"))
+        if (!isjump && Input.GetButton("Jump"))
         {
             isjump = true;
             rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
@@ -92,9 +101,10 @@ public class Player_Test_TG : MonoBehaviour
         //카메라
         CamSet();
 
-        if (Input.GetMouseButtonDown(0)) {
+        attck_timer += Time.deltaTime; 
+        if (Input.GetMouseButton(0) && attck_timer >= 0.2f) {
+            attck_timer = 0f;
             left_click();
-            
         }
     }
 
@@ -106,9 +116,11 @@ public class Player_Test_TG : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Transform objectHit = hit.transform;
-            if (objectHit.CompareTag("Stepable_Block")) {
-                objectHit.GetComponent<Block_TG>().die();
-               
+            if (objectHit.CompareTag("Stepable_Block") ) {
+                Debug.Log(hit.point - transform.position);
+                if (((hit.point - transform.position).sqrMagnitude <= interaction_range * interaction_range)) {
+                    objectHit.GetComponent<Block_TG>().die();
+                }              
             }
         }
     }
@@ -153,10 +165,13 @@ public class Player_Test_TG : MonoBehaviour
         Vector3 camRotation = cam.transform.localEulerAngles;
 
         // 회전값을 더하고 제한
+
         camRotation.x -= mouseY * r_speed;
 
         // 카메라의 회전값을 제한
-        camRotation.x = Mathf.Clamp(camRotation.x, 0f, 180f); // -90도부터 90도까지로 제한
+        camRotation.x = Mathf.Clamp(camRotation.x, -50f, 360f);
+        /*camRotation.x = Mathf.Clamp(camRotation.x, -90f, 90f);
+        camRotation.x = (camRotation.x + 360f) % 360f;*/ // -90도부터 90도까지로 제한
         //Debug.Log(camRotation.x);
 
         // 실제 카메라에 회전 적용

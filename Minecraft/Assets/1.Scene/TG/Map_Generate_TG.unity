@@ -543,6 +543,7 @@ MonoBehaviour:
   jumpforce: 0
   isjump: 0
   r_speed: 0
+  interaction_range: 8
 --- !u!54 &726597372
 Rigidbody:
   m_ObjectHideFlags: 0

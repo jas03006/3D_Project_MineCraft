@@ -8,7 +8,8 @@ public enum Item_ID_TG {
     stone= 1,
     grass,
     dirt,
-    coal = 15
+    coal = 15,
+    diamond = 56
 }
 
 public class Biom_Manager : MonoBehaviour
@@ -84,7 +85,7 @@ public class Biom_Manager : MonoBehaviour
         {
             chunk_update_timer = 0f;
             current_chunk_pos = get_player_chunk_pos();
-            Debug.Log("start co");
+           // Debug.Log("start co");
             now_update_co = StartCoroutine(generate_map_update_co());
         }
 
@@ -138,7 +139,7 @@ public class Biom_Manager : MonoBehaviour
 
     private void init_pool_list() {
         pool_list = new Queue<GameObject>[ Enum.GetValues(typeof(Item_ID_TG)).Length ];
-        int pool_num = 5000;
+        int pool_num = 10000;
         foreach (Item_ID_TG e in Enum.GetValues(typeof(Item_ID_TG)))
         {
             if (e == Item_ID_TG.None) {
@@ -155,7 +156,7 @@ public class Biom_Manager : MonoBehaviour
                 qu.Enqueue(go);
                 go.transform.SetParent(pool_transform);
             }
-            pool_num = 5000;
+            pool_num = 10000;
             pool_list[block_prefabs_SO.ID2index(e)] = qu;
         }
     }
@@ -332,13 +333,14 @@ public class Biom_Manager : MonoBehaviour
 
     public Vector3Int world2chunk_pos(Vector3 world_pos)
     {
-        
-        Vector3Int pos = new Vector3Int((int)world_pos.x / chunk_size + (world_pos.x<0? -1:0), (int)world_pos.y / chunk_size + (world_pos.y < 0 ? -1 : 0), (int)world_pos.z / chunk_size + (world_pos.z < 0 ? -1 : 0));
+        //Vector3Int pos = new Vector3Int((int)world_pos.x / chunk_size + (world_pos.x<0? -1:0), (int)world_pos.y / chunk_size + (world_pos.y < 0 ? -1 : 0), (int)world_pos.z / chunk_size + (world_pos.z < 0 ? -1 : 0));
+        Vector3Int pos = new Vector3Int((int)(world_pos.x < 0 ? world_pos.x - chunk_size + 1 : world_pos.x) / chunk_size ,
+            (int)(world_pos.y < 0 ? world_pos.y - chunk_size + 1 : world_pos.y) / chunk_size,
+            (int)(world_pos.z < 0 ? world_pos.z - chunk_size + 1 : world_pos.z) / chunk_size );
         return pos;
     }
     public Vector3Int world2block_pos(Vector3 world_pos)
     {
-        
         Vector3Int pos = new Vector3Int(((int)world_pos.x % chunk_size + chunk_size)% chunk_size, ((int)world_pos.y % chunk_size + chunk_size) % chunk_size, ((int)world_pos.z % chunk_size + chunk_size) % chunk_size);
         return pos;
     }
@@ -351,9 +353,12 @@ public class Biom_Manager : MonoBehaviour
     }
 
     public Block_Node_TG get_block(Vector3Int chunk_pos, Vector3Int block_pos) {
-        chunk_pos.x += (block_pos.x) / chunk_size + (block_pos.x < 0 ? -1 : 0); 
+        /*chunk_pos.x += (block_pos.x) / chunk_size + (block_pos.x < 0 ? -1 : 0); 
         chunk_pos.y += (block_pos.y) / chunk_size + (block_pos.y < 0 ? -1 : 0); 
-        chunk_pos.z += (block_pos.z) / chunk_size + (block_pos.z < 0 ? -1 : 0);
+        chunk_pos.z += (block_pos.z) / chunk_size + (block_pos.z < 0 ? -1 : 0);*/
+        chunk_pos.x += (block_pos.x < 0 ? block_pos.x - chunk_size + 1: block_pos.x) / chunk_size ; 
+        chunk_pos.y += (block_pos.y < 0 ? block_pos.y - chunk_size + 1 : block_pos.y) / chunk_size ; 
+        chunk_pos.z += (block_pos.z < 0 ? block_pos.z - chunk_size + 1 : block_pos.z) / chunk_size ;
         Chunk_TG ch = get_chunk(chunk_pos);
         if (ch == null) {
             return null;
@@ -403,5 +408,15 @@ public class Biom_Manager : MonoBehaviour
         for (int i =0; i < mountain_num; i++) {
             mountain_point_list.Add(new Vector3Int(UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range), UnityEngine.Random.Range(mountain_min_height, mountain_max_height), UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range)));
         }
+    }
+
+    public bool is_in_cave(Vector3Int chunk_pos, Vector3Int block_pos) {
+        Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
+        temp_pos.y = 0;
+        int h = 0;
+        int temp_h = 0;
+        
+
+        return false;
     }
 }
