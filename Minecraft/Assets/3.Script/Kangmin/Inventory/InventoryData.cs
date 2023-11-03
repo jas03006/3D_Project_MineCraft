@@ -13,8 +13,7 @@ public class InventoryData : ScriptableObject
     [SerializeField] private int value; // 갯수
     public int Value => value;
 
-    [SerializeField] private RawImage itemImage;
-    public RawImage ItemImage => itemImage;
+    public Image itemImage; // 아이템 이미지
 
     [SerializeField] private bool isEquipable; // 장착 가능 여부
     public bool IsEquipable => isEquipable;

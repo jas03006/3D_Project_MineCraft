@@ -19,13 +19,14 @@ public class Inventory : MonoBehaviour
 
     Vector2 mousePos;
 
-    [SerializeField] private List<int> playerHandList = new List<int>(36); // 아이템 리스트
+    [SerializeField] private List<int> playerItemList = new List<int>(36); // 아이템 리스트
 
-    public Image inventoryImage, menuImage;
+    public Image inventoryImage;
     public List<Sprite> spriteImage;
 
     private Transform[] children;
     private Button[] button;
+    private GameObject selectedItem; // 마우스로 선택한 아이템을 나타내는 UI 요소
 
     private bool isMouseOver;
     private bool isInventoryOpen = false;
@@ -49,7 +50,6 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < button.Length; i++)
         {
             button[i].onClick.AddListener(OnClickItem);
-            Debug.Log(button[i].name);
         }
     }
     private void Update()
@@ -90,11 +90,11 @@ public class Inventory : MonoBehaviour
     {
         Debug.Log("마우스 클릭 위치 = " + mousePos);
     }
+
     private void SwapItems(int beforeIndex, int afterIndex)
     {
-        int tmp = playerHandList[beforeIndex];
-        playerHandList[beforeIndex] = playerHandList[afterIndex];
-        playerHandList[afterIndex] = tmp;
+        int tmp = playerItemList[beforeIndex];
+        playerItemList[beforeIndex] = playerItemList[afterIndex];
+        playerItemList[afterIndex] = tmp;
     }
 }
-

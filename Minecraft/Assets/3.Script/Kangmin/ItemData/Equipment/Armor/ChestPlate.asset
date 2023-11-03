@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCode: 1
   itemName: 
+  value: 0
+  itemImage: {fileID: 0}
   isEquipable: 1
   isInstallable: 0
   isWeapon: 0
   isArmor: 0
   isInteractable: 0
   isCombinable: 0
-  itemImage: {fileID: 0}
