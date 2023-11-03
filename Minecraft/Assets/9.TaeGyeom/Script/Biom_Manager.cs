@@ -9,9 +9,30 @@ public enum Item_ID_TG {
     grass,
     dirt,
     coal = 15,
+    iron = 16,
+    tree = 17,
+    leaf = 18,
     diamond = 56
 }
 
+public class Cave_Point {
+    public Vector3 position;
+    public float radius;
+    public Cave_Point() { 
+    
+    }
+    public Cave_Point(Vector3 position_, float radius_)
+    {
+        position = position_;
+        if (position.y >= 0) {
+            position.y = -1;
+        }
+        radius = radius_;
+        if (radius < 2) {
+            radius = 2;
+        }
+    }
+}
 public class Biom_Manager : MonoBehaviour
 {
     public static Biom_Manager instance = null;
@@ -30,6 +51,7 @@ public class Biom_Manager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] Transform pool_transform;
     private List<Vector3Int> mountain_point_list;
+    private List<Cave_Point> cave_point_list;
 
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private Queue<GameObject>[] pool_list;
@@ -70,6 +92,7 @@ public class Biom_Manager : MonoBehaviour
         init_block_ready_queue();
 
         decide_mountain_point();
+        decide_cave_point();
         update_start_pos();
         player.GetComponent<Player_Test_TG>().deactivate_gravity();
         generate_start_map();
@@ -219,7 +242,7 @@ public class Biom_Manager : MonoBehaviour
         int y_render_range = (current_chunk_pos.y >= 0 ? render_chunk_num : 3);
         for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
         {
-            for (int j = start_chunk_pos.y - 2; j < start_chunk_pos.y + y_render_range; j++)
+            for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
                 for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
                 {
@@ -228,7 +251,7 @@ public class Biom_Manager : MonoBehaviour
                     now_chunk_pos.z = k;
                     new_chunk = Instantiate(chunk_prefab, chunk2world_pos(now_chunk_pos), Quaternion.identity).GetComponent<Chunk_TG>();
                     new_chunk.transform.SetParent(transform);
-                    new_chunk.init(chunk_size, now_chunk_pos);
+                    new_chunk.init(chunk_size, now_chunk_pos);                                   
                     chunk_data[now_chunk_pos] = new_chunk;
                     new_chunk.generate_blocks();                    
                 }
@@ -237,7 +260,7 @@ public class Biom_Manager : MonoBehaviour
 
         for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
         {
-            for (int j = start_chunk_pos.y - 2; j < start_chunk_pos.y + y_render_range; j++)
+            for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
                 for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
                 {
@@ -262,7 +285,7 @@ public class Biom_Manager : MonoBehaviour
         int y_pool_range = (current_chunk_pos.y >=0 ? pooling_distance : 3);
         for (int i = current_chunk_pos.x - render_chunk_num- pooling_distance; i < current_chunk_pos.x + render_chunk_num+pooling_distance; i++)
         {
-            for (int j = current_chunk_pos.y - 1 - 1; j < current_chunk_pos.y + y_render_range + y_pool_range; j++)
+            for (int j = current_chunk_pos.y - 2 - 1; j < current_chunk_pos.y + y_render_range + y_pool_range; j++)
             {
                 for (int k = current_chunk_pos.z - render_chunk_num -pooling_distance; k < current_chunk_pos.z + render_chunk_num + pooling_distance; k++)
                 {
@@ -301,7 +324,7 @@ public class Biom_Manager : MonoBehaviour
 
         for (int i = current_chunk_pos.x - render_chunk_num; i < current_chunk_pos.x + render_chunk_num; i++)
         {
-            for (int j = current_chunk_pos.y - 1; j < current_chunk_pos.y + y_render_range; j++)
+            for (int j = current_chunk_pos.y - 2; j < current_chunk_pos.y + y_render_range; j++)
             {
                 for (int k = current_chunk_pos.z - render_chunk_num; k < current_chunk_pos.z + render_chunk_num; k++)
                 {
@@ -410,7 +433,7 @@ public class Biom_Manager : MonoBehaviour
         }
     }
 
-    public bool is_in_cave(Vector3Int chunk_pos, Vector3Int block_pos) {
+    /*public bool is_in_cave(Vector3Int chunk_pos, Vector3Int block_pos) {
         Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
         temp_pos.y = 0;
         int h = 0;
@@ -418,5 +441,85 @@ public class Biom_Manager : MonoBehaviour
         
 
         return false;
+    }*/
+
+    private void decide_cave_point() {
+        cave_point_list = new List<Cave_Point>();
+        cave_point_list.Add(new Cave_Point());
+        int cave_generate_range = 200;
+        int cave_cnt = 30;
+        int cave_depth = 10;
+        Cave_Point now_cp = new Cave_Point(Vector3.right, 4);
+        Cave_Point next_cp;
+        Vector3 gen_dir = Vector3.zero;
+        cave_point_list.Add(now_cp);
+        for (int ci = 0; ci < cave_cnt; ci++) {
+            if (ci == 0)
+            {
+                now_cp = new Cave_Point(Vector3.right*8, 4);
+                cave_depth = 10;
+            }
+            else {
+                now_cp = new Cave_Point(
+                    new Vector3(
+                        UnityEngine.Random.Range(-cave_generate_range, cave_generate_range),
+                    UnityEngine.Random.Range(-5, 0),
+                    UnityEngine.Random.Range(-cave_generate_range, cave_generate_range)),
+                    4);
+                cave_depth = UnityEngine.Random.Range(3, 10);
+            }            
+            next_cp = null;
+           
+            for (int i = 1; i < cave_depth; i++)
+            {
+                //temp_pos = 
+                get_next_gen_dir(ref gen_dir);
+                next_cp = new Cave_Point(now_cp.position + now_cp.radius * gen_dir * 8 / 10, get_next_radius(now_cp.radius));
+                next_cp.position += gen_dir * next_cp.radius * 8 / 10;
+                cave_point_list.Add(next_cp);
+                gen_dir = next_cp.position - now_cp.position;
+                now_cp = next_cp;
+            }
+        }
+        
+    }
+
+    private void get_next_gen_dir(ref Vector3 gen_dir) {
+        if (gen_dir == Vector3.zero) {
+            gen_dir = new Vector3(1,-1,0).normalized;
+            return;
+        }
+        gen_dir = Quaternion.Euler(0,UnityEngine.Random.Range(-180f,180f), 0)* gen_dir;
+        gen_dir.y = 0;
+        gen_dir = gen_dir.normalized;
+        gen_dir.y = UnityEngine.Random.Range(-0.7f,0.1f);
+        gen_dir = gen_dir.normalized;
+    }
+    private float get_next_radius(float radius) {
+        float min_rate = 0.75f;
+        float max_rate = 1.25f;
+        if (radius * min_rate < 4) {
+            min_rate = 4f / radius;
+        }
+        if (radius * max_rate < 8)
+        {
+            max_rate = 8f / radius;
+        }
+        return radius *UnityEngine.Random.Range(min_rate,max_rate);
+    }
+
+    public void get_valid_cave_points(Vector3Int chunk_pos, ref List<Cave_Point> cp_list) {
+        Vector3 world_center_pos = chunk2world_pos(chunk_pos);
+        world_center_pos.x += chunk_size / 2 -(chunk_size+1)%2;
+        world_center_pos.y += chunk_size / 2 - (chunk_size + 1) % 2;
+        world_center_pos.y += chunk_size / 2 - (chunk_size + 1) % 2;
+        cp_list = new List<Cave_Point>();
+        for (int i =0; i < cave_point_list.Count; i++) {
+            Cave_Point cp = cave_point_list[i];
+            if ((chunk_size + cp.radius+1 ) *(chunk_size  + cp.radius+1) >= (cp.position- world_center_pos).sqrMagnitude) {
+                cp_list.Add(cp);
+            }
+        }
+        //return cp_list;
     }
 }

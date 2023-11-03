@@ -9,6 +9,7 @@ public class Chunk_TG : MonoBehaviour
     public Vector3Int chunk_pos;
     public bool is_open_checked = false;
     public bool is_active = true;
+    public List<Cave_Point> valid_cave_point_list;
 
     // Start is called before the first frame update
 
@@ -17,7 +18,8 @@ public class Chunk_TG : MonoBehaviour
         chunk_pos = chunk_pos_;
         chunk_size = chunk_size_;
         block_data = new Block_Node_TG[chunk_size, chunk_size, chunk_size];
-        is_open_checked = false;       
+        is_open_checked = false;
+        Biom_Manager.instance.get_valid_cave_points(chunk_pos, ref valid_cave_point_list);
     }
     public void generate_blocks()
     {
@@ -30,10 +32,12 @@ public class Chunk_TG : MonoBehaviour
                 for (int k = 0; k < chunk_size; k++)
                 {
                     Item_ID_TG temp_index = get_prefabs_index(i, j, k);
-
-                    block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
-                    block_data[i, j, k].id = temp_index;
-                    block_data[i, j, k].set_local_pos(i, j, k);
+                    if (block_data[i, j, k] == null) {
+                        block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
+                        block_data[i, j, k].id = temp_index;
+                        block_data[i, j, k].set_local_pos(i, j, k);
+                    }                    
+                    
                     /* if (temp_index == Item_ID_TG.None) {
                          continue;
                      }*/
@@ -94,9 +98,12 @@ public class Chunk_TG : MonoBehaviour
                 {
 
                     Item_ID_TG temp_index = get_prefabs_index(i, j, k);
-                    block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
-                    block_data[i, j, k].id = temp_index;
-                    block_data[i, j, k].set_local_pos(i, j, k);
+                    if (block_data[i, j, k] == null) {
+                        block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
+                        block_data[i, j, k].id = temp_index;
+                        block_data[i, j, k].set_local_pos(i, j, k);
+                    }
+                    
                     /*if (temp_index == Item_ID_TG.None)
                     {
                         continue;
@@ -382,58 +389,76 @@ public class Chunk_TG : MonoBehaviour
         return true;
     }
 
-    private void decide_mineral_blocks() {
+    private void decide_mineral_one_kind(Item_ID_TG id, int min_cnt, int max_cnt) {
         int[] dir = { -1, 1 };
         int x, y, z;
-        if (chunk_pos.y < 0) {
-            int coal_num = Random.Range(8, 12);
-            for (int i = 0; i < coal_num; i++)
+        int mineral_num = Random.Range(min_cnt, max_cnt);
+        for (int i = 0; i < mineral_num; i++)
+        {
+            x = Random.Range(1, chunk_size - 1);
+            y = Random.Range(1, chunk_size - 1);
+            z = Random.Range(1, chunk_size - 1);
+            if (block_data[x, y, z].id != Item_ID_TG.None)
             {
-                x = Random.Range(1, chunk_size - 1);
-                y = Random.Range(1, chunk_size - 1);
-                z = Random.Range(1, chunk_size - 1);
-
-                block_data[x, y, z] .id= Item_ID_TG.coal;
-                for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++) {
-                    if (Random.Range(0, 4) < 3) {
-                        block_data[x + dir[dir_ind], y, z].id = Item_ID_TG.coal;
+                block_data[x, y, z].id = id;
+                for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++)
+                {
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x + dir[dir_ind], y, z].id = id;
                     }
-                    if (Random.Range(0, 4) < 3) {
-                        block_data[x, y + dir[dir_ind], z].id = Item_ID_TG.coal;
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x, y + dir[dir_ind], z].id = id;
                     }
-                    if (Random.Range(0, 4) < 3) {
-                        block_data[x, y, z + dir[dir_ind]].id = Item_ID_TG.coal;
-                    }                 
-                                        
-                }
-            }
-            x = Random.Range(1, chunk_size-1);
-            y = Random.Range(1, chunk_size-1);
-            z = Random.Range(1, chunk_size-1);
-
-            block_data[x, y, z].id = Item_ID_TG.diamond;
-            for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++)
-            {
-                if (Random.Range(0, 4) < 3)
-                {
-                    block_data[x + dir[dir_ind], y, z].id = Item_ID_TG.diamond;
-                }
-                if (Random.Range(0, 4) < 3)
-                {
-                    block_data[x, y + dir[dir_ind], z].id = Item_ID_TG.diamond;
-                }
-                if (Random.Range(0, 4) < 3)
-                {
-                    block_data[x, y, z + dir[dir_ind]].id = Item_ID_TG.diamond;
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x, y, z + dir[dir_ind]].id = id;
+                    }
                 }
             }
         }
     }
+    private void decide_mineral_blocks() {
+        int[] dir = { -1, 1 };
+        int x, y, z;
+        if (chunk_pos.y < 0) {
+            decide_mineral_one_kind(Item_ID_TG.coal, 8, 12);
+            decide_mineral_one_kind(Item_ID_TG.iron, 4, 8);
+            x = Random.Range(1, chunk_size-1);
+            y = Random.Range(1, chunk_size-1);
+            z = Random.Range(1, chunk_size-1);
+            if (block_data[x, y, z].id != Item_ID_TG.None)
+            {
+                block_data[x, y, z].id = Item_ID_TG.diamond;
+                for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++)
+                {
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x + dir[dir_ind], y, z].id = Item_ID_TG.diamond;
+                    }
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x, y + dir[dir_ind], z].id = Item_ID_TG.diamond;
+                    }
+                    if (Random.Range(0, 4) < 3)
+                    {
+                        block_data[x, y, z + dir[dir_ind]].id = Item_ID_TG.diamond;
+                    }
+                }
+            }
+            
+        }
+    }
 
 private Item_ID_TG get_prefabs_index(int x, int y, int z) {
-        int world_y = Biom_Manager.instance.chunk2world_pos_int(chunk_pos).y + y;
         Vector3Int block_pos = new Vector3Int(x, y, z);
-        if (world_y < 0 && Biom_Manager.instance.is_in_cave(chunk_pos, block_pos)) {
+        Vector3Int block_world_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + block_pos;
+        int world_y = block_world_pos.y;
+        if (block_data[x, y, z] != null && block_data[x,y,z].id != Item_ID_TG.None) {
+            return block_data[x, y, z].id;
+        }
+        if (world_y <= 10 && is_in_cave(block_world_pos)) {
             return Item_ID_TG.None;
         }
 
@@ -441,32 +466,82 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         {
             return Item_ID_TG.dirt;
         }
-
+        if (world_y == -5)
+        {
+            if (Random.Range(0,3)<1) {
+                return Item_ID_TG.dirt;
+            }
+            return Item_ID_TG.stone;
+        }
         if (world_y < -5)
         {
-            Item_ID_TG temp_id = Item_ID_TG.stone;
-            /*int rand_value = Random.Range(0, 7);
-            if (rand_value < 1)
-            {
-                return Item_ID_TG.coal;
-            }*/
-            return temp_id;            
+            return Item_ID_TG.stone;            
         }
         else if (world_y < -1)
         {
-            Item_ID_TG temp_id = Item_ID_TG.dirt;
-            /*if (Random.Range(0, 3) > 1 )
-            {
-                return Item_ID_TG.None;
-            }*/
-            return temp_id;
+            return Item_ID_TG.dirt;
         }
 
         int h = Biom_Manager.instance.get_mountain_height(chunk_pos, block_pos);
-        if (h > world_y) {
+        if (h > world_y)
+        {
             return Item_ID_TG.dirt;
-        } else if (h == world_y) {
+        }
+        else if (h == world_y)
+        {
             return Item_ID_TG.grass;
+        }
+        else {
+            if (h + 1 == world_y && x > 3 && x < 13 && z > 3 && z < 13 && y < chunk_size-8)
+            {
+                if (Random.Range(0, 30) < 1)
+                {
+                    return Item_ID_TG.tree;
+                }
+            }
+            else if (h + 5 >= world_y)
+            {
+                Block_Node_TG bn;
+                if (!is_in_range(x, y - 1, z))
+                {
+                    bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
+                }
+                else {
+                    bn = block_data[x, y - 1, z];
+                }
+                if (bn!= null && bn.id == Item_ID_TG.tree)
+                {
+                    if (h + 5 != world_y && Random.Range(0, 10) < 8)
+                    {
+                        return Item_ID_TG.tree;
+                    }
+                    else {
+                        int leaf_width = (world_y-h)/3 +1;
+                        for (int i =0; i<4; i++) {
+                            for (int j = -leaf_width + i; j < leaf_width +1- i; j++) {
+                                for (int k= -leaf_width + i; k < leaf_width+1 - i; k++)
+                                {
+                                    if (is_in_range(x + j, y + i, z + k))
+                                    {
+                                        if (block_data[x + j, y + i, z + k] == null){
+                                            block_data[x + j, y + i, z + k] = Biom_Manager.instance.get_block_node();
+                                            block_data[x + j, y + i, z + k].set_local_pos(x + j, y + i, z + k);
+                                        }
+                                        block_data[x + j, y + i, z + k].id = Item_ID_TG.leaf;
+                                    }
+                                    else {
+                                        bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + j, y + i, z + k));
+                                        if (bn != null) { 
+                                            bn.id = Item_ID_TG.leaf;
+                                        }                                         
+                                    }                                    
+                                }
+                            }                            
+                        }
+                        return Item_ID_TG.leaf;
+                    }
+                }
+            }
         }
 
         return Item_ID_TG.None;
@@ -474,7 +549,6 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
 
     public void pool_back_all()
     {
-        
         is_active = false;
         is_open_checked = false;
         for (int i = 0; i < block_data.GetLength(0); i++)
@@ -493,5 +567,15 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         }
         gameObject.SetActive(false);
     }
-   
+
+    private bool is_in_cave(Vector3 block_world_pos) {        
+        if (valid_cave_point_list != null  ) {
+            for (int i = 0; i < valid_cave_point_list.Count; i++) {
+                if ((block_world_pos - valid_cave_point_list[i].position).sqrMagnitude <= (valid_cave_point_list[i].radius+1) * (valid_cave_point_list[i].radius+1)) {
+                    return true;
+                }
+            }            
+        }
+        return false;
+    }
 }

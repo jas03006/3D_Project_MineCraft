@@ -60,7 +60,7 @@ public class Player_Test_TG : MonoBehaviour
         cam = FindObjectOfType<Camera>().transform;
 
         isjump = false;
-        jumpforce = 15f;
+        jumpforce = 10f;
         crouchspeed = 1f;
         walkspeed = 5f;
         runspeed = 10f;
