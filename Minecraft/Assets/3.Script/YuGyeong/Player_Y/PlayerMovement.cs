@@ -134,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
 
         // 카메라의 회전값을 제한
         camRotation.x = Mathf.Clamp(camRotation.x, 0f, 180f); // -90도부터 90도까지로 제한
-        Debug.Log(camRotation.x);
 
         // 실제 카메라에 회전 적용
         cam.localEulerAngles = camRotation;
