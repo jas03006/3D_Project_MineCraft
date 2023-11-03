@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Living : MonoBehaviour
 {
-    [Header("Ã¼·Â")]
     public int starthealth = 20;
-    public int curhealth { get; protected set; }
-    public bool isDead { get; protected set; }
+    public int curhealth;
+    public bool isDead;
 
     protected virtual void OnEnable()
     {

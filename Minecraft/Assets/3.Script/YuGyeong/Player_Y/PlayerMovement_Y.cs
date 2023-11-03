@@ -46,6 +46,7 @@ public class PlayerMovement_Y : MonoBehaviour
     [SerializeField] private float walkspeed;
     [SerializeField] private float runspeed;
     private float currentspeed;
+    public bool canrun;
 
     [SerializeField] private float jumpforce;
     [SerializeField] private bool isjump;
@@ -58,6 +59,7 @@ public class PlayerMovement_Y : MonoBehaviour
     private float mouseX;
     private float mouseY;
     [SerializeField] private float r_speed;
+    private float tmp;
 
     private void Start()
     {
@@ -103,7 +105,7 @@ public class PlayerMovement_Y : MonoBehaviour
     private void PositionInput()
     {
         //속도 세팅
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canrun)
         {
             currentspeed = runspeed;
             Debug.Log("뛰기 시작");
@@ -137,17 +139,9 @@ public class PlayerMovement_Y : MonoBehaviour
     }
     private void CamSet()
     {
-        // 현재 카메라의 회전 값을 가져옴
-        Vector3 camRotation = cam.transform.localEulerAngles;
-
-        // 회전값을 더하고 제한
-        camRotation.x -= mouseY * r_speed;
-
-        // 카메라의 회전값을 제한
-        camRotation.x = Mathf.Clamp(camRotation.x, 0f, 180f); // -90도부터 90도까지로 제한
-
-        // 실제 카메라에 회전 적용
-        cam.localEulerAngles = camRotation;
+        tmp -= mouseY * r_speed;
+        tmp = Mathf.Clamp(tmp, -90, 90);
+        cam.rotation = Quaternion.Euler(tmp, 0, 0);
     }
     private void OnCollisionEnter(Collision col)
     {
