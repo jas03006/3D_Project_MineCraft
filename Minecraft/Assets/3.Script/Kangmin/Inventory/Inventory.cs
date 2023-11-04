@@ -4,18 +4,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-enum ItemCode
-{
-    CubbleStone = 1, Grass = 2, Dirt = 3, Plank = 5, BedRock = 7, Iron = 15, Coal = 16, Oak = 17, Leaf = 18,
-    Chest = 54, Diamond = 56, CraftingTable = 58, Furnance = 61, Apple = 260, Door = 324, Bed = 355,
-    Meat = 363, GrilledMeat = 364
-}
-
-
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<ItemCode, InventoryData> Dict;
+    private Dictionary<Item_ID_TG, InventoryData> Dict;
 
     Vector2 mousePos;
 
@@ -24,8 +15,8 @@ public class Inventory : MonoBehaviour
     public Image inventoryImage, menuImage;
     public List<Sprite> spriteImage;
 
-    private Transform[] children;
-    private Button[] button;
+    [SerializeField]private Transform[] children;
+    [SerializeField] private Button[] button;
 
     private bool isMouseOver;
     private bool isInventoryOpen = false;

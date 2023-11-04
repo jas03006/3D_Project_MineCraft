@@ -10,11 +10,11 @@ public class InventoryData : ScriptableObject
     [SerializeField] private string itemName; // 아이템 이름
     public string ItemName => itemName;
 
-    [SerializeField] private int value; // 갯수
-    public int Value => value;
+    [SerializeField] private int maxValue; // 최대갯수
+    public int MaxValue => maxValue;
 
-    [SerializeField] private RawImage itemImage;
-    public RawImage ItemImage => itemImage;
+    [SerializeField] private int curValue; // 현재갯수
+    public int CurValue => curValue;
 
     [SerializeField] private bool isEquipable; // 장착 가능 여부
     public bool IsEquipable => isEquipable;
@@ -33,4 +33,7 @@ public class InventoryData : ScriptableObject
 
     [SerializeField] private bool isCombinable; // 합치기 여부
     public bool IsCombinable => isCombinable;
+
+    [SerializeField] private Sprite itemSprite; //아이템 2d sprite
+    public bool ItemSprite => ItemSprite;
 }
