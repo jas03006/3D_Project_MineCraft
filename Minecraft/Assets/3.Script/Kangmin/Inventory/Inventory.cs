@@ -4,18 +4,25 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+아이템 얻음
+(오브젝트 생성(데이터), 아이템 들어갈 자리찾기, 아이템 띄우기)
+
+네번째줄, 다섯번째 줄 동기화    
+다섯번째 줄 선택 시 id 뱉어내기
+ */
+
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<Item_ID_TG, InventoryData> Dict;
-
     Vector2 mousePos;
 
     [SerializeField] private List<int> playerItemList = new List<int>(36); // ������ ����Ʈ
-
+    private ID2Datalist_YG Datalist_YG;
     public Image inventoryImage;
     public List<Sprite> spriteImage;
-    private Transform[] children;
-    private Button[] button;
+    [SerializeField] private Transform[] children;
+    [SerializeField] private Button[] button;
+    [SerializeField] private GameObject[] buttons;
     private GameObject selectedItem; // ���콺�� ������ �������� ��Ÿ���� UI ���
 
     private bool isMouseOver;
@@ -31,9 +38,11 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
+        //buttons = transform.GetChild(0).gameObject.transform.GetComponentInChildren<>;
         button = FindObjectsOfType<Button>();
+        Datalist_YG = FindObjectOfType<ID2Datalist_YG>();
 
-        for (int i = 1; i < children.Length; i++) // 0��° �ε��� = Canvas
+        for (int i = 1; i < children.Length; i++) 
         {
             children[i].gameObject.SetActive(false);
         }
@@ -76,9 +85,21 @@ public class Inventory : MonoBehaviour
         }
     }
     /*-------------------- ������ ��ȣ�ۿ� ---------------------*/
+
+    private void Getitem(Item_ID_TG id)
+    {
+        for (int i = 0; i < playerItemList.Count; i++)
+        {
+            if(playerItemList == null)
+            {
+                var obj = Instantiate(Datalist_YG.get_prefab(id),children[i].position,Quaternion.identity);
+            }
+        }
+
+    }
     private void OnClickItem()
     {
-        Debug.Log("���콺 Ŭ�� ��ġ = " + mousePos);
+        Debug.Log("아이템 클릭" + mousePos);
     }
 
     private void SwapItems(int beforeIndex, int afterIndex)

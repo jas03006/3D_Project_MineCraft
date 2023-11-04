@@ -1882,7 +1882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &285958554
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2122,6 +2122,7 @@ MonoBehaviour:
   spriteImage: []
   children: []
   button: []
+  buttons: []
 --- !u!1 &305253756
 GameObject:
   m_ObjectHideFlags: 0
@@ -7385,7 +7386,7 @@ GameObject:
   - component: {fileID: 1146409014}
   m_Layer: 5
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

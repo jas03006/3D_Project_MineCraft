@@ -4,15 +4,13 @@ using UnityEngine.UI;
 
 public class InventoryData : ScriptableObject
 {
-    [SerializeField] private int itemCode; // ������ �ڵ�
-    public int ItemCode => itemCode;
-
     [SerializeField] private string itemName; // ������ �̸�
     public string ItemName => itemName;
 
     [SerializeField] private int maxValue; // �ִ밹��
     public int MaxValue => maxValue;
-    public Image itemImage; // ������ �̹���
+
+    [SerializeField] public Sprite itemSprite; //������ 2d sprite
 
     [SerializeField] private bool isEquipable; // ���� ���� ����
     public bool IsEquipable => isEquipable;
@@ -32,6 +30,4 @@ public class InventoryData : ScriptableObject
     [SerializeField] private bool isCombinable; // ��ġ�� ����
     public bool IsCombinable => isCombinable;
 
-    [SerializeField] private Sprite itemSprite; //������ 2d sprite
-    public bool ItemSprite => ItemSprite;
 }
