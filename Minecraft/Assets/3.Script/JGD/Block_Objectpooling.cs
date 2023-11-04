@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Block_Objectpooling : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Block_Objectpooling : MonoBehaviour
 
     public List<GameObject>[] Blockpool;
 
-    public GameObject[] blockitem;
+    public ID2Item iD2Item;
     [SerializeField] private int itemCount;
     private void Awake()
     {
@@ -18,7 +19,7 @@ public class Block_Objectpooling : MonoBehaviour
 
     public void MakePool()
     {
-        Blockpool = new List<GameObject>[blockitem.Length];
+        Blockpool = new List<GameObject>[Enum.GetValues(typeof(Item_ID_TG)).Length];
         for (int i = 0; i < Blockpool.Length; i++)
         {
             Blockpool[i] = new List<GameObject>();
@@ -32,11 +33,11 @@ public class Block_Objectpooling : MonoBehaviour
         //}
     }
 
-    public GameObject Get(int index)
+    public GameObject Get(Item_ID_TG id)
     {
         GameObject select = null;
 
-        foreach (GameObject item in Blockpool[index])
+        foreach (GameObject item in Blockpool[iD2Item.ID2index(id)])
         {
             if (!item.activeSelf)
             {
@@ -48,8 +49,8 @@ public class Block_Objectpooling : MonoBehaviour
 
         if (select == null)
         {
-            select = Instantiate(blockitem[index],transform);
-            Blockpool[index].Add(select);
+            select = Instantiate(iD2Item.get_prefab(id),transform);
+            Blockpool[iD2Item.ID2index(id)].Add(select);
         }
 
 

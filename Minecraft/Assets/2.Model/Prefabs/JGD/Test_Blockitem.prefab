@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 120
   hight: 0
-  rigidbody: {fileID: 8770244066015955235}
+  rigidbody: {fileID: 0}
 --- !u!54 &8770244066015955235
 Rigidbody:
   m_ObjectHideFlags: 0

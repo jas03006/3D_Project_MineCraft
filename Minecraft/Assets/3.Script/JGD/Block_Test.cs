@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Block_Test : MonoBehaviour
 {
-    
-    public int blocknum;
+
+    public Item_ID_TG id;
     public float Max_Block_Hp = 100f;
     public float blockHp = 100f;
 
@@ -22,7 +22,7 @@ public class Block_Test : MonoBehaviour
 
     public void itemposition()
     {
-        Block_Objectpooling.instance.Get(blocknum);
+        Block_Objectpooling.instance.Get(id);
         
     }
 

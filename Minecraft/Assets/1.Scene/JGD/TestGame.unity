@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b9bf8d006768f4c94768ae33634c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocknum: 0
+  id: 0
   Max_Block_Hp: 10
   blockHp: 10
 --- !u!1 &1165648594
@@ -658,10 +658,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d71c1a6dd73a0c4090f1c66c97d4a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockitem:
-  - {fileID: 8770244066015955257, guid: 897e1665a811972449672644a4cd8d94, type: 3}
-  - {fileID: 8770244066015955257, guid: 2fada2b04e6e7b64e93b7d0dc9710617, type: 3}
+  iD2Item: {fileID: 11400000, guid: aa02f0a381f9c2b449feef762303bcd5, type: 2}
   itemCount: 100
+--- !u!1 &2044488457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2044488459}
+  - component: {fileID: 2044488458}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2044488458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044488457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8328eed442101f48b651167af2d7d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2044488459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044488457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8624425, y: 1.4772027, z: 0.31297874}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055973887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b9bf8d006768f4c94768ae33634c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocknum: 1
+  id: 0
   Max_Block_Hp: 10
   blockHp: 10
 --- !u!4 &8328397692694776172
@@ -1655,6 +1696,7 @@ MonoBehaviour:
   crouchspeed: 2.5
   walkspeed: 5
   runspeed: 10
+  canrun: 0
   jumpforce: 15
   isjump: 0
   r_speed: 1
