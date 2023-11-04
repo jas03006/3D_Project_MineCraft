@@ -149,11 +149,12 @@ public class Biom_Manager : MonoBehaviour
     }
 
     private void init_pool_list() {
-        pool_list = new Queue<GameObject>[ Enum.GetValues(typeof(Item_ID_TG)).Length ];
+        //pool_list = new Queue<GameObject>[ Enum.GetValues(typeof(Item_ID_TG)).Length ];
+        pool_list = new Queue<GameObject>[block_prefabs_SO.block_item_id_list.Count ];
         int pool_num = 10000;
-        foreach (Item_ID_TG e in Enum.GetValues(typeof(Item_ID_TG)))
+        foreach (Item_ID_TG e in block_prefabs_SO.block_item_id_list)//Enum.GetValues(typeof(Item_ID_TG)))
         {
-            if (e == Item_ID_TG.None) {
+            if (e == Item_ID_TG.None || block_prefabs_SO.get_prefab(e) == null) {
                 continue;
             }
             Queue<GameObject> qu = new Queue<GameObject>();
