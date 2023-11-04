@@ -36,8 +36,9 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
                         block_data[i, j, k].id = temp_index;
                         block_data[i, j, k].set_local_pos(i, j, k);
-                    }                    
-                    
+                        block_data[i, j, k].chunk = this;
+                    }
+
                     /* if (temp_index == Item_ID_TG.None) {
                          continue;
                      }*/
@@ -77,7 +78,7 @@ public class Chunk_TG : MonoBehaviour
                     block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
                     block_data[i, j, k].id = temp_index;
                     block_data[i, j, k].set_local_pos(i, j, k);
-
+                    block_data[i, j, k].chunk = this;
                 }
             }
 
@@ -102,8 +103,9 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
                         block_data[i, j, k].id = temp_index;
                         block_data[i, j, k].set_local_pos(i, j, k);
+                        block_data[i, j, k].chunk = this;
                     }
-                    
+
                     /*if (temp_index == Item_ID_TG.None)
                     {
                         continue;
@@ -312,19 +314,58 @@ public class Chunk_TG : MonoBehaviour
         for (int i_ = 0; i_ < dir.Length; i_++)
         {
             int i = dir[i_];
-            if (is_in_range(x + i, y, z) && block_data[x + i, y, z] != null && is_open(x + i, y, z))
+            if (is_in_range(x + i, y, z) && block_data[x + i, y, z] != null && !is_open(x + i, y, z))
             {
                 block_data[x + i, y, z].hide();
             }
-            if (is_in_range(x, y + i, z) && block_data[x, y + i, z] != null && is_open(x, y + i, z))
+            if (is_in_range(x, y + i, z) && block_data[x, y + i, z] != null && !is_open(x, y + i, z))
             {
                 block_data[x, y + i, z].hide();
             }
-            if (is_in_range(x, y, z + i) && block_data[x, y, z + i] != null && is_open(x, y, z + i))
+            if (is_in_range(x, y, z + i) && block_data[x, y, z + i] != null && !is_open(x, y, z + i))
             {
                 block_data[x, y, z + i].hide();
             }
         }
+    }
+    public void set_and_hide_adjacents(Block_Node_TG bn)
+    {
+        if (!bn.is_blocking) {
+            return;
+        }
+        int[] dir = { -1, 1 };
+        int x = bn.local_pos_in_chunk.x;
+        int y = bn.local_pos_in_chunk.y;
+        int z = bn.local_pos_in_chunk.z;
+        for (int i_ = 0; i_ < dir.Length; i_++)
+        {
+            int i = dir[i_];
+            if (is_in_range(x + i, y, z) && block_data[x + i, y, z] != null && !is_open(x + i, y, z))
+            {
+                block_data[x + i, y, z].hide();
+            }
+            if (is_in_range(x, y + i, z) && block_data[x, y + i, z] != null && !is_open(x, y + i, z))
+            {
+                block_data[x, y + i, z].hide();
+            }
+            if (is_in_range(x, y, z + i) && block_data[x, y, z + i] != null && !is_open(x, y, z + i))
+            {
+                block_data[x, y, z + i].hide();
+            }
+        }
+    }
+    public void set_block(Item_ID_TG id, Vector3Int block_pos, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null) {
+        Block_Node_TG bn = block_data[block_pos.x, block_pos.y, block_pos.z];
+        if (bn.id == Item_ID_TG.None) {
+            bn.set_block(id, world_pos, rotate, space);
+            set_and_hide_adjacents(bn);
+        }        
+    }
+    public void change_block(Item_ID_TG id, Vector3Int block_pos, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null)
+    {
+        Block_Node_TG bn = block_data[block_pos.x, block_pos.y, block_pos.z];
+        bn.set_block(id, world_pos, rotate, space);
+        set_and_hide_adjacents(bn);
     }
 
     public bool is_open(int x, int y, int z)
@@ -525,6 +566,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                                     {
                                         if (block_data[x + j, y + i, z + k] == null){
                                             block_data[x + j, y + i, z + k] = Biom_Manager.instance.get_block_node();
+                                            block_data[x + j, y + i, z + k].chunk = this;
                                             block_data[x + j, y + i, z + k].set_local_pos(x + j, y + i, z + k);
                                         }
                                         block_data[x + j, y + i, z + k].id = Item_ID_TG.leaf;

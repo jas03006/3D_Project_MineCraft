@@ -175,7 +175,7 @@ public class Biom_Manager : MonoBehaviour
 
     public void pool_return(Item_ID_TG id, GameObject go) {
         
-        if (id == Item_ID_TG.None)
+        if (id == Item_ID_TG.None || id == Item_ID_TG.Fill)
         {
             return;
         }
@@ -184,26 +184,10 @@ public class Biom_Manager : MonoBehaviour
        // go.transform.SetParent(pool_transform);
         go.SetActive(false);
     }
-    public GameObject pool_get(Item_ID_TG id) {
-        if (id == Item_ID_TG.None)
-        {
-            return null;
-        }
-        int ind = block_prefabs_SO.ID2index(id);
-        GameObject go;
-        if (pool_list[ind].Count == 0) {
-            
-            go = Instantiate(block_prefabs_SO.get_prefab(id), new Vector3(1000f, 1000f, 1000f), Quaternion.identity);
-        }
-        else {
-            go = pool_list[ind].Dequeue();
-        }
-        go.SetActive(true);
-        return go;
-    }
+   
     public GameObject pool_get(Item_ID_TG id, Vector3 position, Quaternion rotation)
     {
-        if (id == Item_ID_TG.None)
+        if (id == Item_ID_TG.None || id == Item_ID_TG.Fill)
         {
             return null;
         }
@@ -327,9 +311,9 @@ public class Biom_Manager : MonoBehaviour
                     }                       
                 }
             }
-            
+            yield return null;
         }
-        yield return null;
+        
         now_update_co = null;
     }
 
@@ -445,7 +429,7 @@ public class Biom_Manager : MonoBehaviour
         for (int ci = 0; ci < cave_cnt; ci++) {
             if (ci == 0)
             {
-                now_cp = new Cave_Point(Vector3.right*8, 4);
+                now_cp = new Cave_Point(Vector3.right*20, 4);
                 cave_depth = 10;
             }
             else {
@@ -510,5 +494,9 @@ public class Biom_Manager : MonoBehaviour
             }
         }
         //return cp_list;
+    }
+
+    public void set_block(Item_ID_TG id, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null) {
+        get_chunk(world2chunk_pos(world_pos)).set_block(id, world2block_pos(world_pos), world_pos, rotate,space);
     }
 }

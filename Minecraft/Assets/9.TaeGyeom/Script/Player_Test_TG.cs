@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+using System.Collections.Generic;
 public class Player_Test_TG : MonoBehaviour
 {
     #region ½ºÄÉÄ¡
@@ -106,6 +106,10 @@ public class Player_Test_TG : MonoBehaviour
             attck_timer = 0f;
             left_click();
         }
+        if (Input.GetMouseButton(1) && attck_timer >= 0.2f) {
+            attck_timer = 0f;
+            right_click();
+        }
     }
 
     private void left_click() {
@@ -117,9 +121,51 @@ public class Player_Test_TG : MonoBehaviour
         {
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("Stepable_Block") ) {
-                Debug.Log(hit.point - transform.position);
+                //Debug.Log(hit.point - transform.position);
                 if (((hit.point - transform.position).sqrMagnitude <= interaction_range * interaction_range)) {
                     objectHit.GetComponent<Block_TG>().die();
+                }              
+            }
+        }
+    } 
+    private void right_click() {
+        RaycastHit hit;
+        
+        Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+            if (objectHit.CompareTag("Stepable_Block") ) {
+               // Debug.Log(hit.point - transform.position);
+                Vector3 dir = hit.point - transform.position;
+                if ((dir.sqrMagnitude <= interaction_range * interaction_range)) {
+                    Item_ID_TG id_ = Item_ID_TG.door;
+                    dir = hit.point - hit.collider.transform.position;
+                    Vector3 set_dir = Vector3.up;
+                    if (dir.x >= 0.49f) {
+                        set_dir = Vector3.right;
+                    } else if (dir.x <= -0.49f) {
+                        set_dir = Vector3.left;
+                    }
+                    else if(dir.y >= 0.49f) {
+                        set_dir = Vector3.up;
+                    } else if (dir.y <= -0.49f) {
+                        set_dir = -Vector3.down;
+                    }
+                    else if(dir.z >= 0.49f) {
+                        set_dir = Vector3.forward;
+                    } else if (dir.z <= -0.49f) {
+                        set_dir = Vector3.back;
+                    }
+                    set_dir = hit.collider.transform.position + set_dir;
+                    if (Physics.OverlapBox(set_dir,Vector3.one/2.1f).Length ==0) {
+                        List<Vector3Int> space_ = new List<Vector3Int>();
+                        space_.Add(Vector3Int.up);
+                        Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, space_);
+                    }
+                    
+                    //objectHit.GetComponent<Block_TG>().die();
                 }              
             }
         }

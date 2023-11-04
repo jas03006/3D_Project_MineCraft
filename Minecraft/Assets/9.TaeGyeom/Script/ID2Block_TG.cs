@@ -10,7 +10,8 @@ public class ID2Block_TG : ScriptableObject
     private Dictionary<Item_ID_TG, int> ID2index_dict;
     [SerializeField]
     public List<Item_ID_TG> block_item_id_list =
-        new List<Item_ID_TG>() { 
+        new List<Item_ID_TG>() {
+            Item_ID_TG.Fill,
             Item_ID_TG.None,
             Item_ID_TG.stone,
             Item_ID_TG.grass,
@@ -47,7 +48,7 @@ public class ID2Block_TG : ScriptableObject
         return block_prefab_list[ind];
     }
 
-    public int ID2index(Item_ID_TG id) {        
+    public int ID2index(Item_ID_TG id) {
         return ID2index_dict[id];
     }
 }
