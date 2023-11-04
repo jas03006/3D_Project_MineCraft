@@ -1,22 +1,33 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Living : MonoBehaviour
 {
-    [Header("ü��")]
-    private int curhealth;
-    private int starthealth;
-
+    [Header("체력")]
+    public int curhealth;
+    public int starthealth;
+    public bool isDead { get; protected set; }
     // Start is called before the first frame update
-    void Start()
+    protected virtual void OnEnable()
     {
+        isDead = false;
         curhealth = starthealth;
     }
-
     // Update is called once per frame
-    void Update()
+    public virtual void OnDamage(int Damage)
     {
-        
+
+        curhealth -= Damage;
+        //�׾����� ���׾�����
+        if (curhealth <= 0 && !isDead)
+        {
+            //�״� �޼ҵ带 ȣ��
+            Die();
+        }
+    }
+    public virtual void Die()
+    {
+        isDead = true;
     }
 }
