@@ -22,8 +22,12 @@ public class ID2Item : ScriptableObject
         }
         public GameObject get_prefab(Item_ID_TG id)
         {
+        int ind = ID2index(id);
+        if (Item_prefab_list == null || ind >= Item_prefab_list.Count) {
+            return null;
+        }
 
-            return Item_prefab_list[ID2index(id)];
+            return Item_prefab_list[ind];
         }
 
         public int ID2index(Item_ID_TG id)

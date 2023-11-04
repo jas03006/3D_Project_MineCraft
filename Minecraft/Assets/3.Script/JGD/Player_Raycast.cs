@@ -22,7 +22,7 @@ public class Player_Raycast : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.name);
+               // Debug.Log(hit.transform.name);
                 checkTarget(hit);
             }
         }

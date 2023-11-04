@@ -33,12 +33,13 @@ public class Block_Objectpooling : MonoBehaviour
         //}
     }
 
-    public GameObject Get(Item_ID_TG id)
+    public GameObject Get(Item_ID_TG id, Vector3 position)
     {
         GameObject select = null;
 
         foreach (GameObject item in Blockpool[iD2Item.ID2index(id)])
         {
+            
             if (!item.activeSelf)
             {
                 select = item;
@@ -49,8 +50,15 @@ public class Block_Objectpooling : MonoBehaviour
 
         if (select == null)
         {
-            select = Instantiate(iD2Item.get_prefab(id),transform);
-            Blockpool[iD2Item.ID2index(id)].Add(select);
+            //Debug.Log(id);
+            GameObject prefab_ = iD2Item.get_prefab(id);
+            if (prefab_ != null)
+            {
+                select = Instantiate(prefab_, position, Quaternion.identity);
+                Blockpool[iD2Item.ID2index(id)].Add(select);
+            }
+            
+            
         }
 
 

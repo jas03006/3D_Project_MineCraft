@@ -22,7 +22,7 @@ public class Block_Test : MonoBehaviour
 
     public void itemposition()
     {
-        Block_Objectpooling.instance.Get(id);
+        Block_Objectpooling.instance.Get(id, transform.position);
         
     }
 

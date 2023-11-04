@@ -125,6 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b9bf8d006768f4c94768ae33634c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocknum: 0
+  id: 2
   Max_Block_Hp: 10
   blockHp: 10
