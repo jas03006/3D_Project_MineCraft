@@ -10,17 +10,17 @@ public class Inventory : MonoBehaviour
 
     Vector2 mousePos;
 
-    [SerializeField] private List<int> playerHandList = new List<int>(36); // ¾ÆÀÌÅÛ ¸®½ºÆ®
+    [SerializeField] private List<int> playerItemList = new List<int>(36); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
-    public Image inventoryImage, menuImage;
+    public Image inventoryImage;
     public List<Sprite> spriteImage;
-
-    [SerializeField]private Transform[] children;
-    [SerializeField] private Button[] button;
+    private Transform[] children;
+    private Button[] button;
+    private GameObject selectedItem; // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½
 
     private bool isMouseOver;
     private bool isInventoryOpen = false;
-    private int currentIndex; // Å¬¸¯ÇßÀ»¶§ ÀúÀåµÇ´Â ÀÎµ¦½º ¼ýÀÚ
+    private int currentIndex; // Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private int maxStackCount = 64;
 
     private void Awake()
@@ -33,14 +33,13 @@ public class Inventory : MonoBehaviour
         children = GetComponentsInChildren<Transform>();
         button = FindObjectsOfType<Button>();
 
-        for (int i = 1; i < children.Length; i++) // 0¹øÂ° ÀÎµ¦½º = Canvas
+        for (int i = 1; i < children.Length; i++) // 0ï¿½ï¿½Â° ï¿½Îµï¿½ï¿½ï¿½ = Canvas
         {
             children[i].gameObject.SetActive(false);
         }
         for(int i = 0; i < button.Length; i++)
         {
             button[i].onClick.AddListener(OnClickItem);
-            Debug.Log(button[i].name);
         }
     }
     private void Update()
@@ -49,14 +48,14 @@ public class Inventory : MonoBehaviour
 
         InventoryInteraction();
     }
-    /*-------------------- ÇÃ·¹ÀÌ¾î Å°ÀÔ·Â ---------------------*/
+    /*-------------------- ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Å°ï¿½Ô·ï¿½ ---------------------*/
     private void InventoryInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++) // 0¹øÂ° ÀÎµ¦½º = gameObject.name("E")
+                for (int i = 1; i < children.Length; i++) // 0ï¿½ï¿½Â° ï¿½Îµï¿½ï¿½ï¿½ = gameObject.name("E")
                 {
                     children[i].gameObject.SetActive(true);
                 }
@@ -76,16 +75,16 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    /*-------------------- ¾ÆÀÌÅÛ »óÈ£ÀÛ¿ë ---------------------*/
+    /*-------------------- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ ---------------------*/
     private void OnClickItem()
     {
-        Debug.Log("¸¶¿ì½º Å¬¸¯ À§Ä¡ = " + mousePos);
+        Debug.Log("ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½Ä¡ = " + mousePos);
     }
+
     private void SwapItems(int beforeIndex, int afterIndex)
     {
-        int tmp = playerHandList[beforeIndex];
-        playerHandList[beforeIndex] = playerHandList[afterIndex];
-        playerHandList[afterIndex] = tmp;
+        int tmp = playerItemList[beforeIndex];
+        playerItemList[beforeIndex] = playerItemList[afterIndex];
+        playerItemList[afterIndex] = tmp;
     }
 }
-
