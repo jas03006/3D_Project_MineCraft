@@ -1,30 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Living : MonoBehaviour
 {
-    public int starthealth = 20;
+    [Header("ì²´ë ¥")]
     public int curhealth;
-    public bool isDead;
-
+    public int starthealth;
+    public bool isDead { get; protected set; }
+    // Start is called before the first frame update
     protected virtual void OnEnable()
     {
         isDead = false;
         curhealth = starthealth;
     }
-
+    // Update is called once per frame
     public virtual void OnDamage(int Damage)
     {
+
         curhealth -= Damage;
-        //Á×¾ú´ÂÁö ¾ÈÁ×¾ú´ÂÁö
+        //ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½
         if (curhealth <= 0 && !isDead)
         {
-            //Á×´Â ¸Þ¼Òµå¸¦ È£Ãâ
+            //ï¿½×´ï¿½ ï¿½Þ¼Òµå¸¦ È£ï¿½ï¿½
             Die();
         }
     }
-
     public virtual void Die()
     {
         isDead = true;
