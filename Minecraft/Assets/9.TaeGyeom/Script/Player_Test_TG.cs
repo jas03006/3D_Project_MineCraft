@@ -206,38 +206,17 @@ public class Player_Test_TG : MonoBehaviour
                 }
                 Item_ID_TG id_ = block_.id;
                 dir = hit.point - hit.collider.transform.position;
-                Vector3 set_dir = Vector3.up;
-                if (dir.x >= 0.49f)
-                {
-                    set_dir = Vector3.right;
-                }
-                else if (dir.x <= -0.49f)
-                {
-                    set_dir = Vector3.left;
-                }
-                else if (dir.y >= 0.49f)
-                {
-                    set_dir = Vector3.up;
-                }
-                else if (dir.y <= -0.49f)
-                {
-                    set_dir = -Vector3.down;
-                }
-                else if (dir.z >= 0.49f)
-                {
-                    set_dir = Vector3.forward;
-                }
-                else if (dir.z <= -0.49f)
-                {
-                    set_dir = Vector3.back;
-                }
+                Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
+                
                 set_dir = hit.collider.transform.position + set_dir;
                 if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
                 {
                     //List<Vector3Int> space_ = new List<Vector3Int>();
                     //space_.Add(Vector3Int.up);
-                        
-                    Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, block_.space);
+                    
+                    Biom_Manager.instance.set_block(id_, set_dir,
+                        Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, transform.forward.y, -transform.forward.z), 0.70711f))
+                        ,block_.space);
                 }
                                       
                     
@@ -245,6 +224,34 @@ public class Player_Test_TG : MonoBehaviour
                              
             }
         }
+    }
+    public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
+        Vector3 result_dir = Vector3.zero;
+        if (dir.x >= threshold)
+        {
+            result_dir = Vector3.right;
+        }
+        else if (dir.x <= -threshold)
+        {
+            result_dir = Vector3.left;
+        }
+        else if (dir.y >= threshold)
+        {
+            result_dir = Vector3.up;
+        }
+        else if (dir.y <= -threshold)
+        {
+            result_dir = -Vector3.down;
+        }
+        else if (dir.z >= threshold)
+        {
+            result_dir = Vector3.forward;
+        }
+        else if (dir.z <= -threshold)
+        {
+            result_dir = Vector3.back;
+        }
+        return result_dir;
     }
     private void PositionInput()
     {

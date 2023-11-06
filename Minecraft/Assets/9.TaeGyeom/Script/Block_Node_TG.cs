@@ -13,7 +13,7 @@ public class Block_Node_TG
     public GameObject gameObject = null;
     public Transform transform = null;
     public int open_flag=0;
-
+    public Quaternion rotation = Quaternion.identity;
     /*private void OnDestroy()
     {
         //Debug.Log("destroy");
@@ -62,11 +62,13 @@ public class Block_Node_TG
         }
         gameObject = go;
         transform = go.transform;
+        rotation = transform.rotation;
         //open_flag = 1;
     }
     public void remove_gameobject() {
+        rotation = transform.rotation;
         gameObject = null;
-        transform = null;
+        transform = null;        
         //open_flag = -1;
     }
     public void destroy_chain()
