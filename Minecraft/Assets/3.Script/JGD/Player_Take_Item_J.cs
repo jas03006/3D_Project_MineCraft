@@ -14,7 +14,8 @@ public class Player_Take_Item_J : MonoBehaviour
         {
             break_item = FindObjectOfType<Break_Block_Item>();
 
-            break_item.gameObject.SetActive(false);
+            break_item.gameObject.SetActive(false);        
+
         }
     }
 }

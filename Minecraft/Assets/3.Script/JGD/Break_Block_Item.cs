@@ -15,7 +15,7 @@ public class Break_Block_Item : MonoBehaviour
     private void Update()
     {
         transform.Rotate(new Vector3(0, 100f * Time.deltaTime, 0));
-        //transform.position = new Vector3(transform.localPosition.x,  transform.localPosition.y+ hight, transform.localPosition.z);
+        //transform.position = new Vector3(transform.localPosition.x,  transform.localPosition.y+0.1f+ hight, transform.localPosition.z);
         //
         //
         //if (transform.localPosition.y + hight <= transform.localPosition.y || blockDown)
@@ -27,7 +27,8 @@ public class Break_Block_Item : MonoBehaviour
         //{
         //    hight -= power * Time.deltaTime;
         //    blockDown = true;
-        //}
+        //}     //둥실둥실 실패버전 진동이 나....
+
 
     }
     private void OnCollisionEnter(Collision collision)

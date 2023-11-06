@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Player_Raycast : MonoBehaviour
 {
-    Block_Test blockTest;
+    Block_Break blockTest;
+
+    private void Start()
+    {
+        blockTest = GetComponent<Block_Break>();
+
+    }
 
     private void Update()
     {
@@ -26,23 +32,25 @@ public class Player_Raycast : MonoBehaviour
                 checkTarget(hit);
             }
         }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            blockTest.blockHp = blockTest.Max_Block_Hp;
+        }
 
     }
 
     private void checkTarget(RaycastHit hit)
     {
-
         switch (hit.transform.tag)
         {
             case "TestBlock":
-                blockTest = hit.collider.gameObject.GetComponent<Block_Test>();
-                blockTest.blockHp -= 10f *Time.deltaTime;
+                blockTest = hit.collider.gameObject.GetComponent<Block_Break>();
+                blockTest.blockHp -= 10f *Time.deltaTime;     //10f 나중에 무기얻으면 더 올라가게 변수로 바꾸기
                 blockTest.Destroy_Block();
                 break;
             default:
                 break;
         }
     }
-
 
 }

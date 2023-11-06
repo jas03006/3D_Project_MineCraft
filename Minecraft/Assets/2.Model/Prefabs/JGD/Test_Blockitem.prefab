@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 120
-  hight: 0
+  hight: 0.2
   rigidbody: {fileID: 0}
 --- !u!54 &8770244066015955235
 Rigidbody:

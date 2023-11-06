@@ -125,6 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b9bf8d006768f4c94768ae33634c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  id: 56
   Max_Block_Hp: 100
   blockHp: 100
+  block_break: 0
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
