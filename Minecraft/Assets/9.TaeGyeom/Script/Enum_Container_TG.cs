@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public enum Item_ID_TG
 {
+    Fill = -1,
     None = 0,
     stone = 1,
     grass = 2,

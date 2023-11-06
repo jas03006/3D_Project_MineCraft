@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface Interactive_TG{
+    public void react();
+}
 public class Cave_Point {
     public Vector3 position;
     public float radius;
@@ -175,7 +178,7 @@ public class Biom_Manager : MonoBehaviour
 
     public void pool_return(Item_ID_TG id, GameObject go) {
         
-        if (id == Item_ID_TG.None)
+        if (id == Item_ID_TG.None || id == Item_ID_TG.Fill)
         {
             return;
         }
@@ -184,26 +187,10 @@ public class Biom_Manager : MonoBehaviour
        // go.transform.SetParent(pool_transform);
         go.SetActive(false);
     }
-    public GameObject pool_get(Item_ID_TG id) {
-        if (id == Item_ID_TG.None)
-        {
-            return null;
-        }
-        int ind = block_prefabs_SO.ID2index(id);
-        GameObject go;
-        if (pool_list[ind].Count == 0) {
-            
-            go = Instantiate(block_prefabs_SO.get_prefab(id), new Vector3(1000f, 1000f, 1000f), Quaternion.identity);
-        }
-        else {
-            go = pool_list[ind].Dequeue();
-        }
-        go.SetActive(true);
-        return go;
-    }
+   
     public GameObject pool_get(Item_ID_TG id, Vector3 position, Quaternion rotation)
     {
-        if (id == Item_ID_TG.None)
+        if (id == Item_ID_TG.None || id == Item_ID_TG.Fill)
         {
             return null;
         }
@@ -229,11 +216,11 @@ public class Biom_Manager : MonoBehaviour
         Chunk_TG new_chunk;
         Vector3Int now_chunk_pos = Vector3Int.zero;
         int y_render_range = (current_chunk_pos.y >= 0 ? render_chunk_num : 3);
-        for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
+        for (int i = start_chunk_pos.x - render_chunk_num; i <= start_chunk_pos.x + render_chunk_num; i++)
         {
             for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
-                for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
+                for (int k = start_chunk_pos.z - render_chunk_num; k <= start_chunk_pos.z + render_chunk_num; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
@@ -247,11 +234,11 @@ public class Biom_Manager : MonoBehaviour
             }
         }
 
-        for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
+        for (int i = start_chunk_pos.x - render_chunk_num; i <= start_chunk_pos.x + render_chunk_num; i++)
         {
             for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
-                for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
+                for (int k = start_chunk_pos.z - render_chunk_num; k <= start_chunk_pos.z + render_chunk_num; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
@@ -324,12 +311,15 @@ public class Biom_Manager : MonoBehaviour
                     if (new_chunk != null && !new_chunk.is_open_checked) {
                         new_chunk.check_open_and_show_all();
                         //yield return new_chunk.check_open_and_show_all_co();                        
-                    }                       
+                    }
                 }
             }
+            //if (i%2 == 0) {
+                yield return null;
+           // } 
             
         }
-        yield return null;
+        
         now_update_co = null;
     }
 
@@ -445,7 +435,7 @@ public class Biom_Manager : MonoBehaviour
         for (int ci = 0; ci < cave_cnt; ci++) {
             if (ci == 0)
             {
-                now_cp = new Cave_Point(Vector3.right*8, 4);
+                now_cp = new Cave_Point(Vector3.right*20, 4);
                 cave_depth = 10;
             }
             else {
@@ -510,5 +500,9 @@ public class Biom_Manager : MonoBehaviour
             }
         }
         //return cp_list;
+    }
+
+    public void set_block(Item_ID_TG id, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null) {
+        get_chunk(world2chunk_pos(world_pos)).set_block(id, world2block_pos(world_pos), world_pos, rotate,space);
     }
 }
