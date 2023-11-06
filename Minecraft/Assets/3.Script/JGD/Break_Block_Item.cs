@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Break_Block_Item : MonoBehaviour
 {
-    [SerializeField] private float power;
+     private float power;
     private bool blockDown = true;
     public float hight;
     public Rigidbody rigidbody;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        power = 120f;
     }
     private void Update()
     {

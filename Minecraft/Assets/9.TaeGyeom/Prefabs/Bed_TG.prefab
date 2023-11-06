@@ -97,6 +97,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 355
+  Max_Block_Hp: 100
+  blockHp: 100
+  block_break: 0
+  i: 1
+  Box: {fileID: 4861730266974659017}
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   space:
   - {x: 0, y: 0, z: 1}
 --- !u!65 &5675989534386702976

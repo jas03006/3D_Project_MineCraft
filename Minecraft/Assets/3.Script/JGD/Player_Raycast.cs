@@ -45,8 +45,8 @@ public class Player_Raycast : MonoBehaviour
         {
             case "TestBlock":
                 blockTest = hit.collider.gameObject.GetComponent<Block_Break>();
-                blockTest.blockHp -= 10f *Time.deltaTime;     //10f 나중에 무기얻으면 더 올라가게 변수로 바꾸기
-                blockTest.Destroy_Block();
+                //blockTest.blockHp -= 10f *Time.deltaTime;     //10f 나중에 무기얻으면 더 올라가게 변수로 바꾸기
+                blockTest.Destroy_Block(10f);
                 break;
             default:
                 break;

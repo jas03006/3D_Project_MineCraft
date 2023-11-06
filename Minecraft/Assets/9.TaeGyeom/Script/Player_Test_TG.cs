@@ -57,6 +57,7 @@ public class Player_Test_TG : MonoBehaviour
 
     [SerializeField] public GameObject block_in_hand;//TG
     public bool is_sleeping = false;//TG
+    private Block_Break now_breaking_block = null;
     private void Start()
     {
         TryGetComponent(out rigid);
@@ -79,7 +80,7 @@ public class Player_Test_TG : MonoBehaviour
     }
     void Update()
     {
-        //Transform
+                //Transform
         //x,zÃà
         //ÀÔ·Â
         PositionInput();
@@ -105,7 +106,7 @@ public class Player_Test_TG : MonoBehaviour
         CamSet();
 
 
-        //TG
+        //TG        
         if (is_sleeping) {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 is_sleeping = false;
@@ -115,7 +116,11 @@ public class Player_Test_TG : MonoBehaviour
             return;
         }
         attck_timer += Time.deltaTime;
-        if (attck_timer >= 0.2f) {
+        if (Input.GetMouseButtonUp(0))
+        {
+            stop_breaking();
+        }
+        if (attck_timer >= 0.2f) {            
             if (Input.GetMouseButton(0))
             {
                 attck_timer = 0f;
@@ -133,91 +138,111 @@ public class Player_Test_TG : MonoBehaviour
             }            
         }       
     }
+    private void FixedUpdate()
+    {
+        //TG
+        check_and_grap();
+    }
 
     private void left_click() { //TG
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("Stepable_Block") ) {
-                //Debug.Log(hit.point - transform.position);
-                if (((hit.point - transform.position).sqrMagnitude <= interaction_range * interaction_range)) {
-                    objectHit.GetComponent<Block_TG>().die();
-                }              
+                //Debug.Log(hit.point - transform.position);                
+                if (now_breaking_block == null)
+                {
+                    objectHit.TryGetComponent<Block_Break>(out now_breaking_block);
+                }
+                else {
+                    Block_Break temp_breaking_block = objectHit.GetComponent<Block_Break>();
+                    if (temp_breaking_block == null || !now_breaking_block.Equals(temp_breaking_block)) {
+                        now_breaking_block.block_recover_hp();
+                        now_breaking_block = temp_breaking_block;
+                    }                        
+                }                    
+                //objectHit.GetComponent<Block_TG>()
+                now_breaking_block.Destroy_Block(20f);//die();                           
             }
         }
-    } 
+    }
+    private void stop_breaking() {
+        if (now_breaking_block != null) {
+            now_breaking_block.block_recover_hp();
+            now_breaking_block = null;
+        }
+    }
     private void right_click(bool is_button_stay = false) { //TG
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("Stepable_Block") ) {
                // Debug.Log(hit.point - transform.position);
                 Vector3 dir = hit.point - transform.position;
-                if ((dir.sqrMagnitude <= interaction_range * interaction_range)) {
-                    if (!is_button_stay) {
-                        Interactive_TG interactive_block = hit.transform.gameObject.GetComponentInChildren<Interactive_TG>();
-                        if (interactive_block != null)
-                        {
-                            interactive_block.react();
-                            return;
-                        }                        
-                    }
+                if (!is_button_stay) {
+                    Interactive_TG interactive_block = hit.transform.gameObject.GetComponentInChildren<Interactive_TG>();
+                    if (interactive_block != null)
+                    {
+                        interactive_block.react();
+                        return;
+                    }                        
+                }
                     
-                    if (block_in_hand == null)
-                    {
-                        return;
-                    }
-                    Block_TG block_ = block_in_hand.GetComponentInChildren<Block_TG>();
-                    if(block_ ==null) {
-                        return;
-                    }
-                    Item_ID_TG id_ = block_.id;
-                    dir = hit.point - hit.collider.transform.position;
-                    Vector3 set_dir = Vector3.up;
-                    if (dir.x >= 0.49f)
-                    {
-                        set_dir = Vector3.right;
-                    }
-                    else if (dir.x <= -0.49f)
-                    {
-                        set_dir = Vector3.left;
-                    }
-                    else if (dir.y >= 0.49f)
-                    {
-                        set_dir = Vector3.up;
-                    }
-                    else if (dir.y <= -0.49f)
-                    {
-                        set_dir = -Vector3.down;
-                    }
-                    else if (dir.z >= 0.49f)
-                    {
-                        set_dir = Vector3.forward;
-                    }
-                    else if (dir.z <= -0.49f)
-                    {
-                        set_dir = Vector3.back;
-                    }
-                    set_dir = hit.collider.transform.position + set_dir;
-                    if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
-                    {
-                        //List<Vector3Int> space_ = new List<Vector3Int>();
-                        //space_.Add(Vector3Int.up);
+                if (block_in_hand == null)
+                {
+                    return;
+                }
+                Block_TG block_ = block_in_hand.GetComponentInChildren<Block_TG>();
+                if(block_ ==null) {
+                    return;
+                }
+                Item_ID_TG id_ = block_.id;
+                dir = hit.point - hit.collider.transform.position;
+                Vector3 set_dir = Vector3.up;
+                if (dir.x >= 0.49f)
+                {
+                    set_dir = Vector3.right;
+                }
+                else if (dir.x <= -0.49f)
+                {
+                    set_dir = Vector3.left;
+                }
+                else if (dir.y >= 0.49f)
+                {
+                    set_dir = Vector3.up;
+                }
+                else if (dir.y <= -0.49f)
+                {
+                    set_dir = -Vector3.down;
+                }
+                else if (dir.z >= 0.49f)
+                {
+                    set_dir = Vector3.forward;
+                }
+                else if (dir.z <= -0.49f)
+                {
+                    set_dir = Vector3.back;
+                }
+                set_dir = hit.collider.transform.position + set_dir;
+                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
+                {
+                    //List<Vector3Int> space_ = new List<Vector3Int>();
+                    //space_.Add(Vector3Int.up);
                         
-                        Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, block_.space);
-                    }
+                    Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, block_.space);
+                }
                                       
                     
                     //objectHit.GetComponent<Block_TG>().die();
-                }              
+                             
             }
         }
     }
@@ -280,6 +305,12 @@ public class Player_Test_TG : MonoBehaviour
         {
             isjump = false;
         }
+        //TG
+        else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
+        {
+            Debug.Log("Take");
+            col.gameObject.SetActive(false);
+        }
     }
     private void OnCollisionStay(Collision col)
     {
@@ -295,6 +326,17 @@ public class Player_Test_TG : MonoBehaviour
     public void activate_gravity() //TG
     {
         rigid.useGravity = true;
+    }
+
+    public void check_and_grap() {
+        Vector3 target_pos = transform.position + Vector3.up;
+        Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
+        float dis;
+        foreach (Collider col in cols) {
+            Debug.Log("check drop");
+            dis = (target_pos - col.transform.position).magnitude;
+            col.transform.position = Vector3.Lerp(col.transform.position, target_pos, 0.1f / dis);
+        }
     }
 }
 

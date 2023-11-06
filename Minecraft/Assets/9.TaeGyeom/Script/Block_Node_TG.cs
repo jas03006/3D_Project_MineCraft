@@ -71,7 +71,7 @@ public class Block_Node_TG
     }
     public void destroy_chain()
     {
-        Debug.Log("Destroy");
+        //Debug.Log("Destroy");
         chunk.destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
         if (parent != null) {
             parent.children.Remove(this);
