@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface Interactive_TG{
+    public void react();
+}
 public class Cave_Point {
     public Vector3 position;
     public float radius;
@@ -213,11 +216,11 @@ public class Biom_Manager : MonoBehaviour
         Chunk_TG new_chunk;
         Vector3Int now_chunk_pos = Vector3Int.zero;
         int y_render_range = (current_chunk_pos.y >= 0 ? render_chunk_num : 3);
-        for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
+        for (int i = start_chunk_pos.x - render_chunk_num; i <= start_chunk_pos.x + render_chunk_num; i++)
         {
             for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
-                for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
+                for (int k = start_chunk_pos.z - render_chunk_num; k <= start_chunk_pos.z + render_chunk_num; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
@@ -231,11 +234,11 @@ public class Biom_Manager : MonoBehaviour
             }
         }
 
-        for (int i = start_chunk_pos.x - render_chunk_num; i < start_chunk_pos.x + render_chunk_num; i++)
+        for (int i = start_chunk_pos.x - render_chunk_num; i <= start_chunk_pos.x + render_chunk_num; i++)
         {
             for (int j = start_chunk_pos.y - 3; j < start_chunk_pos.y + y_render_range; j++)
             {
-                for (int k = start_chunk_pos.z - render_chunk_num; k < start_chunk_pos.z + render_chunk_num; k++)
+                for (int k = start_chunk_pos.z - render_chunk_num; k <= start_chunk_pos.z + render_chunk_num; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
@@ -308,10 +311,13 @@ public class Biom_Manager : MonoBehaviour
                     if (new_chunk != null && !new_chunk.is_open_checked) {
                         new_chunk.check_open_and_show_all();
                         //yield return new_chunk.check_open_and_show_all_co();                        
-                    }                       
+                    }
                 }
             }
-            yield return null;
+            //if (i%2 == 0) {
+                yield return null;
+           // } 
+            
         }
         
         now_update_co = null;

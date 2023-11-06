@@ -50,10 +50,13 @@ public class Player_Test_TG : MonoBehaviour
     private float mouseX;
     private float mouseY;
     [SerializeField] private float r_speed;
-    
-    
-    [SerializeField] private float interaction_range = 4f;
-    private float attck_timer = 1f;
+
+    //TG
+    [SerializeField] private float interaction_range = 4f;//TG
+    private float attck_timer = 1f;//TG
+
+    [SerializeField] public GameObject block_in_hand;//TG
+    public bool is_sleeping = false;//TG
     private void Start()
     {
         TryGetComponent(out rigid);
@@ -69,7 +72,7 @@ public class Player_Test_TG : MonoBehaviour
         if (interaction_range <=0) {
             interaction_range = 8;
         }
-        deactivate_gravity();
+        deactivate_gravity(); //TG
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -101,18 +104,37 @@ public class Player_Test_TG : MonoBehaviour
         //카메라
         CamSet();
 
-        attck_timer += Time.deltaTime; 
-        if (Input.GetMouseButton(0) && attck_timer >= 0.2f) {
-            attck_timer = 0f;
-            left_click();
+
+        //TG
+        if (is_sleeping) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                is_sleeping = false;
+                transform.rotation = Quaternion.identity;
+                transform.Translate(Vector3.up * 0.5f);
+            }
+            return;
         }
-        if (Input.GetMouseButton(1) && attck_timer >= 0.2f) {
-            attck_timer = 0f;
-            right_click();
-        }
+        attck_timer += Time.deltaTime;
+        if (attck_timer >= 0.2f) {
+            if (Input.GetMouseButton(0))
+            {
+                attck_timer = 0f;
+                left_click();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                attck_timer = 0f;
+                right_click();
+            }
+            else if (Input.GetMouseButton(1))
+            {
+                attck_timer = 0f;
+                right_click(true);
+            }            
+        }       
     }
 
-    private void left_click() {
+    private void left_click() { //TG
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
@@ -128,7 +150,7 @@ public class Player_Test_TG : MonoBehaviour
             }
         }
     } 
-    private void right_click() {
+    private void right_click(bool is_button_stay = false) { //TG
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
@@ -140,30 +162,59 @@ public class Player_Test_TG : MonoBehaviour
                // Debug.Log(hit.point - transform.position);
                 Vector3 dir = hit.point - transform.position;
                 if ((dir.sqrMagnitude <= interaction_range * interaction_range)) {
-                    Item_ID_TG id_ = Item_ID_TG.door;
+                    if (!is_button_stay) {
+                        Interactive_TG interactive_block = hit.transform.gameObject.GetComponentInChildren<Interactive_TG>();
+                        if (interactive_block != null)
+                        {
+                            interactive_block.react();
+                            return;
+                        }                        
+                    }
+                    
+                    if (block_in_hand == null)
+                    {
+                        return;
+                    }
+                    Block_TG block_ = block_in_hand.GetComponentInChildren<Block_TG>();
+                    if(block_ ==null) {
+                        return;
+                    }
+                    Item_ID_TG id_ = block_.id;
                     dir = hit.point - hit.collider.transform.position;
                     Vector3 set_dir = Vector3.up;
-                    if (dir.x >= 0.49f) {
+                    if (dir.x >= 0.49f)
+                    {
                         set_dir = Vector3.right;
-                    } else if (dir.x <= -0.49f) {
+                    }
+                    else if (dir.x <= -0.49f)
+                    {
                         set_dir = Vector3.left;
                     }
-                    else if(dir.y >= 0.49f) {
+                    else if (dir.y >= 0.49f)
+                    {
                         set_dir = Vector3.up;
-                    } else if (dir.y <= -0.49f) {
+                    }
+                    else if (dir.y <= -0.49f)
+                    {
                         set_dir = -Vector3.down;
                     }
-                    else if(dir.z >= 0.49f) {
+                    else if (dir.z >= 0.49f)
+                    {
                         set_dir = Vector3.forward;
-                    } else if (dir.z <= -0.49f) {
+                    }
+                    else if (dir.z <= -0.49f)
+                    {
                         set_dir = Vector3.back;
                     }
                     set_dir = hit.collider.transform.position + set_dir;
-                    if (Physics.OverlapBox(set_dir,Vector3.one/2.1f).Length ==0) {
-                        List<Vector3Int> space_ = new List<Vector3Int>();
-                        space_.Add(Vector3Int.up);
-                        Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, space_);
+                    if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
+                    {
+                        //List<Vector3Int> space_ = new List<Vector3Int>();
+                        //space_.Add(Vector3Int.up);
+                        
+                        Biom_Manager.instance.set_block(id_, set_dir, Quaternion.identity, block_.space);
                     }
+                                      
                     
                     //objectHit.GetComponent<Block_TG>().die();
                 }              
@@ -176,23 +227,23 @@ public class Player_Test_TG : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             currentspeed = runspeed;
-            Debug.Log("뛰기 시작");
+            //Debug.Log("뛰기 시작");
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             currentspeed = walkspeed;
-            Debug.Log("뛰기 종료");
+           // Debug.Log("뛰기 종료");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             currentspeed = crouchspeed;
-            Debug.Log("웅크리기 시작");
+            //Debug.Log("웅크리기 시작");
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentspeed = walkspeed;
-            Debug.Log("웅크리기 종료");
+            //Debug.Log("웅크리기 종료");
         }
 
         //x,z축 움직임
@@ -237,11 +288,11 @@ public class Player_Test_TG : MonoBehaviour
             isjump = false;
         }
     }
-    public void deactivate_gravity()
+    public void deactivate_gravity() //TG
     {
         rigid.useGravity = false;
     }
-    public void activate_gravity()
+    public void activate_gravity() //TG
     {
         rigid.useGravity = true;
     }

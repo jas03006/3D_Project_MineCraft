@@ -27,8 +27,10 @@ public class Block_Node_TG
     }
 
     public void set_block(Item_ID_TG id_, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null) {
+        
         if (space != null)
         {
+            //Debug.Log(space);
             Block_Node_TG bn;
             for (int i = 0; i < space.Count; i++)
             {

@@ -144,7 +144,8 @@ public class Chunk_TG : MonoBehaviour
             {
                 for (int k = 0; k < block_data.GetLength(2); k++)
                 {
-                    if (block_data[i, j, k] != null && block_data[i, j, k].id != Item_ID_TG.None)
+                    Block_Node_TG bn = block_data[i, j, k];
+                    if (bn != null && bn.id != Item_ID_TG.None)
                     {
                         if (is_open(i, j, k))
                         {
@@ -155,13 +156,13 @@ public class Chunk_TG : MonoBehaviour
                                 new_pos.z = origin_pos.z + k;
                                 GameObject go = Biom_Manager.instance.pool_get(block_data[i, j, k].id, new_pos, Quaternion.identity);
                                 //go.transform.SetParent(transform);
-                                block_data[i, j, k].set_gameobject(go);
+                                bn.set_gameobject(go);
                             }
-                            block_data[i, j, k].show();
+                            bn.show();
                         }
                         else
                         {
-                            block_data[i, j, k].hide();
+                            bn.hide();
                         }
                     }
 
@@ -184,6 +185,7 @@ public class Chunk_TG : MonoBehaviour
             {
                 for (int k = 0; k < block_data.GetLength(2); k++)
                 {
+                    
                     if (block_data[i, j, k] != null && block_data[i, j, k].id != Item_ID_TG.None)
                     {
                         if (is_open(i, j, k))
@@ -207,7 +209,7 @@ public class Chunk_TG : MonoBehaviour
 
                 }
             }
-        }
+        }        
         yield return null;
     }
     public void destory_and_show_adjacents(int x, int y, int z)
