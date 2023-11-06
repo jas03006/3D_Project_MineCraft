@@ -58,7 +58,7 @@ public class ID2Datalist_YG : ScriptableObject
             i++;
         }
     }
-    public InventoryData get_data(Item_ID_TG id)
+    public InventoryData Get_data(Item_ID_TG id)
     {
         int ind = ID2index(id);
         if (itemdata.Count <= ind)

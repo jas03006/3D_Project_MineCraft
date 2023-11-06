@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +7,12 @@ public class Slot_Y : MonoBehaviour
     public Item_ID_TG item_id; //아이템 id
     public int value; //갯수
     public ID2Datalist_YG id2data; //id -> 데이터 파일
-    private Image image;
-    [SerializeField]private bool havedata;
-    [SerializeField]private bool is_cursor_slot;
+    [SerializeField] private Image image;
+    [SerializeField] private bool havedata;
+    [SerializeField] private bool is_cursor_slot;
+    [SerializeField] private bool have_UIClone;
     [SerializeField] private Slot_Y cursor_slot;
+    [SerializeField] private UISlot_Y uISlot;
     private Button button;
 
     private void Start()
@@ -52,10 +52,15 @@ public class Slot_Y : MonoBehaviour
         value = num;
         havedata = true;
         image.enabled = true;
-        image.sprite = id2data.get_data(itemID).itemSprite;
+        image.sprite = id2data.Get_data(itemID).itemSprite;
         Color tem_color = image.color;
         tem_color.a = 255f;
         image.color = tem_color;
+
+        if (have_UIClone)
+        {
+            SendUISlot();
+        }
     }
 
     public void ResetItem()
@@ -63,10 +68,25 @@ public class Slot_Y : MonoBehaviour
         item_id = Item_ID_TG.None;
         value = 0;
         havedata = false;
-        image.sprite = id2data.get_data(item_id).itemSprite;
+        image.sprite = id2data.Get_data(item_id).itemSprite;
         image.enabled = true;
         Color tem_color = image.color;
         tem_color.a = 0f;
         image.color = tem_color;
+
+        if (have_UIClone)
+        {
+            SendUISlot();
+        }
+    }
+
+    public void SendUISlot()
+    {
+        uISlot.item_id = item_id;
+        uISlot.value = value;
+        uISlot.id2data = id2data;
+        uISlot.image.sprite = id2data.Get_data(item_id).itemSprite;
+        uISlot.image.color = image.color;
+
     }
 }
