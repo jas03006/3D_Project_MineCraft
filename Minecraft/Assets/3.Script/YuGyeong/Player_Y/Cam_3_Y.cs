@@ -36,9 +36,9 @@ public class Cam_3_Y : MonoBehaviour
         // 카메라의 위치 계산 (플레이어 주위로 회전하면서 일정 거리를 유지)
         Vector3 rot_offset = new Vector3(0, distance, -distance);
         Vector3 pos_offset = new Vector3(0, currentY * zoom_distance, 0);
-        //currentY = Mathf.Clamp(currentY, minY, maxY);
+        currentY = Mathf.Clamp(currentY, minY, maxY);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        transform.position = cam_pos.position + rotation * rot_offset + pos_offset;
+        transform.position = cam_pos.position + rotation * rot_offset + pos_offset ;
 
         // 카메라가 플레이어를 바라보게 설정
         transform.LookAt(cam_pos.position);

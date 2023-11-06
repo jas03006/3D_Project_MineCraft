@@ -16,7 +16,7 @@ public class item_YG : MonoBehaviour
         image.sprite = data.itemSprite;
     }
 
-    public virtual void Interaction()
+    public virtual void Interaction_YG()
     {
         
     }

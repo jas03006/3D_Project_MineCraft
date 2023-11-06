@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042ca0f34391d404db7b05f885392199, type: 3}
   m_Name: ID2Datalist_YG
   m_EditorClassIdentifier: 
-  itemdata_list:
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 37a9a1f5a9322ed45aac889719cb178f, type: 2}
+  itemdata:
+  - {fileID: 11400000, guid: a5a3dea393bf78f47b5bbcb49504693f, type: 2}
+  - {fileID: 11400000, guid: cf727795949f3a14c925a1bc54eae5b2, type: 2}
   - {fileID: 11400000, guid: 0fa41ea023d487042a4c621372251cf5, type: 2}
   - {fileID: 11400000, guid: 20e2fa97c9ebde044ad450810d713c8c, type: 2}
   - {fileID: 11400000, guid: 1787ce6004bc388489e77272299d6ca6, type: 2}

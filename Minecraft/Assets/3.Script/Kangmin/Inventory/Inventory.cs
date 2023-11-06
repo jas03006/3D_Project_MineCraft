@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +14,13 @@ public class Inventory : MonoBehaviour
 {
     Vector2 mousePos;
 
-    [SerializeField] private List<int> playerItemList = new List<int>(36); // ������ ����Ʈ
-    private ID2Datalist_YG Datalist_YG;
+    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36); // ������ ����Ʈ
     public Image inventoryImage;
     public List<Sprite> spriteImage;
     [SerializeField] private Transform[] children;
     [SerializeField] private Button[] button;
-    [SerializeField] private GameObject[] buttons;
+    [SerializeField] private Button clicked_button;
+    [SerializeField] private int clicked_button_index;
     private GameObject selectedItem; // ���콺�� ������ �������� ��Ÿ���� UI ���
 
     private bool isMouseOver;
@@ -38,17 +36,15 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
-        //buttons = transform.GetChild(0).gameObject.transform.GetComponentInChildren<>;
         button = FindObjectsOfType<Button>();
-        Datalist_YG = FindObjectOfType<ID2Datalist_YG>();
 
-        for (int i = 1; i < children.Length; i++) 
+        for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
         }
-        for(int i = 0; i < button.Length; i++)
+        for (int i = 0; i < button.Length; i++)
         {
-            button[i].onClick.AddListener(OnClickItem);
+            int index = i;
         }
     }
     private void Update()
@@ -56,19 +52,22 @@ public class Inventory : MonoBehaviour
         mousePos = Input.mousePosition;
 
         InventoryInteraction();
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            GetItem(Item_ID_TG.apple, 1);
+        }
     }
-    /*-------------------- �÷��̾� Ű�Է� ---------------------*/
+
     private void InventoryInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++) // 0��° �ε��� = gameObject.name("E")
+                for (int i = 1; i < children.Length; i++) 
                 {
                     children[i].gameObject.SetActive(true);
                 }
-                //inventoryImage.enabled = true;
                 isInventoryOpen = true;
                 Cursor.visible = true;
             }
@@ -78,34 +77,21 @@ public class Inventory : MonoBehaviour
                 {
                     children[i].gameObject.SetActive(false);
                 }
-                //inventoryImage.enabled = false;
                 isInventoryOpen = false;
                 Cursor.visible = false;
             }
         }
     }
-    /*-------------------- ������ ��ȣ�ۿ� ---------------------*/
 
-    private void Getitem(Item_ID_TG id)
+    private void GetItem(Item_ID_TG id, int num)
     {
         for (int i = 0; i < playerItemList.Count; i++)
         {
-            if(playerItemList == null)
+            if (playerItemList[i].item_id == Item_ID_TG.None)
             {
-                var obj = Instantiate(Datalist_YG.get_prefab(id),children[i].position,Quaternion.identity);
+                playerItemList[i].GetItem(id, num);
+                break;
             }
         }
-
-    }
-    private void OnClickItem()
-    {
-        Debug.Log("아이템 클릭" + mousePos);
-    }
-
-    private void SwapItems(int beforeIndex, int afterIndex)
-    {
-        int tmp = playerItemList[beforeIndex];
-        playerItemList[beforeIndex] = playerItemList[afterIndex];
-        playerItemList[afterIndex] = tmp;
     }
 }

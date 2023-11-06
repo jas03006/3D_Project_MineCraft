@@ -8,14 +8,25 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 {
     [Header("UI")]
     public Image image;
+    public InventoryData item;
 
     [HideInInspector] public Transform parentAfterDrag;
+    private void Start()
+    {
+        InitialiseITem(item);
+    }
+
+    public void InitialiseITem(InventoryData newitem)
+    {
+        image.sprite = newitem.itemSprite;
+    }
 
     // 드래그 앤 드롭
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,6 +36,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        image.raycastTarget = true;
+        transform.SetParent(parentAfterDrag);
     }
 }

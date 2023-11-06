@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
-  m_Name: Diamond_armor
+  m_Name: None
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: None
   maxValue: 0
   itemSprite: {fileID: 0}
-  isEquipable: 1
+  isEquipable: 0
   isInstallable: 0
   isWeapon: 0
   isArmor: 0

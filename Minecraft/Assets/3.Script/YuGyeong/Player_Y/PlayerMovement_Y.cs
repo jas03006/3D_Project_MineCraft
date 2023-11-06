@@ -39,7 +39,6 @@ public class PlayerMovement_Y : MonoBehaviour
     #endregion
 
     private Rigidbody rigid;
-    [SerializeField]private Transform cam;
 
     [Header("Position")]
     [SerializeField] private float crouchspeed;
@@ -61,6 +60,12 @@ public class PlayerMovement_Y : MonoBehaviour
     [SerializeField] private float r_speed;
     float cameraVerticalRotation = 0f;
     private float tmp;
+
+    [Header("Cam")]
+    [SerializeField] private Transform cam;
+    private Camera cam1;
+    private Camera cam3;
+
 
     private void Start()
     {
@@ -99,6 +104,11 @@ public class PlayerMovement_Y : MonoBehaviour
         //Rotation
         //ют╥б
         RotationInput();
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            CamChange();
+        }
     }
     private void PositionInput()
     {
@@ -141,6 +151,14 @@ public class PlayerMovement_Y : MonoBehaviour
         //transform.localEulerAngles = new Vector3(cameraVer,0,0);
 
         // transform.Rotate(Vector3.up, mouseX * r_speed);
+    }
+
+    private void CamChange()
+    {
+        if (cam1)
+        {
+            
+        }
     }
     private void OnCollisionEnter(Collision col)
     {

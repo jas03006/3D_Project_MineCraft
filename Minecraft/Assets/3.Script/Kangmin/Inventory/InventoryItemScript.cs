@@ -9,9 +9,25 @@ public class InventoryItemScript : MonoBehaviour, IBeginDragHandler, IDragHandle
 {
     [Header("UI")]
     public Image image;
+
+    [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public InventoryData data;
+    private void Start()
+    {
+        image = GetComponent<Image>();
+    }
+
+    public void InitialiseITem(InventoryData newitem)
+    {
+        data = newitem;
+        image.sprite = newitem.itemSprite;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+       
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -21,7 +37,8 @@ public class InventoryItemScript : MonoBehaviour, IBeginDragHandler, IDragHandle
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        image.raycastTarget = true;
+       image.raycastTarget = true;
+        transform.SetParent(parentAfterDrag);
     }
 
 }

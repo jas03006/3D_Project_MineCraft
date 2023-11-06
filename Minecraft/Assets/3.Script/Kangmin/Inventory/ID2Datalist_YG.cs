@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ID2Datalist_YG", menuName = "Scriptable Object/ID2Datalist_YG")]
 public class ID2Datalist_YG : ScriptableObject
 {
-    [SerializeField] public List<GameObject> gameObjects;
+    [SerializeField] public List<InventoryData> itemdata;
 
     private Dictionary<Item_ID_TG, int> ID2index_dict;
     [SerializeField]
@@ -58,16 +58,15 @@ public class ID2Datalist_YG : ScriptableObject
             i++;
         }
     }
-    public GameObject get_prefab(Item_ID_TG id)
+    public InventoryData get_data(Item_ID_TG id)
     {
         int ind = ID2index(id);
-        if (gameObjects.Count <= ind)
+        if (itemdata.Count <= ind)
         {
             return null;
         }
-        return gameObjects[ind];
+        return itemdata[ind];
     }
-
     public int ID2index(Item_ID_TG id)
     {
         return ID2index_dict[id];
