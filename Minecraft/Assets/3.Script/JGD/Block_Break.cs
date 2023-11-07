@@ -23,12 +23,12 @@ public class Block_Break : MonoBehaviour
         meshRenderer = transform.parent.GetComponent<MeshRenderer>();
     }
 
-    public void Destroy_Block()
+    public virtual void Destroy_Block(float damage)
     {
-        if (blockHp <= 0f)
-        {
-            //Destroy(Box);
-            Box.SetActive(false);
+        blockHp -= damage;
+        Block_break_motion();
+        if (blockHp <= 0f) { 
+            blockHp = 0f;            
             itemposition();
             block_return();
         }
@@ -36,7 +36,7 @@ public class Block_Break : MonoBehaviour
 
     private void Update()
     {
-        Block_break_motion();
+        
     }
 
 
@@ -48,16 +48,25 @@ public class Block_Break : MonoBehaviour
 
 
 
-    private void Block_break_motion()
+    protected void Block_break_motion()
     {
         //gameObject.GetComponent<MeshRenderer>().materials.SetValue(mat[((int)Max_Block_Hp - (int)blockHp)/10],1) ;
-
-        meshRenderer.material = mat[((int)Max_Block_Hp - (int)blockHp) / 10];//meshRenderer.material.name.StartsWith(mat[i].name) ?;
+        if (meshRenderer != null) {
+            meshRenderer.material = mat[((int)Max_Block_Hp - (int)blockHp) / 10];
+        }
+        //meshRenderer.material.name.StartsWith(mat[i].name) ?;
 
 
     }
     public void block_return() //Hp풀로 채우고 사진 원위치
     {
+        Box.SetActive(false);
         blockHp = Max_Block_Hp;
     }
+    public void block_recover_hp() //Hp풀로 채우고 사진 원위치
+    {
+        blockHp = Max_Block_Hp;
+        Block_break_motion();
+    }
+
 }

@@ -13,7 +13,8 @@ public class Block_Node_TG
     public GameObject gameObject = null;
     public Transform transform = null;
     public int open_flag=0;
-
+    public Quaternion rotation = Quaternion.identity;
+    public bool is_open = false; // check for door or box is opened
     /*private void OnDestroy()
     {
         //Debug.Log("destroy");
@@ -62,16 +63,30 @@ public class Block_Node_TG
         }
         gameObject = go;
         transform = go.transform;
+        rotation = transform.rotation;
+        if (id == Item_ID_TG.door || id == Item_ID_TG.box) {
+            transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
+            bt.init(is_open);
+        }
         //open_flag = 1;
     }
     public void remove_gameobject() {
+        if (transform != null) {
+            rotation = transform.rotation;
+            if ( id == Item_ID_TG.door || id == Item_ID_TG.box)
+            {
+                transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
+                is_open = bt.is_open;
+            }
+        }      
+                
         gameObject = null;
         transform = null;
         //open_flag = -1;
     }
     public void destroy_chain()
     {
-        Debug.Log("Destroy");
+        //Debug.Log("Destroy");
         chunk.destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
         if (parent != null) {
             parent.children.Remove(this);
@@ -85,7 +100,8 @@ public class Block_Node_TG
                 child_bn.destroy_chain();
             }
             children.Clear();
-        } 
+        }
+        is_open = false;
        // transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
     }    
 

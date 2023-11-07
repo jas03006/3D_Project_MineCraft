@@ -13,6 +13,9 @@ public class ID2Datalist_YG : ScriptableObject
         new List<Item_ID_TG>() {
             Item_ID_TG.None,
             Item_ID_TG.stone,
+            Item_ID_TG.dirt,
+            Item_ID_TG.board,
+            Item_ID_TG.bedrock,
             Item_ID_TG.coal,
             Item_ID_TG.iron,
             Item_ID_TG.tree,
