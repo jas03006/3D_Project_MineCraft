@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TestBlock
   - Stepable_Block
+  - Inventory
   layers:
   - Default
   - TransparentFX

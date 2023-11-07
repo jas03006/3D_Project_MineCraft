@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
+  m_Name: Iron_axe
+  m_EditorClassIdentifier: 
+  itemCode: 0
+  itemName: 
+  maxValue: 0
+  itemImage: {fileID: 0}
+  isEquipable: 0
+  isInstallable: 0
+  isWeapon: 0
+  isArmor: 0
+  isInteractable: 0
+  isCombinable: 0
+  itemSprite: {fileID: 0}
