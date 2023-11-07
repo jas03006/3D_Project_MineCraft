@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472300908198044560}
   m_Layer: 0
-  m_Name: Item_coal
+  m_Name: Item_coal_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

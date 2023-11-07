@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605655221523125475}
   m_Layer: 0
-  m_Name: Wood_pickaxe
+  m_Name: Wood_pickaxe_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

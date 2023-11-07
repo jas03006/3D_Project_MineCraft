@@ -10,13 +10,14 @@ public class Weapon_position_J : MonoBehaviour
 
     private void Update()
     {
-        Equip_Weapon();
-    }
-    public void Equip_Weapon()
-    {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Hand_Item_Pooling.instance.GetWeapon(id, transform.position,transform, end_pos.position - start_pos.position);
+            Equip_Weapon( id);
         }
+    }
+    public void Equip_Weapon(Item_ID_TG id_)
+    {
+        id = id_;
+        Hand_Item_Pooling.instance.GetWeapon(id, transform.position,transform, end_pos.position - start_pos.position);
     }
 }
