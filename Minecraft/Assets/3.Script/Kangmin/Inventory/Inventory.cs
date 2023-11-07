@@ -16,6 +16,8 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
+    private int UIslot_index = 0;
+    private bool is_scrolled = false;
 
     public Image inventoryImage;
     public List<Sprite> spriteImage;
@@ -57,9 +59,11 @@ public class Inventory : MonoBehaviour
     }
     private void Update()
     {
-        mousePos = Input.mousePosition;
         InventoryInteraction();
+        UIslot_select();
+
         Test(); //디버그용
+
     }
     private void Test()
     {
@@ -74,7 +78,7 @@ public class Inventory : MonoBehaviour
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++) 
+                for (int i = 1; i < children.Length; i++)
                 {
                     children[i].gameObject.SetActive(true);
                 }
@@ -91,15 +95,22 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-        {
-            float a = Input.GetAxis("Mouse ScrollWheel");
-            Debug.Log(a);
-        }
     }
 
-    private void GetItem(Item_ID_TG id, int num)
+    public void GetItem(Item_ID_TG id, int num)
     {
+        //같은거 있으면 갯수++
+        for (int i = 0; i < playerItemList.Count; i++)
+        {
+            if (playerItemList[i].item_id == id)
+            {
+                playerItemList[i].value++;
+                playerItemList[i].text.text = $"{playerItemList[i].value}";
+                return;
+            }
+        }
+
+        //같은거 없으면 새로 생성
         for (int i = 0; i < playerItemList.Count; i++)
         {
             if (playerItemList[i].item_id == Item_ID_TG.None)
@@ -112,9 +123,36 @@ public class Inventory : MonoBehaviour
 
     private void UIslot_select()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (UIslot_index >= 8)
+            {
+                return;
+            }
+            UIslot_index++;
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (UIslot_index <= 0)
+            {
+                return;
+            }
+            UIslot_index--;
+        }
+
         for (int i = 0; i < UIItemList.Count; i++)
         {
-
+            if (i == UIslot_index)
+            {
+                UIItemList[i].is_active = true;
+                UIItemList[i].Active();
+            }
+            else
+            {
+                UIItemList[i].is_active = false;
+                UIItemList[i].NotActive();
+            }
         }
     }
 }
