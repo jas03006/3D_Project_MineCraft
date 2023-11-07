@@ -32,7 +32,8 @@ public enum Item_ID_TG
     iron_helmet = 503, diamond_helmet = 504,
     iron_armor = 513, diamond_armor = 524,
     iron_leggings = 523, diamond_leggings = 534,
-    iron_boots = 533, diamond_boots = 544
+    iron_boots = 533, diamond_boots = 544,
+    raw_iron = 600
 }
 
 public class Enum_Container_TG : MonoBehaviour

@@ -139,3 +139,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122d78203c2049044b74c96ead68b7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 18
+  Max_Block_Hp: 20
+  blockHp: 20
+  block_break: 0
+  i: 1
+  Box: {fileID: 4861730266974659017}
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  space: []
