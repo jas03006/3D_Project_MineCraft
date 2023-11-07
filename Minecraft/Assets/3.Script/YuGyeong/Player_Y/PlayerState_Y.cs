@@ -73,7 +73,7 @@ public class PlayerState_Y : Living
 
     void Update()
     {
-        Test();
+        //Test(); //디버그용
         HungryInteraction();
         UpdateUI();
     }
@@ -171,6 +171,10 @@ public class PlayerState_Y : Living
     }
     private void HungryInteraction()
     {
+        if (curhealth >= 20)
+        {
+            return;
+        }
         Debug.Log($"hungry :{curhungry} / health :{curhealth}");
         if (curhungry >= 20)
         {

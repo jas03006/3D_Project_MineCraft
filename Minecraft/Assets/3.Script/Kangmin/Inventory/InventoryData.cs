@@ -1,36 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Inventory Data", order = int.MaxValue)]
 
 public class InventoryData : ScriptableObject
 {
-    [SerializeField] private int itemCode; // ¾ÆÀÌÅÛ ÄÚµå
-    public int ItemCode => itemCode;
-
-    [SerializeField] private string itemName; // ¾ÆÀÌÅÛ ÀÌ¸§
+    [SerializeField] private string itemName; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
     public string ItemName => itemName;
 
-    [SerializeField] private int value; // °¹¼ö
-    public int Value => value;
+    [SerializeField] private int maxValue; // ï¿½Ö´ë°¹ï¿½ï¿½
+    public int MaxValue => maxValue;
 
-    [SerializeField] private RawImage itemImage;
-    public RawImage ItemImage => itemImage;
+    [SerializeField] public Sprite itemSprite; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2d sprite
 
-    [SerializeField] private bool isEquipable; // ÀåÂø °¡´É ¿©ºÎ
+    [SerializeField] private bool isEquipable; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool IsEquipable => isEquipable;
 
-    [SerializeField] private bool isInstallable; // ¼³Ä¡ °¡´É ¿©ºÎ
+    [SerializeField] private bool isInstallable; // ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool IsInstallable => isInstallable;
 
-    [SerializeField] private bool isWeapon; // ¹«±â ¿©ºÎ
+    [SerializeField] private bool isWeapon; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool IsWeapon => isWeapon;
 
-    [SerializeField] private bool isArmor; // ¹æ¾î±¸ ¿©ºÎ
+    [SerializeField] private bool isArmor; // ï¿½ï¿½î±¸ ï¿½ï¿½ï¿½ï¿½
     public bool IsArmor => isArmor;
 
-    [SerializeField] private bool isInteractable; // ¼³Ä¡ ½Ã »óÈ£ÀÛ¿ë°¡´É ¿©ºÎ
+    [SerializeField] private bool isInteractable; // ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ë°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool IsInteractable => isInteractable;
 
-    [SerializeField] private bool isCombinable; // ÇÕÄ¡±â ¿©ºÎ
+    [SerializeField] private bool isCombinable; // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool IsCombinable => isCombinable;
+
+    [SerializeField] TileBase tile; 
+
 }

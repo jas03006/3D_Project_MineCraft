@@ -1,35 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-enum ItemCode
-{
-    CubbleStone = 1, Grass = 2, Dirt = 3, Plank = 5, BedRock = 7, Iron = 15, Coal = 16, Oak = 17, Leaf = 18,
-    Chest = 54, Diamond = 56, CraftingTable = 58, Furnance = 61, Apple = 260, Door = 324, Bed = 355,
-    Meat = 363, GrilledMeat = 364
-}
+/*
+ì•„ì´í…œ ì–»ìŒ
+(ì˜¤ë¸Œì íŠ¸ ìƒì„±(ë°ì´í„°), ì•„ì´í…œ ë“¤ì–´ê°ˆ ìë¦¬ì°¾ê¸°, ì•„ì´í…œ ë„ìš°ê¸°)
 
+ë„¤ë²ˆì§¸ì¤„, ë‹¤ì„¯ë²ˆì§¸ ì¤„ ë™ê¸°í™”    
+ë‹¤ì„¯ë²ˆì§¸ ì¤„ ì„ íƒ ì‹œ id ë±‰ì–´ë‚´ê¸°
+ */
 
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<ItemCode, InventoryData> Dict;
-
     Vector2 mousePos;
 
-    [SerializeField] private List<int> playerHandList = new List<int>(36); // ¾ÆÀÌÅÛ ¸®½ºÆ®
-
-    public Image inventoryImage, menuImage;
+    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    public Image inventoryImage;
     public List<Sprite> spriteImage;
-
-    private Transform[] children;
-    private Button[] button;
+    [SerializeField] private Transform[] children;
+    [SerializeField] private Button[] button;
+    [SerializeField] private Button clicked_button;
+    [SerializeField] private int clicked_button_index;
+    private GameObject selectedItem; // ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½
 
     private bool isMouseOver;
     private bool isInventoryOpen = false;
-    private int currentIndex; // Å¬¸¯ÇßÀ»¶§ ÀúÀåµÇ´Â ÀÎµ¦½º ¼ıÀÚ
+    private int currentIndex; // Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private int maxStackCount = 64;
 
     private void Awake()
@@ -42,14 +38,13 @@ public class Inventory : MonoBehaviour
         children = GetComponentsInChildren<Transform>();
         button = FindObjectsOfType<Button>();
 
-        for (int i = 1; i < children.Length; i++) // 0¹øÂ° ÀÎµ¦½º = Canvas
+        for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
         }
-        for(int i = 0; i < button.Length; i++)
+        for (int i = 0; i < button.Length; i++)
         {
-            button[i].onClick.AddListener(OnClickItem);
-            Debug.Log(button[i].name);
+            int index = i;
         }
     }
     private void Update()
@@ -57,19 +52,26 @@ public class Inventory : MonoBehaviour
         mousePos = Input.mousePosition;
 
         InventoryInteraction();
+        //Test(); //ë””ë²„ê·¸ìš©
+
     }
-    /*-------------------- ÇÃ·¹ÀÌ¾î Å°ÀÔ·Â ---------------------*/
+    private void Test()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            GetItem(Item_ID_TG.apple, 1);
+        }
+    }
     private void InventoryInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++) // 0¹øÂ° ÀÎµ¦½º = gameObject.name("E")
+                for (int i = 1; i < children.Length; i++) 
                 {
                     children[i].gameObject.SetActive(true);
                 }
-                //inventoryImage.enabled = true;
                 isInventoryOpen = true;
                 Cursor.visible = true;
             }
@@ -79,22 +81,21 @@ public class Inventory : MonoBehaviour
                 {
                     children[i].gameObject.SetActive(false);
                 }
-                //inventoryImage.enabled = false;
                 isInventoryOpen = false;
                 Cursor.visible = false;
             }
         }
     }
-    /*-------------------- ¾ÆÀÌÅÛ »óÈ£ÀÛ¿ë ---------------------*/
-    private void OnClickItem()
+
+    private void GetItem(Item_ID_TG id, int num)
     {
-        Debug.Log("¸¶¿ì½º Å¬¸¯ À§Ä¡ = " + mousePos);
-    }
-    private void SwapItems(int beforeIndex, int afterIndex)
-    {
-        int tmp = playerHandList[beforeIndex];
-        playerHandList[beforeIndex] = playerHandList[afterIndex];
-        playerHandList[afterIndex] = tmp;
+        for (int i = 0; i < playerItemList.Count; i++)
+        {
+            if (playerItemList[i].item_id == Item_ID_TG.None)
+            {
+                playerItemList[i].GetItem(id, num);
+                break;
+            }
+        }
     }
 }
-
