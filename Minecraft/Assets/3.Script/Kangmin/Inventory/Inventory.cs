@@ -52,12 +52,16 @@ public class Inventory : MonoBehaviour
         mousePos = Input.mousePosition;
 
         InventoryInteraction();
+        //Test(); //디버그용
+
+    }
+    private void Test()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             GetItem(Item_ID_TG.apple, 1);
         }
     }
-
     private void InventoryInteraction()
     {
         if (Input.GetKeyDown(KeyCode.E))

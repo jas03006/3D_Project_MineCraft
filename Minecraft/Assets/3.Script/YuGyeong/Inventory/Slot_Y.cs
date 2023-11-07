@@ -59,7 +59,7 @@ public class Slot_Y : MonoBehaviour
 
         if (have_UIClone)
         {
-            SendUISlot();
+            uISlot.GetItem(item_id, value, image.color);
         }
     }
 
@@ -76,17 +76,7 @@ public class Slot_Y : MonoBehaviour
 
         if (have_UIClone)
         {
-            SendUISlot();
+            uISlot.GetItem(item_id, value, image.color);
         }
-    }
-
-    public void SendUISlot()
-    {
-        uISlot.item_id = item_id;
-        uISlot.value = value;
-        uISlot.id2data = id2data;
-        uISlot.image.sprite = id2data.Get_data(item_id).itemSprite;
-        uISlot.image.color = image.color;
-
     }
 }
