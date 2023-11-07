@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ID2Item_Weapon
   m_EditorClassIdentifier: 
   Item_prefab_list:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 8682406005527670797, guid: 8f6fd7a1981b04b4b801f096711189a9, type: 3}
-  - {fileID: 1532628972362764148, guid: 20ff20a23e792f74d82db50a6fcff7f5, type: 3}
-  - {fileID: 8837327329407400725, guid: f53c0b318459e8b45bcc6c6f4268a99f, type: 3}
-  - {fileID: 1605655221523125474, guid: 8baf93244ac49c9449121ff057a6c020, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3060581396214949293, guid: 8fadf36d9c5488d429d40bbf967c436b, type: 3}
+  - {fileID: 4045238035567643415, guid: daf7cea970b7964448ed1e5f01f8dbba, type: 3}
+  - {fileID: 1654341744271981024, guid: b5839ba260e1b6e4a826d60a4e428552, type: 3}
+  - {fileID: 8207146052410378773, guid: 0d74a52d53e7d45409d383693db7c956, type: 3}
+  - {fileID: 7229551181966878305, guid: 458465a632df21c4286769bf067f20af, type: 3}
+  - {fileID: 7679601312268955706, guid: 4d11f3f852c0bed418fdd7c73870089f, type: 3}
+  - {fileID: 1010729420110323596, guid: e92b72a6ecbb11a46ae388c8a1ca3c2f, type: 3}
+  - {fileID: 4645739146043804303, guid: 15c121f4db7cea247b4d049345b50adf, type: 3}
+  - {fileID: 698748960161920371, guid: 52f1b4c927946864c8b601e54fdc4536, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
