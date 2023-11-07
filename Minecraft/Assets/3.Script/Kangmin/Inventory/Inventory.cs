@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void GetItem(Item_ID_TG id, int num)
+    public void GetItem(Item_ID_TG id, int num)
     {
         for (int i = 0; i < playerItemList.Count; i++)
         {

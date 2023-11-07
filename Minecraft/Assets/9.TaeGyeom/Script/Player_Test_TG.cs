@@ -58,6 +58,9 @@ public class Player_Test_TG : MonoBehaviour
     [SerializeField] public GameObject block_in_hand;//TG
     public bool is_sleeping = false;//TG
     private Block_Break now_breaking_block = null;
+
+    [SerializeField] public Inventory inventory;
+
     private void Start()
     {
         TryGetComponent(out rigid);
@@ -316,6 +319,8 @@ public class Player_Test_TG : MonoBehaviour
         else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
             Debug.Log("Take");
+            
+            inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
         }
     }
