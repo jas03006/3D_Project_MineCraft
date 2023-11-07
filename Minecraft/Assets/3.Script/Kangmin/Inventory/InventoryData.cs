@@ -13,6 +13,9 @@ public class InventoryData : ScriptableObject
 
     [SerializeField] public Sprite itemSprite; //������ 2d sprite
 
+    [SerializeField] private string Classname;
+    public string classname  => Classname;
+
     [SerializeField] private bool isEquipable; // ���� ���� ����
     public bool IsEquipable => isEquipable;
 

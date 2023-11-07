@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
+    [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10);
     private int UIslot_index = 0;
     private bool is_scrolled = false;
 
