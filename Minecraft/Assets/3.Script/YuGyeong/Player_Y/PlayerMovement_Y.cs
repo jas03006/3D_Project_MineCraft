@@ -2,39 +2,39 @@ using UnityEngine;
 
 public class PlayerMovement_Y : MonoBehaviour
 {
-    #region ½ºÄÉÄ¡
+    #region ï¿½ï¿½ï¿½ï¿½Ä¡
     /*
-     <Ä³¸¯ÅÍ ¿òÁ÷ÀÓ ±¸Çö>
-    //º¯¼ö - Æ÷Áö¼Ç°ü·Ã
-        //½ºÇÇµå(¿õÅ©¸®±â) 
-        //½ºÇÇµå(°È±â) - ±âº»
-        //½ºÇÇµå(¶Ù±â)
-        //ÇöÀç½ºÇÇµå
+     <Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½>
+    //ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½Çµï¿½(ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½) 
+        //ï¿½ï¿½ï¿½Çµï¿½(ï¿½È±ï¿½) - ï¿½âº»
+        //ï¿½ï¿½ï¿½Çµï¿½(ï¿½Ù±ï¿½)
+        //ï¿½ï¿½ï¿½ç½ºï¿½Çµï¿½
         
         //jumpforce
         //isjump
         //horizontal
         //vertical
         //rigidbody
-    //º¯¼ö - ·ÎÅ×ÀÌ¼Ç °ü·Ã
+    //ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         //mouseX
         //mouseY
-        //¼Óµµ
+        //ï¿½Óµï¿½
 
-    //¸Þ¼­µå
+    //ï¿½Þ¼ï¿½ï¿½ï¿½
         //Start
-            // ÄÄÆ÷³ÍÆ® ºÒ·¯¿À±â
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
         //Update
-            //Æ÷Áö¼Ç
-                //x,zÃà ÀÌµ¿ : ÀÔ·Â, ¿òÁ÷ÀÓ±¸Çö
-                //yÃà ÀÌµ¿
-            //·ÎÅ×ÀÌ¼Ç
-                //Ä³¸¯ÅÍ
-                //Ä«¸Þ¶ó
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //x,zï¿½ï¿½ ï¿½Ìµï¿½ : ï¿½Ô·ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½
+                //yï¿½ï¿½ ï¿½Ìµï¿½
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+                //Ä³ï¿½ï¿½ï¿½ï¿½
+                //Ä«ï¿½Þ¶ï¿½
         
-    //Ãß°¡·Î ÇØ¾ßÇÒ °Í
-        //¾Ö´Ï¸ÞÀÌ¼Ç : ¿õÅ©¸®±â,¶Ù±â,°È±â ¿¬µ¿, ¿Þ¼Õ ¾Ö´Ï¸ÞÀÌ¼Ç ¸¸µé±â
-        //Ä«¸Þ¶ó : 3ÀÎÄª Ä«¸Þ¶ó ¸¸µé±â
+    //ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ : ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½,ï¿½Ù±ï¿½,ï¿½È±ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¼ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+        //Ä«ï¿½Þ¶ï¿½ : 3ï¿½ï¿½Äª Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     #endregion
 
@@ -83,18 +83,20 @@ public class PlayerMovement_Y : MonoBehaviour
     void Update()
     {
         //Transform
-        //x,zÃà
-        //ÀÔ·Â
+        //x,zï¿½ï¿½
+        //ï¿½Ô·ï¿½
         PositionInput();
 
-        ////¿òÁ÷ÀÓ ±¸Çö
+
+        ////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
         Vector3 moveDirection = cam.transform.forward * vertical + cam.transform.right * horizontal;
         moveDirection.y = 0;
         moveVec = moveDirection * currentspeed * Time.deltaTime;
         rigid.MovePosition(rigid.position + moveVec);
 
-        //yÃà
-        //Á¡ÇÁ
+        //yï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½
         if (!isjump && Input.GetButtonDown("Jump"))
         {
             isjump = true;
@@ -102,40 +104,41 @@ public class PlayerMovement_Y : MonoBehaviour
         }
 
         //Rotation
-        //ÀÔ·Â
+        //ï¿½Ô·ï¿½
         RotationInput();
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
             CamChange();
         }
+
     }
     private void PositionInput()
     {
-        //¼Óµµ ¼¼ÆÃ
+        //ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.LeftControl) && canrun)
         {
             currentspeed = runspeed;
-            Debug.Log("¶Ù±â ½ÃÀÛ");
+            Debug.Log("ï¿½Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             currentspeed = walkspeed;
-            Debug.Log("¶Ù±â Á¾·á");
+            Debug.Log("ï¿½Ù±ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             currentspeed = crouchspeed;
-            Debug.Log("¿õÅ©¸®±â ½ÃÀÛ");
+            Debug.Log("ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentspeed = walkspeed;
-            Debug.Log("¿õÅ©¸®±â Á¾·á");
+            Debug.Log("ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
 
-        //x,zÃà ¿òÁ÷ÀÓ
+        //x,zï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         mouseX = Input.GetAxis("Mouse X");
@@ -155,10 +158,12 @@ public class PlayerMovement_Y : MonoBehaviour
 
     private void CamChange()
     {
-        if (cam1)
-        {
-            
-        }
+
+
+        tmp -= mouseY * r_speed;
+        tmp = Mathf.Clamp(tmp, -90, 90);
+        cam.rotation = Quaternion.Euler(tmp, 0, 0);
+
     }
     private void OnCollisionEnter(Collision col)
     {

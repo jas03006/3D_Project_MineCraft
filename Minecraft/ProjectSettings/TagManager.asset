@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - TestBlock
   - Stepable_Block
   - Inventory
   layers:
@@ -27,8 +28,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Floating_Item
+  - Player_J
   - 
   - 
   - 
