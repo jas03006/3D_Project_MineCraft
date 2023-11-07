@@ -12,19 +12,27 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    Vector2 mousePos;
 
-    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36); // ������ ����Ʈ
+
+    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
+    [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
+
     public Image inventoryImage;
     public List<Sprite> spriteImage;
     [SerializeField] private Transform[] children;
+    private bool isInventoryOpen = false;
+
+    /*
+     -----------------------------일단 지금은 안쓰는거------------------------------------
+     */
+    Vector2 mousePos;
     [SerializeField] private Button[] button;
     [SerializeField] private Button clicked_button;
     [SerializeField] private int clicked_button_index;
     private GameObject selectedItem; // ���콺�� ������ �������� ��Ÿ���� UI ���
 
     private bool isMouseOver;
-    private bool isInventoryOpen = false;
+
     private int currentIndex; // Ŭ�������� ����Ǵ� �ε��� ����
     private int maxStackCount = 64;
 
@@ -50,10 +58,8 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         mousePos = Input.mousePosition;
-
         InventoryInteraction();
-        //Test(); //디버그용
-
+        Test(); //디버그용
     }
     private void Test()
     {
@@ -85,6 +91,11 @@ public class Inventory : MonoBehaviour
                 Cursor.visible = false;
             }
         }
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            float a = Input.GetAxis("Mouse ScrollWheel");
+            Debug.Log(a);
+        }
     }
 
     private void GetItem(Item_ID_TG id, int num)
@@ -96,6 +107,14 @@ public class Inventory : MonoBehaviour
                 playerItemList[i].GetItem(id, num);
                 break;
             }
+        }
+    }
+
+    private void UIslot_select()
+    {
+        for (int i = 0; i < UIItemList.Count; i++)
+        {
+
         }
     }
 }
