@@ -73,7 +73,7 @@ public class PlayerState_Y : Living
 
     void Update()
     {
-        //Test(); //디버그용
+        Test(); //디버그용
         HungryInteraction();
         UpdateUI();
     }
