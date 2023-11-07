@@ -257,7 +257,7 @@ public class Chunk_TG : MonoBehaviour
             {
                 if (bn.gameObject == null)
                 {
-                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, bn.rotation);
                     bn.set_gameobject(go);
                 }
                 bn.show();
@@ -279,7 +279,7 @@ public class Chunk_TG : MonoBehaviour
             {
                 if (bn.gameObject == null)
                 {
-                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, bn.rotation);
                     bn.set_gameobject(go);
                 }
                 bn.show();
@@ -301,7 +301,7 @@ public class Chunk_TG : MonoBehaviour
             {
                 if (bn.gameObject == null)
                 {
-                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, Quaternion.identity);
+                    GameObject go = Biom_Manager.instance.pool_get(bn.id, new_pos, bn.rotation);
                     bn.set_gameobject(go);
                 }
                 bn.show();

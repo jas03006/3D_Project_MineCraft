@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Block_TG : Block_Break
 {
-
-   // [SerializeField] public Item_ID_TG id;
+    public bool is_open = false;
+    // [SerializeField] public Item_ID_TG id;
     [SerializeField] public List<Vector3Int> space;
     public void die() {
         //Debug.Log("die");
@@ -26,5 +26,8 @@ public class Block_TG : Block_Break
             block_return();
             die();
         }
+    }
+    public virtual void init(bool is_open_)
+    {
     }
 }

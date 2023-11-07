@@ -587,7 +587,7 @@ MonoBehaviour:
   isjump: 0
   r_speed: 0
   interaction_range: 8
-  block_in_hand: {fileID: 4861730266974659017, guid: d9cdcf9a5b69bf949a5408ecfd37879f, type: 3}
+  block_in_hand: {fileID: 4861730266974659017, guid: 1ff6b129f83c34140a2bb50b7a83313f, type: 3}
   is_sleeping: 0
 --- !u!54 &726597372
 Rigidbody:

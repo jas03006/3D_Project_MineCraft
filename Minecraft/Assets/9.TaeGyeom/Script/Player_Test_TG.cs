@@ -215,7 +215,7 @@ public class Player_Test_TG : MonoBehaviour
                     //space_.Add(Vector3Int.up);
                     
                     Biom_Manager.instance.set_block(id_, set_dir,
-                        Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, transform.forward.y, -transform.forward.z), 0.70711f))
+                        Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
                         ,block_.space);
                 }
                                       
