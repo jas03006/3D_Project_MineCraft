@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot_Y : MonoBehaviour
+public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
     // Start is called before the first frame update
     public Item_ID_TG item_id; //æ∆¿Ã≈€ id
@@ -16,6 +17,11 @@ public class Slot_Y : MonoBehaviour
     [SerializeField] private Slot_Y cursor_slot;
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
+
+    [SerializeField] private RectTransform info_transform;
+    [SerializeField] private Image info;
+    [SerializeField] private Text info_text;
+    private Vector2 mousePos;
 
     private void Start()
     {
@@ -93,5 +99,27 @@ public class Slot_Y : MonoBehaviour
         {
             uISlot.GetItem(item_id, value, image.color);
         }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Enter");
+        GameObject enteredObject = eventData.pointerEnter;
+        Slot_Y slot_data = enteredObject.GetComponent<Slot_Y>();
+        if (slot_data.item_id == Item_ID_TG.None)
+        {
+            return;
+        }
+        else
+        {
+            info_transform.position = mousePos + (Vector2.right * 100f);
+            info_text.text = $"{slot_data.id2data.Get_data(slot_data.item_id).ItemName}\n <Color=blue>{slot_data.id2data.Get_data(slot_data.item_id).classname}</Color>";
+            info.enabled = true;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("Exit");
+        info.enabled = false;
     }
 }
