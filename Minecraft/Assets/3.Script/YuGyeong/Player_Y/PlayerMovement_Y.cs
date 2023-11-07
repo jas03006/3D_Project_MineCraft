@@ -39,7 +39,6 @@ public class PlayerMovement_Y : MonoBehaviour
     #endregion
 
     private Rigidbody rigid;
-    [SerializeField]private Transform cam;
 
     [Header("Position")]
     [SerializeField] private float crouchspeed;
@@ -59,7 +58,14 @@ public class PlayerMovement_Y : MonoBehaviour
     private float mouseX;
     private float mouseY;
     [SerializeField] private float r_speed;
+    float cameraVerticalRotation = 0f;
     private float tmp;
+
+    [Header("Cam")]
+    [SerializeField] private Transform cam;
+    private Camera cam1;
+    private Camera cam3;
+
 
     private void Start()
     {
@@ -81,7 +87,9 @@ public class PlayerMovement_Y : MonoBehaviour
         //�Է�
         PositionInput();
 
-        //������ ����
+
+        ////������ ����
+
         Vector3 moveDirection = cam.transform.forward * vertical + cam.transform.right * horizontal;
         moveDirection.y = 0;
         moveVec = moveDirection * currentspeed * Time.deltaTime;
@@ -98,9 +106,12 @@ public class PlayerMovement_Y : MonoBehaviour
         //Rotation
         //�Է�
         RotationInput();
-     
-        //ī�޶�
-        CamSet();
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            CamChange();
+        }
+
     }
     private void PositionInput()
     {
@@ -133,16 +144,26 @@ public class PlayerMovement_Y : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
     }
+
     private void RotationInput()
     {
-        transform.Rotate(Vector3.up, mouseX * r_speed);
+        transform.rotation = Quaternion.Euler(0, cam.rotation.y * 100, 0);
+        //cameraVer -= mouseY;
+        //cameraHor += mouseX;
+        //cameraVer = Mathf.Clamp(cameraVer, -90f, 90f);
+        //transform.localEulerAngles = new Vector3(cameraVer,0,0);
+
+        // transform.Rotate(Vector3.up, mouseX * r_speed);
     }
-    private void CamSet()
+
+    private void CamChange()
     {
+
 
         tmp -= mouseY * r_speed;
         tmp = Mathf.Clamp(tmp, -90, 90);
         cam.rotation = Quaternion.Euler(tmp, 0, 0);
+
     }
     private void OnCollisionEnter(Collision col)
     {
