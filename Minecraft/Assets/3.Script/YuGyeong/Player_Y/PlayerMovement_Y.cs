@@ -1,4 +1,12 @@
 using UnityEngine;
+using System;
+
+public enum Cam_State
+{ 
+    cam1 = 0,
+    cam2 =1,
+    cam3 =2
+}
 
 public class PlayerMovement_Y : MonoBehaviour
 {
@@ -38,39 +46,42 @@ public class PlayerMovement_Y : MonoBehaviour
      */
     #endregion
 
-    private Rigidbody rigid;
+    protected Rigidbody rigid;
 
     [Header("Position")]
-    [SerializeField] private float crouchspeed;
-    [SerializeField] private float walkspeed;
-    [SerializeField] private float runspeed;
-    private float currentspeed;
+    [SerializeField] protected float crouchspeed;
+    [SerializeField] protected float walkspeed;
+    [SerializeField] protected float runspeed;
+    protected float currentspeed;
     public bool canrun;
 
-    [SerializeField] private float jumpforce;
-    [SerializeField] private bool isjump;
+    [SerializeField] protected float jumpforce;
+    [SerializeField] protected bool isjump;
 
-    private float horizontal;
-    private float vertical;
-    private Vector3 moveVec;
+    protected float horizontal;
+    protected float vertical;
+    protected Vector3 moveVec;
 
     [Header("Rotation")]
-    private float mouseX;
-    private float mouseY;
-    [SerializeField] private float r_speed;
+    protected float mouseX;
+    protected float mouseY;
+    [SerializeField] protected float r_speed;
     float cameraVerticalRotation = 0f;
-    private float tmp;
+    protected float tmp;
 
     [Header("Cam")]
-    [SerializeField] private Transform cam;
-    private Camera cam1;
-    private Camera cam3;
+    [SerializeField] protected Transform cam;
+    [SerializeField] protected Transform[] cam_pos_arr;
+    protected Cam_State cam_state = Cam_State.cam1;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         TryGetComponent(out rigid);
         cam = FindObjectOfType<Camera>().transform;
+        cam.transform.position = cam_pos_arr[(int)cam_state].position;
+        cam.transform.rotation = cam_pos_arr[(int)cam_state].rotation;
+
 
         isjump = false;
         jumpforce = 15f;
@@ -80,7 +91,7 @@ public class PlayerMovement_Y : MonoBehaviour
         r_speed = 1f;
         currentspeed = walkspeed;
     }
-    void Update()
+    protected virtual void Update()
     {
         //Transform
         //x,z��
@@ -92,6 +103,10 @@ public class PlayerMovement_Y : MonoBehaviour
 
         Vector3 moveDirection = cam.transform.forward * vertical + cam.transform.right * horizontal;
         moveDirection.y = 0;
+        if (Vector3.zero != moveDirection) {
+            transform.forward = moveDirection.normalized;
+            cam.transform.localEulerAngles = Vector3.zero;
+        }
         moveVec = moveDirection * currentspeed * Time.deltaTime;
         rigid.MovePosition(rigid.position + moveVec);
 
@@ -113,7 +128,7 @@ public class PlayerMovement_Y : MonoBehaviour
         }
 
     }
-    private void PositionInput()
+    protected void PositionInput()
     {
         //�ӵ� ����
         if (Input.GetKeyDown(KeyCode.LeftControl) && canrun)
@@ -145,27 +160,28 @@ public class PlayerMovement_Y : MonoBehaviour
         mouseY = Input.GetAxis("Mouse Y");
     }
 
-    private void RotationInput()
+    protected void RotationInput()
     {
-        transform.rotation = Quaternion.Euler(0, cam.rotation.y * 100, 0);
+        //transform.rotation = Quaternion.Euler(0, cam.rotation.y * 100, 0);
         //cameraVer -= mouseY;
         //cameraHor += mouseX;
         //cameraVer = Mathf.Clamp(cameraVer, -90f, 90f);
         //transform.localEulerAngles = new Vector3(cameraVer,0,0);
 
-        // transform.Rotate(Vector3.up, mouseX * r_speed);
+        //transform.Rotate(Vector3.up, mouseX * r_speed *Time.deltaTime);
     }
 
-    private void CamChange()
+    protected void CamChange()
     {
-
-
-        tmp -= mouseY * r_speed;
+        cam_state = (Cam_State)(((int)cam_state + 1)%Enum.GetValues(typeof(Cam_State)).Length);
+        cam.transform.position = cam_pos_arr[(int)cam_state].position;
+        cam.transform.rotation = cam_pos_arr[(int)cam_state].rotation;
+        /*tmp -= mouseY * r_speed;
         tmp = Mathf.Clamp(tmp, -90, 90);
-        cam.rotation = Quaternion.Euler(tmp, 0, 0);
+        cam.rotation = Quaternion.Euler(tmp, 0, 0);*/
 
     }
-    private void OnCollisionEnter(Collision col)
+    protected virtual void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Stepable_Block"))
         {

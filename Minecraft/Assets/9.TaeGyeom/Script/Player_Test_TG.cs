@@ -1,7 +1,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-public class Player_Test_TG : MonoBehaviour
+public class Player_Test_TG : PlayerMovement_Y
 {
     #region 스케치
     /*
@@ -30,27 +30,6 @@ public class Player_Test_TG : MonoBehaviour
      */
     #endregion
 
-    private Rigidbody rigid;
-    [SerializeField] private Transform cam;
-    public Camera camera;
-    [Header("Position")]
-    [SerializeField] private float crouchspeed;
-    [SerializeField] private float walkspeed;
-    [SerializeField] private float runspeed;
-    private float currentspeed;
-
-    [SerializeField] private float jumpforce;
-    [SerializeField] private bool isjump;
-
-    private float horizontal;
-    private float vertical;
-    private Vector3 moveVec;
-
-    [Header("Rotation")]
-    private float mouseX;
-    private float mouseY;
-    [SerializeField] private float r_speed;
-
     //TG
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
@@ -61,63 +40,110 @@ public class Player_Test_TG : MonoBehaviour
 
     [SerializeField] public Inventory inventory;
 
-    private void Start()
+    protected Camera camera;
+    [SerializeField] Transform head_tr;
+    [SerializeField] Transform body_tr;
+    
+    private Vector3 temp_vec3;
+    private float temp_float;
+    private Vector3 front_right = new Vector3(-90f, 45f, 0);
+    private Vector3 front_left = new Vector3(-90f, -45f, 0);
+    protected override void Start()
     {
-        TryGetComponent(out rigid);
-        cam = FindObjectOfType<Camera>().transform;
+        base.Start();
 
-        isjump = false;
-        jumpforce = 10f;
-        crouchspeed = 1f;
-        walkspeed = 5f;
-        runspeed = 10f;
-        r_speed = 1f;
-        currentspeed = walkspeed;
+        camera = FindObjectOfType<Camera>();
+        //TG
         if (interaction_range <=0) {
             interaction_range = 8;
         }
-        deactivate_gravity(); //TG
+        deactivate_gravity(); 
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
     }
-    void Update()
-    {
-                //Transform
-        //x,z축
-        //입력
-        PositionInput();
-
-        //움직임 구현
-        Vector3 moveDirection = cam.transform.forward * vertical + cam.transform.right * horizontal;
-        moveDirection.y = 0;
-        moveVec = moveDirection * currentspeed * Time.deltaTime;
-        rigid.MovePosition(rigid.position + moveVec);
-
-        //점프
-        if (!isjump && Input.GetButton("Jump"))
-        {
-            isjump = true;
-            rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+    private float angle_clamp_around0(float value, float min, float max) {
+        float center = (min+max)/ 2f + 180f;
+        if (value > max) {
+            if (value < center) {
+                return max;
+            }
+            value -= 360f;
+            if (value < min)
+            {
+                return min;
+            }
+             return value;
         }
-
-        //Rotation
-        //입력
-        RotationInput();
-
-        //카메라
-        CamSet();
-
-
-        //TG        
-        if (is_sleeping) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (value < min)
+        {
+            value += 360f;
+            if (value > max) {
+                if (value < center) {
+                    return max;
+                }
+                return value - 360f;
+            }
+            return value;
+        }
+        return value;
+    }
+    protected override void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            CamChange();
+        }
+        if (is_sleeping)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
                 is_sleeping = false;
                 transform.rotation = Quaternion.identity;
                 transform.Translate(Vector3.up * 0.5f);
             }
             return;
         }
+        //base.Update();
+        //CamChange();
+
+        PositionInput();
+        temp_vec3.x = angle_clamp_around0(head_tr.localEulerAngles.x - mouseY, -90f, 90f);        
+        temp_vec3.y = angle_clamp_around0(head_tr.localEulerAngles.y + mouseX, -90f, 90f);
+        temp_vec3.z = 0;
+        head_tr.localEulerAngles = temp_vec3;
+        if (vertical != 0) {
+            temp_vec3.x = head_tr.forward.x;
+            temp_vec3.z = head_tr.forward.z;
+            temp_vec3.y = 0;
+            transform.forward = temp_vec3;
+            temp_vec3.y = 0;
+            temp_vec3.z = 0;
+            temp_vec3.x = head_tr.localEulerAngles.x;
+            head_tr.localEulerAngles = temp_vec3;
+        }
+        temp_float = vertical * horizontal;
+        if (temp_float > 0 || (vertical == 0 &&horizontal > 0))
+        {
+            body_tr.localEulerAngles = front_right;
+        }
+        else if (temp_float < 0 || (vertical == 0 && horizontal < 0))
+        {
+            body_tr.localEulerAngles = front_left;
+        }
+        else {
+            body_tr.localEulerAngles = Vector3.right* -90f;
+        }
+        transform.position += (transform.forward*vertical+ transform.right*horizontal) * currentspeed* Time.deltaTime;
+
+        if (!isjump && Input.GetButtonDown("Jump"))
+        {
+            isjump = true;
+            rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+        }
+        //TG
+
+        
         attck_timer += Time.deltaTime;
         if (Input.GetMouseButtonUp(0))
         {
@@ -256,42 +282,9 @@ public class Player_Test_TG : MonoBehaviour
         }
         return result_dir;
     }
-    private void PositionInput()
-    {
-        //속도 세팅
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            currentspeed = runspeed;
-            //Debug.Log("뛰기 시작");
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            currentspeed = walkspeed;
-           // Debug.Log("뛰기 종료");
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            currentspeed = crouchspeed;
-            //Debug.Log("웅크리기 시작");
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            currentspeed = walkspeed;
-            //Debug.Log("웅크리기 종료");
-        }
-
-        //x,z축 움직임
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-    }
-    private void RotationInput()
-    {
-        transform.Rotate(Vector3.up, mouseX * r_speed);
-    }
-    private void CamSet()
+    
+    
+    /*private void CamSet()
     {
         // 현재 카메라의 회전 값을 가져옴
         Vector3 camRotation = cam.transform.localEulerAngles;
@@ -302,18 +295,20 @@ public class Player_Test_TG : MonoBehaviour
 
         // 카메라의 회전값을 제한
         camRotation.x = Mathf.Clamp(camRotation.x, -50f, 360f);
-        /*camRotation.x = Mathf.Clamp(camRotation.x, -90f, 90f);
-        camRotation.x = (camRotation.x + 360f) % 360f;*/ // -90도부터 90도까지로 제한
+        *//*camRotation.x = Mathf.Clamp(camRotation.x, -90f, 90f);
+        camRotation.x = (camRotation.x + 360f) % 360f;*//* // -90도부터 90도까지로 제한
         //Debug.Log(camRotation.x);
 
         // 실제 카메라에 회전 적용
         cam.localEulerAngles = camRotation;
-    }
-    private void OnCollisionEnter(Collision col)
+    }*/
+    protected override void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Stepable_Block"))
         {
-            isjump = false;
+            if ((transform.position - col.transform.position).normalized.y >= 0.49f) {
+                isjump = false;
+            }            
         }
         //TG
         else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
@@ -352,52 +347,3 @@ public class Player_Test_TG : MonoBehaviour
     }
 }
 
-
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player_Test_TG : MonoBehaviour
-{
-    [SerializeField] float speed = 10f;
-    [SerializeField] float jump_force = 100f;
-    [SerializeField] private Rigidbody rigid_body;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigid_body = GetComponent<Rigidbody>();
-        deactivate_gravity();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.anyKey) {
-            float hor = Input.GetAxis("Horizontal");
-            float ver = Input.GetAxis("Vertical");
-            float tilt = 0f;
-            if (Input.GetKey(KeyCode.E))
-            {
-                tilt = 1f;
-            } else if (Input.GetKey(KeyCode.Q)) {
-                tilt = -1f;
-            }
-            transform.Translate((hor* transform.right + ver*transform.forward + tilt*transform.up) *Time.deltaTime* speed);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("jump");
-                rigid_body.AddForce(jump_force * Vector3.up);
-            }
-        }
-    }
-
-    public void deactivate_gravity()
-    {
-        rigid_body.useGravity = false;
-    }
-    public void activate_gravity() {
-        rigid_body.useGravity = true;
-    }
-    
-}
-*/
