@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -480,11 +480,12 @@ MonoBehaviour:
   tG4: 0
   tG7: 0
   tG2: 0
-  tG5: 5
-  tG8: 5
-  tG3: 0
-  tG6: 0
+  tG5: 0
+  tG8: 0
+  tG3: 5
+  tG6: 5
   tG9: 0
+  RecipeNumber: 0
 --- !u!4 &787622279
 Transform:
   m_ObjectHideFlags: 0
@@ -2128,7 +2129,7 @@ MonoBehaviour:
   Leg_Diamond_R: {fileID: 1778378710}
   Waist_Diamond: {fileID: 1492994015}
   Waist_Iron: {fileID: 1920313758}
-  id: f70100000c0200001602000020020000
+  id: f80100000c0200001602000020020000
 --- !u!4 &5457574371059952161
 Transform:
   m_ObjectHideFlags: 0

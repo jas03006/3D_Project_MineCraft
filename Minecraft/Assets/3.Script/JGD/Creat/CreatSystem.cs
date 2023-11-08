@@ -101,14 +101,14 @@ public class CreatSystem : MonoBehaviour
         tG8 == Item_ID_TG.None &&
         tG9 == Item_ID_TG.None)
         {
-            id = Item_ID_TG.steak;
+            id = Item_ID_TG.stick;
         }
     }
 
 
+
     public void MakeRecipe()
     {
-
 
         switch (id)
         {
