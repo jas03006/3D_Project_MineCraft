@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c714324a9946014ca4c1e1b5b9f3560, type: 3}
+  m_Name: Steak
+  m_EditorClassIdentifier: 
+  id: 364
+  tG1: 5
+  tG4: 5
+  tG7: 0
+  tG2: 0
+  tG5: 0
+  tG8: 0
+  tG3: 0
+  tG6: 0
+  tG9: 0

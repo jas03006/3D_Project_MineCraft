@@ -444,6 +444,61 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1334600849742594479, guid: 5a76cfd5ea677044c95a8b1ee1ff5297, type: 3}
   m_PrefabInstance: {fileID: 6784528764367546858}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &787622277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787622279}
+  - component: {fileID: 787622278}
+  m_Layer: 0
+  m_Name: Maker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &787622278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787622277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67833a37ac1ed24b9bacfa1d1e149e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  objects:
+  - {fileID: 11400000, guid: 0fec2b165d3946a4983452c68ca347a0, type: 2}
+  tG1: 0
+  tG4: 0
+  tG7: 0
+  tG2: 0
+  tG5: 5
+  tG8: 5
+  tG3: 0
+  tG6: 0
+  tG9: 0
+--- !u!4 &787622279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787622277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7962221, y: -6.3683476, z: -14.45766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909574860
 GameObject:
   m_ObjectHideFlags: 0
