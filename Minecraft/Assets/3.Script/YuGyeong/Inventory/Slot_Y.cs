@@ -2,11 +2,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     // Start is called before the first frame update
     public Item_ID_TG item_id; //아이템 id
-    public int value; //갯수
+    public int number;
+    //{
+    //    get
+    //    {
+    //        return number_private;
+    //    }
+
+    //    set
+    //    {
+    //        number_private = number;
+    //        text.text = number_private.ToString();
+    //        if (number <= 0)
+    //        {
+    //            ResetItem();
+    //        }
+    //    }
+    //}
+    private int number_private;
     public ID2Datalist_YG id2data; //id -> 데이터 파일
     public Text text;
     [SerializeField] private Image image;
@@ -18,10 +35,9 @@ public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
 
-    [SerializeField] private RectTransform info_transform;
-    [SerializeField] private Image info;
+    [SerializeField] private Image info_image;
     [SerializeField] private Text info_text;
-    private Vector2 mousePos;
+    //private Vector2 mousePos;
 
     private void Start()
     {
@@ -38,7 +54,6 @@ public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 
     public void PushSlot()
     {
-        //Debug.Log("PushSlot");
         if (!is_cursor_slot)
         {
             if (!havedata) //데이터 없음
@@ -49,25 +64,24 @@ public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
                 }
                 if (cursor_slot.item_id != Item_ID_TG.None)
                 {
-                    GetItem(cursor_slot.item_id, cursor_slot.value);
+                    GetItem(cursor_slot.item_id, cursor_slot.number);
                     cursor_slot.ResetItem();
                 }
             }
             else //데이터 있음
             {
-                cursor_slot.GetItem(item_id, value);
+                cursor_slot.GetItem(item_id, number);
                 ResetItem();
             }
         }
     }
 
-    public void GetItem(Item_ID_TG itemID, int num)
+    public void GetItem(Item_ID_TG itemID, int _num)
     {
-        //Debug.Log("GetItem");
         item_id = itemID;
-        value = num;
+        number = _num;
         havedata = true;
-        text.text = $"{value}";
+        text.text = $"{number}";
         text.enabled = true;
         image.sprite = id2data.Get_data(itemID).itemSprite;
         image.enabled = true;
@@ -78,15 +92,14 @@ public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 
         if (have_UIClone)
         {
-            uISlot.GetItem(item_id, value, image.color);
+            uISlot.GetItem(item_id, number, image.color);
         }
     }
 
     public void ResetItem()
     {
-        //Debug.Log("ResetItem");
         item_id = Item_ID_TG.None;
-        value = 0;
+        number = 0;
         text.enabled = false;
         havedata = false;
         image.sprite = id2data.Get_data(item_id).itemSprite;
@@ -97,29 +110,55 @@ public class Slot_Y : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 
         if (have_UIClone)
         {
-            uISlot.GetItem(item_id, value, image.color);
+            uISlot.GetItem(item_id, number, image.color);
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
-        GameObject enteredObject = eventData.pointerEnter;
-        Slot_Y slot_data = enteredObject.GetComponent<Slot_Y>();
-        if (slot_data.item_id == Item_ID_TG.None)
+        if (is_cursor_slot)
         {
             return;
         }
+
+        //Info_text
+        if (item_id == Item_ID_TG.None)
+        {
+            info_text.text = " ";
+            info_text.enabled = false;
+            info_image.enabled = false;
+        }
+
         else
         {
-            info_transform.position = mousePos + (Vector2.right * 100f);
-            info_text.text = $"{slot_data.id2data.Get_data(slot_data.item_id).ItemName}\n <Color=blue>{slot_data.id2data.Get_data(slot_data.item_id).classname}</Color>";
-            info.enabled = true;
+            info_text.text = $"{id2data.Get_data(item_id).ItemName}\n <Color=#0069FF>{id2data.Get_data(item_id).classname}</Color>";
+            info_text.enabled = true;
+            info_image.enabled = true;
+            Color tem_color = info_image.color;
+            tem_color.a = 0.75f;
+            info_image.color = tem_color;
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    //mouse left click -> device
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Exit");
-        info.enabled = false;
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (cursor_slot.item_id == item_id)
+            {
+                number = cursor_slot.number + number;
+            }
+
+            if (cursor_slot.item_id == Item_ID_TG.None)
+            {
+                cursor_slot.GetItem(item_id, 1);
+                number--;
+            }
+        }
+
+        if (number == 0)
+        {
+            ResetItem();
+        }
     }
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Inventory Data", order = int.MaxValue)]
 
 public class InventoryData : ScriptableObject
@@ -33,7 +32,5 @@ public class InventoryData : ScriptableObject
 
     [SerializeField] private bool isCombinable; // ��ġ�� ����
     public bool IsCombinable => isCombinable;
-
-    [SerializeField] TileBase tile; 
 
 }

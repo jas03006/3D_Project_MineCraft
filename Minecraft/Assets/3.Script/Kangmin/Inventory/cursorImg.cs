@@ -5,17 +5,14 @@ using UnityEngine.UI;
 public class cursorImg : MonoBehaviour
 {
     [SerializeField] private RectTransform transform;
-    [SerializeField] private Image image;
-
     [SerializeField] private RectTransform info_transform;
-    [SerializeField] private Image info;
-    [SerializeField] private Text info_text;
+    //[SerializeField] private Image image;
     private Vector2 mousePos;
 
     void Start()
     {
         transform = GetComponent<RectTransform>();
-        image = GetComponentInChildren<Image>();
+        //image = GetComponentInChildren<Image>();
         Init_Cursor();
     }
 
@@ -33,5 +30,6 @@ public class cursorImg : MonoBehaviour
     {
         mousePos = Input.mousePosition;
         transform.position = mousePos;
+        info_transform.position = mousePos;
     }
 }

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
-  itemCode: 1
-  itemName: 
+  itemName: "\uCCA0\uAD11\uC11D"
+  maxValue: 64
+  itemSprite: {fileID: 0}
+  Classname: 
   isEquipable: 0
   isInstallable: 0
   isWeapon: 0
   isArmor: 0
   isInteractable: 0
   isCombinable: 1
-  SpriteImage: {fileID: 21300000, guid: a9a0853e8890c1540a01a89383531b2d, type: 3}

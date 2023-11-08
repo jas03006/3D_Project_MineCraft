@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  itemName: Apple
+  itemName: "\uC0AC\uACFC"
   maxValue: 64
   itemSprite: {fileID: 21300000, guid: fae3faaedc0ea204ab6a5fc281353036, type: 3}
+  Classname: "\uC74C\uC2DD \uBC0F \uC74C\uB8CC"
   isEquipable: 0
   isInstallable: 0
   isWeapon: 0
