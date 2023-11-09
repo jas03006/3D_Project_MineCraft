@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Bedrock
   m_EditorClassIdentifier: 
-  itemCode: 1
-  itemName: 
+  itemName: "\uAE30\uBC18\uC554"
+  maxValue: 64
+  itemSprite: {fileID: 0}
+  Classname: "\uAC74\uCD95 \uBE14\uB85D"
   isEquipable: 0
   isInstallable: 1
   isWeapon: 0
   isArmor: 0
   isInteractable: 0
   isCombinable: 0
-  itemImage: {fileID: 0}

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Meat
   m_EditorClassIdentifier: 
-  itemName: Meat
+  itemType: 1
+  itemName: "\uC0DD\uACE0\uAE30"
   maxValue: 64
-  itemSprite: {fileID: 21300000, guid: b3b88bcd50a27744e8da120a669aaa74, type: 3}
-  isEquipable: 0
-  isInstallable: 0
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 1
-  isCombinable: 0
-  tile: {fileID: 0}
+  itemsprite: {fileID: 21300000, guid: b3b88bcd50a27744e8da120a669aaa74, type: 3}
+  classname: "\uC74C\uC2DD \uBC0F \uC74C\uB8CC"
+  isequipable: 0
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 1
+  isuseful: 0

@@ -12,21 +12,15 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    Vector2 mousePos;
+    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
+    [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
+    [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
+    private int UIslot_index = 0;
 
-    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36); // ������ ����Ʈ
     public Image inventoryImage;
     public List<Sprite> spriteImage;
     [SerializeField] private Transform[] children;
-    [SerializeField] private Button[] button;
-    [SerializeField] private Button clicked_button;
-    [SerializeField] private int clicked_button_index;
-    private GameObject selectedItem; // ���콺�� ������ �������� ��Ÿ���� UI ���
-
-    private bool isMouseOver;
     private bool isInventoryOpen = false;
-    private int currentIndex; // Ŭ�������� ����Ǵ� �ε��� ����
-    private int maxStackCount = 64;
 
     private void Awake()
     {
@@ -36,23 +30,17 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
-        button = FindObjectsOfType<Button>();
 
         for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
         }
-        for (int i = 0; i < button.Length; i++)
-        {
-            int index = i;
-        }
     }
     private void Update()
     {
-        mousePos = Input.mousePosition;
-
         InventoryInteraction();
-        //Test(); //디버그용
+        UIslot_select();
+        Test(); //디버그용
 
     }
     private void Test()
@@ -61,6 +49,11 @@ public class Inventory : MonoBehaviour
         {
             GetItem(Item_ID_TG.apple, 1);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            GetItem(Item_ID_TG.bed, 1);
+        }
     }
     private void InventoryInteraction()
     {
@@ -68,7 +61,7 @@ public class Inventory : MonoBehaviour
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++) 
+                for (int i = 1; i < children.Length; i++)
                 {
                     children[i].gameObject.SetActive(true);
                 }
@@ -89,12 +82,58 @@ public class Inventory : MonoBehaviour
 
     public void GetItem(Item_ID_TG id, int num)
     {
+        //같은거 있으면 갯수++
+        for (int i = 0; i < playerItemList.Count; i++)
+        {
+            if (playerItemList[i].item_id == id)
+            {
+                playerItemList[i].number++;
+                //playerItemList[i].text.text = $"{playerItemList[i].number}";
+                return;
+            }
+        }
+
+        //같은거 없으면 새로 생성
         for (int i = 0; i < playerItemList.Count; i++)
         {
             if (playerItemList[i].item_id == Item_ID_TG.None)
             {
                 playerItemList[i].GetItem(id, num);
                 break;
+            }
+        }
+    }
+    private void UIslot_select()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (UIslot_index >= 8)
+            {
+                return;
+            }
+            UIslot_index++;
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (UIslot_index <= 0)
+            {
+                return;
+            }
+            UIslot_index--;
+        }
+
+        for (int i = 0; i < UIItemList.Count; i++)
+        {
+            if (i == UIslot_index)
+            {
+                UIItemList[i].is_active = true;
+                UIItemList[i].Active();
+            }
+            else
+            {
+                UIItemList[i].is_active = false;
+                UIItemList[i].NotActive();
             }
         }
     }

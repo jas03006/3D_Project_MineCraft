@@ -26,7 +26,6 @@ using UnityEngine.UI;
 #endregion
 public class PlayerState_Y : Living
 {
-    private Coroutine tmpco;
     private PlayerMovement_Y p_movement;
     [Header("체력")]
     //Living : startHealth, curhealth
@@ -34,11 +33,29 @@ public class PlayerState_Y : Living
     public Image[] H_object;
     [SerializeField] private AudioClip hitclip;
     [SerializeField] private AudioClip healclip;
-    
 
     [Header("배고픔")]
     private int starthungry;
-    [SerializeField]private int curhungry;
+    [SerializeField]
+    public int curhungry
+    {
+        get
+        {
+            return private_curhungry;
+        }
+        set
+        {
+            if (value > 20)
+            {
+                private_curhungry = 20;
+            }
+            else
+            {
+                private_curhungry = value;
+            }
+        }
+    }
+    private int private_curhungry;
     public Sprite[] F_State; //0:emty,1:half,2:full
     public Image[] F_object;
     [SerializeField] private AudioClip eatclip;
@@ -73,7 +90,7 @@ public class PlayerState_Y : Living
 
     void Update()
     {
-        //Test(); //디버그용
+        Test(); //디버그용
         HungryInteraction();
         UpdateUI();
     }
@@ -203,6 +220,10 @@ public class PlayerState_Y : Living
             Debug.Log($"curhungry <= 0");
             StartCoroutine(Health(-1, 4f, 100f));
         }
+    }
+    public void Hungry_cure(int hungry_cure)
+    {
+        curhungry += hungry_cure;
     }
     IEnumerator Hungry(int hungry, float playtime, float endtime)
     {

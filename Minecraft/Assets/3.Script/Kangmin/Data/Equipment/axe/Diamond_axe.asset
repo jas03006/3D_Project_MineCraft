@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Diamond_axe
   m_EditorClassIdentifier: 
-  itemCode: 0
-  itemName: 
-  maxValue: 0
-  itemImage: {fileID: 0}
+  itemName: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uB3C4\uB07C"
+  maxValue: 1
+  itemSprite: {fileID: 0}
+  Classname: "\uB3C4\uAD6C \uBC0F \uC720\uC6A9\uD55C \uBB3C\uAC74/n\uC804\uD22C"
   isEquipable: 0
   isInstallable: 0
   isWeapon: 0
   isArmor: 0
   isInteractable: 0
   isCombinable: 0
-  itemSprite: {fileID: 0}
