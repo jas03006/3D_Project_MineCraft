@@ -537,7 +537,8 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         else {
             if (h + 1 == world_y && x > 3 && x < 13 && z > 3 && z < 13 && y < chunk_size-8)
             {
-                if (Random.Range(0, 30) < 1)
+                Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
+                if ((bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) && Random.Range(0, 30) < 1)
                 {
                     return Item_ID_TG.tree;
                 }

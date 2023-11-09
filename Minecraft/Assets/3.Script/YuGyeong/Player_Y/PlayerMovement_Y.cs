@@ -84,14 +84,27 @@ public class PlayerMovement_Y : MonoBehaviour
 
 
         isjump = false;
-        jumpforce = 15f;
-        crouchspeed = 1f;
-        walkspeed = 5f;
-        runspeed = 10f;
-        r_speed = 1f;
+        if (jumpforce == 0) {
+            jumpforce = 11f;
+        }
+        if (crouchspeed == 0) { 
+            crouchspeed = 1f;
+        }
+        if (walkspeed == 0)
+        {
+            walkspeed = 3f;
+        }
+        if (runspeed == 0)
+        {
+            runspeed = 4.5f;
+        }
+        if (r_speed == 0)
+        {
+            r_speed = 1f;
+        }
         currentspeed = walkspeed;
     }
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         //Transform
         //x,z��
