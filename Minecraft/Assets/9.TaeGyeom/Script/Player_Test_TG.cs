@@ -216,6 +216,9 @@ public class Player_Test_TG : PlayerMovement_Y
     protected void Update()
     {
         attck_timer += Time.deltaTime;
+        if (inventory.isInventoryOpen) {
+            return;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
@@ -242,6 +245,10 @@ public class Player_Test_TG : PlayerMovement_Y
     protected override void FixedUpdate()
     {
         check_and_grap();
+        if (inventory.isInventoryOpen)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             CamChange();

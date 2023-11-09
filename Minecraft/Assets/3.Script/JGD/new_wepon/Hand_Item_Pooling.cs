@@ -33,10 +33,13 @@ public class Hand_Item_Pooling : MonoBehaviour
 
         foreach (GameObject item in WeaponPool[iD2Item.ID2index(id)])
         {
-            if (!item.activeSelf)
+            if ( !item.activeSelf)
             {
                 select = item;
                 select.SetActive(true);
+                select.transform.position = position;
+                select.transform.up = direction;
+                select.transform.SetParent(parent_tr);
                 break;
             }
         }

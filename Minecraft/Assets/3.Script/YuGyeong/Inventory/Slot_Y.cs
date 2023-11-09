@@ -66,8 +66,16 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             }
             else //데이터 있음
             {
-                cursor_slot.GetItem(item_id, number);
-                ResetItem();
+                if (cursor_slot.item_id == Item_ID_TG.None)
+                {
+                    cursor_slot.GetItem(item_id, number);
+                    ResetItem();
+                }
+                else if(cursor_slot.item_id == item_id) {
+                    GetItem(item_id, number + cursor_slot.number);
+                    cursor_slot.ResetItem();
+                }
+                
             }
         }
     }
@@ -137,19 +145,27 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     //mouse left click -> device
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (is_result_slot) {
+            return;
+        }
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (cursor_slot.item_id == item_id)
-            {
-                int tmp = number;
-                cursor_slot.number += number;
-                number -= tmp;
-            }
-
             if (cursor_slot.item_id == Item_ID_TG.None)
             {
                 cursor_slot.GetItem(item_id, 1);
                 number--;
+            }
+            else if (cursor_slot.item_id == item_id)
+            {
+                int tmp = number;
+                cursor_slot.number += number;
+                number -= tmp;
+            } else if (item_id == Item_ID_TG.None) {
+                GetItem(cursor_slot.item_id, 1);
+                cursor_slot.number -= 1;
+                if (cursor_slot.number == 0) {
+                    cursor_slot.ResetItem();
+                }
             }
         }
 
