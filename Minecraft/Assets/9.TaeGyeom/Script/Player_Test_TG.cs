@@ -10,6 +10,8 @@ public class Player_Raycast_Points {
     public List<Vector3> top;
     public List<Vector3> bottom;
 
+    public Collider collider;
+
     public int x_count = 4;
     public int y_count = 4;
     public int z_count = 3;
@@ -25,6 +27,7 @@ public class Player_Raycast_Points {
     }
 
     public void set_points(BoxCollider col) {
+        collider = col;
         forward = col.transform.forward;
         forward.y = 0;
         Vector3 back_left_bottom = col.bounds.min- col.bounds.center + Vector3.up *0.1f;
@@ -66,13 +69,16 @@ public class Player_Raycast_Points {
 
     public void set_points(CapsuleCollider col)
     {
+        collider = col;
         forward = col.transform.forward;
         forward.y = 0;
-        Vector3 back_left_bottom =  Vector3.up * 0.1f + Quaternion.Euler(0f, 240f, 0f) * forward * col.radius;
-        Vector3 front_right_top = Vector3.up * col.height + Quaternion.Euler(0f,60f,0f)* forward * col.radius;
+        Vector3 back_left_bottom =  Vector3.down*(col.height/2f -  0.1f) + Quaternion.Euler(0f, 240f, 0f) * forward * col.radius;
+        Vector3 front_right_top = Vector3.up * (col.height/2f) + Quaternion.Euler(0f,60f,0f)* forward * col.radius;
         float x_angle = 120f / (x_count - 1);
         float y_len = (front_right_top.y - back_left_bottom.y) / (y_count - 1);
         float z_angle = 60f / (z_count - 1);
+        float x_len = (col.radius / 1.414f *2f )/ (x_count - 1);
+        float z_len = (col.radius / 1.414f * 2f) / (z_count - 1);
         Vector3 temp;
         front.Clear();
         right.Clear();
@@ -88,12 +94,12 @@ public class Player_Raycast_Points {
                 front.Add(Quaternion.Euler(0f, -x_angle*x, 0f)*(front_right_top - temp));
                 back.Add(Quaternion.Euler(0f, -x_angle*x, 0f) * (back_left_bottom + temp));
             }
-            /*for (int z = 0; z < z_count; z++)
+            for (int z = 0; z < z_count; z++)
             {
-                temp = new Vector3(x_angle * x, 0, z * z_angle);
-                top.Add(front_right_top - temp);
+                temp = new Vector3(x_len * x, 0, z * z_len);
+                //top.Add(front_right_top - temp);
                 bottom.Add(back_left_bottom + temp);
-            }*/
+            }
         }
         for (int y = 0; y < y_count; y++)
         {
@@ -159,7 +165,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private bool is_trigger_checked = false;
     private Vector3 movement_adjustment = Vector3.zero;
     private Player_Raycast_Points raycast_points;
-    private BoxCollider box_collider;
+    //private BoxCollider box_collider;
     private CapsuleCollider capsule_collider;
     protected override void Start()
     {
@@ -169,9 +175,8 @@ public class Player_Test_TG : PlayerMovement_Y
         camera = FindObjectOfType<Camera>();
         collider_radius = GetComponent<CapsuleCollider>().radius;
         raycast_points = new Player_Raycast_Points();
-        gameObject.TryGetComponent<BoxCollider>(out box_collider);
+        //gameObject.TryGetComponent<BoxCollider>(out box_collider);
         gameObject.TryGetComponent<CapsuleCollider>(out capsule_collider);
-       // raycast_points.set_points(box_collider);
         raycast_points.set_points(capsule_collider);
         //TG
         if (interaction_range <=0) {
@@ -252,8 +257,6 @@ public class Player_Test_TG : PlayerMovement_Y
             }
             return;
         }
-        //base.Update();
-        //CamChange();
 
         PositionInput();
         // Head Rotate
@@ -291,23 +294,16 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        if (!isjump && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            isjump = true;
-            rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-        }
-        //TG
-
-        
-             
+            isjump = !raycast_all_points(raycast_points.bottom, Vector3.down) ;
+            if (!isjump) {
+                isjump = true;
+                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            }            
+        }             
     }
-  /*  private void FixedUpdate()
-    {
-        //TG
-        check_and_grap();
-        
-    }*/
-  
+
     private void left_click() { //TG
         RaycastHit hit;
         
@@ -417,61 +413,24 @@ public class Player_Test_TG : PlayerMovement_Y
         }
         return result_dir;
     }
-    
-    
-    /*private void CamSet()
-    {
-        // 현재 카메라의 회전 값을 가져옴
-        Vector3 camRotation = cam.transform.localEulerAngles;
 
-        // 회전값을 더하고 제한
-
-        camRotation.x -= mouseY * r_speed;
-
-        // 카메라의 회전값을 제한
-        camRotation.x = Mathf.Clamp(camRotation.x, -50f, 360f);
-        *//*camRotation.x = Mathf.Clamp(camRotation.x, -90f, 90f);
-        camRotation.x = (camRotation.x + 360f) % 360f;*//* // -90도부터 90도까지로 제한
-        //Debug.Log(camRotation.x);
-
-        // 실제 카메라에 회전 적용
-        cam.localEulerAngles = camRotation;
-    }*/
     protected override void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Stepable_Block"))
+         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
-            //cancel_move_on_col(col);
-
-            if ((transform.position - col.transform.position).normalized.y >= 0.48f) {
-                isjump = false;
-            }            
-        }
-        //TG
-        else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
-        {
-            //Debug.Log("Take");
-            
+            //아이템 습득
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
         }
     }
- 
-    private void OnCollisionStay(Collision col)
-    {
-      /*  if (col.gameObject.CompareTag("Stepable_Block"))
-        {
-           // cancel_move_on_col(col);
-            //isjump = false;
-        }*/
-    }
+
     
     private void raycast_forward(Vector3 movement, ref Vector3 original_movement) {
         Vector3 temp_forward = transform.forward;
         temp_forward.y = 0f;
         movement.y = 0f;
         float cos_temp_angle = Vector3.Dot(temp_forward.normalized, movement.normalized);
-        //raycast_points.set_points(box_collider);
+
         Vector3 force_dir = movement;
         if (cos_temp_angle == 1)
         {
@@ -526,8 +485,6 @@ public class Player_Test_TG : PlayerMovement_Y
             raycast_all_points(raycast_points.back, movement, ref force_dir);
         }
 
-        /*float cos_a = Vector3.Dot(original_movement.normalized, force_dir.normalized);
-        original_movement = force_dir.normalized*(original_movement * cos_a).magnitude * (cos_a>=0?1:-1);*/
         original_movement = force_dir;
         Debug.DrawRay(transform.position, force_dir.normalized, Color.yellow);
         Debug.DrawRay(transform.position, original_movement.normalized, Color.blue);
@@ -545,7 +502,7 @@ public class Player_Test_TG : PlayerMovement_Y
         Vector3 now_forward = transform.forward.normalized;
         now_forward.y = 0;
         foreach (Vector3 p in points) {
-            ray = new Ray(box_collider.bounds.center +(Quaternion.FromToRotation(raycast_points.forward.normalized, now_forward) * p), dir.normalized * dis);    
+            ray = new Ray(raycast_points.collider.bounds.center +(Quaternion.FromToRotation(raycast_points.forward.normalized, now_forward) * p), dir.normalized * dis);    
             //Debug.Log(box_collider.bounds.center + p);
             Debug.DrawRay(ray.origin, dir.normalized * dis, Color.red);
             if (Physics.Raycast(ray,out hit, dis, LayerMask.GetMask("Default"))) {
@@ -563,6 +520,25 @@ public class Player_Test_TG : PlayerMovement_Y
                 if (temp_dir.normalized != force_dir.normalized) {
                     force_dir = temp_dir;                    
                 }                
+            }
+        }
+        return false;
+    }
+    private bool raycast_all_points(List<Vector3> points, Vector3 dir)
+    {
+        Ray ray;
+        RaycastHit hit;
+        float dis = 0.1f;
+        Vector3 now_forward = transform.forward.normalized;
+        now_forward.y = 0;
+        foreach (Vector3 p in points)
+        {
+            ray = new Ray(raycast_points.collider.bounds.center + (Quaternion.FromToRotation(raycast_points.forward.normalized, now_forward) * p), dir.normalized * dis);
+            //Debug.Log(box_collider.bounds.center + p);
+            Debug.DrawRay(ray.origin, dir.normalized * dis, Color.red);
+            if (Physics.Raycast(ray, out hit, dis, LayerMask.GetMask("Default")))
+            {
+                return true;   
             }
         }
         return false;
