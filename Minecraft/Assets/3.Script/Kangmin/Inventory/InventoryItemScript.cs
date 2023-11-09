@@ -20,7 +20,7 @@ public class InventoryItemScript : MonoBehaviour, IBeginDragHandler, IDragHandle
     public void InitialiseITem(InventoryData newitem)
     {
         data = newitem;
-        image.sprite = newitem.itemSprite;
+        image.sprite = newitem.Itemsprite;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

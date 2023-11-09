@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Stone_pickaxe
   m_EditorClassIdentifier: 
-  itemCode: 0
+  itemType: 0
   itemName: 
   maxValue: 0
-  itemImage: {fileID: 0}
-  isEquipable: 0
-  isInstallable: 0
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 0
-  isCombinable: 0
-  itemSprite: {fileID: 0}
+  itemsprite: {fileID: 0}
+  classname: 
+  isequipable: 0
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 0

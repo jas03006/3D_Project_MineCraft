@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
             if (playerItemList[i].item_id == id)
             {
                 playerItemList[i].number++;
-                playerItemList[i].text.text = $"{playerItemList[i].number}";
+                //playerItemList[i].text.text = $"{playerItemList[i].number}";
                 return;
             }
         }

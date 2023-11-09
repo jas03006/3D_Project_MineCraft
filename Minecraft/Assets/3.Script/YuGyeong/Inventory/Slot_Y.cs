@@ -6,23 +6,19 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     // Start is called before the first frame update
     public Item_ID_TG item_id; //아이템 id
-    public int number;
-    //{
-    //    get
-    //    {
-    //        return number_private;
-    //    }
+    public int number
+    {
+        get
+        {
+            return number_private;
+        }
 
-    //    set
-    //    {
-    //        number_private = number;
-    //        text.text = number_private.ToString();
-    //        if (number <= 0)
-    //        {
-    //            ResetItem();
-    //        }
-    //    }
-    //}
+        set
+        {
+            number_private = value;
+            text.text = number_private.ToString();
+        }
+    }
     private int number_private;
     public ID2Datalist_YG id2data; //id -> 데이터 파일
     public Text text;
@@ -81,9 +77,8 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         item_id = itemID;
         number = _num;
         havedata = true;
-        text.text = $"{number}";
         text.enabled = true;
-        image.sprite = id2data.Get_data(itemID).itemSprite;
+        image.sprite = id2data.Get_data(itemID).Itemsprite;
         image.enabled = true;
 
         Color tem_color = image.color;
@@ -102,7 +97,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         number = 0;
         text.enabled = false;
         havedata = false;
-        image.sprite = id2data.Get_data(item_id).itemSprite;
+        image.sprite = id2data.Get_data(item_id).Itemsprite;
         image.enabled = true;
         Color tem_color = image.color;
         tem_color.a = 0f;
@@ -130,7 +125,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
         else
         {
-            info_text.text = $"{id2data.Get_data(item_id).ItemName}\n <Color=#0069FF>{id2data.Get_data(item_id).classname}</Color>";
+            info_text.text = $"{id2data.Get_data(item_id).ItemName}\n <Color=#0069FF>{id2data.Get_data(item_id).Classname}</Color>";
             info_text.enabled = true;
             info_image.enabled = true;
             Color tem_color = info_image.color;
@@ -146,7 +141,9 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         {
             if (cursor_slot.item_id == item_id)
             {
-                number = cursor_slot.number + number;
+                int tmp = number;
+                cursor_slot.number += number;
+                number -= tmp;
             }
 
             if (cursor_slot.item_id == Item_ID_TG.None)
