@@ -1,7 +1,119 @@
 
 using UnityEngine;
 using System.Collections.Generic;
-public class Player_Test_TG : MonoBehaviour
+
+public class Player_Raycast_Points {
+    public List<Vector3> front;
+    public List<Vector3> right;
+    public List<Vector3> left;
+    public List<Vector3> back;
+    public List<Vector3> top;
+    public List<Vector3> bottom;
+
+    public Collider collider;
+
+    public int x_count = 4;
+    public int y_count = 4;
+    public int z_count = 3;
+    public Vector3 forward;
+
+    public Player_Raycast_Points() {
+        front = new List<Vector3>(); //x,y
+        right = new List<Vector3>();  // z,y
+        left = new List<Vector3>();  // z,y
+        back = new List<Vector3>(); // x,y
+        top = new List<Vector3>();   // 
+        bottom = new List<Vector3>();
+    }
+
+    public void set_points(BoxCollider col) {
+        collider = col;
+        forward = col.transform.forward;
+        forward.y = 0;
+        Vector3 back_left_bottom = col.bounds.min- col.bounds.center + Vector3.up *0.1f;
+        Vector3 front_right_top = col.bounds.max- col.bounds.center;
+        float x_len = (front_right_top.x - back_left_bottom.x) / (x_count-1);
+        float y_len = (front_right_top.y - back_left_bottom.y) / (y_count-1);
+        float z_len = (front_right_top.z - back_left_bottom.z) / (z_count-1);
+        Vector3 temp;
+        front.Clear();
+        right.Clear();
+        left.Clear();
+        back.Clear();
+        top.Clear();
+        bottom.Clear();
+        for (int x=0; x < x_count; x++) {
+            for (int y = 0; y < y_count; y++)
+            {
+                temp = new Vector3(x_len * x, y_len * y, 0);
+                front.Add(front_right_top - temp);
+                back.Add(back_left_bottom + temp);
+            }
+            for (int z = 0; z < z_count; z++)
+            {
+                temp = new Vector3(x_len * x, 0, z*z_len);
+                top.Add(front_right_top - temp);
+                bottom.Add(back_left_bottom + temp);
+            }
+        }
+        for (int y = 0; y < y_count; y++)
+        {
+            for (int z = 0; z < z_count; z++)
+            {
+                temp = new Vector3( 0, y*y_len, z * z_len);
+                right.Add(front_right_top - temp);
+                left.Add(back_left_bottom + temp);
+            }
+        }       
+    }
+
+    public void set_points(CapsuleCollider col)
+    {
+        collider = col;
+        forward = col.transform.forward;
+        forward.y = 0;
+        Vector3 back_left_bottom =  Vector3.down*(col.height/2f -  0.1f) + Quaternion.Euler(0f, 240f, 0f) * forward * col.radius;
+        Vector3 front_right_top = Vector3.up * (col.height/2f) + Quaternion.Euler(0f,60f,0f)* forward * col.radius;
+        float x_angle = 120f / (x_count - 1);
+        float y_len = (front_right_top.y - back_left_bottom.y) / (y_count - 1);
+        float z_angle = 60f / (z_count - 1);
+        float x_len = (col.radius / 1.414f *2f )/ (x_count - 1);
+        float z_len = (col.radius / 1.414f * 2f) / (z_count - 1);
+        Vector3 temp;
+        front.Clear();
+        right.Clear();
+        left.Clear();
+        back.Clear();
+        top.Clear();
+        bottom.Clear();
+        for (int x = 0; x < x_count; x++)
+        {
+            for (int y = 0; y < y_count; y++)
+            {
+                temp = new Vector3(0, y_len * y, 0);
+                front.Add(Quaternion.Euler(0f, -x_angle*x, 0f)*(front_right_top - temp));
+                back.Add(Quaternion.Euler(0f, -x_angle*x, 0f) * (back_left_bottom + temp));
+            }
+            for (int z = 0; z < z_count; z++)
+            {
+                temp = new Vector3(x_len * x, 0, z * z_len);
+                //top.Add(front_right_top - temp);
+                bottom.Add(back_left_bottom + temp);
+            }
+        }
+        for (int y = 0; y < y_count; y++)
+        {
+            for (int z = 0; z < z_count; z++)
+            {
+                temp = new Vector3(0, y * y_len, 0);
+                right.Add(Quaternion.Euler(0f, z_angle*z, 0f) * (front_right_top - temp));
+                left.Add(Quaternion.Euler(0f, z_angle*z, 0f) * (back_left_bottom + temp));
+            }
+        }
+    }
+}
+
+public class Player_Test_TG : PlayerMovement_Y
 {
     #region 스케치
     /*
@@ -30,27 +142,6 @@ public class Player_Test_TG : MonoBehaviour
      */
     #endregion
 
-    private Rigidbody rigid;
-    [SerializeField] private Transform cam;
-    public Camera camera;
-    [Header("Position")]
-    [SerializeField] private float crouchspeed;
-    [SerializeField] private float walkspeed;
-    [SerializeField] private float runspeed;
-    private float currentspeed;
-
-    [SerializeField] private float jumpforce;
-    [SerializeField] private bool isjump;
-
-    private float horizontal;
-    private float vertical;
-    private Vector3 moveVec;
-
-    [Header("Rotation")]
-    private float mouseX;
-    private float mouseY;
-    [SerializeField] private float r_speed;
-
     //TG
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
@@ -61,69 +152,79 @@ public class Player_Test_TG : MonoBehaviour
 
     [SerializeField] public Inventory inventory;
 
-    private void Start()
+    protected Camera camera;
+    [SerializeField] Transform head_tr;
+    [SerializeField] Transform body_tr;
+    
+    private Vector3 temp_vec3;
+    private float temp_float;
+    private Vector3 front_right = new Vector3(-90f, 45f, 0);
+    private Vector3 front_left = new Vector3(-90f, -45f, 0);
+    private Vector3 current_move_vec = Vector3.zero;
+    private float collider_radius = 1f;
+    private bool is_trigger_checked = false;
+    private Vector3 movement_adjustment = Vector3.zero;
+    private Player_Raycast_Points raycast_points;
+    //private BoxCollider box_collider;
+    private CapsuleCollider capsule_collider;
+    protected override void Start()
     {
-        TryGetComponent(out rigid);
-        cam = FindObjectOfType<Camera>().transform;
+        base.Start();
 
-        isjump = false;
-        jumpforce = 10f;
-        crouchspeed = 1f;
-        walkspeed = 5f;
-        runspeed = 10f;
-        r_speed = 1f;
-        currentspeed = walkspeed;
+        
+        camera = FindObjectOfType<Camera>();
+        collider_radius = GetComponent<CapsuleCollider>().radius;
+        raycast_points = new Player_Raycast_Points();
+        //gameObject.TryGetComponent<BoxCollider>(out box_collider);
+        gameObject.TryGetComponent<CapsuleCollider>(out capsule_collider);
+        raycast_points.set_points(capsule_collider);
+        //TG
         if (interaction_range <=0) {
             interaction_range = 8;
         }
-        deactivate_gravity(); //TG
+        deactivate_gravity(); 
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
     }
-    void Update()
-    {
-                //Transform
-        //x,z축
-        //입력
-        PositionInput();
-
-        //움직임 구현
-        Vector3 moveDirection = cam.transform.forward * vertical + cam.transform.right * horizontal;
-        moveDirection.y = 0;
-        moveVec = moveDirection * currentspeed * Time.deltaTime;
-        rigid.MovePosition(rigid.position + moveVec);
-
-        //점프
-        if (!isjump && Input.GetButton("Jump"))
-        {
-            isjump = true;
-            rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-        }
-
-        //Rotation
-        //입력
-        RotationInput();
-
-        //카메라
-        CamSet();
-
-
-        //TG        
-        if (is_sleeping) {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                is_sleeping = false;
-                transform.rotation = Quaternion.identity;
-                transform.Translate(Vector3.up * 0.5f);
+    private float angle_clamp_around0(float value, float min, float max) {
+        float center = (min+max)/ 2f + 180f;
+        if (value > max) {
+            if (value < center) {
+                return max;
             }
+            value -= 360f;
+            if (value < min)
+            {
+                return min;
+            }
+             return value;
+        }
+        if (value < min)
+        {
+            value += 360f;
+            if (value > max) {
+                if (value < center) {
+                    return max;
+                }
+                return value - 360f;
+            }
+            return value;
+        }
+        return value;
+    }
+    protected void Update()
+    {
+        attck_timer += Time.deltaTime;
+        if (inventory.isInventoryOpen) {
             return;
         }
-        attck_timer += Time.deltaTime;
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
         }
-        if (attck_timer >= 0.2f) {            
+        if (attck_timer >= 0.2f)
+        {
             if (Input.GetMouseButton(0))
             {
                 attck_timer = 0f;
@@ -138,13 +239,76 @@ public class Player_Test_TG : MonoBehaviour
             {
                 attck_timer = 0f;
                 right_click(true);
-            }            
-        }       
+            }
+        }
     }
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        //TG
         check_and_grap();
+        if (inventory.isInventoryOpen)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            CamChange();
+        }
+        if (is_sleeping)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                is_sleeping = false;
+                transform.rotation = Quaternion.identity;
+                transform.Translate(Vector3.up * 0.5f);
+                return;
+            }
+            return;
+        }
+
+        PositionInput();
+        // Head Rotate
+        temp_vec3.x = angle_clamp_around0(head_tr.localEulerAngles.x - mouseY, -90f, 90f);        
+        temp_vec3.y = angle_clamp_around0(head_tr.localEulerAngles.y + mouseX, -90f, 90f);
+        temp_vec3.z = 0;
+        head_tr.localEulerAngles = temp_vec3;
+        //whole rotate
+        if (vertical != 0) {
+            temp_vec3.x = head_tr.forward.x;
+            temp_vec3.z = head_tr.forward.z;
+            temp_vec3.y = 0;
+            transform.forward = temp_vec3;
+            temp_vec3.y = 0;
+            temp_vec3.z = 0;
+            temp_vec3.x = head_tr.localEulerAngles.x;
+            head_tr.localEulerAngles = temp_vec3;
+        }
+        //body rotate
+        temp_float = vertical * horizontal;
+        if (temp_float > 0 || (vertical == 0 &&horizontal > 0))
+        {
+            body_tr.localEulerAngles = front_right;
+        }
+        else if (temp_float < 0 || (vertical == 0 && horizontal < 0))
+        {
+            body_tr.localEulerAngles = front_left;
+        }
+        else {
+            body_tr.localEulerAngles = Vector3.right* -90f;
+        }
+
+        // Player Move
+        current_move_vec = (transform.forward * vertical + transform.right * horizontal) * currentspeed * Time.deltaTime;
+        raycast_forward(current_move_vec,ref current_move_vec);
+        rigid.MovePosition(transform.position + current_move_vec);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            isjump = !raycast_all_points(raycast_points.bottom, Vector3.down) ;
+            if (!isjump) {
+                isjump = true;
+                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            }            
+        }             
     }
 
     private void left_click() { //TG
@@ -256,81 +420,138 @@ public class Player_Test_TG : MonoBehaviour
         }
         return result_dir;
     }
-    private void PositionInput()
+
+    protected override void OnCollisionEnter(Collision col)
     {
-        //속도 세팅
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
-            currentspeed = runspeed;
-            //Debug.Log("뛰기 시작");
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            currentspeed = walkspeed;
-           // Debug.Log("뛰기 종료");
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            currentspeed = crouchspeed;
-            //Debug.Log("웅크리기 시작");
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            currentspeed = walkspeed;
-            //Debug.Log("웅크리기 종료");
-        }
-
-        //x,z축 움직임
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-    }
-    private void RotationInput()
-    {
-        transform.Rotate(Vector3.up, mouseX * r_speed);
-    }
-    private void CamSet()
-    {
-        // 현재 카메라의 회전 값을 가져옴
-        Vector3 camRotation = cam.transform.localEulerAngles;
-
-        // 회전값을 더하고 제한
-
-        camRotation.x -= mouseY * r_speed;
-
-        // 카메라의 회전값을 제한
-        camRotation.x = Mathf.Clamp(camRotation.x, -50f, 360f);
-        /*camRotation.x = Mathf.Clamp(camRotation.x, -90f, 90f);
-        camRotation.x = (camRotation.x + 360f) % 360f;*/ // -90도부터 90도까지로 제한
-        //Debug.Log(camRotation.x);
-
-        // 실제 카메라에 회전 적용
-        cam.localEulerAngles = camRotation;
-    }
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("Stepable_Block"))
-        {
-            isjump = false;
-        }
-        //TG
-        else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
-        {
-            Debug.Log("Take");
-            
+            //아이템 습득
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
         }
     }
-    private void OnCollisionStay(Collision col)
-    {
-        if (col.gameObject.CompareTag("Stepable_Block"))
+
+    
+    private void raycast_forward(Vector3 movement, ref Vector3 original_movement) {
+        Vector3 temp_forward = transform.forward;
+        temp_forward.y = 0f;
+        movement.y = 0f;
+        float cos_temp_angle = Vector3.Dot(temp_forward.normalized, movement.normalized);
+
+        Vector3 force_dir = movement;
+        if (cos_temp_angle == 1)
         {
-            isjump = false;
+            //front
+            raycast_all_points(raycast_points.front, movement, ref force_dir);            
         }
+        else if (cos_temp_angle < 1 && cos_temp_angle > 0)
+        {
+            //front, right
+            if (horizontal > 0 ) {
+                raycast_all_points(raycast_points.front, movement, ref force_dir);
+                raycast_all_points(raycast_points.right, movement, ref force_dir);
+            }
+
+            // front, left
+            else 
+            {
+                raycast_all_points(raycast_points.front, movement, ref force_dir);
+                raycast_all_points(raycast_points.left, movement, ref force_dir);
+            }
+        }
+        else if (cos_temp_angle == 0) {
+            if (horizontal > 0)
+            {
+                //right
+                raycast_all_points(raycast_points.right, movement, ref force_dir);
+            }
+            else {
+                // left
+                raycast_all_points(raycast_points.left, movement, ref force_dir);
+            }                                  
+        }
+        else if (cos_temp_angle < 0 && cos_temp_angle > -1)
+        {
+            //back, right
+            if (horizontal > 0)
+            {
+                raycast_all_points(raycast_points.back, movement, ref force_dir);
+                raycast_all_points(raycast_points.right, movement, ref force_dir);
+            }
+
+            //back, left
+            else 
+            {
+                raycast_all_points(raycast_points.back, movement, ref force_dir);
+                raycast_all_points(raycast_points.left, movement, ref force_dir);
+            }
+        }
+        else if (cos_temp_angle == -1 )
+        {
+            //back
+            raycast_all_points(raycast_points.back, movement, ref force_dir);
+        }
+
+        original_movement = force_dir;
+        Debug.DrawRay(transform.position, force_dir.normalized, Color.yellow);
+        Debug.DrawRay(transform.position, original_movement.normalized, Color.blue);
     }
+
+    public Vector3 get_dir_from_vector3(Vector3 origin, Vector3 dir) {
+        float cos_a = Vector3.Dot(origin.normalized, dir.normalized);
+        return dir.normalized * (origin * cos_a).magnitude * (cos_a >= 0 ? 1 : -1);
+    }
+
+    private bool raycast_all_points(List<Vector3> points,Vector3 dir, ref Vector3 force_dir) {
+        Ray ray;
+        RaycastHit hit;
+        float dis = 0.1f;
+        Vector3 now_forward = transform.forward.normalized;
+        now_forward.y = 0;
+        foreach (Vector3 p in points) {
+            ray = new Ray(raycast_points.collider.bounds.center +(Quaternion.FromToRotation(raycast_points.forward.normalized, now_forward) * p), dir.normalized * dis);    
+            //Debug.Log(box_collider.bounds.center + p);
+            Debug.DrawRay(ray.origin, dir.normalized * dis, Color.red);
+            if (Physics.Raycast(ray,out hit, dis, LayerMask.GetMask("Default"))) {
+                Vector3 temp_dir = hit.point - hit.collider.transform.position;
+                temp_dir.y = 0;
+                if (Mathf.Abs(temp_dir.x) > Mathf.Abs(temp_dir.z))
+                {
+                    temp_dir.x = 0;
+                }
+                else {
+                    temp_dir.z = 0;
+                }
+                //force_dir = temp_dir;
+                temp_dir = get_dir_from_vector3(force_dir, temp_dir);
+                if (temp_dir.normalized != force_dir.normalized) {
+                    force_dir = temp_dir;                    
+                }                
+            }
+        }
+        return false;
+    }
+    private bool raycast_all_points(List<Vector3> points, Vector3 dir)
+    {
+        Ray ray;
+        RaycastHit hit;
+        float dis = 0.1f;
+        Vector3 now_forward = transform.forward.normalized;
+        now_forward.y = 0;
+        foreach (Vector3 p in points)
+        {
+            ray = new Ray(raycast_points.collider.bounds.center + (Quaternion.FromToRotation(raycast_points.forward.normalized, now_forward) * p), dir.normalized * dis);
+            //Debug.Log(box_collider.bounds.center + p);
+            Debug.DrawRay(ray.origin, dir.normalized * dis, Color.red);
+            if (Physics.Raycast(ray, out hit, dis, LayerMask.GetMask("Default")))
+            {
+                return true;   
+            }
+        }
+        return false;
+    }
+
+
     public void deactivate_gravity() //TG
     {
         rigid.useGravity = false;
@@ -352,52 +573,3 @@ public class Player_Test_TG : MonoBehaviour
     }
 }
 
-
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player_Test_TG : MonoBehaviour
-{
-    [SerializeField] float speed = 10f;
-    [SerializeField] float jump_force = 100f;
-    [SerializeField] private Rigidbody rigid_body;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigid_body = GetComponent<Rigidbody>();
-        deactivate_gravity();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.anyKey) {
-            float hor = Input.GetAxis("Horizontal");
-            float ver = Input.GetAxis("Vertical");
-            float tilt = 0f;
-            if (Input.GetKey(KeyCode.E))
-            {
-                tilt = 1f;
-            } else if (Input.GetKey(KeyCode.Q)) {
-                tilt = -1f;
-            }
-            transform.Translate((hor* transform.right + ver*transform.forward + tilt*transform.up) *Time.deltaTime* speed);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("jump");
-                rigid_body.AddForce(jump_force * Vector3.up);
-            }
-        }
-    }
-
-    public void deactivate_gravity()
-    {
-        rigid_body.useGravity = false;
-    }
-    public void activate_gravity() {
-        rigid_body.useGravity = true;
-    }
-    
-}
-*/

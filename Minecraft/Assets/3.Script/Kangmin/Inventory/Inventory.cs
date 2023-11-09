@@ -15,12 +15,13 @@ public class Inventory : MonoBehaviour
     [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
     [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
+    [SerializeField] private Weapon_position_J weapon_position;
     private int UIslot_index = 0;
 
     public Image inventoryImage;
     public List<Sprite> spriteImage;
     [SerializeField] private Transform[] children;
-    private bool isInventoryOpen = false;
+    public bool isInventoryOpen = false;
 
     private void Awake()
     {
@@ -88,7 +89,9 @@ public class Inventory : MonoBehaviour
             if (playerItemList[i].item_id == id)
             {
                 playerItemList[i].number++;
-                //playerItemList[i].text.text = $"{playerItemList[i].number}";
+                if (i >= playerItemList.Count- UIItemList.Count) {
+                    UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
+                }                
                 return;
             }
         }
@@ -112,6 +115,7 @@ public class Inventory : MonoBehaviour
                 return;
             }
             UIslot_index++;
+            weapon_position.Equip_Weapon(UIItemList[UIslot_index]._item_id);
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
@@ -121,6 +125,7 @@ public class Inventory : MonoBehaviour
                 return;
             }
             UIslot_index--;
+            weapon_position.Equip_Weapon(UIItemList[UIslot_index]._item_id);
         }
 
         for (int i = 0; i < UIItemList.Count; i++)
