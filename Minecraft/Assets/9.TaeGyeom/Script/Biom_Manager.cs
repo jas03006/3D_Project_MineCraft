@@ -49,7 +49,7 @@ public class Biom_Manager : MonoBehaviour
     private Vector3 pool_position = new Vector3(1000f, 1000f, 1000f);
     private Queue<Block_Node_TG> block_ready_queue;
      private int block_ready_cnt = 150000;
-     private int ready_block_generate_cnt = 10000;
+     private int ready_block_generate_cnt = 3000;
     private void Awake()
     {
         if (instance == null)
@@ -119,7 +119,7 @@ public class Biom_Manager : MonoBehaviour
             int h = get_mountain_height(current_chunk_pos, get_player_block_pos());
             current_chunk_pos.y = h / chunk_size;
             start_chunk_pos = current_chunk_pos;
-            player.transform.Translate(Vector3.up * h);
+            player.transform.Translate(Vector3.up * (h +1));
         }
 
     }
@@ -259,18 +259,18 @@ public class Biom_Manager : MonoBehaviour
         Chunk_TG new_chunk;
         int y_render_range = (current_chunk_pos.y >=0 ? render_chunk_num: 3);
         int y_pool_range = (current_chunk_pos.y >=0 ? pooling_distance : 3);
-        for (int i = current_chunk_pos.x - render_chunk_num- pooling_distance; i < current_chunk_pos.x + render_chunk_num+pooling_distance; i++)
+        for (int i = current_chunk_pos.x - render_chunk_num- pooling_distance+1; i < current_chunk_pos.x + render_chunk_num+pooling_distance; i++)
         {
             for (int j = current_chunk_pos.y - 2 - 1; j < current_chunk_pos.y + y_render_range + y_pool_range; j++)
             {
-                for (int k = current_chunk_pos.z - render_chunk_num -pooling_distance; k < current_chunk_pos.z + render_chunk_num + pooling_distance; k++)
+                for (int k = current_chunk_pos.z - render_chunk_num -pooling_distance+1; k < current_chunk_pos.z + render_chunk_num + pooling_distance; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
                     now_chunk_pos.z = k;
                     new_chunk = get_chunk(now_chunk_pos);
                     if (i >= current_chunk_pos.x - render_chunk_num && i < current_chunk_pos.x + render_chunk_num
-                        && j >= current_chunk_pos.y - 1 && j < current_chunk_pos.y + y_render_range
+                        && j >= current_chunk_pos.y - 2 && j < current_chunk_pos.y + y_render_range
                         && k >= current_chunk_pos.z - render_chunk_num && k < current_chunk_pos.z + render_chunk_num)
                     {                        
                         if (new_chunk == null)
@@ -289,7 +289,7 @@ public class Biom_Manager : MonoBehaviour
                         }
                     }
                     else {                        
-                        if (new_chunk != null)
+                        if (new_chunk != null && new_chunk.is_active)
                         {
                             new_chunk.pool_back_all();
                         }
@@ -298,11 +298,11 @@ public class Biom_Manager : MonoBehaviour
             }
         }
 
-        for (int i = current_chunk_pos.x - render_chunk_num; i < current_chunk_pos.x + render_chunk_num; i++)
+        for (int i = current_chunk_pos.x - render_chunk_num+1; i < current_chunk_pos.x + render_chunk_num; i++)
         {
             for (int j = current_chunk_pos.y - 2; j < current_chunk_pos.y + y_render_range; j++)
             {
-                for (int k = current_chunk_pos.z - render_chunk_num; k < current_chunk_pos.z + render_chunk_num; k++)
+                for (int k = current_chunk_pos.z - render_chunk_num+1; k < current_chunk_pos.z + render_chunk_num; k++)
                 {
                     now_chunk_pos.x = i;
                     now_chunk_pos.y = j;
