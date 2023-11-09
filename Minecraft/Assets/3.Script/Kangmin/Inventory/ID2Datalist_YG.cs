@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum item_type_Y
+{
+    equipment = 0,
+    install,
+    interactable,
+    eatable,
+    useful,
+    ETC
+}
 
 [CreateAssetMenu(fileName = "ID2Datalist_YG", menuName = "Scriptable Object/ID2Datalist_YG")]
 public class ID2Datalist_YG : ScriptableObject
 {
     [SerializeField] public List<InventoryData> itemdata;
-
     private Dictionary<Item_ID_TG, int> ID2index_dict;
-    [SerializeField]
     public List<Item_ID_TG> block_item_id_list =
         new List<Item_ID_TG>() {
             Item_ID_TG.None,
@@ -55,9 +62,8 @@ public class ID2Datalist_YG : ScriptableObject
         ID2index_dict = new Dictionary<Item_ID_TG, int>();
         int i = 0;
         foreach (Item_ID_TG e in block_item_id_list)
-        {//Enum.GetValues(typeof(Item_ID_TG)) ) {
+        {
             ID2index_dict[e] = i;
-            //Debug.Log($"{e}, {i}");
             i++;
         }
     }

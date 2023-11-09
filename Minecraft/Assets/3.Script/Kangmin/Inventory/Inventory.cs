@@ -12,32 +12,15 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
-
     [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
-    [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10);
+    [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
     private int UIslot_index = 0;
-    private bool is_scrolled = false;
 
     public Image inventoryImage;
     public List<Sprite> spriteImage;
     [SerializeField] private Transform[] children;
     private bool isInventoryOpen = false;
-
-    /*
-     -----------------------------일단 지금은 안쓰는거------------------------------------
-     */
-    Vector2 mousePos;
-    [SerializeField] private Button[] button;
-    [SerializeField] private Button clicked_button;
-    [SerializeField] private int clicked_button_index;
-    private GameObject selectedItem; // ���콺�� ������ �������� ��Ÿ���� UI ���
-
-    private bool isMouseOver;
-
-    private int currentIndex; // Ŭ�������� ����Ǵ� �ε��� ����
-    private int maxStackCount = 64;
 
     private void Awake()
     {
@@ -47,22 +30,16 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
-        button = FindObjectsOfType<Button>();
 
         for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
-        }
-        for (int i = 0; i < button.Length; i++)
-        {
-            int index = i;
         }
     }
     private void Update()
     {
         InventoryInteraction();
         UIslot_select();
-
         Test(); //디버그용
 
     }
@@ -71,6 +48,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             GetItem(Item_ID_TG.apple, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            GetItem(Item_ID_TG.bed, 1);
         }
     }
     private void InventoryInteraction()
@@ -105,8 +87,8 @@ public class Inventory : MonoBehaviour
         {
             if (playerItemList[i].item_id == id)
             {
-                playerItemList[i].value++;
-                playerItemList[i].text.text = $"{playerItemList[i].value}";
+                playerItemList[i].number++;
+                //playerItemList[i].text.text = $"{playerItemList[i].number}";
                 return;
             }
         }
@@ -121,7 +103,6 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
     private void UIslot_select()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)

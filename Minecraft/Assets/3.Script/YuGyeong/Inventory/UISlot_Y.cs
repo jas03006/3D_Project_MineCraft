@@ -23,7 +23,7 @@ public class UISlot_Y : MonoBehaviour
         _value = value;
         text.text = $"{_value}";
         InventoryData idt = id2data.Get_data(_item_id);
-        _image.sprite = idt.itemSprite;
+        _image.sprite = idt.Itemsprite;
         _image.color = tem_color;
     }
 

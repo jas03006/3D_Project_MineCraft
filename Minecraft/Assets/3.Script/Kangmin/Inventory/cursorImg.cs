@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class cursorImg : MonoBehaviour
 {
-    [SerializeField]private RectTransform transform;
-    [SerializeField] private Image image;
+    [SerializeField] private RectTransform transform;
+    [SerializeField] private RectTransform info_transform;
+    //[SerializeField] private Image image;
+    private Vector2 mousePos;
+
     void Start()
     {
         transform = GetComponent<RectTransform>();
-        image = GetComponentInChildren<Image>();
-
+        //image = GetComponentInChildren<Image>();
         Init_Cursor();
     }
 
@@ -27,7 +28,8 @@ public class cursorImg : MonoBehaviour
 
     private void Update_MousePosition()
     {
-        Vector2 mousePos = Input.mousePosition;
+        mousePos = Input.mousePosition;
         transform.position = mousePos;
+        info_transform.position = mousePos;
     }
 }

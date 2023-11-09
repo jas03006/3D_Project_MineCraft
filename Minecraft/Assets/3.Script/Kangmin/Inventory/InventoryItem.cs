@@ -18,7 +18,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void InitialiseITem(InventoryData newitem)
     {
-        image.sprite = newitem.itemSprite;
+        image.sprite = newitem.Itemsprite;
     }
 
     // 드래그 앤 드롭
