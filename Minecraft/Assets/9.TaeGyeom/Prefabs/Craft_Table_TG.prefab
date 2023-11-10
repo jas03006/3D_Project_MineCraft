@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4861730267239214055}
   - component: {fileID: 4861730267239214072}
   - component: {fileID: 4861730267239214073}
-  - component: {fileID: 3593326908382784155}
+  - component: {fileID: 1361704939519020040}
   m_Layer: 6
   m_Name: Block
   m_TagString: Stepable_Block
@@ -178,7 +178,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3593326908382784155
+--- !u!114 &1361704939519020040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861730267239214075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122d78203c2049044b74c96ead68b7fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b966f1c5d8f0d8459dc99fac9b3fa8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 58
@@ -208,4 +208,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8bbc73e04e7540d42a2c02945591e823, type: 2}
   - {fileID: 2100000, guid: b45062e26cefc274ea7c0e969519d02c, type: 2}
   - {fileID: 2100000, guid: b61573c218323f34aa89427d0497025f, type: 2}
+  is_open: 0
   space: []
+  craft_UI: {fileID: 0}
