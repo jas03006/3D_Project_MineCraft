@@ -17,12 +17,9 @@ public class Living : MonoBehaviour
     // Update is called once per frame
     public virtual void OnDamage(int Damage)
     {
-
         curhealth -= Damage;
-        //�׾����� ���׾�����
         if (curhealth <= 0 && !isDead)
         {
-            //�״� �޼ҵ带 ȣ��
             Die();
         }
     }

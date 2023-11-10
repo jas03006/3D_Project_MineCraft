@@ -41,4 +41,34 @@ public class UISlot_Y : MonoBehaviour
     {
         highlight.enabled = false;
     }
+
+    public void Test()
+    {
+        if (Input.GetMouseButtonDown(1)) //마우스 오른쪽
+        {
+            InventoryData tmp = id2data.Get_data(_item_id);
+            if (tmp is Food)
+            {
+                Food food = tmp as Food;
+                if (food != null)
+                {
+                    food.R_Eat();
+                }
+            }
+            //else if(tmp is )
+        }
+
+        if (Input.GetMouseButtonDown(0)) //마우스 왼쪽
+        {
+            InventoryData tmp = id2data.Get_data(_item_id);
+            if (tmp is Useful)
+            {
+                Useful useful = tmp as Useful;
+                if (useful != null)
+                {
+                    useful.L_Swing();
+                }
+            }
+        }
+    }
 }
