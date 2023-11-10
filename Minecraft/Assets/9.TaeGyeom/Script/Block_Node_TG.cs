@@ -14,7 +14,10 @@ public class Block_Node_TG
     public Transform transform = null;
     public int open_flag=0;
     public Quaternion rotation = Quaternion.identity;
+
+    [Header("Block Data")]
     public bool is_open = false; // check for door or box is opened
+    public List<KeyValuePair<Item_ID_TG, int>> contain_data = null;
     /*private void OnDestroy()
     {
         //Debug.Log("destroy");
@@ -66,7 +69,13 @@ public class Block_Node_TG
         rotation = transform.rotation;
         if (id == Item_ID_TG.door || id == Item_ID_TG.box) {
             transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
-            bt.init(is_open);
+            if (contain_data != null)
+            {
+                bt.init(is_open, contain_data);
+            }
+            else {
+                bt.init(is_open);
+            }            
         }
         //open_flag = 1;
     }
@@ -77,6 +86,7 @@ public class Block_Node_TG
             {
                 transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
                 is_open = bt.is_open;
+                contain_data = bt.contain_data;
             }
         }      
                 
@@ -87,6 +97,12 @@ public class Block_Node_TG
     public void destroy_chain()
     {
         //Debug.Log("Destroy");
+        transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
+        if (bt != null )
+        {
+            bt.drop_items();            
+        }
+
         chunk.destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
         if (parent != null) {
             parent.children.Remove(this);
@@ -102,7 +118,8 @@ public class Block_Node_TG
             children.Clear();
         }
         is_open = false;
-       // transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
+        contain_data = null;       
+        // transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
     }    
 
     public void show()
