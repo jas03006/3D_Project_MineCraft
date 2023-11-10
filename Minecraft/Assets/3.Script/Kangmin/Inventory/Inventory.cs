@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 /*
 아이템 얻음
@@ -26,9 +27,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform[] children;
     public bool isInventoryOpen = false;
 
-
-    [SerializeField] public GameObject craft_UI;
     [SerializeField] public CreatSystem creat_system;
+    [SerializeField] public GameObject craft_UI;
+    [SerializeField] public GameObject box_UI;
+    [SerializeField] public GameObject furnace_UI;
+    private Action<List<Slot_Y>> hide_callback = null;
     private void Awake()
     {
         if (instance == null)
@@ -93,23 +96,34 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void show() {
+    public void show(Action<List<Slot_Y>> callback = null) {
         for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(true);
         }
         isInventoryOpen = true;
         Cursor.visible = true;
+        hide_callback = callback;
     }
 
-    public void show_craft() {
-        show();
+    public void show_craft(Action<List<Slot_Y>> callback = null) {
+        show(callback);
         craft_UI.SetActive(true);
+    }
+    public void show_box(List<KeyValuePair<Item_ID_TG, int>> data, Action<List<Slot_Y>> callback = null)
+    {
+        show(callback);
+        box_UI.SetActive(true);
+        box_UI.GetComponent<Box_Y>().Get_data(data);
     }
 
     public void hide() {
+        List<Slot_Y> callback_param = null;
         if (craft_UI.activeSelf == true) {
             hide_craft();
+        }
+        if (box_UI.activeSelf == true) {
+            callback_param = box_UI.GetComponent<Box_Y>().Get_slots();
         }
         
         for (int i = 1; i < children.Length; i++)
@@ -117,7 +131,15 @@ public class Inventory : MonoBehaviour
             children[i].gameObject.SetActive(false);
         }
         isInventoryOpen = false;
-        Cursor.visible = false;        
+        Cursor.visible = false;
+        if (hide_callback != null) {
+            hide_callback(callback_param);
+            hide_callback = null;
+        }
+        if (box_UI.activeSelf == true)
+        {
+            hide_box();
+        }
     }
     public void hide_craft()
     {
@@ -128,6 +150,11 @@ public class Inventory : MonoBehaviour
         }
         CraftList[CraftList.Count - 1].ResetItem();
         craft_UI.SetActive(false);
+    }
+
+    public void hide_box() {
+        box_UI.GetComponent<Box_Y>().reset_data();
+        box_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
     {

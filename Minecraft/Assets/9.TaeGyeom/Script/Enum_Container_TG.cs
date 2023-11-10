@@ -13,7 +13,7 @@ public enum Item_ID_TG
     board = 5,
     bedrock = 7,
     coal = 15,
-    iron = 16,
+    iron = 16,  //블록상태
     tree = 17,
     leaf = 18,
     box = 54,
@@ -33,7 +33,7 @@ public enum Item_ID_TG
     iron_armor = 513, diamond_armor = 524,
     iron_leggings = 523, diamond_leggings = 534,
     iron_boots = 533, diamond_boots = 544,
-    raw_iron = 600
+    raw_iron = 600, bar_iron = 601    //원석 , 꾸운거
 }
 
 public class Enum_Container_TG : MonoBehaviour
