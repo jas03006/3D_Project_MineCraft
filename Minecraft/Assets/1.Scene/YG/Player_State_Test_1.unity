@@ -1572,6 +1572,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &95633470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,6 +2069,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &130406060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,6 +2824,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &190008480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3965,6 +3968,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &281185493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,6 +4180,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &310895355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4787,6 +4792,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &384601987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7217,6 +7223,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &539866218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7333,6 +7340,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &545103038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8226,6 +8234,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &588142945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8512,6 +8521,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &592776321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10334,6 +10344,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &764350389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11988,6 +11999,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &912919496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12104,6 +12116,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &953119707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12220,6 +12233,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &958805875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13191,6 +13205,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1023219200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13932,6 +13947,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1095589356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14314,6 +14330,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1120903559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14716,6 +14733,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1143049862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16672,6 +16690,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1286782825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17148,6 +17167,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1350102459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17433,6 +17453,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1370262987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17699,6 +17720,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1375955280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18155,6 +18177,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1406290002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18739,6 +18762,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1432154094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20012,6 +20036,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1505822379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20128,6 +20153,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1517499307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21195,6 +21221,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1618859856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22069,7 +22096,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 150, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 30, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707850620
 MonoBehaviour:
@@ -22403,6 +22430,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1717139495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22519,6 +22547,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1717835774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23555,6 +23584,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1792905514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23671,6 +23701,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1816334720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25017,6 +25048,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1946098970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25894,6 +25926,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &1995093999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26200,6 +26233,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &2006393921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26676,6 +26710,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &2053826625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26835,10 +26870,10 @@ RectTransform:
   m_Father: {fileID: 1707850619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15, y: -34}
+  m_SizeDelta: {x: 0, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069787890
 MonoBehaviour:
@@ -27611,6 +27646,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &2145696480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30205,6 +30241,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!224 &4309384159447560154
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30436,6 +30473,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875250133638
 GameObject:
   m_ObjectHideFlags: 0
@@ -30552,6 +30590,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875266677004
 GameObject:
   m_ObjectHideFlags: 0
@@ -30668,6 +30707,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053065255518908}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875267296452
 GameObject:
   m_ObjectHideFlags: 0
@@ -30784,6 +30824,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875321567390
 GameObject:
   m_ObjectHideFlags: 0
@@ -30900,6 +30941,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875326005169
 GameObject:
   m_ObjectHideFlags: 0
@@ -31016,6 +31058,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875333765743
 GameObject:
   m_ObjectHideFlags: 0
@@ -31357,6 +31400,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875398998415
 GameObject:
   m_ObjectHideFlags: 0
@@ -31473,6 +31517,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875451292834
 GameObject:
   m_ObjectHideFlags: 0
@@ -31589,6 +31634,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875465535828
 GameObject:
   m_ObjectHideFlags: 0
@@ -31705,6 +31751,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875473227498
 GameObject:
   m_ObjectHideFlags: 0
@@ -31896,6 +31943,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875508030274
 GameObject:
   m_ObjectHideFlags: 0
@@ -32012,6 +32060,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875533452916
 GameObject:
   m_ObjectHideFlags: 0
@@ -32203,6 +32252,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875591437982
 GameObject:
   m_ObjectHideFlags: 0
@@ -32319,6 +32369,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053066060050477}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875651414274
 GameObject:
   m_ObjectHideFlags: 0
@@ -32435,6 +32486,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875669360483
 GameObject:
   m_ObjectHideFlags: 0
@@ -32551,6 +32603,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053064894492992}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875672986485
 GameObject:
   m_ObjectHideFlags: 0
@@ -32939,7 +32992,6 @@ GameObject:
   - component: {fileID: 4429936875739270001}
   - component: {fileID: 4429936875739270000}
   - component: {fileID: 4429936875739270002}
-  - component: {fileID: 4429936875739270003}
   m_Layer: 5
   m_Name: 0
   m_TagString: Untagged
@@ -33044,20 +33096,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
---- !u!114 &4429936875739270003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4429936875739269998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21ac58c6ddb8ef49a72fa374da5ed9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item_ID: 0
-  hungry_cure: 0
+  is_craft_slot: 0
 --- !u!1 &4429936875740755409
 GameObject:
   m_ObjectHideFlags: 0
@@ -33174,6 +33213,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875772834859
 GameObject:
   m_ObjectHideFlags: 0
@@ -33290,6 +33330,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053066725450509}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875817887175
 GameObject:
   m_ObjectHideFlags: 0
@@ -33556,6 +33597,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!222 &4429936875904917760
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33747,6 +33789,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936875958712772
 GameObject:
   m_ObjectHideFlags: 0
@@ -33938,6 +33981,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876090641851
 GameObject:
   m_ObjectHideFlags: 0
@@ -34054,6 +34098,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876103953833
 GameObject:
   m_ObjectHideFlags: 0
@@ -34171,6 +34216,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 0}
   info_text: {fileID: 0}
+  is_craft_slot: 0
 --- !u!1 &4429936876118720379
 GameObject:
   m_ObjectHideFlags: 0
@@ -34287,6 +34333,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876164135898
 GameObject:
   m_ObjectHideFlags: 0
@@ -34403,6 +34450,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053064804714212}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876194766484
 GameObject:
   m_ObjectHideFlags: 0
@@ -34744,6 +34792,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &4429936876300208448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35010,6 +35059,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876366814340
 GameObject:
   m_ObjectHideFlags: 0
@@ -35201,6 +35251,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053066567610331}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876436482434
 GameObject:
   m_ObjectHideFlags: 0
@@ -35392,6 +35443,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053064974068151}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876478776219
 GameObject:
   m_ObjectHideFlags: 0
@@ -35508,6 +35560,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876505366076
 GameObject:
   m_ObjectHideFlags: 0
@@ -35624,6 +35677,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876506453076
 GameObject:
   m_ObjectHideFlags: 0
@@ -35731,11 +35785,14 @@ MonoBehaviour:
   - {fileID: 588142944}
   - {fileID: 1375955279}
   - {fileID: 1946098969}
+  CraftList_Small: []
   weapon_position: {fileID: 0}
   inventoryImage: {fileID: 4429936876884814724}
   spriteImage: []
   children: []
   isInventoryOpen: 0
+  craft_UI: {fileID: 0}
+  creat_system: {fileID: 0}
 --- !u!1 &4429936876509699627
 GameObject:
   m_ObjectHideFlags: 0
@@ -36077,6 +36134,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876552744514
 GameObject:
   m_ObjectHideFlags: 0
@@ -36418,6 +36476,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053065889405145}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876580003666
 GameObject:
   m_ObjectHideFlags: 0
@@ -36534,6 +36593,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876611539309
 GameObject:
   m_ObjectHideFlags: 0
@@ -36725,6 +36785,7 @@ MonoBehaviour:
   uISlot: {fileID: 8760053066274905710}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876617418949
 GameObject:
   m_ObjectHideFlags: 0
@@ -37141,6 +37202,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876754355054
 GameObject:
   m_ObjectHideFlags: 0
@@ -37257,6 +37319,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!114 &4429936876803511360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37281,6 +37344,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876803511740
 GameObject:
   m_ObjectHideFlags: 0
@@ -37564,6 +37628,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876839852953
 GameObject:
   m_ObjectHideFlags: 0
@@ -37909,6 +37974,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876929143467
 GameObject:
   m_ObjectHideFlags: 0
@@ -38025,6 +38091,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936876930417999
 GameObject:
   m_ObjectHideFlags: 0
@@ -38405,6 +38472,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936877090908611
 GameObject:
   m_ObjectHideFlags: 0
@@ -38671,6 +38739,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936877246298071
 GameObject:
   m_ObjectHideFlags: 0
@@ -38787,6 +38856,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!1 &4429936877255448096
 GameObject:
   m_ObjectHideFlags: 0
@@ -38903,6 +38973,7 @@ MonoBehaviour:
   uISlot: {fileID: 0}
   info_image: {fileID: 1707850621}
   info_text: {fileID: 2069787890}
+  is_craft_slot: 0
 --- !u!222 &4429936877272364928
 CanvasRenderer:
   m_ObjectHideFlags: 0

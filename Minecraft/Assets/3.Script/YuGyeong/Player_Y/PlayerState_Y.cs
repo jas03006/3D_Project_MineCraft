@@ -36,8 +36,7 @@ public class PlayerState_Y : Living
 
     [Header("¹è°íÇÄ")]
     private int starthungry;
-    [SerializeField]
-    public int curhungry
+    [SerializeField] public int curhungry
     {
         get
         {

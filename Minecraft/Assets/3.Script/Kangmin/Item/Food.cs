@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public interface IEat
+{
+    void L_Eat();//왼쪽 마우스
+    void R_None(); //오른쪽 마우스
+}
+
+[CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Eat", order = int.MaxValue)]
+public class Food : InventoryData, IEat
+{
+    //slot에 데이터 할당시키기??
+    public int hungry_cure;
+    //아이템 갯수
+    public PlayerState_Y player_state;
+    public Animator player_animator;
+    public Slot_Y slot;
+
+
+    public void L_Eat() //왼쪽 - 먹기
+    {
+        //플레이어 정보 할당
+        if (player_state == null && player_animator == null && slot == null)
+        {
+            player_state = FindObjectOfType<PlayerState_Y>();
+            player_animator = player_state.gameObject.GetComponent<Animator>();
+           // slot = Inventory.instance.playerItemList[27+ Inventory.instance.UIslot_index]
+        }
+
+        //체력 회복 적용
+        player_state.Hungry_cure(hungry_cure);
+
+        slot.number--;        //아이템 갯수--;
+        if (slot.number == 0)
+        {
+            slot.ResetItem();        //아이템 갯수 0이면 초기화
+        }
+
+        //player_animator.set 애니메이션 넣어줘야함
+    }
+
+    public void R_None()
+    {
+        return;
+    }
+}

@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Useful : MonoBehaviour
+public interface IUseFul
 {
-    // Start is called before the first frame update
-    void Start()
+    void L_None();//왼쪽 마우스
+    void R_Swing(); //오른쪽 마우스
+}
+
+[CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Useful", order = int.MaxValue)]
+public class Useful : InventoryData, IUseFul
+{
+    public int Durability; //내구성 - 칠때마다 떨어짐
+    public int attack; //공격력
+    public PlayerState_Y player;
+
+    public void L_None() //왼쪽 - X
     {
-        
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    public void R_Swing() // 오른쪽 - 휘두르기
     {
-        
+
     }
 }

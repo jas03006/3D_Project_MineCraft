@@ -1,15 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum item_type_Y
-{
-    equipment = 0,
-    install,
-    interactable,
-    eatable,
-    useful,
-    ETC
-}
 
 [CreateAssetMenu(fileName = "ID2Datalist_YG", menuName = "Scriptable Object/ID2Datalist_YG")]
 public class ID2Datalist_YG : ScriptableObject
@@ -67,6 +58,7 @@ public class ID2Datalist_YG : ScriptableObject
             i++;
         }
     }
+
     public InventoryData Get_data(Item_ID_TG id)
     {
         int ind = ID2index(id);

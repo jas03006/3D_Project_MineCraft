@@ -106,7 +106,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         {
             uISlot.GetItem(item_id, number, image.color);
         }
-        
     }
 
     public void ResetItem()
