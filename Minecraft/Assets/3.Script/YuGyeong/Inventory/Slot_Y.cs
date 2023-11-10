@@ -34,7 +34,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private Image info_image;
     [SerializeField] private Text info_text;
     //private Vector2 mousePos;
-
+    [SerializeField] private bool is_craft_slot = false;
     private void Start()
     {
         image = GetComponentInChildren<Image>();
@@ -75,13 +75,22 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                     GetItem(item_id, number + cursor_slot.number);
                     cursor_slot.ResetItem();
                 }
-                
+                if (is_result_slot) {
+                    Inventory.instance.use_recipe(this);
+                }
+            }
+            if (is_craft_slot)
+            {
+                Inventory.instance.check_recipe(this);
             }
         }
     }
 
     public void GetItem(Item_ID_TG itemID, int _num)
     {
+        if (itemID == Item_ID_TG.None || itemID == Item_ID_TG.Fill) {
+            return;
+        }
         item_id = itemID;
         number = _num;
         havedata = true;
@@ -97,6 +106,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         {
             uISlot.GetItem(item_id, number, image.color);
         }
+        
     }
 
     public void ResetItem()
@@ -167,6 +177,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                     cursor_slot.ResetItem();
                 }
             }
+            if (is_craft_slot)
+            {
+                Inventory.instance.check_recipe(this);
+            }
         }
 
         if (number == 0)
@@ -174,4 +188,5 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             ResetItem();
         }
     }
+
 }
