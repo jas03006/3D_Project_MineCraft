@@ -423,7 +423,15 @@ public class Player_Test_TG : PlayerMovement_Y
 
     protected override void OnCollisionEnter(Collision col)
     {
-         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
+        get_item(col);
+    }
+   /* protected void OnCollisionStay(Collision col)
+    {
+        get_item(col);
+    }*/
+
+    private void get_item(Collision col) {
+        if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
             //æ∆¿Ã≈€ Ω¿µÊ
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
@@ -568,7 +576,7 @@ public class Player_Test_TG : PlayerMovement_Y
         foreach (Collider col in cols) {
             //Debug.Log("check drop");
             dis = (target_pos - col.transform.position).magnitude;
-            col.transform.position = Vector3.Lerp(col.transform.position, target_pos, 0.1f / dis);
+            col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
         }
     }
 }

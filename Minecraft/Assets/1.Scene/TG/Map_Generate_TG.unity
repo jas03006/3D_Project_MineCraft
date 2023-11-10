@@ -1402,6 +1402,7 @@ GameObject:
   - component: {fileID: 726597375}
   - component: {fileID: 726597373}
   - component: {fileID: 726597376}
+  - component: {fileID: 726597377}
   - component: {fileID: 726597374}
   m_Layer: 21
   m_Name: Player
@@ -1418,7 +1419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726597369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: -0.174}
+  m_LocalPosition: {x: 0.59, y: -0.5, z: -0.174}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 328945403}
@@ -1451,7 +1452,7 @@ MonoBehaviour:
   - {fileID: 1369041991}
   - {fileID: 501813995}
   interaction_range: 8
-  block_in_hand: {fileID: 4861730266974659017, guid: 35151a106dbcf6c429cc6728270d19e7, type: 3}
+  block_in_hand: {fileID: 4861730266974659017, guid: d9cdcf9a5b69bf949a5408ecfd37879f, type: 3}
   is_sleeping: 0
   inventory: {fileID: 912284662168579602}
   head_tr: {fileID: 7605012879774994197}
@@ -1563,6 +1564,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.2, z: 0.25}
   m_Center: {x: 0, y: 0.11, z: 0}
+--- !u!65 &726597377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726597369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 0.2, z: 0.25}
+  m_Center: {x: 0, y: 1.85, z: 0}
 --- !u!1 &775763000
 GameObject:
   m_ObjectHideFlags: 0
@@ -7704,8 +7718,10 @@ MonoBehaviour:
   spriteImage: []
   children: []
   isInventoryOpen: 0
-  craft_UI: {fileID: 775763000}
   creat_system: {fileID: 663815068}
+  craft_UI: {fileID: 775763000}
+  box_UI: {fileID: 3590312349949734873}
+  furnace_UI: {fileID: 3590312349883070312}
 --- !u!224 &912284662171821160
 RectTransform:
   m_ObjectHideFlags: 0
