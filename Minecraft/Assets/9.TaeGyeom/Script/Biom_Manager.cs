@@ -428,14 +428,14 @@ public class Biom_Manager : MonoBehaviour
         int cave_generate_range = 200;
         int cave_cnt = 30;
         int cave_depth = 10;
-        Cave_Point now_cp = new Cave_Point(Vector3.right, 4);
+        Cave_Point now_cp = new Cave_Point(Vector3.right * 40, 4);
         Cave_Point next_cp;
         Vector3 gen_dir = Vector3.zero;
         cave_point_list.Add(now_cp);
         for (int ci = 0; ci < cave_cnt; ci++) {
             if (ci == 0)
             {
-                now_cp = new Cave_Point(Vector3.right*20, 4);
+                now_cp = new Cave_Point(Vector3.right*40, 4);
                 cave_depth = 10;
             }
             else {

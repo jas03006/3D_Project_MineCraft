@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,11 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory instance = null;
     [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
     [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
+    [SerializeField] private List<Slot_Y> CraftList_Small = new List<Slot_Y>(5); //짱규동 데이터
     [SerializeField] private Weapon_position_J weapon_position;
     private int UIslot_index = 0;
 
@@ -23,15 +26,34 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform[] children;
     public bool isInventoryOpen = false;
 
+
+    [SerializeField] public GameObject craft_UI;
+    [SerializeField] public CreatSystem creat_system;
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else {
+            Destroy(this.gameObject);
+            return;
+        }
         Cursor.visible = false;
     }
 
     private void Start()
     {
         children = GetComponentsInChildren<Transform>();
+        StartCoroutine(start_co());
+        /*for (int i = 1; i < children.Length; i++)
+        {
+            children[i].gameObject.SetActive(false);
+        }*/
+    }
 
+    public IEnumerator start_co() {
+        yield return null;
         for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
@@ -62,25 +84,51 @@ public class Inventory : MonoBehaviour
         {
             if (isInventoryOpen == false)
             {
-                for (int i = 1; i < children.Length; i++)
-                {
-                    children[i].gameObject.SetActive(true);
-                }
-                isInventoryOpen = true;
-                Cursor.visible = true;
+                show();
             }
             else if (isInventoryOpen == true)
             {
-                for (int i = 1; i < children.Length; i++)
-                {
-                    children[i].gameObject.SetActive(false);
-                }
-                isInventoryOpen = false;
-                Cursor.visible = false;
+                hide();
             }
         }
     }
 
+    public void show() {
+        for (int i = 1; i < children.Length; i++)
+        {
+            children[i].gameObject.SetActive(true);
+        }
+        isInventoryOpen = true;
+        Cursor.visible = true;
+    }
+
+    public void show_craft() {
+        show();
+        craft_UI.SetActive(true);
+    }
+
+    public void hide() {
+        if (craft_UI.activeSelf == true) {
+            hide_craft();
+        }
+        
+        for (int i = 1; i < children.Length; i++)
+        {
+            children[i].gameObject.SetActive(false);
+        }
+        isInventoryOpen = false;
+        Cursor.visible = false;        
+    }
+    public void hide_craft()
+    {
+        for (int i =0; i < CraftList.Count-1; i++) {
+            Slot_Y slot_ = CraftList[i];
+            GetItem(slot_.item_id, slot_.number);
+            slot_.ResetItem();
+        }
+        CraftList[CraftList.Count - 1].ResetItem();
+        craft_UI.SetActive(false);
+    }
     public void GetItem(Item_ID_TG id, int num)
     {
         //같은거 있으면 갯수++
@@ -141,5 +189,53 @@ public class Inventory : MonoBehaviour
                 UIItemList[i].NotActive();
             }
         }
+    }
+
+    public void check_recipe(Slot_Y slot_) {
+        List<Slot_Y> slot_list_;
+        if (CraftList.Contains(slot_))
+        {
+            slot_list_ = CraftList;
+        }
+        else if (CraftList_Small.Contains(slot_))
+        {
+            slot_list_ = CraftList_Small;
+        }
+        else {
+            return;
+        }
+        KeyValuePair<Item_ID_TG, int> result_ = creat_system.get_result(slot_list_);
+        slot_list_[slot_list_.Count - 1].ResetItem();
+        if (result_.Key != Item_ID_TG.None)
+        {
+            slot_list_[slot_list_.Count - 1].GetItem(result_.Key, result_.Value);
+        }
+        Debug.Log($"Craft: {result_.Key} / {result_.Value} ");
+    }
+
+    public void use_recipe(Slot_Y slot_) {
+        List<Slot_Y> slot_list_;
+        if (CraftList.Contains(slot_))
+        {
+            slot_list_ = CraftList;
+        }
+        else if (CraftList_Small.Contains(slot_))
+        {
+            slot_list_ = CraftList_Small;
+        }
+        else
+        {
+            return;
+        }
+        for (int i =0; i < slot_list_.Count-1; i++) {
+            if (slot_list_[i].number > 0) {
+                slot_list_[i].number--;
+                if (slot_list_[i].number == 0)
+                {
+                    slot_list_[i].ResetItem();
+                }
+            }                
+        }
+        
     }
 }

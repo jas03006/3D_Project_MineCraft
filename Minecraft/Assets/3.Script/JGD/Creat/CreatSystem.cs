@@ -23,6 +23,41 @@ public class CreatSystem : Creat_Recipe
     {
         MakerBoxSystem();
     }
+
+    public KeyValuePair<Item_ID_TG,int> get_result(List<Slot_Y> input) {
+        init_mad();
+        int unit = (int)Mathf.Sqrt(input.Count-1);
+        for (int i=0; i < input.Count-1; i++) {
+            mad[i / unit, i % unit] = input[i].item_id;
+        }
+        init_TG();
+        MakerBoxSystem();
+        return new KeyValuePair<Item_ID_TG, int>(num, ItemCount);
+    }
+    private void init_mad()
+    {
+        mad[0, 0] = Item_ID_TG.None;
+        mad[0, 1] = Item_ID_TG.None;
+        mad[0, 2] = Item_ID_TG.None;
+        mad[1, 0] = Item_ID_TG.None;
+        mad[1, 1] = Item_ID_TG.None;
+        mad[1, 2] = Item_ID_TG.None;
+        mad[2, 0] = Item_ID_TG.None;
+        mad[2, 1] = Item_ID_TG.None;
+        mad[2, 2] = Item_ID_TG.None;
+    }
+    private void init_TG() {
+       tG1=mad[0, 0] ;
+       tG2=mad[0, 1] ;
+       tG3=mad[0, 2] ;
+       tG4=mad[1, 0] ;
+       tG5=mad[1, 1] ;
+       tG6=mad[1, 2] ;
+       tG7=mad[2, 0] ;
+       tG8=mad[2, 1] ;
+       tG9=mad[2, 2] ;
+    }
+
     private void MakerBoxSystem()
     {
         if (tG1 == Item_ID_TG.None && tG4 == Item_ID_TG.None && tG7 == Item_ID_TG.None)       //왼쪽으로 미는거

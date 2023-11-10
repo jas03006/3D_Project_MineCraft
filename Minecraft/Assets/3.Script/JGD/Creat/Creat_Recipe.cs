@@ -46,7 +46,7 @@ public class Creat_Recipe : MonoBehaviour
     protected void Recipe()
     {
         //---------------------------------------------1.Board
-        if (tG1 == Item_ID_TG.tree &&              
+        if (tG1 == Item_ID_TG.tree &&
         tG2 == Item_ID_TG.None &&
         tG3 == Item_ID_TG.None &&
         tG4 == Item_ID_TG.None &&
@@ -425,6 +425,9 @@ public class Creat_Recipe : MonoBehaviour
             id = Item_ID_TG.diamond_boots;
             ItemCount = 1;
         }
-
+        else {
+            id = Item_ID_TG.None;
+            ItemCount = 0;
+        }        
     }
 }
