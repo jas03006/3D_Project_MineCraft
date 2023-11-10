@@ -34,4 +34,8 @@ public class Block_TG : Block_Break
     public virtual void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_)
     {
     }
+
+    public virtual void drop_items() { 
+        
+    }
 }

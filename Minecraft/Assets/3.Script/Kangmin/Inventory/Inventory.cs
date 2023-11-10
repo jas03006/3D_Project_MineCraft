@@ -134,6 +134,7 @@ public class Inventory : MonoBehaviour
         Cursor.visible = false;
         if (hide_callback != null) {
             hide_callback(callback_param);
+            hide_callback = null;
         }
         if (box_UI.activeSelf == true)
         {
@@ -153,6 +154,7 @@ public class Inventory : MonoBehaviour
 
     public void hide_box() {
         box_UI.GetComponent<Box_Y>().reset_data();
+        box_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
     {

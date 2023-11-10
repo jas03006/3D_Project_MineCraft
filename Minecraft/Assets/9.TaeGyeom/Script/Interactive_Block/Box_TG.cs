@@ -35,5 +35,19 @@ public class Box_TG : Block_TG, Interactive_TG
         is_open = is_open_;
         animator.SetBool("Is_Open", is_open);
     }
+
+    public override void drop_items()
+    {
+        Inventory.instance.hide();
+        if (contain_data != null) {
+            for (int i = 0; i < contain_data.Count; i++)
+            {
+                for (int n = 0; n < contain_data[i].Value; n++)
+                {
+                    Block_Objectpooling.instance.Get(contain_data[i].Key, transform.position);
+                }
+            }
+        }        
+    }
 }
 
