@@ -184,7 +184,7 @@ public class Player_Test_TG : PlayerMovement_Y
         }
         deactivate_gravity(); 
         Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;//CursorLockMode.Locked;
 
     }
     private float angle_clamp_around0(float value, float min, float max) {
@@ -566,7 +566,7 @@ public class Player_Test_TG : PlayerMovement_Y
         Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         float dis;
         foreach (Collider col in cols) {
-            Debug.Log("check drop");
+            //Debug.Log("check drop");
             dis = (target_pos - col.transform.position).magnitude;
             col.transform.position = Vector3.Lerp(col.transform.position, target_pos, 0.1f / dis);
         }
