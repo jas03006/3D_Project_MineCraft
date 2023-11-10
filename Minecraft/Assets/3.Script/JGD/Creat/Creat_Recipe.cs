@@ -7,8 +7,6 @@ public class Creat_Recipe : MonoBehaviour
 {
     protected Item_ID_TG id; // πË√‚±∏
 
-    protected Item_ID_TG[,] Maker = new Item_ID_TG[3, 3];
-
     protected int ItemCount;
 
 
@@ -25,19 +23,6 @@ public class Creat_Recipe : MonoBehaviour
     [SerializeField] protected Item_ID_TG tG6;
     [SerializeField] protected Item_ID_TG tG9;
 
-    private void Start()
-    {
-        Maker[0, 0] = tG1;
-        Maker[0, 1] = tG2;
-        Maker[0, 2] = tG3;
-        Maker[1, 0] = tG4;
-        Maker[1, 1] = tG5;
-        Maker[1, 2] = tG6;
-        Maker[2, 0] = tG7;
-        Maker[2, 1] = tG8;
-        Maker[2, 2] = tG9;
-
-    }
 
 
     //----------------------------------------------------------------------------------------
@@ -99,7 +84,7 @@ public class Creat_Recipe : MonoBehaviour
         tG9 == Item_ID_TG.None)
         {
             id = Item_ID_TG.craft_box;
-            ItemCount = 4;
+            ItemCount = 1;
         }
         //---------------------------------------------5.Furnace
         else if (tG1 == Item_ID_TG.stone &&
@@ -168,7 +153,7 @@ public class Creat_Recipe : MonoBehaviour
         tG8 == Item_ID_TG.None &&
         tG9 == Item_ID_TG.None)
         {
-            id = Item_ID_TG.stick;
+            id = Item_ID_TG.stone_sword;
             ItemCount = 1;
         }
         //---------------------------------------------10.iron_sword
@@ -196,7 +181,7 @@ public class Creat_Recipe : MonoBehaviour
         tG8 == Item_ID_TG.None &&
         tG9 == Item_ID_TG.None)
         {
-            id = Item_ID_TG.stick;
+            id = Item_ID_TG.diamond_sword;
             ItemCount = 1;
         }
         //---------------------------------------------12.wood_pickaxe
