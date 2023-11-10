@@ -5,6 +5,7 @@ using UnityEngine;
 public class Block_TG : Block_Break
 {
     public bool is_open = false;
+    public List<KeyValuePair<Item_ID_TG, int>> contain_data = null;
     // [SerializeField] public Item_ID_TG id;
     [SerializeField] public List<Vector3Int> space;
     public void die() {
@@ -28,6 +29,9 @@ public class Block_TG : Block_Break
         }
     }
     public virtual void init(bool is_open_)
+    {
+    }
+    public virtual void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_)
     {
     }
 }
