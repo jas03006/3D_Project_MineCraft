@@ -16,14 +16,14 @@ MonoBehaviour:
   maxValue: 0
   itemsprite: {fileID: 0}
   classname: 
-  isequipable: 0
+  isequipable: 1
   isinstallable: 0
   isinteractable: 0
   iseatable: 0
   isuseful: 0
   fuel_efficiency: 0
   baked_item: 0
-  type: 0
-  defense_power: 0
+  type: 1
+  defense_power: 1
   player_state: {fileID: 0}
   player_animator: {fileID: 0}

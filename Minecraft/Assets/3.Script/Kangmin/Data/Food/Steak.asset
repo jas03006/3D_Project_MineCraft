@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c2c067c3f1d9947a3913637d56597f, type: 3}
-  m_Name: Diamond_leggings
+  m_Script: {fileID: 11500000, guid: 6cff55523a7e75f45b67d1c492b9ab2c, type: 3}
+  m_Name: Steak
   m_EditorClassIdentifier: 
   itemName: 
   maxValue: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   isuseful: 0
   fuel_efficiency: 0
   baked_item: 0
-  type: 0
-  defense_power: 0
+  hungry_cure: 4
   player_state: {fileID: 0}
   player_animator: {fileID: 0}
+  slot: {fileID: 0}

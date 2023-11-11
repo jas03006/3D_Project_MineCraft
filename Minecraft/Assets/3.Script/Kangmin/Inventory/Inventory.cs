@@ -133,7 +133,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void hide() {
-        cursor_slot.hide_info();
+        cursorController.Reset_info();//cursor_slot.hide_info();
         List<Slot_Y> callback_param = null;
         if (craft_UI.activeSelf == true) {
             hide_craft();
@@ -191,7 +191,7 @@ public class Inventory : MonoBehaviour
         {
             if (playerItemList[i].item_id == id)
             {
-                playerItemList[i].number++;
+                playerItemList[i].number += num;
                 if (i >= playerItemList.Count- UIItemList.Count) {
                     UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
                 }                

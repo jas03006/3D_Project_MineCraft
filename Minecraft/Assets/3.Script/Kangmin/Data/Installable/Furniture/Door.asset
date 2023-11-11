@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Door
   m_EditorClassIdentifier: 
-  itemCode: 1
   itemName: 
-  isEquipable: 0
-  isInstallable: 1
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 1
-  isCombinable: 0
-  SpriteImage: {fileID: 21300000, guid: 6cfc9cab0ecb70047948655e79992627, type: 3}
+  maxValue: 0
+  itemsprite: {fileID: 0}
+  classname: 
+  isequipable: 0
+  isinstallable: 1
+  isinteractable: 1
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0

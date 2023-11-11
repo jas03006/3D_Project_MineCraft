@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3c2c067c3f1d9947a3913637d56597f, type: 3}
-  m_Name: Diamond_armor
+  m_Name: Diamond_leggings
   m_EditorClassIdentifier: 
-  itemName: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uAC11\uC637"
-  maxValue: 1
+  itemName: 
+  maxValue: 0
   itemsprite: {fileID: 0}
   classname: 
-  isequipable: 0
+  isequipable: 1
   isinstallable: 0
   isinteractable: 0
   iseatable: 0
   isuseful: 0
   fuel_efficiency: 0
   baked_item: 0
-  type: 0
-  defense_power: 0
+  type: 2
+  defense_power: 2
   player_state: {fileID: 0}
   player_animator: {fileID: 0}

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
+public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPointerExitHandler
 {
     public Item_ID_TG item_id; //������ id
     public int number
@@ -34,8 +34,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
 
-    [SerializeField] private Image info_image;
-    [SerializeField]private Text info_text;
     [SerializeField] private bool is_craft_slot = false;
     [SerializeField] private bool is_equipment;
     [SerializeField] private armor_type armor_Type;
@@ -177,7 +175,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
         //Info_text
         Inventory.instance.cursorController.Text_Update(item_id);
-
+        #region 기존 info_text
         //if (item_id == Item_ID_TG.None)
         //{
         //    info_text.text = " ";
@@ -195,11 +193,16 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         //    info_image.color = tem_color;
         //}
     }
+    //public void hide_info() {
+    //    Inventory.instance.cursorController.info_text.text = " ";
+    //    Inventory.instance.cursorController.info_text.enabled = false;
+    //    Inventory.instance.cursorController.info_image.enabled = false;
+    //}
+    #endregion
 
-    public void hide_info() {
-        info_text.text = " ";
-        info_text.enabled = false;
-        info_image.enabled = false;
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Inventory.instance.cursorController.Reset_info();
     }
 
     //mouse left click -> device
@@ -243,5 +246,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             ResetItem();
         }
     }
+
 
 }

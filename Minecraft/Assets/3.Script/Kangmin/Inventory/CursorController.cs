@@ -9,9 +9,9 @@ public class CursorController : MonoBehaviour
 
     [Header("Info")]
     [SerializeField] private ID2Datalist_YG id2data;
-    [SerializeField] private Image info_image;
-    [SerializeField] private Text info_text;
-    [SerializeField] private Text info_sub;
+    public Image info_image;
+    public Text info_text;
+    public Text info_sub;
 
     //[SerializeField] private Image image;
     private Vector2 mousePos;
@@ -43,12 +43,7 @@ public class CursorController : MonoBehaviour
     {
         if (item_id == Item_ID_TG.None)
         {
-            //모두 비활성화
-            info_image.enabled = false;
-            info_text.text = " ";
-            info_sub.text = " ";
-            info_text.enabled = false;
-            info_sub.enabled = false;
+            Reset_info();
         }
         else
         {
@@ -84,6 +79,14 @@ public class CursorController : MonoBehaviour
                 info_sub.enabled = false;
             }
         }
-
+    }
+    public void Reset_info()
+    {
+        //모두 비활성화
+        info_image.enabled = false;
+        info_text.text = " ";
+        info_sub.text = " ";
+        info_text.enabled = false;
+        info_sub.enabled = false;
     }
 }

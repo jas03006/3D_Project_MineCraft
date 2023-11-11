@@ -21,7 +21,9 @@ MonoBehaviour:
   isinteractable: 0
   iseatable: 1
   isuseful: 0
-  hungry_cure: 2
+  fuel_efficiency: 0
+  baked_item: 700
+  hungry_cure: 1
   player_state: {fileID: 0}
   player_animator: {fileID: 0}
   slot: {fileID: 0}
