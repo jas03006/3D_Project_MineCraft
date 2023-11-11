@@ -18,6 +18,7 @@ public class Block_Node_TG
     [Header("Block Data")]
     public bool is_open = false; // check for door or box is opened
     public List<KeyValuePair<Item_ID_TG, int>> contain_data = null;
+    public List<float> time_data = null;
     /*private void OnDestroy()
     {
         //Debug.Log("destroy");
@@ -69,7 +70,10 @@ public class Block_Node_TG
         rotation = transform.rotation;
         if (id == Item_ID_TG.door || id == Item_ID_TG.box) {
             transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
-            if (contain_data != null)
+            if (time_data != null) {
+                bt.init(is_open, contain_data, time_data);
+            }
+            else if (contain_data != null)
             {
                 bt.init(is_open, contain_data);
             }
@@ -87,6 +91,7 @@ public class Block_Node_TG
                 transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
                 is_open = bt.is_open;
                 contain_data = bt.contain_data;
+                time_data = bt.time_data;
             }
         }      
                 
@@ -118,7 +123,8 @@ public class Block_Node_TG
             children.Clear();
         }
         is_open = false;
-        contain_data = null;       
+        contain_data = null;
+        time_data = null;
         // transform.parent.GetComponent<Chunk_TG>().destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
     }    
 

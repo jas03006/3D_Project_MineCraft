@@ -31,7 +31,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject craft_UI;
     [SerializeField] public GameObject box_UI;
     [SerializeField] public GameObject furnace_UI;
+    [SerializeField] public Slot_Y cursor_slot;
     private Action<List<Slot_Y>> hide_callback = null;
+
+    [SerializeField] public GameObject inven_camera;
     private void Awake()
     {
         if (instance == null)
@@ -104,6 +107,7 @@ public class Inventory : MonoBehaviour
         isInventoryOpen = true;
         Cursor.visible = true;
         hide_callback = callback;
+        inven_camera.SetActive(true);
     }
 
     public void show_craft(Action<List<Slot_Y>> callback = null) {
@@ -116,14 +120,25 @@ public class Inventory : MonoBehaviour
         box_UI.SetActive(true);
         box_UI.GetComponent<Box_Y>().Get_data(data);
     }
+    public void show_furnace(Furnace_TG furnace_tg, List<KeyValuePair<Item_ID_TG, int>> data, Action<List<Slot_Y>> callback = null)
+    {
+        show(callback);
+        furnace_UI.SetActive(true);
+        furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
+        furnace_y.Get_data(data);
+        furnace_y.furnace_tg = furnace_tg;
+    }
 
     public void hide() {
+        cursor_slot.hide_info();
         List<Slot_Y> callback_param = null;
         if (craft_UI.activeSelf == true) {
             hide_craft();
         }
-        if (box_UI.activeSelf == true) {
+        else if (box_UI.activeSelf == true) {
             callback_param = box_UI.GetComponent<Box_Y>().Get_slots();
+        } else if (furnace_UI.activeSelf == true) {
+            callback_param = furnace_UI.GetComponent<Furnace_Y>().Get_slots();
         }
         
         for (int i = 1; i < children.Length; i++)
@@ -139,7 +154,10 @@ public class Inventory : MonoBehaviour
         if (box_UI.activeSelf == true)
         {
             hide_box();
+        } else if (furnace_UI.activeSelf == true) {
+            hide_furnace();
         }
+        inven_camera.SetActive(false);
     }
     public void hide_craft()
     {
@@ -155,6 +173,13 @@ public class Inventory : MonoBehaviour
     public void hide_box() {
         box_UI.GetComponent<Box_Y>().reset_data();
         box_UI.SetActive(false);
+    }
+    public void hide_furnace()
+    {
+        furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
+        furnace_y.furnace_tg = null;
+        furnace_y.reset_data();
+        furnace_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
     {

@@ -136,9 +136,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         //Info_text
         if (item_id == Item_ID_TG.None)
         {
-            info_text.text = " ";
-            info_text.enabled = false;
-            info_image.enabled = false;
+            hide_info();
         }
 
         else
@@ -150,6 +148,12 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             tem_color.a = 0.75f;
             info_image.color = tem_color;
         }
+    }
+
+    public void hide_info() {
+        info_text.text = " ";
+        info_text.enabled = false;
+        info_image.enabled = false;
     }
 
     //mouse left click -> device
