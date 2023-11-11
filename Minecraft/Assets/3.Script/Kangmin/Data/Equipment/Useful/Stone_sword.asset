@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
-  m_Name: Stone_pickaxe
+  m_Script: {fileID: 11500000, guid: 1d0c59e30065166438ff4f08fd8493ad, type: 3}
+  m_Name: Stone_sword
   m_EditorClassIdentifier: 
-  itemType: 0
   itemName: 
   maxValue: 0
   itemsprite: {fileID: 0}
@@ -22,3 +21,11 @@ MonoBehaviour:
   isinteractable: 0
   iseatable: 0
   isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0
+  Durability: 0
+  attack: 0
+  att_speed: 0
+  player_state: {fileID: 0}
+  player_animator: {fileID: 0}
+  useful_Type: 1
