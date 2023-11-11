@@ -55,7 +55,6 @@ public class UISlot_Y : MonoBehaviour
                     food.R_Eat();
                 }
             }
-            //else if(tmp is )
         }
 
         if (Input.GetMouseButtonDown(0)) //마우스 왼쪽
