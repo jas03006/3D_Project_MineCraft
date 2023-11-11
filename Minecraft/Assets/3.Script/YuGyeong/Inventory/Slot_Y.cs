@@ -35,8 +35,8 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private CursorController cursorController;
     private Button button;
 
-    //[SerializeField] private Image info_image;
-    //[SerializeField]private Text info_text;
+    [SerializeField] private Image info_image;
+    [SerializeField]private Text info_text;
     [SerializeField] private bool is_craft_slot = false;
     [SerializeField] private bool is_equipment;
     [SerializeField] private armor_type armor_Type;
