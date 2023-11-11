@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
-    public Item_ID_TG item_id; //¾ÆÀÌÅÛ id
+    public Item_ID_TG item_id; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ id
     public int number
     {
         get
@@ -23,7 +23,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         }
     }
     private int number_private;
-    public ID2Datalist_YG id2data; //id -> µ¥ÀÌÅÍ ÆÄÀÏ
+    public ID2Datalist_YG id2data; //id -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Text text;
     [SerializeField] private Image image;
     [SerializeField] private bool havedata;
@@ -56,7 +56,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     {
         if (!is_cursor_slot)
         {
-            if (!havedata) //µ¥ÀÌÅÍ ¾øÀ½
+            if (!havedata) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 if (is_result_slot)
                 {
@@ -88,7 +88,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                     cursor_slot.ResetItem();
                 }
             }
-            else //µ¥ÀÌÅÍ ÀÖÀ½
+            else //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 if (is_equipment && cursor_slot.item_id == Item_ID_TG.None)
                 {
@@ -195,6 +195,12 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         //    tem_color.a = 0.75f;
         //    info_image.color = tem_color;
         //}
+    }
+
+    public void hide_info() {
+        info_text.text = " ";
+        info_text.enabled = false;
+        info_image.enabled = false;
     }
 
     //mouse left click -> device
