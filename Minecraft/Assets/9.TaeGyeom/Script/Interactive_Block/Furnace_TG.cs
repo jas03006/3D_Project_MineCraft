@@ -11,7 +11,7 @@ public class Furnace_TG : Block_TG, Interactive_TG
     private void OnEnable()
     {
         is_canvas_open = false;
-        is_open = false;        
+        is_open = false;   // 화로가 구울 수 있는 상황인지     
         contain_data = new List<KeyValuePair<Item_ID_TG, int>>(); // 0: 재료, 1: 연료, 2: 결과물
         time_data = new List<float>(); // 0: 필요시간, 1: 현재 진행시간, 2: 현재시간, 3: fuel count (int 처럼 활용)
         for (int i=0; i <3; i++) {
@@ -40,7 +40,7 @@ public class Furnace_TG : Block_TG, Interactive_TG
     public void react()
     {
         cal_furnace_result();
-        is_open = true;
+        is_canvas_open = true;
         Action<List<Slot_Y>> callback = close;
         Inventory.instance.show_furnace(this, contain_data, time_data, callback);
     }
@@ -53,15 +53,15 @@ public class Furnace_TG : Block_TG, Interactive_TG
             contain_data.Add(new KeyValuePair<Item_ID_TG, int>(data[i].item_id, data[i].number));            
         }
         save_furnace_start();
-        is_open = false;
+        is_canvas_open = false;
     }
     public override void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_,List<float> time_data_)
     {
         contain_data = contain_data_;
-        is_open = true;
+        is_open = is_open_;
         time_data = time_data_;
         is_canvas_open = false;
-        cal_furnace_result();
+        //cal_furnace_result();
     }
     public override void drop_items()
     {
