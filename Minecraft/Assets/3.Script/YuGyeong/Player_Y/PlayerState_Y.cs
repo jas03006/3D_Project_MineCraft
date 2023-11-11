@@ -36,8 +36,7 @@ public class PlayerState_Y : Living
 
     [Header("배고픔")]
     private int starthungry;
-    [SerializeField]
-    public int curhungry
+    [SerializeField] public int curhungry
     {
         get
         {
@@ -64,11 +63,14 @@ public class PlayerState_Y : Living
     private int level;
     private float totalexp;
     private float curexp;
-    private float debug_food;
     [SerializeField] private Slider expslider;
     [SerializeField] private Text exptext;
     [SerializeField] private PlayerData_Y maxexpdata;
     [SerializeField] private AudioClip expclip;
+
+    [Header("공격관련 스탯")]
+    private int attack_power; //공격력만큼 더해서 데미지 입히기
+    private int defense_power; //방어력만큼 빼서 데미지 입기
 
     void Start()
     {
@@ -151,7 +153,7 @@ public class PlayerState_Y : Living
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             curhungry -= 1;
-            HungryInteraction();
+            //HungryInteraction();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -256,8 +258,6 @@ public class PlayerState_Y : Living
             Debug.Log($"{health} / {playtime} / {endtime}");
         }
     }
-
-
     public override void Die()
     {
         base.Die();

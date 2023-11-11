@@ -15,12 +15,12 @@ using System;
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance = null;
-    [SerializeField] private List<Slot_Y> playerItemList = new List<Slot_Y>(36);
+    [SerializeField] public List<Slot_Y> playerItemList = new List<Slot_Y>(36);
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
     [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
     [SerializeField] private List<Slot_Y> CraftList_Small = new List<Slot_Y>(5); //짱규동 데이터
     [SerializeField] private Weapon_position_J weapon_position;
-    private int UIslot_index = 0;
+    public int UIslot_index = 0;
 
     public Image inventoryImage;
     public List<Sprite> spriteImage;
