@@ -34,7 +34,8 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private Image info_image;
     [SerializeField] private Text info_text;
     [SerializeField] private bool is_craft_slot = false;
-    private void Start()
+    [SerializeField] private bool is_equipment;
+    public virtual void Start()
     {
         image = GetComponentInChildren<Image>();
         text = GetComponentInChildren<Text>();
@@ -46,7 +47,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             button.onClick.AddListener(() => PushSlot());
         }
     }
-    public void PushSlot()
+    public virtual void PushSlot()
     {
         if (!is_cursor_slot)
         {
@@ -86,7 +87,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         }
     }
 
-    public void GetItem(Item_ID_TG itemID, int _num)
+    public virtual void GetItem(Item_ID_TG itemID, int _num)
     {
         if (itemID == Item_ID_TG.None || itemID == Item_ID_TG.Fill)
         {
@@ -109,7 +110,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         }
     }
 
-    public void ResetItem()
+    public virtual void ResetItem()
     {
         item_id = Item_ID_TG.None;
         number = 0;
@@ -126,7 +127,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             uISlot.GetItem(item_id, number, image.color);
         }
     }
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (is_cursor_slot)
         {
@@ -153,7 +154,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     }
 
     //mouse left click -> device
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (is_result_slot)
         {

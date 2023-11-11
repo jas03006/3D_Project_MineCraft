@@ -22,11 +22,11 @@ public class Useful : InventoryData, IUseFul
 
     public void L_Swing() // 왼쪽 - 휘두르기
     {
+        //정보 없을 때 할당
         if (player_state == null || player_animator == null || slot == null)
         {
             player_state = FindObjectOfType<PlayerState_Y>();
             player_animator = player_state.gameObject.GetComponent<Animator>();
-            slot = Inventory.instance.playerItemList[27 + Inventory.instance.UIslot_index];
             Debug.Log($"{player_state.gameObject.name} : {slot.name}");
 
             //animation

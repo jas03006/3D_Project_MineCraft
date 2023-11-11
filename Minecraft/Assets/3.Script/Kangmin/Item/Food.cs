@@ -31,6 +31,7 @@ public class Food : InventoryData, IEat
         player_state.Hungry_cure(hungry_cure);
 
         slot.number--;        //아이템 갯수--;
+
         if (slot.number == 0)
         {
             slot.ResetItem();        //아이템 갯수 0이면 초기화
