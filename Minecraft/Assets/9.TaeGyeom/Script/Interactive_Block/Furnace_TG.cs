@@ -12,13 +12,20 @@ public class Furnace_TG : Block_TG, Interactive_TG
     {
         is_canvas_open = false;
         is_open = false;   // 화로가 구울 수 있는 상황인지     
-        contain_data = new List<KeyValuePair<Item_ID_TG, int>>(); // 0: 재료, 1: 연료, 2: 결과물
-        time_data = new List<float>(); // 0: 필요시간, 1: 현재 진행시간, 2: 현재시간, 3: fuel count (int 처럼 활용)
-        for (int i=0; i <3; i++) {
-            contain_data.Add(new KeyValuePair<Item_ID_TG, int>(Item_ID_TG.None, 0));
-            time_data.Add(0f);
+        if (contain_data == null || contain_data.Count == 0) {
+            contain_data = new List<KeyValuePair<Item_ID_TG, int>>(); // 0: 재료, 1: 연료, 2: 결과물
+            for (int i =0; i< 3; i++) {
+                contain_data.Add(new KeyValuePair<Item_ID_TG, int>(Item_ID_TG.None, 0));
+            }
         }
-        time_data.Add(0f);
+
+        if (time_data == null || time_data.Count ==0) {
+            time_data = new List<float>(); // 0: 필요시간, 1: 현재 진행시간, 2: 현재시간, 3: fuel count (int 처럼 활용)
+            for (int i = 0; i < 4; i++)
+            {
+                time_data.Add(0f);
+            }
+        }               
     }
 
     private void Update()
@@ -39,6 +46,9 @@ public class Furnace_TG : Block_TG, Interactive_TG
 
     public void react()
     {
+        Debug.Log(contain_data[0].Key);
+        Debug.Log(contain_data[1].Key);
+        Debug.Log(contain_data[2].Key);
         cal_furnace_result();
         is_canvas_open = true;
         Action<List<Slot_Y>> callback = close;
@@ -91,6 +101,7 @@ public class Furnace_TG : Block_TG, Interactive_TG
     }
     public void cal_furnace_result() { // 캔버스를 열거나 부숴지거나 새로 렌더링 될 때, 화로 작업 결과를 계산
         if (!is_open) {
+            time_data[1] = 0;
             return;
         }
         float unit_time = Furnace_System_TG.instance.unit_time;
@@ -106,25 +117,10 @@ public class Furnace_TG : Block_TG, Interactive_TG
         }
         else {
             time_data[1] = burn_time - ((int)(burn_time / unit_time)) * unit_time;
-        }        
-
-        Item_ID_TG temp_id = contain_data[0].Key;
-        if (contain_data[0].Value - cnt ==0) {
-            temp_id = Item_ID_TG.None;
         }
-        contain_data[0] = new KeyValuePair<Item_ID_TG, int>(temp_id, contain_data[0].Value - cnt);
-
-        temp_id= contain_data[1].Key;
-        if (cnt > time_data[3]) {
-            int fuel_use_cnt = (int)((cnt - time_data[3]) / fuel_energy);
-            fuel_use_cnt += (fuel_use_cnt == ((cnt - time_data[3]) / fuel_energy) ? 0 : 1) ;
-            if (contain_data[1].Value == fuel_use_cnt) {
-                temp_id = Item_ID_TG.None;
-            }
-            contain_data[1] = new KeyValuePair<Item_ID_TG, int>(temp_id, contain_data[1].Value - fuel_use_cnt);
-        }
-
-        if (cnt > 0) {
+        Item_ID_TG temp_id;
+        if (cnt > 0)
+        {
             temp_id = contain_data[2].Key;
             if (temp_id == Item_ID_TG.None)
             {
@@ -132,6 +128,30 @@ public class Furnace_TG : Block_TG, Interactive_TG
             }
             contain_data[2] = new KeyValuePair<Item_ID_TG, int>(temp_id, contain_data[2].Value + cnt);
         }
+
+        temp_id = contain_data[0].Key;
+        if (contain_data[0].Value - cnt ==0) {
+            temp_id = Item_ID_TG.None;
+        }
+        contain_data[0] = new KeyValuePair<Item_ID_TG, int>(temp_id, contain_data[0].Value - cnt);
+
+        temp_id= contain_data[1].Key;
+        if (cnt > time_data[3])
+        {
+            int fuel_use_cnt = (int)((cnt - time_data[3]) / fuel_energy);
+            fuel_use_cnt += (fuel_use_cnt == ((cnt - time_data[3]) / fuel_energy) ? 0 : 1);
+            if (contain_data[1].Value == fuel_use_cnt)
+            {
+                temp_id = Item_ID_TG.None;
+            }
+            contain_data[1] = new KeyValuePair<Item_ID_TG, int>(temp_id, contain_data[1].Value - fuel_use_cnt);
+            time_data[3] = time_data[3]+ fuel_use_cnt * fuel_energy - cnt;
+        }
+        else {
+            time_data[3] -= cnt;
+        }
+
+        
                 
     }
 }

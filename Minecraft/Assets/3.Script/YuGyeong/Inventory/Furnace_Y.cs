@@ -27,11 +27,13 @@ public class Furnace_Y : Box_Y
                 Debug.Log(Furnace_System_TG.instance.get_furnace_result(slots[0].item_id));
                 fire_image.SetActive(true);
                 furnace_tg.is_open = true;
-                update_fuel_slot();
+                if (fuel_count <= 0) {
+                    update_fuel_slot();
+                }                
             }
             return true;
         }
-        if (is_on == true)
+        if (is_on == true || fire_slider.value>0)
         {
             fire_slider.value = 0;
             fire_image.SetActive(false);
@@ -60,6 +62,7 @@ public class Furnace_Y : Box_Y
         }
         fire_slider.value = time_data[1];
         fuel_count = (int)time_data[3];
+        is_on = false;
     }
     private void fire()
     {
