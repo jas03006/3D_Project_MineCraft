@@ -4,7 +4,6 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Inventory Data", order = int.MaxValue)]
 public class InventoryData : ScriptableObject
 {
-    [SerializeField]Interactive_TG inter;
     [SerializeField] private string itemName; // ������ �̸�
     public string ItemName => itemName;
 
@@ -33,10 +32,10 @@ public class InventoryData : ScriptableObject
     [SerializeField] private bool isuseful;
     public bool Isuseful => isuseful;
 
-    //[SerializeField] private bool isCombinable; // ��ġ�� ����
-    //public bool IsCombinable => isCombinable;
+    [SerializeField] private int fuel_efficiency;
+    public int Fuel_efficiency => fuel_efficiency;
 
-    //[SerializeField] private bool isArmor; // �� ����
-    //public bool IsArmor => isArmor;
+    [SerializeField] Item_ID_TG baked_item;
+    public Item_ID_TG Baked_item => baked_item; 
 
 }
