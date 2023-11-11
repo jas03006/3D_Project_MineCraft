@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CursorImg : MonoBehaviour
+public class cursorImg : MonoBehaviour
 {
     [SerializeField] private RectTransform transform;
     [SerializeField] private RectTransform info_transform;

@@ -120,13 +120,14 @@ public class Inventory : MonoBehaviour
         box_UI.SetActive(true);
         box_UI.GetComponent<Box_Y>().Get_data(data);
     }
-    public void show_furnace(Furnace_TG furnace_tg, List<KeyValuePair<Item_ID_TG, int>> data, Action<List<Slot_Y>> callback = null)
+    public void show_furnace(Furnace_TG furnace_tg, List<KeyValuePair<Item_ID_TG, int>> data, List<float> time_data, Action<List<Slot_Y>> callback = null)
     {
         show(callback);
         furnace_UI.SetActive(true);
         furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
-        furnace_y.Get_data(data);
         furnace_y.furnace_tg = furnace_tg;
+        furnace_y.Get_data(data, time_data);
+        
     }
 
     public void hide() {
