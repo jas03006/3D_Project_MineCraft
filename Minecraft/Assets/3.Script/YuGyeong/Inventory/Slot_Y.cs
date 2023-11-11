@@ -32,7 +32,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private bool is_result_slot;
     [SerializeField] private Slot_Y cursor_slot;
     [SerializeField] private UISlot_Y uISlot;
-    [SerializeField] private CursorController cursorController;
     private Button button;
 
     [SerializeField] private Image info_image;
@@ -177,7 +176,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         }
 
         //Info_text
-        cursorController.Text_Update(item_id);
+        Inventory.instance.cursorController.Text_Update(item_id);
 
         //if (item_id == Item_ID_TG.None)
         //{

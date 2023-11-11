@@ -34,6 +34,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Slot_Y cursor_slot;
     private Action<List<Slot_Y>> hide_callback = null;
 
+    [SerializeField] public CursorController cursorController;
+
     [SerializeField] public GameObject inven_camera;
     private void Awake()
     {
