@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cff55523a7e75f45b67d1c492b9ab2c, type: 3}
+  m_Name: Apple_1110
+  m_EditorClassIdentifier: 
+  itemName: "\uC0AC\uACFC"
+  maxValue: 64
+  itemsprite: {fileID: 21300000, guid: fae3faaedc0ea204ab6a5fc281353036, type: 3}
+  classname: "\uC74C\uC2DD \uBC0F \uC74C\uB8CC"
+  isequipable: 0
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 1
+  isuseful: 0
+  hungry_cure: 2
+  player_state: {fileID: 0}
+  player_animator: {fileID: 0}
+  slot: {fileID: 0}

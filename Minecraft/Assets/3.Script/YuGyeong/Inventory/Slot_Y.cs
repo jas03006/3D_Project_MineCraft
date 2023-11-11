@@ -33,9 +33,9 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
     [SerializeField] private Image info_image;
     [SerializeField] private Text info_text;
-    //private Vector2 mousePos;
     [SerializeField] private bool is_craft_slot = false;
-    private void Start()
+    [SerializeField] private bool is_equipment;
+    public virtual void Start()
     {
         image = GetComponentInChildren<Image>();
         text = GetComponentInChildren<Text>();
@@ -47,8 +47,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             button.onClick.AddListener(() => PushSlot());
         }
     }
-
-    public void PushSlot()
+    public virtual void PushSlot()
     {
         if (!is_cursor_slot)
         {
@@ -71,11 +70,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                     cursor_slot.GetItem(item_id, number);
                     ResetItem();
                 }
-                else if(cursor_slot.item_id == item_id) {
+                else if (cursor_slot.item_id == item_id)
+                {
                     GetItem(item_id, number + cursor_slot.number);
                     cursor_slot.ResetItem();
                 }
-                if (is_result_slot) {
+                if (is_result_slot)
+                {
                     Inventory.instance.use_recipe(this);
                 }
             }
@@ -86,9 +87,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         }
     }
 
-    public void GetItem(Item_ID_TG itemID, int _num)
+    public virtual void GetItem(Item_ID_TG itemID, int _num)
     {
-        if (itemID == Item_ID_TG.None || itemID == Item_ID_TG.Fill) {
+        if (itemID == Item_ID_TG.None || itemID == Item_ID_TG.Fill)
+        {
             return;
         }
         item_id = itemID;
@@ -106,10 +108,9 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         {
             uISlot.GetItem(item_id, number, image.color);
         }
-        
     }
 
-    public void ResetItem()
+    public virtual void ResetItem()
     {
         item_id = Item_ID_TG.None;
         number = 0;
@@ -126,7 +127,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             uISlot.GetItem(item_id, number, image.color);
         }
     }
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (is_cursor_slot)
         {
@@ -153,9 +154,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     }
 
     //mouse left click -> device
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (is_result_slot) {
+        if (is_result_slot)
+        {
             return;
         }
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -170,10 +172,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                 int tmp = number;
                 cursor_slot.number += number;
                 number -= tmp;
-            } else if (item_id == Item_ID_TG.None) {
+            }
+            else if (item_id == Item_ID_TG.None)
+            {
                 GetItem(cursor_slot.item_id, 1);
                 cursor_slot.number -= 1;
-                if (cursor_slot.number == 0) {
+                if (cursor_slot.number == 0)
+                {
                     cursor_slot.ResetItem();
                 }
             }
