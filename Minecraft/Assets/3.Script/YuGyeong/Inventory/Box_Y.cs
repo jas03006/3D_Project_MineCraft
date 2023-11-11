@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Box_Y : MonoBehaviour
 {
-    [SerializeField] List<Slot_Y> slots;
+    [SerializeField] public List<Slot_Y> slots;
     void Start()
     {
         Slot_Y[] _slots = GetComponentsInChildren<Slot_Y>();
         slots = new List<Slot_Y>(_slots);
-    }
-
-    
-    void Update()
-    {
-        
     }
 
     public void Get_data(List<KeyValuePair<Item_ID_TG, int>> data)

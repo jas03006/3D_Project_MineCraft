@@ -421,16 +421,17 @@ public class Player_Test_TG : PlayerMovement_Y
         return result_dir;
     }
 
-    protected override void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider other)
     {
-        get_item(col);
+        get_item(other);
     }
+    
    /* protected void OnCollisionStay(Collision col)
     {
         get_item(col);
     }*/
 
-    private void get_item(Collision col) {
+    private void get_item(Collider col) {
         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
             //æ∆¿Ã≈€ Ω¿µÊ

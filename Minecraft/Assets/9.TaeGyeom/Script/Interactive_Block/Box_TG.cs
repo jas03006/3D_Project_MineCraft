@@ -28,7 +28,7 @@ public class Box_TG : Block_TG, Interactive_TG
             contain_data.Add(new KeyValuePair<Item_ID_TG, int>(data[i].item_id, data[i].number));
         }
         is_open = false;
-        animator.SetBool("Is_Open", is_open);        
+        animator.SetBool("Is_Open", is_open);
     }
     public override void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_) {
         contain_data = contain_data_;
@@ -47,7 +47,7 @@ public class Box_TG : Block_TG, Interactive_TG
                     Block_Objectpooling.instance.Get(contain_data[i].Key, transform.position);
                 }
             }
-        }        
+        }
     }
 }
 
