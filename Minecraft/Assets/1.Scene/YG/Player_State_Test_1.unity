@@ -36817,7 +36817,7 @@ MonoBehaviour:
   box_UI: {fileID: 7984541}
   furnace_UI: {fileID: 208669996}
   cursor_slot: {fileID: 0}
-  inven_camera: {fileID: 0}
+  inven_camera: {fileID: 3938795335653624973}
 --- !u!1 &4429936876509699627
 GameObject:
   m_ObjectHideFlags: 0
