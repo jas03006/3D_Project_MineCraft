@@ -69,8 +69,10 @@ public class PlayerState_Y : Living
     [SerializeField] private AudioClip expclip;
 
     [Header("공격관련 스탯")]
-    private int attack_power; //공격력만큼 더해서 데미지 입히기
-    private int defense_power; //방어력만큼 빼서 데미지 입기
+    public int attack_power; //공격력만큼 더해서 데미지 입히기
+    public int att_speed; //공격 속도
+    public int defense_power; //방어력만큼 빼서 데미지 입기
+
 
     void Start()
     {
