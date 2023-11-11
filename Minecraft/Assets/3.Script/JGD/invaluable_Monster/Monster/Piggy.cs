@@ -11,6 +11,8 @@ public class Piggy : Monster_controll
     {
         rigi = GetComponent<Rigidbody>();
     }
+    //돼지가 맞으면 STAND를 ㅈㄴ 빠르게 ㅈㄴ 자주 반복
+
 
     private void Update()
     {
@@ -29,14 +31,13 @@ public class Piggy : Monster_controll
 
     private void running()
     {
+        Look_otherside();
         Vector3 dir = transform.position - player.transform.position;
         Vector3 piggy = transform.position;
         dir.y = 0;
         piggy.y = 0;
         rigi.velocity = piggy + dir + new Vector3(Random.Range(-30, 30), 0,0); 
-        Look_otherside();
     }
-
     private IEnumerator MonsterRunout()  //피격판정 넉백 도망까지
     {
         Vector3 dir = transform.position - player.transform.position;

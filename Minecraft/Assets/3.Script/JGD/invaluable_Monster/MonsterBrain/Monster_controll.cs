@@ -29,7 +29,8 @@ public abstract class Monster_controll : Living
 
     public virtual void MonsterStand()
     {
-
+        //랜덤이동 
+        //그러나 가만히도 있어야함
     }
 
     protected abstract void MonsterMove();
