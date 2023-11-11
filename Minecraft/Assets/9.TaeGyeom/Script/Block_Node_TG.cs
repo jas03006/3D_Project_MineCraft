@@ -86,8 +86,9 @@ public class Block_Node_TG
     public void remove_gameobject() {
         if (transform != null) {
             rotation = transform.rotation;
-            if ( id == Item_ID_TG.door || id == Item_ID_TG.box)
+            if ( id == Item_ID_TG.door || id == Item_ID_TG.box || id == Item_ID_TG.furnace)
             {
+                Debug.Log("Save");
                 transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
                 is_open = bt.is_open;
                 contain_data = bt.contain_data;
