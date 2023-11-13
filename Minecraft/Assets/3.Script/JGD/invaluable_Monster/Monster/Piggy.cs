@@ -4,105 +4,117 @@ using UnityEngine;
 
 public class Piggy : Monster_controll
 {
-    [SerializeField] private AnimationCurve ani;
-    private float runtime;
-    private Rigidbody rigi;
-    private bool move = false;
-    private void Start()
+    
+
+    private void Awake()
     {
         rigi = GetComponent<Rigidbody>();
-        //StartCoroutine(MonsterStand());
-        StartCoroutine(testmove());
+        render = GetComponentInChildren<Renderer>();
+        monstercolor = render.material.color;
     }
-    //돼지가 맞으면 STAND를 ㅈㄴ 빠르게 ㅈㄴ 자주 반복
+    private void Start()
+    {
+        StartCoroutine(MonsterStand());
+    }
 
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            StopCoroutine(MonsterStand());
+            //StartCoroutine(MonsterRunout());
             StartCoroutine(MonsterRunout());
-            Invoke("MonsterHurt", 1f);
+            Invoke("MonsterHurt",3f);
         }
     }
+
     public override void MonsterHurt()    // 몬스터가 맞는거 
     {
+        StopCoroutine(base.MonsterStand());
         move = true;
-        
     }
 
-    private void running()
-    {
-        Look_otherside();
-        Vector3 dir = transform.position - player.transform.position;
-        Vector3 piggy = transform.position;
-        dir.y = 0;
-        piggy.y = 0;
-        rigi.velocity = piggy + dir + new Vector3(Random.Range(-30, 30), 0,0); 
-    }
-    private IEnumerator MonsterRunout()  //피격판정 넉백 도망까지
-    {
-        Vector3 dir = transform.position - player.transform.position;
-        rigi.AddForce(transform.up * 150f);
-        rigi.AddForce(dir* 2f);
-        Invoke("Look_otherside", 0.6f);
-
-        yield return null;
-    }
-    float CurveWeighedRandom(AnimationCurve curve)
-    {
-        return curve.Evaluate(Random.value);
-    }
+    //private IEnumerator MonsterFracture()  //피격판정 넉백 도망까지
+    //{
+    //    Vector3 dir = transform.position - player.transform.position;
+    //    yield return new WaitForSeconds(0.1f);
+    //    render.material.color = Hitcolor;
+    //    yield return new WaitForSeconds(0.1f);
+    //    render.material.color = monstercolor;
+    //    rigi.AddForce(transform.up * 150f);
+    //    rigi.AddForce(dir* 10f);
+    //    Invoke("Look_otherside", 0.6f);
+    //
+    //    yield return null;
+    //}
     private void Look_otherside()
     {
         Vector3 dir = transform.position - player.transform.position;
         dir.y = 0;
-
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
-
         transform.rotation = rot;   //플레이어 반대방향
     }
     protected override void MonsterMove()    //stand 에서 맞은거로 전환
     {
-
+    
     }
 
-    public IEnumerator testmove()
+    public IEnumerator MonsterRunout()
     {
-        pos = new Vector3();
-        pos.x = Random.Range(-3f, 3f);
-        pos.y = 0.9f;
-        pos.z = Random.Range(-3f, 3f);
+        yield return StartCoroutine(MonsterFracture());
+        yield return new WaitForSeconds(1f);
 
+        move = false;
+        var dir = new Vector3();
+        dir.x = Random.Range(-3f, 3f);
+        dir.y = 0;
+        dir.z = Random.Range(-3f, 3f);
+        pos = dir + this.transform.position;
+        transform.forward = dir.normalized;
+        float Standtimer = 0f;
+        float Maxtimer = 0f;
         while (true)
         {
-            var dir = (pos - this.transform.position).normalized;
-            this.transform.LookAt(pos);
-            this.transform.position += dir * Monster_Speed * Time.deltaTime;
+            Maxtimer += Time.deltaTime;
+            Standtimer += Time.deltaTime;
+            this.transform.position += transform.forward * Monster_Speed*5 * Time.deltaTime;
 
             float distance = Vector3.Distance(transform.position, pos);
-            if (distance <= 0.1f)
+
+            if (distance <= 0.1f || Maxtimer > 3f)
             {
-                yield return new WaitForSeconds(Random.Range(1f, 3f));
-                pos.x = Random.Range(-3f, 3f);
-                pos.z = Random.Range(-3f, 3f);
+                Maxtimer = 0f;
+
+                yield return new WaitForSeconds(0.1f);
+
+                dir.x = Random.Range(-3f, 3f);
+                dir.z = Random.Range(-3f, 3f);
+                pos = dir + this.transform.position;
+                transform.forward = dir.normalized;
+
+            }
+            yield return null;
+            if (Standtimer > 5f)
+            {
+                move = true;
+                yield break;
             }
         }
-        yield return null;
+
     }
-    public override IEnumerator MonsterStand()
+
+    protected override IEnumerator MonsterFracture()
     {
-        while (true)
-        {
-            float dir1 = Random.Range(-3f, 3f);
-            float dir2 = Random.Range(-3f, 3f);
-            Vector3 target = new Vector3(dir1, 0, dir2);
-            var maxTime = CurveWeighedRandom(ani);
-            yield return new WaitForSeconds(Random.Range(1f,maxTime));
-            Quaternion rot = Quaternion.LookRotation(new Vector3(dir1,0,dir2));
-            transform.rotation = rot;
-            rigi.AddForce(transform.forward*Random.Range(3600f,4650f),ForceMode.Force);
-        }
+        Vector3 dir = transform.position - player.transform.position;
+        yield return new WaitForSeconds(0.1f);
+        render.material.color = Hitcolor;
+        yield return new WaitForSeconds(0.1f);
+        render.material.color = monstercolor;
+        rigi.AddForce(transform.up * 150f);
+        rigi.AddForce(dir * 10f);
+
+        yield break;
+
     }
 }
+
