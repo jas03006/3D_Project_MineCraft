@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Piggy : Monster_controll
 {
-    
+    [SerializeField] private AnimationCurve ani;
     private float runtime;
     private Rigidbody rigi;
     private bool move = false;
     private void Start()
     {
         rigi = GetComponent<Rigidbody>();
-        StartCoroutine(MonsterStand());
+        //StartCoroutine(MonsterStand());
+        StartCoroutine(testmove());
     }
     //돼지가 맞으면 STAND를 ㅈㄴ 빠르게 ㅈㄴ 자주 반복
 
@@ -47,10 +48,12 @@ public class Piggy : Monster_controll
         rigi.AddForce(dir* 2f);
         Invoke("Look_otherside", 0.6f);
 
-
         yield return null;
     }
-
+    float CurveWeighedRandom(AnimationCurve curve)
+    {
+        return curve.Evaluate(Random.value);
+    }
     private void Look_otherside()
     {
         Vector3 dir = transform.position - player.transform.position;
@@ -62,34 +65,44 @@ public class Piggy : Monster_controll
     }
     protected override void MonsterMove()    //stand 에서 맞은거로 전환
     {
-        if (move)
-        {
-            runtime += Time.deltaTime;
-            if (runtime > 0.5f)
-            {
-                move = false;
-                runtime = 0;
-            }
-            running();
-        }
-        else
-        {
 
-        }
     }
 
+    public IEnumerator testmove()
+    {
+        pos = new Vector3();
+        pos.x = Random.Range(-3f, 3f);
+        pos.y = 0.9f;
+        pos.z = Random.Range(-3f, 3f);
+
+        while (true)
+        {
+            var dir = (pos - this.transform.position).normalized;
+            this.transform.LookAt(pos);
+            this.transform.position += dir * Monster_Speed * Time.deltaTime;
+
+            float distance = Vector3.Distance(transform.position, pos);
+            if (distance <= 0.1f)
+            {
+                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                pos.x = Random.Range(-3f, 3f);
+                pos.z = Random.Range(-3f, 3f);
+            }
+        }
+        yield return null;
+    }
     public override IEnumerator MonsterStand()
     {
         while (true)
         {
-
-            float dir1 = Random.Range(-8f, 8f);
-            float dir2 = Random.Range(-8f, 8f);
-
-            yield return new WaitForSeconds(Random.Range(1f,3f));
+            float dir1 = Random.Range(-3f, 3f);
+            float dir2 = Random.Range(-3f, 3f);
+            Vector3 target = new Vector3(dir1, 0, dir2);
+            var maxTime = CurveWeighedRandom(ani);
+            yield return new WaitForSeconds(Random.Range(1f,maxTime));
             Quaternion rot = Quaternion.LookRotation(new Vector3(dir1,0,dir2));
             transform.rotation = rot;
-            rigi.velocity = new Vector3(dir1, 0, dir2);
+            rigi.AddForce(transform.forward*Random.Range(3600f,4650f),ForceMode.Force);
         }
     }
 }
