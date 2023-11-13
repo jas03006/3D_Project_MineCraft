@@ -78,12 +78,25 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.apple, 1);
+            GetItem(Item_ID_TG.tree, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            GetItem(Item_ID_TG.bed, 1);
+            GetItem(Item_ID_TG.diamond_axe, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            GetItem(Item_ID_TG.craft_box, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            GetItem(Item_ID_TG.meat, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            GetItem(Item_ID_TG.coal, 1);
         }
     }
     private void InventoryInteraction()
@@ -133,7 +146,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void hide() {
-        cursor_slot.hide_info();
+        cursorController.Reset_info();//cursor_slot.hide_info();
         List<Slot_Y> callback_param = null;
         if (craft_UI.activeSelf == true) {
             hide_craft();
@@ -189,9 +202,9 @@ public class Inventory : MonoBehaviour
         //같은거 있으면 갯수++
         for (int i = 0; i < playerItemList.Count; i++)
         {
-            if (playerItemList[i].item_id == id)
+            if (playerItemList[i].item_id == id && playerItemList[i].number < playerItemList[i].id2data.Get_data(playerItemList[i].item_id).MaxValue)
             {
-                playerItemList[i].number++;
+                playerItemList[i].number += num;
                 if (i >= playerItemList.Count- UIItemList.Count) {
                     UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
                 }                

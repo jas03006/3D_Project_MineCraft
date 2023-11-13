@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
   m_Name: Box
   m_EditorClassIdentifier: 
-  itemCode: 0
-  itemName: 
-  maxValue: 0
-  itemImage: {fileID: 0}
-  isEquipable: 0
-  isInstallable: 0
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 0
-  isCombinable: 0
-  itemSprite: {fileID: 0}
+  itemName: "\uC0C1\uC790"
+  maxValue: 64
+  itemsprite: {fileID: 21300000, guid: 69ddfd07db8dc3245b96ed1ffc22d0fb, type: 3}
+  classname: "\uAE30\uB2A5 \uBE14\uB85D"
+  isequipable: 0
+  isinstallable: 1
+  isinteractable: 1
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Option : MonoBehaviour
 {
-    private Transform[] children;
-
-    private bool isOptionOpen = false; // 버튼으로 bool값 바꾸기 위해
+    [SerializeField]private Transform[] children;
+    [SerializeField]private bool isOptionOpen = false; // 버튼으로 bool값 바꾸기 위해
     
 
     private void Start()
@@ -48,24 +47,22 @@ public class Option : MonoBehaviour
             }
         }
     }
-    
 
 
-
-    public void closeOptionButton()
-    {
-        if (isOptionOpen == true)
-        {
-            for (int i = 1; i < children.Length; i++)
-            {
-                children[i].gameObject.SetActive(false);
-            }
-            isOptionOpen = false;
-            Cursor.visible = false;
-        }
-    }
-    public void changeOptionOpen(bool check) // esc 두번 누름을 방지하기위해 button에 부가적으로 추가함
-    {
-        isOptionOpen = check;
-    }
+    //public void closeOptionButton()
+    //{
+    //    if (isOptionOpen == true)
+    //    {
+    //        for (int i = 1; i < children.Length; i++)
+    //        {
+    //            children[i].gameObject.SetActive(false);
+    //        }
+    //        isOptionOpen = false;
+    //        Cursor.visible = false;
+    //    }
+    //}
+    //public void changeOptionOpen(bool check) // esc 두번 누름을 방지하기위해 button에 부가적으로 추가함
+    //{
+    //    isOptionOpen = check;
+    //}
 }

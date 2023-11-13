@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   itemName: "\uB3CC"
-  maxValue: 0
-  itemSprite: {fileID: 0}
-  Classname: "\uAC74\uCD95 \uBE14\uB85D"
-  isEquipable: 0
-  isInstallable: 1
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 0
-  isCombinable: 0
+  maxValue: 64
+  itemsprite: {fileID: 21300000, guid: 70702885df4062a469efc41533da0b40, type: 3}
+  classname: "\uAC74\uCD95 \uBE14\uB85D"
+  isequipable: 0
+  isinstallable: 1
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0

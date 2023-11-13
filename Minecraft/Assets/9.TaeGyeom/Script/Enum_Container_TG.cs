@@ -33,7 +33,8 @@ public enum Item_ID_TG
     iron_armor = 513, diamond_armor = 524,
     iron_leggings = 523, diamond_leggings = 534,
     iron_boots = 533, diamond_boots = 544,
-    raw_iron = 600, bar_iron = 601    //원석 , 꾸운거
+    raw_iron = 600, bar_iron = 601,    //원석 , 꾸운거
+    apple_pie = 700
 }
 
 public class Enum_Container_TG : MonoBehaviour

@@ -2,16 +2,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
+public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPointerExitHandler
 {
     public Item_ID_TG item_id; //������ id
     public int number
     {
         get
         {
-            if (number_private == 0)
+            if (number_private < 0)
             {
-                text.text = " ";
+                number_private = 0;
             }
             return number_private;
         }
@@ -19,7 +19,17 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         set
         {
             number_private = value;
-            text.text = number_private.ToString();
+
+            if (number_private == 0)
+            {
+                text.enabled = false;
+                text.text = " ";
+            }
+            else
+            {
+                text.enabled = true;
+                text.text = number_private.ToString();
+            }
         }
     }
     private int number_private;
@@ -34,8 +44,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
 
-    [SerializeField] private Image info_image;
-    [SerializeField]private Text info_text;
     [SerializeField] private bool is_craft_slot = false;
     [SerializeField] private bool is_equipment;
     [SerializeField] private armor_type armor_Type;
@@ -55,7 +63,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
     {
         if (!is_cursor_slot)
         {
-            if (!havedata) //������ ����
+            if (!havedata) 
             {
                 if (is_result_slot)
                 {
@@ -64,15 +72,20 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
                 if (is_equipment)
                 {
-                    InventoryData tmp = cursor_slot.id2data.Get_data(item_id);
+                    InventoryData tmp = cursor_slot.id2data.Get_data(cursor_slot.item_id);
                     if (tmp is Wear)
                     {
                         Wear wear = tmp as Wear;
                         if (wear.type == armor_Type)
                         {
+                            Debug.Log($"{wear.type}/{armor_Type}");
                             GetItem(cursor_slot.item_id, cursor_slot.number);
                             cursor_slot.ResetItem();
                             wear.defense_up();
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                     else
@@ -87,7 +100,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                     cursor_slot.ResetItem();
                 }
             }
-            else //������ ����
+            else //havedata = true;
             {
                 if (is_equipment && cursor_slot.item_id == Item_ID_TG.None)
                 {
@@ -98,12 +111,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                         if (wear.type == armor_Type)
                         {
                             wear.defense_down();
-                            cursor_slot.GetItem(cursor_slot.item_id, cursor_slot.number);
+                            cursor_slot.GetItem(item_id, number);
                             ResetItem();
                         }
                     }
                     else
                     {
+                        Debug.Log("!tmp is Wear");
                         return;
                     }
                 }
@@ -121,6 +135,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
                 if (is_result_slot)
                 {
                     Inventory.instance.use_recipe(this);
+                    Inventory.instance.check_recipe(this);
                 }
             }
             if (is_craft_slot)
@@ -177,7 +192,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 
         //Info_text
         Inventory.instance.cursorController.Text_Update(item_id);
-
+        #region 기존 info_text
         //if (item_id == Item_ID_TG.None)
         //{
         //    info_text.text = " ";
@@ -195,11 +210,16 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         //    info_image.color = tem_color;
         //}
     }
+    //public void hide_info() {
+    //    Inventory.instance.cursorController.info_text.text = " ";
+    //    Inventory.instance.cursorController.info_text.enabled = false;
+    //    Inventory.instance.cursorController.info_image.enabled = false;
+    //}
+    #endregion
 
-    public void hide_info() {
-        info_text.text = " ";
-        info_text.enabled = false;
-        info_image.enabled = false;
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Inventory.instance.cursorController.Reset_info();
     }
 
     //mouse left click -> device
@@ -209,7 +229,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
         {
             return;
         }
-
+        //오른쪽 키 눌렀을때
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (cursor_slot.item_id == Item_ID_TG.None)
@@ -243,5 +263,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
             ResetItem();
         }
     }
+
 
 }
