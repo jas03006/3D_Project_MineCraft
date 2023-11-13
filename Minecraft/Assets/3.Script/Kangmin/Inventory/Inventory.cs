@@ -258,6 +258,10 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+    private void UIslot_minus()
+    {
+
+    }
 
     public void check_recipe(Slot_Y slot_) {
         List<Slot_Y> slot_list_;

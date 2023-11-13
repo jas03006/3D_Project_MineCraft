@@ -24,8 +24,8 @@ MonoBehaviour:
   fuel_efficiency: 0
   baked_item: 0
   Durability: 0
-  attack: 0
-  att_speed: 0
+  attack: 2
+  att_speed: 1
   player_state: {fileID: 0}
   player_animator: {fileID: 0}
   useful_Type: 1

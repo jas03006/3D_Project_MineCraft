@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
@@ -47,22 +48,4 @@ public class Option : MonoBehaviour
             }
         }
     }
-
-
-    //public void closeOptionButton()
-    //{
-    //    if (isOptionOpen == true)
-    //    {
-    //        for (int i = 1; i < children.Length; i++)
-    //        {
-    //            children[i].gameObject.SetActive(false);
-    //        }
-    //        isOptionOpen = false;
-    //        Cursor.visible = false;
-    //    }
-    //}
-    //public void changeOptionOpen(bool check) // esc 두번 누름을 방지하기위해 button에 부가적으로 추가함
-    //{
-    //    isOptionOpen = check;
-    //}
 }

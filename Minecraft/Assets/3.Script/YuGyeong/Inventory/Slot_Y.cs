@@ -2,15 +2,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPointerExitHandler
+public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
-    public Item_ID_TG item_id; //������ id
+    public Item_ID_TG item_id; 
     public int number
     {
         get
         {
-            if (number_private < 0)
+            if (number_private <= 0 && item_id != Item_ID_TG.None)
             {
+                ResetItem();
                 number_private = 0;
             }
             return number_private;
@@ -19,11 +20,20 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         set
         {
             number_private = value;
-
-            if (number_private == 0)
+            if (number_private <= 0)
             {
-                text.enabled = false;
-                text.text = " ";
+                if (item_id == Item_ID_TG.None)
+                {
+                    number_private = 0;
+                    text.enabled = false;
+                    text.text = " ";
+                }
+
+                else
+                {
+                    ResetItem();
+                    Debug.Log($"{gameObject.name}");
+                }
             }
             else
             {
@@ -33,7 +43,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         }
     }
     private int number_private;
-    public ID2Datalist_YG id2data; //id -> ������ ����
+    public ID2Datalist_YG id2data; 
     public Text text;
     [SerializeField] private Image image;
     [SerializeField] private bool havedata;
@@ -63,7 +73,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     {
         if (!is_cursor_slot)
         {
-            if (!havedata) 
+            if (!havedata)
             {
                 if (is_result_slot)
                 {
@@ -102,6 +112,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
             }
             else //havedata = true;
             {
+                if (is_result_slot)
+                {
+                    if (item_id != Item_ID_TG.None && cursor_slot.item_id != Item_ID_TG.None)
+                    {
+                        return;
+                    }
+                }
                 if (is_equipment && cursor_slot.item_id == Item_ID_TG.None)
                 {
                     InventoryData tmp = cursor_slot.id2data.Get_data(item_id);
@@ -117,7 +134,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                     }
                     else
                     {
-                        Debug.Log("!tmp is Wear");
                         return;
                     }
                 }
@@ -174,6 +190,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         havedata = false;
         image.sprite = id2data.Get_data(item_id).Itemsprite;
         image.enabled = true;
+
         Color tem_color = image.color;
         tem_color.a = 0f;
         image.color = tem_color;
@@ -192,30 +209,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
 
         //Info_text
         Inventory.instance.cursorController.Text_Update(item_id);
-        #region 기존 info_text
-        //if (item_id == Item_ID_TG.None)
-        //{
-        //    info_text.text = " ";
-        //    info_text.enabled = false;
-        //    info_image.enabled = false;
-        //}
-
-        //else
-        //{
-        //    info_text.text = $"{id2data.Get_data(item_id).ItemName}\n <Color=#0069FF>{id2data.Get_data(item_id).Classname}</Color>";
-        //    info_text.enabled = true;
-        //    info_image.enabled = true;
-        //    Color tem_color = info_image.color;
-        //    tem_color.a = 0.75f;
-        //    info_image.color = tem_color;
-        //}
     }
-    //public void hide_info() {
-    //    Inventory.instance.cursorController.info_text.text = " ";
-    //    Inventory.instance.cursorController.info_text.enabled = false;
-    //    Inventory.instance.cursorController.info_image.enabled = false;
-    //}
-    #endregion
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -234,14 +228,28 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         {
             if (cursor_slot.item_id == Item_ID_TG.None)
             {
-                cursor_slot.GetItem(item_id, 1);
-                number--;
+                if (number == 1)
+                {
+                    cursor_slot.GetItem(item_id, 1);
+                    number--;
+                }
+                else
+                {
+                    int tmp = number / 2;
+                    cursor_slot.GetItem(item_id, tmp);
+                    number -= tmp;
+                }
+
             }
             else if (cursor_slot.item_id == item_id)
             {
-                int tmp = number;
-                cursor_slot.number += number;
-                number -= tmp;
+                cursor_slot.number--;
+                number++;
+
+                if (number == 0)
+                {
+                    ResetItem();
+                }
             }
             else if (item_id == Item_ID_TG.None)
             {
@@ -256,6 +264,8 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
             {
                 Inventory.instance.check_recipe(this);
             }
+
+
         }
 
         if (number == 0)
@@ -263,6 +273,4 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
             ResetItem();
         }
     }
-
-
 }
