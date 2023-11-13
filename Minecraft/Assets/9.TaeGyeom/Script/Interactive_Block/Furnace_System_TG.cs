@@ -5,7 +5,7 @@ using UnityEngine;
 public class Furnace_System_TG : MonoBehaviour
 {
     public static Furnace_System_TG instance = null;
-    public float unit_time = 2f;//7.5f;
+    public float unit_time = 7.5f;
     private void Awake()
     {
         if (instance == null) {

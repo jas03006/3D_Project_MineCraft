@@ -11,7 +11,7 @@ public class Furnace_TG : Block_TG, Interactive_TG
     private void OnEnable()
     {
         is_canvas_open = false;
-        is_open = false;   // 화로가 구울 수 있는 상황인지     
+        //is_open = false;   // 화로가 구울 수 있는 상황인지     
         if (contain_data == null || contain_data.Count == 0) {
             contain_data = new List<KeyValuePair<Item_ID_TG, int>>(); // 0: 재료, 1: 연료, 2: 결과물
             for (int i =0; i< 3; i++) {
@@ -46,9 +46,6 @@ public class Furnace_TG : Block_TG, Interactive_TG
 
     public void react()
     {
-        Debug.Log(contain_data[0].Key);
-        Debug.Log(contain_data[1].Key);
-        Debug.Log(contain_data[2].Key);
         cal_furnace_result();
         is_canvas_open = true;
         Action<List<Slot_Y>> callback = close;
