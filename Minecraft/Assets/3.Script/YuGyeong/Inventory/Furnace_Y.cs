@@ -63,6 +63,7 @@ public class Furnace_Y : Box_Y
         fire_slider.value = time_data[1];
         fuel_count = (int)time_data[3];
         is_on = false;
+        fire_image.SetActive(false);
     }
     private void fire()
     {

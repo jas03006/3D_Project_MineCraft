@@ -131,7 +131,7 @@ public class Biom_Manager : MonoBehaviour
             int h = get_mountain_height(current_chunk_pos, get_player_block_pos());
             current_chunk_pos.y = h / chunk_size;
             start_chunk_pos = current_chunk_pos;
-            player.transform.Translate(Vector3.up * (h +1));
+            player.transform.Translate(Vector3.up * (h +2));
         }
 
     }

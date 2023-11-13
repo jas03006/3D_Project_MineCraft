@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8778815887911513950}
   - component: {fileID: 5837705074291725844}
   - component: {fileID: 5562031766624882655}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: default
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160396793913060318}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: lay_point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861730266974659016}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bed_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

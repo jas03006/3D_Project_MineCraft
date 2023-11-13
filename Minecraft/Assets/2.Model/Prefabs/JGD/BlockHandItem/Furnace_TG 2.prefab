@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 5430171970675251564}
   - component: {fileID: 2108641922380777113}
   - component: {fileID: 6042420972201537928}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Furnace_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 5430171970939736926}
   - component: {fileID: 5430171970939736899}
   - component: {fileID: 5430171970939736924}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Block
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}

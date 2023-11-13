@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4835023754406587017}
   - component: {fileID: 4835023754406587023}
   m_Layer: 20
-  m_Name: Item_Iron
+  m_Name: Item_Iron_bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34da1ad95b21e0540af2de6bad3fc415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 16
+  id: 601
   hight: 0
   rigidbody: {fileID: 0}

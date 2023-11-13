@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.tree, 1);
+            GetItem(Item_ID_TG.diamond_armor, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))

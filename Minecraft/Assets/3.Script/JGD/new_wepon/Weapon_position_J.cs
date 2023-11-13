@@ -8,17 +8,26 @@ public class Weapon_position_J : MonoBehaviour
     public GameObject current_hand = null;
     [SerializeField] Transform start_pos;
     [SerializeField] Transform end_pos;
-
-    private void Update()
+    [SerializeField] Transform forward_pos;
+    private Player_Test_TG player_tg;
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Equip_Weapon( id);
-        }
+         GameObject.FindGameObjectWithTag("Player").TryGetComponent<Player_Test_TG>(out player_tg);
     }
+    /*  private void Update()
+      {
+          if (Input.GetKeyDown(KeyCode.I))
+          {
+              Equip_Weapon( id);
+          }
+      }*/
     public void Equip_Weapon(Item_ID_TG id_)
     {
         id = id_;
+        if (player_tg != null) {
+            player_tg.block_in_hand = Biom_Manager.instance.block_prefabs_SO.get_prefab(id_);
+        }
+
         if (current_hand != null) {
             // 나중에 pool manager에게 리턴하는 것으로 바꿔도 됨.
             current_hand.transform.SetParent(Hand_Item_Pooling.instance.transform);
@@ -26,6 +35,6 @@ public class Weapon_position_J : MonoBehaviour
             current_hand = null;
         }
         //Debug.Log("equip weapon");
-        current_hand = Hand_Item_Pooling.instance.GetWeapon(id, transform.position,transform, end_pos.position - start_pos.position);
+        current_hand = Hand_Item_Pooling.instance.GetWeapon(id, transform.position,transform, end_pos.position - start_pos.position, forward_pos.position);
     }
 }

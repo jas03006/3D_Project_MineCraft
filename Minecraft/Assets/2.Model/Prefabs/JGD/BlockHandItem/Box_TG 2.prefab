@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4861730266974659016}
   - component: {fileID: 1540490421068332605}
   - component: {fileID: 6627452109469698348}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Box_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861730267239214074}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Block
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
