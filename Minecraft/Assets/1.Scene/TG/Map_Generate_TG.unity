@@ -1440,6 +1440,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32885c1fb36243143b229b8ecf2566ff, type: 3}
+--- !u!1 &1000131129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000131131}
+  - component: {fileID: 1000131130}
+  m_Layer: 0
+  m_Name: MonsterPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000131130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000131129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31506d9d6ab9746469b1c85b4b0fcfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster_prefabs:
+  - {fileID: 0}
+  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
+  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
+--- !u!4 &1000131131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000131129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.427608, y: -9.627695, z: -7.8289256}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086664620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2080202853
 Transform:
   m_ObjectHideFlags: 0

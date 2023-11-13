@@ -50,6 +50,9 @@ public class Biom_Manager : MonoBehaviour
     private Queue<Block_Node_TG> block_ready_queue;
      private int block_ready_cnt = 150000;
      private int ready_block_generate_cnt = 3000;
+
+
+    private List<GameObject> monster_controll_list;
     private void Awake()
     {
         if (instance == null)
@@ -75,7 +78,7 @@ public class Biom_Manager : MonoBehaviour
         block_ready_cnt = render_distance * render_distance * render_distance * 16;
         Debug.Log(block_ready_cnt);
         if (block_ready_cnt > 1000000) {
-            block_ready_cnt = 1000000;
+            block_ready_cnt = 1_000_000;
         }
         chunk_data = new Dictionary<Vector3Int, Chunk_TG>();
         mountain_point_list = new List<Vector3Int>();
@@ -85,6 +88,9 @@ public class Biom_Manager : MonoBehaviour
         decide_mountain_point();
         decide_cave_point();
         update_start_pos();
+
+        init_monster_controll_list();
+        
         player.GetComponent<Player_Test_TG>().deactivate_gravity();
         generate_start_map();
         player.GetComponent<Player_Test_TG>().activate_gravity();
@@ -95,13 +101,19 @@ public class Biom_Manager : MonoBehaviour
     {
         
         chunk_update_timer += Time.deltaTime;
-        if (now_update_co == null && chunk_update_timer > chunk_update_time)
+        if (now_update_co == null)
         {
-            chunk_update_timer = 0f;
-            current_chunk_pos = get_player_chunk_pos();
-           // Debug.Log("start co");
-            now_update_co = StartCoroutine(generate_map_update_co());
+            if (chunk_update_timer > chunk_update_time)
+            {
+                chunk_update_timer = 0f;
+                current_chunk_pos = get_player_chunk_pos();
+                // Debug.Log("start co");
+                now_update_co = StartCoroutine(generate_map_update_co());
+
+            }
         }
+
+        update_monsters_visiblity(only_check_out: true);
 
     }
 
@@ -321,6 +333,7 @@ public class Biom_Manager : MonoBehaviour
         }
         
         now_update_co = null;
+        update_monsters_visiblity();
     }
 
 
@@ -401,6 +414,33 @@ public class Biom_Manager : MonoBehaviour
         
         return h;
     }
+    public int get_mountain_height(Vector3Int pos_)
+    {
+        Vector3Int temp_pos = pos_;
+        temp_pos.y = 0;
+        int h = 0;
+        int temp_h = 0;
+        for (int i = 0; i < mountain_point_list.Count; i++)
+        {
+            temp_pos = mountain_point_list[i] - temp_pos;
+            int d = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
+            if (temp_pos.y * temp_pos.y < d)
+            {
+                temp_h = 0;
+            }
+            else
+            {
+                temp_h = temp_pos.y - (int)Mathf.Sqrt(d);
+                //Debug.Log(temp_h);
+            }
+            if (temp_h > h)
+            {
+                h = temp_h;
+            }
+        }
+
+        return h;
+    }
 
     private void decide_mountain_point() {
         int mountain_generate_range = 200;
@@ -411,16 +451,6 @@ public class Biom_Manager : MonoBehaviour
             mountain_point_list.Add(new Vector3Int(UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range), UnityEngine.Random.Range(mountain_min_height, mountain_max_height), UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range)));
         }
     }
-
-    /*public bool is_in_cave(Vector3Int chunk_pos, Vector3Int block_pos) {
-        Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
-        temp_pos.y = 0;
-        int h = 0;
-        int temp_h = 0;
-        
-
-        return false;
-    }*/
 
     private void decide_cave_point() {
         cave_point_list = new List<Cave_Point>();
@@ -504,5 +534,42 @@ public class Biom_Manager : MonoBehaviour
 
     public void set_block(Item_ID_TG id, Vector3 world_pos, Quaternion rotate, List<Vector3Int> space = null) {
         get_chunk(world2chunk_pos(world_pos)).set_block(id, world2block_pos(world_pos), world_pos, rotate,space);
+    }
+
+    public bool is_in_render_space(Vector3 position_) {
+        position_ = world2chunk_pos(position_);
+        int y_render_range = (current_chunk_pos.y >= 0 ? render_chunk_num : 3);
+        if (position_.x >= current_chunk_pos.x - render_chunk_num + 1 && position_.x < current_chunk_pos.x + render_chunk_num
+                        && position_.y >= current_chunk_pos.y - 2 && position_.y < current_chunk_pos.y + y_render_range
+                        && position_.z >= current_chunk_pos.z - render_chunk_num + 1 && position_.z < current_chunk_pos.z + render_chunk_num) {
+            return true;
+        }
+        return false;
+    }
+
+    private void init_monster_controll_list() {
+        monster_controll_list = new List<GameObject>();
+        int monster_cnt = 400;
+        int monster_spawn_range = 300;
+        Vector3Int pos = Vector3Int.zero;
+        for (int i =0; i < monster_cnt; i++) {
+            pos.x = UnityEngine.Random.Range(-monster_spawn_range, monster_spawn_range+1);
+            pos.z = UnityEngine.Random.Range(-monster_spawn_range, monster_spawn_range+1);
+            monster_controll_list.Add(Monster_Pool_Manager.instance.get(Monster_ID_J.Pig, new Vector3(pos.x, get_mountain_height(pos)+1, pos.z), Quaternion.identity, false));
+        }
+    }
+
+    private void update_monsters_visiblity(bool only_check_out = false) {
+        for (int i =0; i < monster_controll_list.Count; i++) {
+            if (is_in_render_space(monster_controll_list[i].transform.position))
+            {
+                if (!only_check_out) {
+                    monster_controll_list[i].gameObject.SetActive(true);
+                }                
+            }
+            else { 
+                monster_controll_list[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
