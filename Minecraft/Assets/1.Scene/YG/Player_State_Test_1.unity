@@ -1570,9 +1570,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -2070,9 +2067,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -2700,9 +2694,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -3847,9 +3838,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -4062,9 +4050,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -4677,9 +4662,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -5340,6 +5322,196 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424347186}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &425496542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 425496543}
+  - component: {fileID: 425496546}
+  - component: {fileID: 425496545}
+  - component: {fileID: 425496544}
+  m_Layer: 5
+  m_Name: Main_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &425496543
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425496542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8876975360910088105}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 150}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &425496544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425496542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.56078434}
+  m_EffectDistance: {x: 4, y: 4}
+  m_UseGraphicAlpha: 1
+--- !u!114 &425496545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425496542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9ccd559ed235c0d49840698a337f446c, type: 3}
+    m_FontSize: 70
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 7
+    m_MaxSize: 110
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\uC0AC\uB9DD\uD588\uC2B5\uB2C8\uB2E4!"
+--- !u!222 &425496546
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425496542}
+  m_CullTransparentMesh: 1
+--- !u!1 &436040887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 436040888}
+  - component: {fileID: 436040891}
+  - component: {fileID: 436040890}
+  - component: {fileID: 436040889}
+  m_Layer: 5
+  m_Name: Score_text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &436040888
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436040887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8876975360910088105}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 60}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &436040889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436040887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.56078434}
+  m_EffectDistance: {x: 4, y: 4}
+  m_UseGraphicAlpha: 1
+--- !u!114 &436040890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436040887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9ccd559ed235c0d49840698a337f446c, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 110
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\uC810\uC218 : <color=FFC600>00</color>"
+--- !u!222 &436040891
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436040887}
+  m_CullTransparentMesh: 1
 --- !u!1 &445781682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6561,11 +6733,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6606,6 +6778,7 @@ RectTransform:
   m_Children:
   - {fileID: 1724169692785717402}
   - {fileID: 4429936876506453077}
+  - {fileID: 8876975360910088105}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7111,9 +7284,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -7231,9 +7401,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -8128,9 +8295,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -8418,9 +8582,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -10244,9 +10405,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -11787,9 +11945,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -11907,9 +12062,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -12027,9 +12179,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -13002,9 +13151,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -13301,7 +13447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.6415094, g: 0.6263795, b: 0.6263795, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13826,9 +13972,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -14212,9 +14355,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -14618,9 +14758,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -15706,7 +15843,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4429936876118720380}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16322,9 +16459,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -16870,9 +17004,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -17159,9 +17290,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -17429,9 +17557,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -17889,9 +18014,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -18477,9 +18599,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -19754,9 +19873,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -19874,9 +19990,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -20945,9 +21058,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -21697,7 +21807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
+  m_AnchoredPosition: {x: 200, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707850620
@@ -22030,9 +22140,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -22150,9 +22257,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -23190,9 +23294,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -23310,9 +23411,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -24660,9 +24758,6 @@ MonoBehaviour:
   is_result_slot: 1
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -25541,9 +25636,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -25851,9 +25943,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -26035,7 +26124,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4429936876118720380}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26331,9 +26420,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -27270,9 +27356,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -27642,6 +27725,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6269359217578070254}
   m_Mesh: {fileID: 2954858793080512207, guid: 1143a7935878aaf43af6835a09407b61, type: 3}
+--- !u!224 &599032274713465934
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598573975383691767}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8876975360910088105}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &848683731895183120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29819,6 +29921,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724169693454648746}
   m_CullTransparentMesh: 1
+--- !u!114 &1725453205208206884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519718256425968175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &2014229081511033938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31157,9 +31289,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31392,9 +31521,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31512,9 +31638,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31632,9 +31755,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053065255518908}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31752,9 +31872,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31872,9 +31989,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -31992,9 +32106,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -32337,9 +32448,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -32457,10 +32565,7 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
-  is_craft_slot: 0
+  is_craft_slot: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &4429936875451292834
@@ -32577,9 +32682,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -32697,10 +32799,7 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
-  is_craft_slot: 0
+  is_craft_slot: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &4429936875473227498
@@ -32892,12 +32991,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
-  is_equipment: 0
-  armor_Type: 0
+  is_equipment: 1
+  armor_Type: 3
 --- !u!1 &4429936875508030274
 GameObject:
   m_ObjectHideFlags: 0
@@ -33012,9 +33108,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -33207,9 +33300,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -33327,9 +33417,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053066060050477}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -33447,9 +33534,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -33567,9 +33651,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053064894492992}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -34062,9 +34143,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -34182,9 +34260,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -34302,9 +34377,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053066725450509}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -34572,11 +34644,8 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
-  is_equipment: 0
+  is_equipment: 1
   armor_Type: 0
 --- !u!222 &4429936875904917760
 CanvasRenderer:
@@ -34767,9 +34836,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -34962,9 +35028,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -35082,9 +35145,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -35207,9 +35267,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 4429936876103953835}
-  info_image: {fileID: 1707850621}
-  info_text: {fileID: 2069787890}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -35243,8 +35300,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.89031, y: 0.95, z: 1}
   m_Children:
-  - {fileID: 2020793415}
   - {fileID: 1244379793}
+  - {fileID: 2020793415}
   m_Father: {fileID: 4429936875356559903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35327,9 +35384,6 @@ MonoBehaviour:
   is_result_slot: 1
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -35447,9 +35501,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053064804714212}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -35792,10 +35843,7 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
-  is_craft_slot: 0
+  is_craft_slot: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &4429936876300208448
@@ -36062,9 +36110,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -36257,9 +36302,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053066567610331}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -36452,9 +36494,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053064974068151}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -36572,9 +36611,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -36692,9 +36728,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -36805,7 +36838,12 @@ MonoBehaviour:
   - {fileID: 588142944}
   - {fileID: 1375955279}
   - {fileID: 1946098969}
-  CraftList_Small: []
+  CraftList_Small:
+  - {fileID: 4429936875398998419}
+  - {fileID: 4429936875465535832}
+  - {fileID: 4429936876220918863}
+  - {fileID: 4429936876705609988}
+  - {fileID: 4429936876118720383}
   weapon_position: {fileID: 3938795336597566635}
   UIslot_index: 0
   inventoryImage: {fileID: 4429936876884814724}
@@ -36816,7 +36854,8 @@ MonoBehaviour:
   craft_UI: {fileID: 805101067}
   box_UI: {fileID: 7984541}
   furnace_UI: {fileID: 208669996}
-  cursor_slot: {fileID: 0}
+  cursor_slot: {fileID: 4429936876103953838}
+  cursorController: {fileID: 4429936876103953835}
   inven_camera: {fileID: 3938795335653624973}
 --- !u!1 &4429936876509699627
 GameObject:
@@ -37157,9 +37196,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -37502,9 +37538,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053065889405145}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -37622,9 +37655,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -37817,9 +37847,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 8760053066274905710}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -38237,10 +38264,7 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
-  is_craft_slot: 0
+  is_craft_slot: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &4429936876754355054
@@ -38357,9 +38381,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -38385,9 +38406,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -38672,12 +38690,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
-  is_equipment: 0
-  armor_Type: 0
+  is_equipment: 1
+  armor_Type: 1
 --- !u!1 &4429936876839852953
 GameObject:
   m_ObjectHideFlags: 0
@@ -39021,9 +39036,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -39141,9 +39153,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -39525,9 +39534,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -39795,12 +39801,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
-  is_equipment: 0
-  armor_Type: 0
+  is_equipment: 1
+  armor_Type: 2
 --- !u!1 &4429936877246298071
 GameObject:
   m_ObjectHideFlags: 0
@@ -39915,9 +39918,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -40035,9 +40035,6 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 4429936876103953838}
   uISlot: {fileID: 0}
-  cursorController: {fileID: 0}
-  info_image: {fileID: 0}
-  info_text: {fileID: 0}
   is_craft_slot: 0
   is_equipment: 0
   armor_Type: 0
@@ -40779,6 +40776,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7573283532572787611}
   m_Mesh: {fileID: 5060444177187149915, guid: 1143a7935878aaf43af6835a09407b61, type: 3}
+--- !u!1 &6519718256425968175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8876975360910088105}
+  - component: {fileID: 8122248765069779253}
+  - component: {fileID: 1725453205208206884}
+  m_Layer: 5
+  m_Name: DeadUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &6855331401115189747
 Transform:
   m_ObjectHideFlags: 0
@@ -40813,6 +40828,14 @@ Transform:
   m_Father: {fileID: 423600378462214140}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!222 &7426094058413302316
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598573975383691767}
+  m_CullTransparentMesh: 1
 --- !u!1 &7573283532572787611
 GameObject:
   m_ObjectHideFlags: 0
@@ -40831,6 +40854,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &7598573975383691767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599032274713465934}
+  - component: {fileID: 7426094058413302316}
+  - component: {fileID: 8698005308743942818}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!222 &8122248765069779253
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519718256425968175}
+  m_CullTransparentMesh: 1
 --- !u!1001 &8308110179965899248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40988,6 +41037,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8698005308743942818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598573975383691767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.8156863}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8b9f87cba49e99c42aee717446d39f52, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!23 &8716709917948280812
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43398,6 +43477,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5453203896452338966, guid: 85a8dbdb72a1037409ca219b34946a60, type: 3}
   m_PrefabInstance: {fileID: 8860410153740832860}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &8876975360910088105
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519718256425968175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 599032274713465934}
+  - {fileID: 425496543}
+  - {fileID: 436040888}
+  m_Father: {fileID: 509410563}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8990727020820158328
 PrefabInstance:
   m_ObjectHideFlags: 0
