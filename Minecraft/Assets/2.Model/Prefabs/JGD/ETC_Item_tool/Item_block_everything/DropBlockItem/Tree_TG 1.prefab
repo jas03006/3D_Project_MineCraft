@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4861730266974659017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4861730267239214074}
   m_Father: {fileID: 0}
@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 4861730267239214055}
   - component: {fileID: 4861730267239214072}
   - component: {fileID: 4861730267239214073}
-  - component: {fileID: 3593326908382784155}
   m_Layer: 6
   m_Name: Block
   m_TagString: Stepable_Block
@@ -178,34 +177,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3593326908382784155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861730267239214075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122d78203c2049044b74c96ead68b7fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 17
-  Max_Block_Hp: 100
-  blockHp: 100
-  block_break: 0
-  i: 1
-  Box: {fileID: 4861730266974659017}
-  mat:
-  - {fileID: 2100000, guid: 4a63e8ad2b9160543841b089c93e6aff, type: 2}
-  - {fileID: 2100000, guid: 0d69722694bbb47479e800ef2e7c7d50, type: 2}
-  - {fileID: 2100000, guid: 52d3683a334ead54aaa555646d498b86, type: 2}
-  - {fileID: 2100000, guid: a456efe3875a0884f84bd5ad0c5b976f, type: 2}
-  - {fileID: 2100000, guid: c3bc221b6077ba748ac16ac973d239eb, type: 2}
-  - {fileID: 2100000, guid: dc7e23e15a1eb4e4eb0513ec81f89244, type: 2}
-  - {fileID: 2100000, guid: fe5a614648485f545b9c1ef45bcc0de1, type: 2}
-  - {fileID: 2100000, guid: 253702dc2bc33ff48976b031bb41f09f, type: 2}
-  - {fileID: 2100000, guid: 8bbc73e04e7540d42a2c02945591e823, type: 2}
-  - {fileID: 2100000, guid: b45062e26cefc274ea7c0e969519d02c, type: 2}
-  - {fileID: 2100000, guid: b61573c218323f34aa89427d0497025f, type: 2}
-  space: []

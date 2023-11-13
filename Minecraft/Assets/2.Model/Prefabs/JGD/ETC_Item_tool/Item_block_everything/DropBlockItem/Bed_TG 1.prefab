@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8778815887911513950}
   - component: {fileID: 5837705074291725844}
   - component: {fileID: 6928238223617716864}
-  - component: {fileID: 1838402230483507507}
   - component: {fileID: 5675989534386702976}
   m_Layer: 6
   m_Name: default
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 532183383994498149}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0.5}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 160396793913060318}
   m_Father: {fileID: 4861730266974659016}
@@ -84,38 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1838402230483507507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532183383994498149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e06742d28a15894bb29f6ac70cfda1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 355
-  Max_Block_Hp: 100
-  blockHp: 100
-  block_break: 0
-  i: 1
-  Box: {fileID: 4861730266974659017}
-  mat:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  space:
-  - {x: 0, y: 0, z: 1}
 --- !u!65 &5675989534386702976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -184,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 4861730266974659017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 8778815887911513950}
   m_Father: {fileID: 0}
