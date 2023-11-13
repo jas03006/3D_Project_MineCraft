@@ -9,9 +9,9 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     {
         get
         {
-            if (number_private == 0)
+            if (number_private < 0)
             {
-                text.text = " ";
+                number_private = 0;
             }
             return number_private;
         }
@@ -19,7 +19,17 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         set
         {
             number_private = value;
-            text.text = number_private.ToString();
+
+            if (number_private == 0)
+            {
+                text.enabled = false;
+                text.text = " ";
+            }
+            else
+            {
+                text.enabled = true;
+                text.text = number_private.ToString();
+            }
         }
     }
     private int number_private;
@@ -53,7 +63,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     {
         if (!is_cursor_slot)
         {
-            if (!havedata) //������ ����
+            if (!havedata) 
             {
                 if (is_result_slot)
                 {
@@ -62,15 +72,20 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
 
                 if (is_equipment)
                 {
-                    InventoryData tmp = cursor_slot.id2data.Get_data(item_id);
+                    InventoryData tmp = cursor_slot.id2data.Get_data(cursor_slot.item_id);
                     if (tmp is Wear)
                     {
                         Wear wear = tmp as Wear;
                         if (wear.type == armor_Type)
                         {
+                            Debug.Log($"{wear.type}/{armor_Type}");
                             GetItem(cursor_slot.item_id, cursor_slot.number);
                             cursor_slot.ResetItem();
                             wear.defense_up();
+                        }
+                        else
+                        {
+                            return;
                         }
                     }
                     else
@@ -85,7 +100,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                     cursor_slot.ResetItem();
                 }
             }
-            else //������ ����
+            else //havedata = true;
             {
                 if (is_equipment && cursor_slot.item_id == Item_ID_TG.None)
                 {
@@ -96,12 +111,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                         if (wear.type == armor_Type)
                         {
                             wear.defense_down();
-                            cursor_slot.GetItem(cursor_slot.item_id, cursor_slot.number);
+                            cursor_slot.GetItem(item_id, number);
                             ResetItem();
                         }
                     }
                     else
                     {
+                        Debug.Log("!tmp is Wear");
                         return;
                     }
                 }
@@ -119,6 +135,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 if (is_result_slot)
                 {
                     Inventory.instance.use_recipe(this);
+                    Inventory.instance.check_recipe(this);
                 }
             }
             if (is_craft_slot)
@@ -212,7 +229,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         {
             return;
         }
-
+        //오른쪽 키 눌렀을때
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (cursor_slot.item_id == Item_ID_TG.None)

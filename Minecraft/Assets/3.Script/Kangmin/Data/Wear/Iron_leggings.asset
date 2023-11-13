@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c2c067c3f1d9947a3913637d56597f, type: 3}
   m_Name: Iron_leggings
   m_EditorClassIdentifier: 
-  itemName: 
-  maxValue: 0
+  itemName: "\uCCA0 \uB808\uAE45\uC2A4"
+  maxValue: 1
   itemsprite: {fileID: 0}
-  classname: 
+  classname: "\uC804\uD22C"
   isequipable: 1
   isinstallable: 0
   isinteractable: 0

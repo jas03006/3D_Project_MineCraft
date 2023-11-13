@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
-  m_Name: Iron
+  m_Name: Board
   m_EditorClassIdentifier: 
-  itemName: "\uCCA0\uAD11\uC11D"
+  itemName: "\uD310\uC790"
   maxValue: 64
-  itemSprite: {fileID: 0}
-  Classname: 
-  isEquipable: 0
-  isInstallable: 0
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 0
-  isCombinable: 1
+  itemsprite: {fileID: 21300000, guid: 3febfbea196f9504dbae6452d6f7c9f9, type: 3}
+  classname: "\uAC74\uCD95 \uBE14\uB85D"
+  isequipable: 0
+  isinstallable: 1
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 1
+  baked_item: 0

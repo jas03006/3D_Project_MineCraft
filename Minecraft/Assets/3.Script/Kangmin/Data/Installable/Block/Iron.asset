@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c9b5b6e65f81304daea4a4fe217ce41, type: 3}
-  m_Name: Oak
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  itemName: 
-  maxValue: 0
-  itemsprite: {fileID: 0}
-  classname: 
+  itemName: "\uCCA0 \uAD11\uC11D"
+  maxValue: 64
+  itemsprite: {fileID: 21300000, guid: 402b9980b1faddc4383d109a1017ee22, type: 3}
+  classname: "\uAC74\uCD95 \uBE14\uB85D"
   isequipable: 0
   isinstallable: 1
   isinteractable: 0
   iseatable: 0
   isuseful: 0
-  fuel_efficiency: 1
+  fuel_efficiency: 0
   baked_item: 0

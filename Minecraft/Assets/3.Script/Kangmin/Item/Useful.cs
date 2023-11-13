@@ -25,7 +25,7 @@ public class Useful : InventoryData, IUseFul
     {
         get
         {
-            string tmp = $"<color=#858282>주로 사용하는 손에 있을 때:</Color>\n<color=197B06>+{attack} 공격 피해\n+{att_speed} 공격 속도</Color>";
+            string tmp = $"주로 사용하는 손에 있을 때:\n+{attack} 공격 피해\n+{att_speed} 공격 속도";
             return tmp;
         }
     }

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uB2E4\uC774\uC544\uBAAC\uB4DC"
   maxValue: 64
-  itemSprite: {fileID: 0}
-  Classname: "\uAD11\uC11D"
-  isEquipable: 0
-  isInstallable: 0
-  isWeapon: 0
-  isArmor: 0
-  isInteractable: 0
-  isCombinable: 1
+  itemsprite: {fileID: 21300000, guid: 68d8d028c2792db428a316e114498e18, type: 3}
+  classname: "\uC7AC\uB8CC"
+  isequipable: 0
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0

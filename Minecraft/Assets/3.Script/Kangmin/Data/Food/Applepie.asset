@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cff55523a7e75f45b67d1c492b9ab2c, type: 3}
   m_Name: Applepie
   m_EditorClassIdentifier: 
-  itemName: 
-  maxValue: 0
-  itemsprite: {fileID: 0}
-  classname: 
+  itemName: "\uC0AC\uACFC\uD30C\uC774"
+  maxValue: 64
+  itemsprite: {fileID: 21300000, guid: e9e032a3df69eba4cb3cc92c88e01933, type: 3}
+  classname: "\uC74C\uC2DD \uBC0F \uC74C\uB8CC"
   isequipable: 0
   isinstallable: 0
   isinteractable: 0
-  iseatable: 0
+  iseatable: 1
   isuseful: 0
   fuel_efficiency: 0
   baked_item: 0

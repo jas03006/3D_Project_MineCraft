@@ -15,6 +15,10 @@ public class CursorController : MonoBehaviour
 
     //[SerializeField] private Image image;
     private Vector2 mousePos;
+    private void Update()
+    {
+        Update_MousePosition();
+    }
 
     void Start()
     {
@@ -22,10 +26,6 @@ public class CursorController : MonoBehaviour
         Init_Cursor();
     }
 
-    void Update()
-    {
-        Update_MousePosition();
-    }
     private void Init_Cursor()
     {
         if (transform.GetComponent<Graphic>())

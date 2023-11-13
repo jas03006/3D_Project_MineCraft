@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uC775\uD788\uC9C0 \uC54A\uC740 \uACE0\uAE30"
   maxValue: 64
-  itemsprite: {fileID: 0}
+  itemsprite: {fileID: 21300000, guid: b3b88bcd50a27744e8da120a669aaa74, type: 3}
   classname: "\uC74C\uC2DD \uBC0F \uC74C\uB8CC"
   isequipable: 0
   isinstallable: 0
   isinteractable: 0
-  iseatable: 0
+  iseatable: 1
   isuseful: 0
   fuel_efficiency: 0
   baked_item: 364

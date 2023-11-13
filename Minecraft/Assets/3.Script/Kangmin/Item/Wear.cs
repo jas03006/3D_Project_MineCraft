@@ -25,7 +25,6 @@ public class Wear : InventoryData, IWear
     {
         get
         {
-            string tmp0 = "<color =#858282>";
             string tmp1 = " ";
             switch (type)
             {
@@ -42,8 +41,8 @@ public class Wear : InventoryData, IWear
                     tmp1 = "신발";
                     break;
             }
-            string tmp2 = $"에 있을 때:</Color>\n<color=0069FF>+{defense_power} 방어력</Color>";
-            return tmp0 + tmp1 + tmp2;
+            string tmp2 = $"에 있을 때:\n+{defense_power} 방어력";
+            return tmp1 + tmp2;
         }
     }
     public void defense_up()

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0c59e30065166438ff4f08fd8493ad, type: 3}
   m_Name: Iron_pickaxe
   m_EditorClassIdentifier: 
-  itemName: 
-  maxValue: 0
-  itemsprite: {fileID: 0}
-  classname: 
+  itemName: "\uCCA0 \uACE1\uAD2D\uC774"
+  maxValue: 1
+  itemsprite: {fileID: 21300000, guid: 776699f3a48a2d6408f79b461c5d013b, type: 3}
+  classname: "\uC720\uC6A9\uD55C \uBB3C\uAC74"
   isequipable: 0
   isinstallable: 0
   isinteractable: 0
   iseatable: 0
-  isuseful: 0
+  isuseful: 1
   fuel_efficiency: 0
   baked_item: 0
   Durability: 0
