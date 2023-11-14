@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1591093014831268155}
   - component: {fileID: 1591093014831268152}
   - component: {fileID: 1591093014831268153}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: IronSword 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8380830400062721503}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron_Sword_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

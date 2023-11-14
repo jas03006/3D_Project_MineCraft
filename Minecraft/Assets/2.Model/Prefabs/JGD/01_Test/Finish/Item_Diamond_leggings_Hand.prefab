@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1263088847954252025}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Item_Diamond_leggings_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2953418692243462731}
   - component: {fileID: 2953418692243462730}
   - component: {fileID: 2953418692243462733}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Item_Diamond_leggings 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

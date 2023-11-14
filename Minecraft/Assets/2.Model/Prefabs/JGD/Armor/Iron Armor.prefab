@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5163856746978211282}
   - component: {fileID: 2746477212660238427}
   - component: {fileID: 47315187124890882}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

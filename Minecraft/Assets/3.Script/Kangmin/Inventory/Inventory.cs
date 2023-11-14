@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
     [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
     [SerializeField] private List<Slot_Y> CraftList_Small = new List<Slot_Y>(5); //짱규동 데이터
-    [SerializeField] private Weapon_position_J weapon_position;
+    [SerializeField] public Weapon_position_J weapon_position;
     public int UIslot_index = 0;
 
     public Image inventoryImage;
@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.tree, 1);
+            GetItem(Item_ID_TG.diamond_armor, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))

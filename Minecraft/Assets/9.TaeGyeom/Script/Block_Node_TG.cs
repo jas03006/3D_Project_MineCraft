@@ -61,6 +61,12 @@ public class Block_Node_TG
         show();     
     }
 
+    public bool is_data_defendent(Item_ID_TG id_) {
+        if (id == Item_ID_TG.door || id == Item_ID_TG.box || id == Item_ID_TG.furnace) {
+            return true;
+        }
+        return false;
+    }
     public void set_gameobject(GameObject go) {
         if (go == null) {
             return;
@@ -68,7 +74,7 @@ public class Block_Node_TG
         gameObject = go;
         transform = go.transform;
         rotation = transform.rotation;
-        if (id == Item_ID_TG.door || id == Item_ID_TG.box) {
+        if (is_data_defendent(id)){//id == Item_ID_TG.door || id == Item_ID_TG.box || id == Item_ID_TG.furnace) {
             transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
             if (time_data != null) {
                 bt.init(is_open, contain_data, time_data);
@@ -86,12 +92,13 @@ public class Block_Node_TG
     public void remove_gameobject() {
         if (transform != null) {
             rotation = transform.rotation;
-            if ( id == Item_ID_TG.door || id == Item_ID_TG.box)
-            {
+            if (is_data_defendent(id))// id == Item_ID_TG.door || id == Item_ID_TG.box || id == Item_ID_TG.furnace)
+            {                
                 transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
                 is_open = bt.is_open;
                 contain_data = bt.contain_data;
                 time_data = bt.time_data;
+                Debug.Log($"Save : {bt.time_data}");
             }
         }      
                 
@@ -102,11 +109,13 @@ public class Block_Node_TG
     public void destroy_chain()
     {
         //Debug.Log("Destroy");
-        transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
-        if (bt != null )
-        {
-            bt.drop_items();            
-        }
+        if (id != Item_ID_TG.Fill) {
+            transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
+            if (bt != null)
+            {
+                bt.drop_items();
+            }
+        }        
 
         chunk.destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
         if (parent != null) {

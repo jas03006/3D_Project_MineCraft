@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5774743389992847785}
   - component: {fileID: 5774743389992847784}
   - component: {fileID: 5774743389992847787}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Item_Food_beef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7350259558562345800}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Item_Food_beef_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

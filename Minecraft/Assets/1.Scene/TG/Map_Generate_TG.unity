@@ -336,6 +336,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8328eed442101f48b651167af2d7d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &281513282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281513283}
+  - component: {fileID: 281513286}
+  - component: {fileID: 281513285}
+  - component: {fileID: 281513284}
+  m_Layer: 21
+  m_Name: point3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &281513283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281513282}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.1, y: -6.73, z: 1.73}
+  m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5486592873882740345}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &281513284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281513282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e24d99755baad44e9b96e5f087d8fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 424
+  current_hand: {fileID: 0}
+  start_pos: {fileID: 281513283}
+  end_pos: {fileID: 1341837798}
+  forward_pos: {fileID: 0}
+--- !u!23 &281513285
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281513282}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &281513286
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281513282}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &294580166
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +517,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -701,6 +800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2026dd61c60a31449a1d63e7a1c1d48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unit_time: 7.5
+  id2datalist: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
 --- !u!4 &607107237
 Transform:
   m_ObjectHideFlags: 0
@@ -930,6 +1031,7 @@ MonoBehaviour:
   inventory: {fileID: 912284662168579602}
   head_tr: {fileID: 7605012879774994197}
   body_tr: {fileID: 3695633616353171738}
+  player_state: {fileID: 0}
 --- !u!54 &726597372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1010,6 +1112,11 @@ MonoBehaviour:
   exptext: {fileID: 2120883914718009779}
   maxexpdata: {fileID: 11400000, guid: 8d2021886127221418600f32a6bf1882, type: 2}
   expclip: {fileID: 0}
+  attack_power: 0
+  att_speed: 0
+  defense_power: 0
+  original_spawn_position: {x: 0, y: 0, z: 0}
+  respawn_bed: {fileID: 0}
 --- !u!136 &726597375
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1136,6 +1243,7 @@ MonoBehaviour:
   current_hand: {fileID: 0}
   start_pos: {fileID: 781449804}
   end_pos: {fileID: 1341837798}
+  forward_pos: {fileID: 281513283}
 --- !u!23 &781449806
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1280,6 +1388,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800475809}
   m_CullTransparentMesh: 1
+--- !u!1 &990814999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 990815000}
+  - component: {fileID: 990815002}
+  - component: {fileID: 990815001}
+  m_Layer: 5
+  m_Name: Infotext_sub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &990815000
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990814999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3590312349468311871}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &990815001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990814999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6415094, g: 0.6263795, b: 0.6263795, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 9ccd559ed235c0d49840698a337f446c, type: 3}
+    m_FontSize: 28
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 287
+    m_Alignment: 7
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &990815002
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990814999}
+  m_CullTransparentMesh: 1
 --- !u!1001 &994022362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1289,7 +1476,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3105651049108917051, guid: 32885c1fb36243143b229b8ecf2566ff, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3105651049108917051, guid: 32885c1fb36243143b229b8ecf2566ff, type: 3}
       propertyPath: m_LocalScale.x
@@ -1357,6 +1544,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32885c1fb36243143b229b8ecf2566ff, type: 3}
+--- !u!1 &1000131129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000131131}
+  - component: {fileID: 1000131130}
+  m_Layer: 0
+  m_Name: MonsterPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000131130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000131129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31506d9d6ab9746469b1c85b4b0fcfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster_prefabs:
+  - {fileID: 0}
+  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
+  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
+--- !u!4 &1000131131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000131129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.427608, y: -9.627695, z: -7.8289256}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086664620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,10 +1969,9 @@ MonoBehaviour:
   is_result_slot: 1
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &1416584299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1812,7 +2045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5405695988445339135, guid: 5a76cfd5ea677044c95a8b1ee1ff5297, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5405695988445339135, guid: 5a76cfd5ea677044c95a8b1ee1ff5297, type: 3}
       propertyPath: m_LocalScale.x
@@ -2182,10 +2415,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &1785311149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2300,10 +2532,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &1908359193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,7 +2702,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
+  m_AllowXRRendering: 0
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -2504,13 +2735,13 @@ Camera:
     serializedVersion: 2
     x: 0.33
     y: 0.51
-    width: 0.15
+    width: 0.14
     height: 0.33
   near clip plane: 0.1
   far clip plane: 5
   field of view: 90
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 1.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3047,10 +3278,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!224 &728835475008869790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5138,10 +5368,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284661831074628
 GameObject:
   m_ObjectHideFlags: 0
@@ -5331,10 +5560,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284661861625848
 GameObject:
   m_ObjectHideFlags: 0
@@ -5541,10 +5769,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284661938383657
 GameObject:
   m_ObjectHideFlags: 0
@@ -5650,10 +5877,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725767396862}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284661972269437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,10 +6038,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284661973918998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5970,10 +6195,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &912284661980206080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6444,10 +6668,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726187531081}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662043355943
 GameObject:
   m_ObjectHideFlags: 0
@@ -6637,10 +6860,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662072719839
 GameObject:
   m_ObjectHideFlags: 0
@@ -6755,10 +6977,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726934514832}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662080448095
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,10 +7338,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662168579600
 GameObject:
   m_ObjectHideFlags: 0
@@ -7245,6 +7465,7 @@ MonoBehaviour:
   box_UI: {fileID: 3590312349949734873}
   furnace_UI: {fileID: 3590312349883070312}
   cursor_slot: {fileID: 912284663645345770}
+  cursorController: {fileID: 912284663645345775}
   inven_camera: {fileID: 2080202852}
 --- !u!224 &912284662171821160
 RectTransform:
@@ -7493,10 +7714,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726414650108}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662292616348
 GameObject:
   m_ObjectHideFlags: 0
@@ -7778,10 +7998,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662329675193
 GameObject:
   m_ObjectHideFlags: 0
@@ -7879,10 +8098,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662347115620
 GameObject:
   m_ObjectHideFlags: 0
@@ -8089,10 +8307,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662452830114
 GameObject:
   m_ObjectHideFlags: 0
@@ -8392,10 +8609,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
-  is_equipment: 0
+  is_equipment: 1
+  armor_Type: 2
 --- !u!1 &912284662574520846
 GameObject:
   m_ObjectHideFlags: 0
@@ -8616,10 +8832,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662676910701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9043,10 +9258,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
-  is_equipment: 0
+  is_equipment: 1
+  armor_Type: 1
 --- !u!1 &912284662803658963
 GameObject:
   m_ObjectHideFlags: 0
@@ -9181,10 +9395,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662826117359
 GameObject:
   m_ObjectHideFlags: 0
@@ -9309,10 +9522,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662844614429
 GameObject:
   m_ObjectHideFlags: 0
@@ -9571,10 +9783,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726888526951}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662874207527
 GameObject:
   m_ObjectHideFlags: 0
@@ -9743,10 +9954,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662889530182
 GameObject:
   m_ObjectHideFlags: 0
@@ -9976,10 +10186,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!222 &912284662945288080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10010,10 +10219,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284662945288085
 GameObject:
   m_ObjectHideFlags: 0
@@ -10472,10 +10680,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663014564102
 GameObject:
   m_ObjectHideFlags: 0
@@ -10630,10 +10837,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
-  is_equipment: 0
+  is_equipment: 1
+  armor_Type: 3
 --- !u!1 &912284663064720602
 GameObject:
   m_ObjectHideFlags: 0
@@ -10748,10 +10954,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725974234378}
-  info_image: {fileID: 7277554725974234377}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663129757328
 GameObject:
   m_ObjectHideFlags: 0
@@ -10866,10 +11071,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663135371200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10984,10 +11188,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663140438987
 GameObject:
   m_ObjectHideFlags: 0
@@ -11102,10 +11305,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663158583396
 GameObject:
   m_ObjectHideFlags: 0
@@ -11370,10 +11572,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &912284663214912680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11523,10 +11724,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663226558182
 GameObject:
   m_ObjectHideFlags: 0
@@ -11681,10 +11881,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554727315629979}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663278237312
 GameObject:
   m_ObjectHideFlags: 0
@@ -11799,10 +11998,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663294873794
 GameObject:
   m_ObjectHideFlags: 0
@@ -11917,10 +12115,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663323762075
 GameObject:
   m_ObjectHideFlags: 0
@@ -12035,10 +12232,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!222 &912284663337166320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12069,10 +12265,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663337166325
 GameObject:
   m_ObjectHideFlags: 0
@@ -12346,10 +12541,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!224 &912284663404291280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12574,10 +12768,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726835430339}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663435805086
 GameObject:
   m_ObjectHideFlags: 0
@@ -12788,10 +12981,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663526413839
 GameObject:
   m_ObjectHideFlags: 0
@@ -12822,8 +13014,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.89031, y: 0.95, z: 1}
   m_Children:
-  - {fileID: 3590312349010535939}
   - {fileID: 3590312348702851285}
+  - {fileID: 3590312349010535939}
   m_Father: {fileID: 912284663165378651}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12906,10 +13098,9 @@ MonoBehaviour:
   is_result_slot: 1
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663626581311
 GameObject:
   m_ObjectHideFlags: 0
@@ -12988,10 +13179,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663645345773
 GameObject:
   m_ObjectHideFlags: 0
@@ -13046,8 +13236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f434aba50ebdc47b893a65b5a08519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
+  _transform: {fileID: 0}
   info_transform: {fileID: 912284663343886388}
+  id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
+  info_image: {fileID: 3590312349468311865}
+  info_text: {fileID: 3590312348957806262}
+  info_sub: {fileID: 990815001}
 --- !u!1 &912284663658844083
 GameObject:
   m_ObjectHideFlags: 0
@@ -13162,10 +13356,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!224 &912284663664556024
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13261,10 +13454,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663664556031
 GameObject:
   m_ObjectHideFlags: 0
@@ -13398,10 +13590,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663714487097
 GameObject:
   m_ObjectHideFlags: 0
@@ -13647,10 +13838,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726533695018}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &912284663850831471
 GameObject:
   m_ObjectHideFlags: 0
@@ -13784,10 +13974,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
-  is_equipment: 0
+  is_equipment: 1
+  armor_Type: 0
 --- !u!1 &912284663890167144
 GameObject:
   m_ObjectHideFlags: 0
@@ -15707,10 +15896,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348440152559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15825,10 +16013,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348462316783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16410,10 +16597,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348563812886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16603,10 +16789,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348567016212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16879,10 +17064,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348594141071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17147,10 +17331,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348607485951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17428,10 +17611,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348655981994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17683,7 +17865,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 912284663626581304}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18130,10 +18312,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348813411629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18248,10 +18429,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348847823811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18513,10 +18693,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!1 &3590312348865967148
 GameObject:
   m_ObjectHideFlags: 0
@@ -18936,10 +19115,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348938400962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19382,7 +19560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19432,10 +19610,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312348975403525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19729,7 +19906,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 912284663626581304}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19950,10 +20127,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349035053220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20448,10 +20624,9 @@ MonoBehaviour:
   is_result_slot: 1
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349102597982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21301,10 +21476,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349163937285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21554,10 +21728,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349185133995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22147,10 +22320,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349251660654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22530,10 +22702,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349342985156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22988,10 +23159,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349413125396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23371,10 +23541,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349444276835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23470,10 +23639,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349446073786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23730,14 +23898,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3590312348957806261}
+  - {fileID: 990815000}
   m_Father: {fileID: 912284663645345774}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3590312349472200976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24963,10 +25132,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349649443007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25318,10 +25486,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349686888081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25654,10 +25821,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349722408391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25839,10 +26005,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349763450596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26696,8 +26861,6 @@ MonoBehaviour:
   fire_slider: {fileID: 3590312350268198396}
   fire_image: {fileID: 3590312348778241622}
   furnace_tg: {fileID: 0}
-  fuel_id_list: 
-  source_id_list: 
 --- !u!1 &3590312349885550800
 GameObject:
   m_ObjectHideFlags: 0
@@ -27525,10 +27688,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312349973354800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27762,10 +27924,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350004623994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28362,10 +28523,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350062497079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28575,10 +28735,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350089283999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29002,10 +29161,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!224 &3590312350170085856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29388,10 +29546,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350250463628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30260,10 +30417,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350403884529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30418,10 +30574,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 1
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350428963621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30706,10 +30861,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350434948805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31164,10 +31318,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350481632814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31263,10 +31416,9 @@ MonoBehaviour:
   is_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
-  info_image: {fileID: 3590312349468311865}
-  info_text: {fileID: 3590312348957806262}
   is_craft_slot: 0
   is_equipment: 0
+  armor_Type: 0
 --- !u!114 &3590312350486882042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32316,6 +32468,7 @@ Transform:
   m_Children:
   - {fileID: 781449804}
   - {fileID: 1341837798}
+  - {fileID: 281513283}
   - {fileID: 1677844053}
   - {fileID: 1327066764}
   m_Father: {fileID: 3695633616353171738}
@@ -32578,11 +32731,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726865354824}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284661972269433}
   is_active: 0
 --- !u!224 &7277554725767396863
 RectTransform:
@@ -32719,11 +32872,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726520399305}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663064720614}
   is_active: 0
 --- !u!224 &7277554725974234379
 RectTransform:
@@ -32865,11 +33018,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727267927696}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662043355939}
   is_active: 0
 --- !u!224 &7277554726187531082
 RectTransform:
@@ -33027,11 +33180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727712914159}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662292616344}
   is_active: 1
 --- !u!222 &7277554726414650109
 CanvasRenderer:
@@ -33294,11 +33447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727792898494}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663850831467}
   is_active: 0
 --- !u!1 &7277554726533695019
 GameObject:
@@ -33542,11 +33695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727752881545}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663435805082}
   is_active: 0
 --- !u!224 &7277554726835430396
 RectTransform:
@@ -33829,11 +33982,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727698061649}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662874207523}
   is_active: 0
 --- !u!114 &7277554726934514832
 MonoBehaviour:
@@ -33848,11 +34001,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726860286579}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662080448091}
   is_active: 0
 --- !u!224 &7277554726934514833
 RectTransform:
@@ -34326,11 +34479,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726611934009}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663276823380}
   is_active: 0
 --- !u!114 &7277554727478368428
 MonoBehaviour:

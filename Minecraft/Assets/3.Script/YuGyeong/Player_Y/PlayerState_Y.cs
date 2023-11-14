@@ -73,6 +73,8 @@ public class PlayerState_Y : Living
     public int att_speed; //공격 속도
     public int defense_power; //방어력만큼 빼서 데미지 입기
 
+    public Vector3 original_spawn_position;
+    public Bed_TG respawn_bed =null;
 
     void Start()
     {
@@ -166,10 +168,10 @@ public class PlayerState_Y : Living
     }
     public override void OnDamage(int Damage)
     {
-        if (curhealth <= 0)
+        /*if (curhealth <= 0)
         {
             return;
-        }
+        }*/
         base.OnDamage(Damage);
     }
     public void GetExp(float exp)
@@ -263,6 +265,25 @@ public class PlayerState_Y : Living
     public override void Die()
     {
         base.Die();
+        respawn();
+        //Invoke("respawn", 2f);
         Debug.Log("죽기 성공");
+    }
+
+    public void respawn() {
+        curhealth = 20;
+        curhungry = 20;
+        curexp = 0;
+        totalexp = 0;
+        level = 1;
+        isDead = false;
+        transform.position = get_respawn_position();
+    }
+
+    public Vector3 get_respawn_position() {
+        if (respawn_bed == null) {
+            return original_spawn_position;
+        }
+        return respawn_bed.get_respawn_position();
     }
 }
