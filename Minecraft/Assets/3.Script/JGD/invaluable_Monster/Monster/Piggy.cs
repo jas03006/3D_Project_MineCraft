@@ -16,6 +16,7 @@ public class Piggy : Monster_controll
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         move = true;
         ray = new Ray();
         PigHp = curhealth;
@@ -74,9 +75,9 @@ public class Piggy : Monster_controll
 
     public override void MonsterHurt(int PlayerDamage)    // 몬스터가 맞는거 
     {
+        PigHp = PigHp - PlayerDamage;
         if (PigHp >0 )
         {
-            PigHp = PigHp - PlayerDamage;
             StartCoroutine(MonsterRunout());
             StopCoroutine(MonsterStand());
             move = true;
