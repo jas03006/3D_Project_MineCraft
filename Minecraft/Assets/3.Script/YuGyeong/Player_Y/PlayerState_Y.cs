@@ -150,8 +150,8 @@ public class PlayerState_Y : Living
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OnDamage(1);
-            Debug.Log("체력" + curhealth);
+            OnDamage(Combat_system.instance.cal_combat_monster(Monster_ID_J.zombie));
+            Debug.Log($"들어간 데미지 :{Combat_system.instance.cal_combat_monster(Monster_ID_J.zombie)}/현재 체력{curhealth}");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -168,10 +168,6 @@ public class PlayerState_Y : Living
     }
     public override void OnDamage(int Damage)
     {
-        /*if (curhealth <= 0)
-        {
-            return;
-        }*/
         base.OnDamage(Damage);
     }
     public void GetExp(float exp)
