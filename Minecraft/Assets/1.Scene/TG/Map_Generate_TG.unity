@@ -1115,6 +1115,8 @@ MonoBehaviour:
   attack_power: 0
   att_speed: 0
   defense_power: 0
+  original_spawn_position: {x: 0, y: 0, z: 0}
+  respawn_bed: {fileID: 0}
 --- !u!136 &726597375
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2656,7 +2658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2080202853
 Transform:
   m_ObjectHideFlags: 0

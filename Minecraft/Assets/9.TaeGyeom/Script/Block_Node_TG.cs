@@ -109,11 +109,13 @@ public class Block_Node_TG
     public void destroy_chain()
     {
         //Debug.Log("Destroy");
-        transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
-        if (bt != null )
-        {
-            bt.drop_items();            
-        }
+        if (id != Item_ID_TG.Fill) {
+            transform.GetChild(0).TryGetComponent<Block_TG>(out Block_TG bt);
+            if (bt != null)
+            {
+                bt.drop_items();
+            }
+        }        
 
         chunk.destory_and_show_adjacents(local_pos_in_chunk.x, local_pos_in_chunk.y, local_pos_in_chunk.z);
         if (parent != null) {
