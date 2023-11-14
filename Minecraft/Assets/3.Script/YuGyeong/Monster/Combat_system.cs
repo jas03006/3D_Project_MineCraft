@@ -28,7 +28,7 @@ public class Combat_system : MonoBehaviour
         };
 
     private PlayerState_Y psy;
-    private ID2Datalist_YG id2data;
+    [SerializeField]private ID2Datalist_YG id2data;
 
     private void Awake()
     {
@@ -60,9 +60,9 @@ public class Combat_system : MonoBehaviour
             switch (useful.useful_Type)
             {
                 case Useful_type.pickaxe:
-                    return pickaxe_list.Contains(target_id) ? psy.attack_power : useful.attack + psy.attack_power;
+                    return pickaxe_list.Contains(target_id) ? useful.attack + psy.attack_power : psy.attack_power;
                 case Useful_type.axe:
-                    return axe_list_item.Contains(target_id) ? psy.attack_power : useful.attack + psy.attack_power;
+                    return axe_list_item.Contains(target_id) ? useful.attack + psy.attack_power : psy.attack_power;
                 default:
                     return psy.attack_power;
             }
@@ -80,7 +80,7 @@ public class Combat_system : MonoBehaviour
             Useful useful = player_data as Useful;
             if (useful.useful_Type == Useful_type.sword || useful.useful_Type == Useful_type.axe)
             {
-                return monster_list.Contains(target_id) ? psy.attack_power : useful.attack + psy.attack_power;
+                return monster_list.Contains(target_id) ? useful.attack + psy.attack_power : psy.attack_power;
             }
         }
         return psy.attack_power;

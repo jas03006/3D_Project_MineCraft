@@ -69,9 +69,9 @@ public class PlayerState_Y : Living
     [SerializeField] private AudioClip expclip;
 
     [Header("공격관련 스탯")]
-    public int attack_power; //공격력만큼 더해서 데미지 입히기
-    public int att_speed; //공격 속도
-    public int defense_power; //방어력만큼 빼서 데미지 입기
+    public int attack_power =1; //공격력만큼 더해서 데미지 입히기
+    public int att_speed= 1; //공격 속도
+    public int defense_power= 1; //방어력만큼 빼서 데미지 입기
 
     public Vector3 original_spawn_position;
     public Bed_TG respawn_bed =null;
@@ -150,8 +150,8 @@ public class PlayerState_Y : Living
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OnDamage(Combat_system.instance.cal_combat_monster(Monster_ID_J.zombie));
-            Debug.Log($"들어간 데미지 :{Combat_system.instance.cal_combat_monster(Monster_ID_J.zombie)}/현재 체력{curhealth}");
+            OnDamage(Combat_system.instance.cal_combat_block(Item_ID_TG.stone));
+            Debug.Log($"들어간 데미지 :{Combat_system.instance.cal_combat_block(Item_ID_TG.stone)}/현재 체력{curhealth}");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -194,32 +194,27 @@ public class PlayerState_Y : Living
         {
             return;
         }
-        Debug.Log($"hungry :{curhungry} / health :{curhealth}");
+
         if (curhungry >= 20)
         {
-            Debug.Log($"curhungry >= 20");
             StartCoroutine(Health(1, 0.5f, 6f));
             p_movement.canrun = true;
         }
         else if (curhungry >= 18)
         {
-            Debug.Log($"curhungry >= 18");
             StartCoroutine(Health(1, 4f, 8f));
             p_movement.canrun = true;
         }
         else if (curhungry > 6)
         {
-            Debug.Log($"curhungry > 6");
             p_movement.canrun = true;
         }
         else if (curhungry <= 6)
         {
-            Debug.Log($"curhungry <= 6");
             p_movement.canrun = false;
         }
         else if (curhungry <= 0)
         {
-            Debug.Log($"curhungry <= 0");
             StartCoroutine(Health(-1, 4f, 100f));
         }
     }
@@ -273,6 +268,12 @@ public class PlayerState_Y : Living
         totalexp = 0;
         level = 1;
         isDead = false;
+        for (int i = 0; i < H_object.Length; i++)
+        {
+            H_object[i].gameObject.GetComponent<Outline>().enabled = true;
+            F_object[i].gameObject.GetComponent<Outline>().enabled = true;
+        }
+
         transform.position = get_respawn_position();
     }
 

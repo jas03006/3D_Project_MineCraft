@@ -30,7 +30,7 @@ public class Weapon_position_J : MonoBehaviour
                 player_tg.block_in_hand = null;
             }
             else {
-                player_tg.block_in_hand = Biom_Manager.instance.block_prefabs_SO.get_prefab(id_);
+                //player_tg.block_in_hand = Biom_Manager.instance.block_prefabs_SO.get_prefab(id_);
             }            
         }
 

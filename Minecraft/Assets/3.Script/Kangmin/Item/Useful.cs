@@ -43,7 +43,6 @@ public class Useful : InventoryData, IUseFul
         {
             player_state = FindObjectOfType<PlayerState_Y>();
             player_animator = player_state.gameObject.GetComponent<Animator>();
-            Debug.Log($"{player_state.gameObject.name}");
 
             //animation
         }
