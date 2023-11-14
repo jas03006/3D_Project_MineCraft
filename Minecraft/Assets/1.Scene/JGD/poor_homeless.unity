@@ -232,6 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312077388}
+  - component: {fileID: 312077392}
   - component: {fileID: 312077391}
   - component: {fileID: 312077390}
   - component: {fileID: 312077389}
@@ -250,7 +251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312077387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.215, y: 0, z: 0}
+  m_LocalPosition: {x: -3.215, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7870209193851775744}
@@ -308,6 +309,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  piggyJumppower: 65
+  id: 363
 --- !u!54 &312077390
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,6 +340,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.71496546, z: 1}
   m_Center: {x: 0, y: 0.3974827, z: 0}
+--- !u!95 &312077392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312077387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c733da83a7e31041bffc04b147214a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &443284590
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +803,7 @@ GameObject:
   - component: {fileID: 1291647842}
   m_Layer: 0
   m_Name: FirstMonster
-  m_TagString: Untagged
+  m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -872,7 +894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291647836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.76, y: 0.91, z: 6.93}
+  m_LocalPosition: {x: -3.3, y: 0.495, z: 4.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -902,7 +924,7 @@ GameObject:
   - component: {fileID: 1329962244}
   - component: {fileID: 1329962247}
   - component: {fileID: 1329962246}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +1006,7 @@ GameObject:
   - component: {fileID: 1874075191}
   - component: {fileID: 1874075190}
   - component: {fileID: 1874075189}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: point_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1282,7 @@ GameObject:
   - component: {fileID: 4996950415354231533}
   - component: {fileID: 6433438047405746565}
   - component: {fileID: 220613588920372991}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,7 +1355,7 @@ GameObject:
   - component: {fileID: 5457574371059952161}
   - component: {fileID: 3791895228776114594}
   - component: {fileID: 3160713093425633671}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1413,7 +1435,7 @@ GameObject:
   - component: {fileID: 138749915907259763}
   - component: {fileID: 7126457804856915377}
   - component: {fileID: 1525281398487781895}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Leg.Diamond.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1524,7 @@ GameObject:
   - component: {fileID: 6818297460153997879}
   - component: {fileID: 1785756037920712469}
   - component: {fileID: 5926637738804889369}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Waist.Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1646,7 +1668,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148855733601}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 8
@@ -1765,7 +1787,7 @@ GameObject:
   - component: {fileID: 2694472343223408763}
   - component: {fileID: 8032562567977289615}
   - component: {fileID: 3668990790492490049}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron.026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1962,7 +1984,7 @@ GameObject:
   - component: {fileID: 4178716433003178124}
   - component: {fileID: 2001561878491906887}
   - component: {fileID: 57282750962459208}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2081,7 +2103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1260685892498406446}
   - component: {fileID: 1888428328919426709}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2168,7 +2190,7 @@ GameObject:
   - component: {fileID: 2937658260001848814}
   - component: {fileID: 7472686396040627656}
   - component: {fileID: 2007747270013975744}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Dia_Armer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2317,7 +2339,7 @@ GameObject:
   - component: {fileID: 674727761534350781}
   - component: {fileID: 4341157961234718129}
   - component: {fileID: 8950446733731133573}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chestplate:Diamond-Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2557,7 +2579,7 @@ GameObject:
   - component: {fileID: 7519680944693743765}
   - component: {fileID: 7932019846535082850}
   - component: {fileID: 3669686006700403169}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Boot.Diamond.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2575,7 +2597,7 @@ GameObject:
   - component: {fileID: 4112745805350047845}
   - component: {fileID: 6388266624933981676}
   - component: {fileID: 9084539135925061813}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2894,7 +2916,7 @@ GameObject:
   - component: {fileID: 2545508720723540435}
   - component: {fileID: 418205745975069655}
   - component: {fileID: 232218963858954525}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chestplate:Iron-Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3211,7 +3233,7 @@ GameObject:
   - component: {fileID: 8490603369023119174}
   - component: {fileID: 1384837776031916151}
   - component: {fileID: 2450830085060331037}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3302,7 +3324,7 @@ GameObject:
   - component: {fileID: 5337562794647927162}
   - component: {fileID: 5337562794647927165}
   - component: {fileID: 5337562794647927166}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -3367,12 +3389,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5337562794647927161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0.08}
+  m_LocalRotation: {x: 0.16006292, y: 0.8203286, z: -0.27610484, w: 0.47455966}
+  m_LocalPosition: {x: -7.6396103, y: 4.9842577, z: 3.3067822}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5337562796618627413}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5337562794647927165
 MonoBehaviour:
@@ -3453,9 +3475,9 @@ GameObject:
   - component: {fileID: 5337562796618627412}
   - component: {fileID: 5337562796618627411}
   - component: {fileID: 5337562796618627414}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3512,7 +3534,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1260685892498406446}
-  - {fileID: 5337562794647927164}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3684,7 +3705,7 @@ GameObject:
   - component: {fileID: 1523236108086146069}
   - component: {fileID: 6495254772657690035}
   - component: {fileID: 3617768568141451996}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chestplate:Diamond-Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3895,7 +3916,7 @@ GameObject:
   - component: {fileID: 3833430471789574889}
   - component: {fileID: 2903683518276316827}
   - component: {fileID: 7036119804083554472}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Helmet:Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4076,7 +4097,7 @@ GameObject:
   - component: {fileID: 5857694874829529133}
   - component: {fileID: 4648891620979004591}
   - component: {fileID: 1430132050172149104}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Helmet:Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4094,7 +4115,7 @@ GameObject:
   - component: {fileID: 6469696486608959336}
   - component: {fileID: 3003922230188711639}
   - component: {fileID: 9154376760693084985}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron.027
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4207,7 +4228,7 @@ GameObject:
   - component: {fileID: 8947422156538743289}
   - component: {fileID: 7986245273102646031}
   - component: {fileID: 3428714797205010075}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron.025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4239,7 +4260,7 @@ GameObject:
   - component: {fileID: 8551844936386981569}
   - component: {fileID: 7431471248928980164}
   - component: {fileID: 2174233034091570396}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Boot.Diamond.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4313,7 +4334,7 @@ GameObject:
   - component: {fileID: 88046037403509044}
   - component: {fileID: 7811999413616694334}
   - component: {fileID: 7490279394413762361}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4490,7 +4511,7 @@ GameObject:
   - component: {fileID: 6059990451340569611}
   - component: {fileID: 8562260026126134988}
   - component: {fileID: 6575020218336353138}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chestplate:Iron-Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4665,7 +4686,7 @@ GameObject:
   - component: {fileID: 328075652034919375}
   - component: {fileID: 7480663267476101548}
   - component: {fileID: 3556042106519284590}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Leg.Diamond.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4753,7 +4774,7 @@ GameObject:
   - component: {fileID: 755197906410186837}
   - component: {fileID: 5096016843472969843}
   - component: {fileID: 3778912261123063859}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Waist.Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4867,7 +4888,7 @@ GameObject:
   - component: {fileID: 352696293017713319}
   - component: {fileID: 3892977280193378265}
   - component: {fileID: 5262436944595505567}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Iron.031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4948,7 +4969,7 @@ GameObject:
   - component: {fileID: 7931708881304535885}
   - component: {fileID: 5483143996449991821}
   - component: {fileID: 7069578336075138164}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5006,6 +5027,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  piggyJumppower: 0
+  id: 0
 --- !u!23 &9084539135925061813
 MeshRenderer:
   m_ObjectHideFlags: 0

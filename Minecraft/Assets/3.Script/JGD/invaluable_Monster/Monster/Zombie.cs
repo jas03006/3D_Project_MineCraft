@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Zombie : Monster_controll
 {
+
     [SerializeField] Renderer[] renders;
     Color zomcolor = new Color(1f, 0.2f, 0.2f, 1f);
+    protected bool move = true;
     private void Awake()
     {
         rigi = GetComponent<Rigidbody>();
@@ -15,17 +17,17 @@ public class Zombie : Monster_controll
     private void Start()
     {
         Rengering();
-        StartCoroutine(ZombieStand());
+        StartCoroutine(MonsterStand());
         
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            MonsterHurt();
+            MonsterHurt(10);
         }
     }
-    public override void MonsterHurt()
+    public override void MonsterHurt(int PlayerDamage)
     {
         move = false;
         StartCoroutine(MonsterFracture());
@@ -39,41 +41,41 @@ public class Zombie : Monster_controll
         }
     }
 
-    protected virtual IEnumerator ZombieStand()      //좀비가 가만히 있을때
-    {
-        var moveTime = CurveWeighedRandom(ani);
-        var dir = new Vector3();
-        dir.x = Random.Range(-10f, 10f);
-        dir.y = 0;
-        dir.z = Random.Range(-10f, 10f);
-        pos = dir + this.transform.position;
-        transform.forward = dir.normalized;
-        if (move)
-        {
-            while (true)
-            {
-
-                float zombietimer = 0f;
-                zombietimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-
-                float distance = Vector3.Distance(transform.position, pos);
-
-                if (distance <= 0.1f || zombietimer > 0.3f) //얘 왜 0.3임? 진짜 모름 ㄹㅇ
-                {
-                    zombietimer = 0f;
-
-                    yield return new WaitForSeconds(Random.Range(1f, moveTime));
-
-                    dir.x = Random.Range(-3f, 3f);
-                    dir.z = Random.Range(-3f, 3f);
-                    pos = dir + this.transform.position;
-                    transform.forward = dir.normalized;
-                }
-                yield return null;
-            }
-        }
-    }
+    //protected virtual IEnumerator ZombieStand()      //좀비가 가만히 있을때
+    //{
+    //    var moveTime = CurveWeighedRandom(ani);
+    //    var dir = new Vector3();
+    //    dir.x = Random.Range(-10f, 10f);
+    //    dir.y = 0;
+    //    dir.z = Random.Range(-10f, 10f);
+    //    pos = dir + this.transform.position;
+    //    transform.forward = dir.normalized;
+    //    if (move)
+    //    {
+    //        while (true)
+    //        {
+    //
+    //            float zombietimer = 0f;
+    //            zombietimer += Time.deltaTime;
+    //            this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
+    //
+    //            float distance = Vector3.Distance(transform.position, pos);
+    //
+    //            if (distance <= 0.1f || zombietimer > 0.3f) //얘 왜 0.3임? 진짜 모름 ㄹㅇ
+    //            {
+    //                zombietimer = 0f;
+    //
+    //                yield return new WaitForSeconds(Random.Range(1f, moveTime));
+    //
+    //                dir.x = Random.Range(-3f, 3f);
+    //                dir.z = Random.Range(-3f, 3f);
+    //                pos = dir + this.transform.position;
+    //                transform.forward = dir.normalized;
+    //            }
+    //            yield return null;
+    //        }
+    //    }
+    //}
     protected override void MonsterMove()
     {
 
@@ -115,5 +117,46 @@ public class Zombie : Monster_controll
         move = true;
         yield break;
 
+    }
+
+    protected override IEnumerator MonsterStand()  //좀비가 가만히 있을때
+    {
+        var moveTime = CurveWeighedRandom(ani);
+        var dir = new Vector3();
+        dir.x = Random.Range(-10f, 10f);
+        dir.y = 0;
+        dir.z = Random.Range(-10f, 10f);
+        pos = dir + this.transform.position;
+        transform.forward = dir.normalized;
+        if (move)
+        {
+            while (true)
+            {
+
+                float zombietimer = 0f;
+                zombietimer += Time.deltaTime;
+                this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
+
+                float distance = Vector3.Distance(transform.position, pos);
+
+                if (distance <= 0.1f || zombietimer > 3f)
+                {
+                    zombietimer = 0f;
+
+                    yield return new WaitForSeconds(Random.Range(1f, moveTime));
+
+                    dir.x = Random.Range(-3f, 3f);
+                    dir.z = Random.Range(-3f, 3f);
+                    pos = dir + this.transform.position;
+                    transform.forward = dir.normalized;
+                }
+                yield return null;
+            }
+        }
+    }
+
+    protected override void MonsterDead()
+    {
+        Destroy(gameObject);
     }
 }

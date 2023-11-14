@@ -28,7 +28,6 @@ public abstract class Monster_controll : Living
     protected Color Hitcolor = new Color(1f, 0.3f, 0.3f, 1f);
     protected Renderer render;
     protected Rigidbody rigi;
-    protected bool move = true;
     public virtual void MonsterAtteck()
     {
 
@@ -37,49 +36,16 @@ public abstract class Monster_controll : Living
     {
         return curve.Evaluate(Random.value);
     }
-    protected virtual IEnumerator MonsterStand()      //몬스터가 가만히 있을때
-    {
-        var moveTime = CurveWeighedRandom(ani);
-        var dir = new Vector3();
-        dir.x = Random.Range(-3f, 3f);
-        dir.y = 0;
-        dir.z = Random.Range(-3f, 3f);
-        pos = dir + this.transform.position;
-        transform.forward = dir.normalized;
-        if (move)
-        {
-            while (true)
-            {
-
-                float Maxtimer = 0f;
-                Maxtimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-
-                float distance = Vector3.Distance(transform.position, pos);
-
-                if (distance <= 0.1f || Maxtimer > 3f)
-                {
-                    Maxtimer = 0f;
-
-                    yield return new WaitForSeconds(Random.Range(1f, moveTime));
-
-                    dir.x = Random.Range(-3f, 3f);
-                    dir.z = Random.Range(-3f, 3f);
-                    pos = dir + this.transform.position;
-                    transform.forward = dir.normalized;
-                }
-                yield return null;
-            }
-        }
-    }
+    protected abstract IEnumerator MonsterStand();      //몬스터가 가만히 있을때
     //랜덤이동 
     //그러나 가만히도 있어야함
     protected abstract IEnumerator MonsterFracture();  //피격판정 넉백 도망까지
+    protected abstract void MonsterDead();
 
 
     protected abstract void MonsterMove();
 
-    public abstract void MonsterHurt();
+    public abstract void MonsterHurt(int PlayerDamage);
 
 
 }
