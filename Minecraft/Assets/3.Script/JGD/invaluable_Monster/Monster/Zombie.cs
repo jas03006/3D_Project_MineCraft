@@ -24,7 +24,7 @@ public class Zombie : Monster_controll
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
-            MonsterHurt(10);
+            MonsterHurt(55);
         }
     }
     public override void MonsterHurt(int PlayerDamage)
@@ -41,41 +41,6 @@ public class Zombie : Monster_controll
         }
     }
 
-    //protected virtual IEnumerator ZombieStand()      //좀비가 가만히 있을때
-    //{
-    //    var moveTime = CurveWeighedRandom(ani);
-    //    var dir = new Vector3();
-    //    dir.x = Random.Range(-10f, 10f);
-    //    dir.y = 0;
-    //    dir.z = Random.Range(-10f, 10f);
-    //    pos = dir + this.transform.position;
-    //    transform.forward = dir.normalized;
-    //    if (move)
-    //    {
-    //        while (true)
-    //        {
-    //
-    //            float zombietimer = 0f;
-    //            zombietimer += Time.deltaTime;
-    //            this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-    //
-    //            float distance = Vector3.Distance(transform.position, pos);
-    //
-    //            if (distance <= 0.1f || zombietimer > 0.3f) //얘 왜 0.3임? 진짜 모름 ㄹㅇ
-    //            {
-    //                zombietimer = 0f;
-    //
-    //                yield return new WaitForSeconds(Random.Range(1f, moveTime));
-    //
-    //                dir.x = Random.Range(-3f, 3f);
-    //                dir.z = Random.Range(-3f, 3f);
-    //                pos = dir + this.transform.position;
-    //                transform.forward = dir.normalized;
-    //            }
-    //            yield return null;
-    //        }
-    //    }
-    //}
     protected override void MonsterMove()
     {
 
@@ -103,12 +68,6 @@ public class Zombie : Monster_controll
             }
         }
 
-        //renders[0].material.color = monstercolor;
-        //renders[1].material.color = monstercolor;
-        //renders[2].material.color = monstercolor;
-        //renders[3].material.color = monstercolor;
-        //renders[4].material.color = monstercolor;
-        //renders[5].material.color = monstercolor;
 
 
         rigi.AddForce(transform.up * 150f);
