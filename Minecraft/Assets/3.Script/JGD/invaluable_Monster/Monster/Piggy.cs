@@ -5,6 +5,7 @@ using UnityEngine;
 public class Piggy : Monster_controll
 {
     Ray ray;
+    Ray ray1;
     [SerializeField] private float piggyJumppower;
     Piggy piggy;
     Animator animation;
@@ -13,6 +14,9 @@ public class Piggy : Monster_controll
     protected bool move = true;
     private int PigHp;
     private int ItemCount = 1;
+    [Header("몬스터 레이 포인트")]
+    [SerializeField] private GameObject Ray1;
+    [SerializeField] private GameObject Ray2;
 
     private void Awake()
     {
@@ -44,10 +48,14 @@ public class Piggy : Monster_controll
 
     private void PigRay()    //정면 레이
     {
-        ray.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        ray.origin += transform.forward * 0.6f;
-        ray.direction = transform.forward;
+        ray.origin = new Vector3(Ray1.transform.position.x, Ray1.transform.position.y, Ray1.transform.position.z);
+
+        ray1.origin = new Vector3(Ray2.transform.position.x, Ray2.transform.position.y, Ray2.transform.position.z);
+
+        ray.direction = Ray1.transform.forward;
+        ray1.direction = Ray2.transform.forward;
         Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction * 0.1f, Color.blue);
         RaycastHit[] hit;
         hit = Physics.RaycastAll(ray,0.2f);
         for (int i =0; i < hit.Length;i++) {
@@ -56,8 +64,20 @@ public class Piggy : Monster_controll
                 break;
             }
         }
-            
-        
+
+        hit = Physics.RaycastAll(ray1, 0.2f);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+            {
+                rigi.AddForce(transform.up * piggyJumppower);
+                break;
+            }
+        }
+        //if (Biom_Manager.instance.get_block(transform.position + transform.forward).id == Item_ID_TG.None) { 
+        //    
+        //}  //주변의 블록 정보 수집?
+
     }
     private void PigRay_Bellybutton()   //돼지 아래쪽 레이
     {
@@ -136,7 +156,7 @@ public class Piggy : Monster_controll
             {
                 Maxtimer += Time.deltaTime;
                 Standtimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed*5 * Time.deltaTime;
+                this.transform.position += transform.forward * Monster_Speed*2f * Time.deltaTime;
                 animation.SetBool("isPigWalk", true);
                 float distance = Vector3.Distance(transform.position, pos);
 
