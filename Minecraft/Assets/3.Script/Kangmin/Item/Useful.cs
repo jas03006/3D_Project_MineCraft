@@ -7,7 +7,8 @@ public interface IUseFul
 }
 public enum Useful_type
 {
-    axe=0,
+    none=0,
+    axe,
     sword,
     pickaxe
 }
