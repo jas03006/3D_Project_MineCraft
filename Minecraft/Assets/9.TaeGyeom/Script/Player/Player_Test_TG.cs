@@ -306,9 +306,15 @@ public class Player_Test_TG : PlayerMovement_Y
 
         is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
         if ((is_grounded == true) == isjump) {
-            if (rigid.velocity.y < -4f) { 
+            if (rigid.velocity.y < -0.5f) {
                 
-            }
+                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                Debug.Log($"{rigid.velocity.y}, {dmg}");
+                if (dmg > 0) {
+                    player_state.OnDamage(dmg);
+                }             
+                
+            }            
         }
         isjump = !is_grounded;
         if (!isjump) {
