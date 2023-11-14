@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1645268308367647867}
   - component: {fileID: 6459801236739038301}
   - component: {fileID: 2723958494530217301}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Dia_Armer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

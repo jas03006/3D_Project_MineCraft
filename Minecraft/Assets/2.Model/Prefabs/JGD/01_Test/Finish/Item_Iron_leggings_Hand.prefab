@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2192936527885572452}
   - component: {fileID: 2192936527885572453}
   - component: {fileID: 2192936527885572454}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Item_Iron_leggings 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7184983017692649947}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Item_Iron_leggings_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

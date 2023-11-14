@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111772479651599580}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Axe_Stone_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1530856443259479428}
   - component: {fileID: 4461271244477258958}
   - component: {fileID: 922152354706913370}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

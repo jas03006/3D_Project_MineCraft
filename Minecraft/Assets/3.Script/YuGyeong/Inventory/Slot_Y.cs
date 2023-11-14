@@ -179,6 +179,9 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         if (have_UIClone)
         {
             uISlot.GetItem(item_id, number, image.color);
+            if (uISlot.is_active) {
+                Inventory.instance.weapon_position.Equip_Weapon(item_id);
+            }
         }
     }
 
@@ -197,6 +200,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         if (have_UIClone)
         {
             uISlot.GetItem(item_id, number, image.color);
+            if (uISlot.is_active)
+            {
+                Inventory.instance.weapon_position.Equip_Weapon(item_id);
+            }
         }
     }
     public virtual void OnPointerEnter(PointerEventData eventData)

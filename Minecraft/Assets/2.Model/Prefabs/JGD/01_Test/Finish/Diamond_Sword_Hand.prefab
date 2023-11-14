@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3090910778164611456}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Diamond_Sword_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1824316927701970359}
   - component: {fileID: 3413689494414004131}
   - component: {fileID: 3166325007059439309}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: DiamondSword_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

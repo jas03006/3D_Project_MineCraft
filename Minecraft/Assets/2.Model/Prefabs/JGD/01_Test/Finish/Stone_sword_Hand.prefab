@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2608101245939927147}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Stone_sword_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4672937154204860205}
   - component: {fileID: 8608138106913550472}
   - component: {fileID: 5805904397854901314}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: StoneSword 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

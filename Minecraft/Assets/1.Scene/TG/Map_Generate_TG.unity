@@ -2656,7 +2656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2080202853
 Transform:
   m_ObjectHideFlags: 0
@@ -2733,7 +2733,7 @@ Camera:
     serializedVersion: 2
     x: 0.33
     y: 0.51
-    width: 0.15
+    width: 0.14
     height: 0.33
   near clip plane: 0.1
   far clip plane: 5
@@ -32729,11 +32729,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726865354824}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284661972269433}
   is_active: 0
 --- !u!224 &7277554725767396863
 RectTransform:
@@ -32870,11 +32870,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726520399305}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663064720614}
   is_active: 0
 --- !u!224 &7277554725974234379
 RectTransform:
@@ -33016,11 +33016,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727267927696}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662043355939}
   is_active: 0
 --- !u!224 &7277554726187531082
 RectTransform:
@@ -33178,11 +33178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727712914159}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662292616344}
   is_active: 1
 --- !u!222 &7277554726414650109
 CanvasRenderer:
@@ -33445,11 +33445,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727792898494}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663850831467}
   is_active: 0
 --- !u!1 &7277554726533695019
 GameObject:
@@ -33693,11 +33693,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727752881545}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663435805082}
   is_active: 0
 --- !u!224 &7277554726835430396
 RectTransform:
@@ -33980,11 +33980,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554727698061649}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662874207523}
   is_active: 0
 --- !u!114 &7277554726934514832
 MonoBehaviour:
@@ -33999,11 +33999,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726860286579}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284662080448091}
   is_active: 0
 --- !u!224 &7277554726934514833
 RectTransform:
@@ -34477,11 +34477,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item_id: 0
-  _value: 0
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
   _image: {fileID: 0}
   highlight: {fileID: 7277554726611934009}
   text: {fileID: 0}
+  clone_slot: {fileID: 912284663276823380}
   is_active: 0
 --- !u!114 &7277554727478368428
 MonoBehaviour:

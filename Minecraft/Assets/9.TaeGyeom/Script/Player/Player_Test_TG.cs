@@ -169,6 +169,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private CapsuleCollider capsule_collider;
 
     public PlayerState_Y player_state;
+    private bool is_grounded;
     protected override void Start()
     {
         base.Start();
@@ -303,14 +304,21 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            isjump = !raycast_all_points(raycast_points.bottom, Vector3.down) ;
-            if (!isjump) {
-                isjump = true;
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
+        if ((is_grounded == true) == isjump) {
+            if (rigid.velocity.y < -4f) { 
+                
+            }
+        }
+        isjump = !is_grounded;
+        if (!isjump) {
+            isjump = true;
+            if (Input.GetButtonDown("Jump"))
+            {                
                 rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-            }            
-        }             
+            }
+        }
+
     }
 
     private void left_click() { //TG
@@ -392,6 +400,7 @@ public class Player_Test_TG : PlayerMovement_Y
                     Biom_Manager.instance.set_block(id_, set_dir,
                         Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
                         ,block_.space);
+                    Inventory.instance.UIslot_minus();
                 }
                                       
                     

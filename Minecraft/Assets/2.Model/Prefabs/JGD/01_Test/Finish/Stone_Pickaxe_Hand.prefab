@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3601276074774421773}
   - component: {fileID: 1423555411328256710}
   - component: {fileID: 633890087430056905}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Stone_Pickaxe 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8837327329407400726}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Stone_Pickaxe_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
