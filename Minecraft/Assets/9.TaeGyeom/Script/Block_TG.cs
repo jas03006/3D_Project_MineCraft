@@ -27,6 +27,7 @@ public class Block_TG : Block_Break
             itemposition();
             block_return();
             die();
+            die_late();
         }
     }
     public virtual void init(bool is_open_)
@@ -40,5 +41,9 @@ public class Block_TG : Block_Break
     }
     public virtual void drop_items() { 
         
+    }
+
+    public virtual void die_late() { 
+    
     }
 }

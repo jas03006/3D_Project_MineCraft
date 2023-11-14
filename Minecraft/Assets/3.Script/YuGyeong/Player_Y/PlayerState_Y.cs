@@ -73,6 +73,8 @@ public class PlayerState_Y : Living
     public int att_speed; //공격 속도
     public int defense_power; //방어력만큼 빼서 데미지 입기
 
+    public Vector3 original_spawn_position;
+    public Bed_TG respawn_bed =null;
 
     void Start()
     {
@@ -263,6 +265,18 @@ public class PlayerState_Y : Living
     public override void Die()
     {
         base.Die();
+        Invoke("respawn", 2f);
         Debug.Log("죽기 성공");
+    }
+
+    public void respawn() {
+        transform.TransformPoint(get_respawn_position());
+    }
+
+    public Vector3 get_respawn_position() {
+        if (respawn_bed == null) {
+            return original_spawn_position;
+        }
+        return respawn_bed.get_respawn_position();
     }
 }

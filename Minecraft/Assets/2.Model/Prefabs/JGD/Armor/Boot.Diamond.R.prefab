@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5079528614871192130}
   - component: {fileID: 4625596631242813877}
   - component: {fileID: 2073923417877490486}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Boot.Diamond.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

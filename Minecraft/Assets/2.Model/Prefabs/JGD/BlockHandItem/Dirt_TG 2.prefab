@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4861730266974659016}
   - component: {fileID: 6361334387489905146}
   - component: {fileID: 1250210270790085328}
-  m_Layer: 6
+  m_Layer: 21
   m_Name: Dirt_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4861730266974659017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861730267239214074}
   m_Father: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4861730267239214074}
   - component: {fileID: 4861730267239214055}
   - component: {fileID: 4861730267239214072}
-  m_Layer: 6
+  m_Layer: 21
   m_Name: Block
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 4861730267239214075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1, y: 0.3, z: 0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4861730266974659016}
   m_RootOrder: 0

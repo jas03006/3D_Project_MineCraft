@@ -15,6 +15,7 @@ public class ID2Item : ScriptableObject
             int i = 0;
             foreach (Item_ID_TG e in Enum.GetValues(typeof(Item_ID_TG)))
             {
+                //Debug.Log(e);
                 ID2index_dict[e] = i;
                 i++;
             }

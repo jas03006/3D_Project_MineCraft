@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3105651049108917051}
   - component: {fileID: 974968246615243071}
   - component: {fileID: 825014666042960885}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chestplate_Iron-Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

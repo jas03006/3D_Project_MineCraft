@@ -65,7 +65,7 @@ public class Chunk_TG : MonoBehaviour
     {
         is_active = true;
         Vector3Int origin_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos);
-        Vector3 new_pos = new Vector3();
+        //Vector3 new_pos = new Vector3();
         //float start_time = Time.time;
         for (int i = 0; i < chunk_size; i++)
         {
@@ -89,7 +89,7 @@ public class Chunk_TG : MonoBehaviour
     {
         is_active = true;
         Vector3Int origin_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos);
-        Vector3 new_pos = new Vector3();
+       // Vector3 new_pos = new Vector3();
         //float start_time = Time.time;
         for (int i = 0; i < chunk_size; i++)
         {

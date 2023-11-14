@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5934005969988791268}
   - component: {fileID: 5701894196497121174}
   - component: {fileID: 490777905373878693}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Helmet_Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
