@@ -19,7 +19,7 @@ public abstract class Monster_controll : Living
     [SerializeField] protected float Monster_Speed;
     [SerializeField] protected float Monster_Damage;
     [Header("플레이어 위치")]
-    [SerializeField] protected GameObject player;
+    protected GameObject player;
     protected Color monstercolor;
     [Header("몬스터 ID")]
     [SerializeField] protected Monster_ID_J monsterID;

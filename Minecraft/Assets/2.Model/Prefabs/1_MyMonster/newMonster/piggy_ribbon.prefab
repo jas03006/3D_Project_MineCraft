@@ -707,7 +707,6 @@ GameObject:
   - component: {fileID: 7675969585006433924}
   - component: {fileID: 7675969585006433925}
   - component: {fileID: 7675969585006433922}
-  - component: {fileID: 7675969585006433923}
   m_Layer: 22
   m_Name: ew
   m_TagString: Untagged
@@ -779,19 +778,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7675969585006433923
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7675969585006433920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7675969586230303738
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +877,6 @@ MonoBehaviour:
   starthealth: 100
   Monster_Speed: 1
   Monster_Damage: 0
-  player: {fileID: 0}
   monsterID: 1
   ani:
     serializedVersion: 2
