@@ -27,7 +27,7 @@ public class Hand_Item_Pooling : MonoBehaviour
             WeaponPool[i] = new List<GameObject>();
         }
     }
-    public GameObject GetWeapon(Item_ID_TG id, Vector3 position, Transform parent_tr, Vector3 direction)
+    public GameObject GetWeapon(Item_ID_TG id, Vector3 position, Transform parent_tr, Vector3 direction, Vector3 forward_target)
     {
         GameObject select = null;
 
@@ -38,7 +38,9 @@ public class Hand_Item_Pooling : MonoBehaviour
                 select = item;
                 select.SetActive(true);
                 select.transform.position = position;
-                select.transform.up = direction;
+                select.transform.LookAt(forward_target, direction);
+                //select.transform.forward = forward_dir;
+                //select.transform.up = direction;
                 select.transform.SetParent(parent_tr);
                 break;
             }
@@ -49,7 +51,9 @@ public class Hand_Item_Pooling : MonoBehaviour
             if (prefab != null)
             {
                 select = Instantiate(prefab, position, Quaternion.identity);
-                select.transform.up = direction;
+                select.transform.LookAt(forward_target, direction);
+                //select.transform.forward = forward_dir;
+               // select.transform.up = direction;
                 select.transform.SetParent(parent_tr);
                 
                 WeaponPool[iD2Item.ID2index(id)].Add(select);

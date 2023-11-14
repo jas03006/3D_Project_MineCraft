@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861730266974659016}
-  m_Layer: 6
+  m_Layer: 21
   m_Name: Bedrock_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4861730267239214074}
   - component: {fileID: 4861730267239214055}
-  m_Layer: 6
+  m_Layer: 21
   m_Name: Block
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}

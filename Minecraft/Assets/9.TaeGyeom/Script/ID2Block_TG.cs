@@ -42,13 +42,16 @@ public class ID2Block_TG : ScriptableObject
     }
     public GameObject get_prefab(Item_ID_TG id) {
         int ind = ID2index(id);
-        if (block_prefab_list.Count <= ind) {
+        if (ind == -1 || block_prefab_list.Count <= ind) {
             return null;
         }
         return block_prefab_list[ind];
     }
 
     public int ID2index(Item_ID_TG id) {
-        return ID2index_dict[id];
+        if (ID2index_dict.ContainsKey(id)) {
+            return ID2index_dict[id];
+        }
+        return -1;
     }
 }

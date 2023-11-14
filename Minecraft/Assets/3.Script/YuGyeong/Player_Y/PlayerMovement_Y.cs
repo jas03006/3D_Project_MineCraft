@@ -147,23 +147,23 @@ public class PlayerMovement_Y : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && canrun)
         {
             currentspeed = runspeed;
-            Debug.Log("�ٱ� ����");
+            //Debug.Log("�ٱ� ����");
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             currentspeed = walkspeed;
-            Debug.Log("�ٱ� ����");
+            //Debug.Log("�ٱ� ����");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             currentspeed = crouchspeed;
-            Debug.Log("��ũ���� ����");
+            //Debug.Log("��ũ���� ����");
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentspeed = walkspeed;
-            Debug.Log("��ũ���� ����");
+            //Debug.Log("��ũ���� ����");
         }
 
         //x,z�� ������

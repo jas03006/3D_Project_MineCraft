@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3655256619644575391}
   - component: {fileID: 366426621969715514}
   - component: {fileID: 2517855633740441072}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: WoodSword 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8250388803695125682}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Wood_Sword_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

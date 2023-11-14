@@ -167,6 +167,9 @@ public class Player_Test_TG : PlayerMovement_Y
     private Player_Raycast_Points raycast_points;
     //private BoxCollider box_collider;
     private CapsuleCollider capsule_collider;
+
+    public PlayerState_Y player_state;
+    private bool is_grounded;
     protected override void Start()
     {
         base.Start();
@@ -185,7 +188,7 @@ public class Player_Test_TG : PlayerMovement_Y
         deactivate_gravity(); 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;//CursorLockMode.Locked;
-
+        player_state = GetComponent<PlayerState_Y>();
     }
     private float angle_clamp_around0(float value, float min, float max) {
         float center = (min+max)/ 2f + 180f;
@@ -301,14 +304,21 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            isjump = !raycast_all_points(raycast_points.bottom, Vector3.down) ;
-            if (!isjump) {
-                isjump = true;
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
+        if ((is_grounded == true) == isjump) {
+            if (rigid.velocity.y < -4f) { 
+                
+            }
+        }
+        isjump = !is_grounded;
+        if (!isjump) {
+            isjump = true;
+            if (Input.GetButtonDown("Jump"))
+            {                
                 rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-            }            
-        }             
+            }
+        }
+
     }
 
     private void left_click() { //TG
@@ -319,21 +329,27 @@ public class Player_Test_TG : PlayerMovement_Y
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
-            if (objectHit.CompareTag("Stepable_Block") ) {
+            if (objectHit.CompareTag("Stepable_Block"))
+            {
                 //Debug.Log(hit.point - transform.position);                
                 if (now_breaking_block == null)
                 {
                     objectHit.TryGetComponent<Block_Break>(out now_breaking_block);
                 }
-                else {
+                else
+                {
                     Block_Break temp_breaking_block = objectHit.GetComponent<Block_Break>();
-                    if (temp_breaking_block == null || !now_breaking_block.Equals(temp_breaking_block)) {
+                    if (temp_breaking_block == null || !now_breaking_block.Equals(temp_breaking_block))
+                    {
                         now_breaking_block.block_recover_hp();
                         now_breaking_block = temp_breaking_block;
-                    }                        
-                }                    
+                    }
+                }
                 //objectHit.GetComponent<Block_TG>()
                 now_breaking_block.Destroy_Block(20f);//die();                           
+            }
+            else { 
+                
             }
         }
     }
@@ -384,6 +400,7 @@ public class Player_Test_TG : PlayerMovement_Y
                     Biom_Manager.instance.set_block(id_, set_dir,
                         Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
                         ,block_.space);
+                    Inventory.instance.UIslot_minus();
                 }
                                       
                     
@@ -437,6 +454,8 @@ public class Player_Test_TG : PlayerMovement_Y
             //æ∆¿Ã≈€ Ω¿µÊ
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
+        } else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Exp"))) {
+            player_state.GetExp(1);
         }
     }
 
