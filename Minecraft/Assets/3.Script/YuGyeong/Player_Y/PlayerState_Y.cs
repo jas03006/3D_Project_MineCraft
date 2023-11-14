@@ -168,10 +168,10 @@ public class PlayerState_Y : Living
     }
     public override void OnDamage(int Damage)
     {
-        if (curhealth <= 0)
+        /*if (curhealth <= 0)
         {
             return;
-        }
+        }*/
         base.OnDamage(Damage);
     }
     public void GetExp(float exp)
@@ -265,12 +265,19 @@ public class PlayerState_Y : Living
     public override void Die()
     {
         base.Die();
-        Invoke("respawn", 2f);
+        respawn();
+        //Invoke("respawn", 2f);
         Debug.Log("Á×±â ¼º°ø");
     }
 
     public void respawn() {
-        transform.TransformPoint(get_respawn_position());
+        curhealth = 20;
+        curhungry = 20;
+        curexp = 0;
+        totalexp = 0;
+        level = 1;
+        isDead = false;
+        transform.position = get_respawn_position();
     }
 
     public Vector3 get_respawn_position() {
