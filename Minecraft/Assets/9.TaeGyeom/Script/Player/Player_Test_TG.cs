@@ -219,9 +219,38 @@ public class Player_Test_TG : PlayerMovement_Y
     protected void Update()
     {
         attck_timer += Time.deltaTime;
+
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
+        if ((is_grounded == true) == isjump)
+        {
+            if (rigid.velocity.y < -0.5f)
+            {
+
+                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                Debug.Log($"{rigid.velocity.y}, {dmg}");
+                if (dmg > 0)
+                {
+                    player_state.OnDamage(dmg);
+                }
+
+            }
+        }
+        isjump = !is_grounded;
+        
+
         if (inventory.isInventoryOpen) {
             return;
         }
+
+        if (!isjump)
+        {
+            isjump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            }
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
@@ -304,26 +333,7 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
-        if ((is_grounded == true) == isjump) {
-            if (rigid.velocity.y < -0.5f) {
-                
-                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
-                Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0) {
-                    player_state.OnDamage(dmg);
-                }             
-                
-            }            
-        }
-        isjump = !is_grounded;
-        if (!isjump) {
-            isjump = true;
-            if (Input.GetButtonDown("Jump"))
-            {                
-                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-            }
-        }
+        
 
     }
 
@@ -604,6 +614,10 @@ public class Player_Test_TG : PlayerMovement_Y
             dis = (target_pos - col.transform.position).magnitude;
             col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
         }
+    }
+
+    public void stop() {
+        rigid.velocity = Vector3.zero;
     }
 }
 
