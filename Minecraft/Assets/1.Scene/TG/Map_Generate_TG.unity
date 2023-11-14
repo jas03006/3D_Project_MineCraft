@@ -1031,6 +1031,7 @@ MonoBehaviour:
   inventory: {fileID: 912284662168579602}
   head_tr: {fileID: 7605012879774994197}
   body_tr: {fileID: 3695633616353171738}
+  player_state: {fileID: 0}
 --- !u!54 &726597372
 Rigidbody:
   m_ObjectHideFlags: 0

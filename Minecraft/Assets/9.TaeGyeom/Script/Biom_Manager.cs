@@ -44,15 +44,16 @@ public class Biom_Manager : MonoBehaviour
     private List<Vector3Int> mountain_point_list;
     private List<Cave_Point> cave_point_list;
 
+    private List<GameObject> monster_controll_list;
+
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private Queue<GameObject>[] pool_list;
     private Vector3 pool_position = new Vector3(1000f, 1000f, 1000f);
     private Queue<Block_Node_TG> block_ready_queue;
-     private int block_ready_cnt = 150000;
-     private int ready_block_generate_cnt = 3000;
+    private int block_ready_cnt = 150000;
+    private int ready_block_generate_cnt = 3000;
+        
 
-
-    private List<GameObject> monster_controll_list;
     private void Awake()
     {
         if (instance == null)
@@ -295,10 +296,10 @@ public class Biom_Manager : MonoBehaviour
                             //new_chunk.generate_block_nodes();
                             yield return new_chunk.generate_blocks_co();
                         }
-                        else if (!new_chunk.is_active)
+                        /*else if (!new_chunk.is_active)
                         {
                            // yield return new_chunk.request_pool_blocks_co();
-                        }
+                        }*/
                     }
                     else {                        
                         if (new_chunk != null && new_chunk.is_active)
@@ -368,9 +369,6 @@ public class Biom_Manager : MonoBehaviour
     }
 
     public Block_Node_TG get_block(Vector3Int chunk_pos, Vector3Int block_pos) {
-        /*chunk_pos.x += (block_pos.x) / chunk_size + (block_pos.x < 0 ? -1 : 0); 
-        chunk_pos.y += (block_pos.y) / chunk_size + (block_pos.y < 0 ? -1 : 0); 
-        chunk_pos.z += (block_pos.z) / chunk_size + (block_pos.z < 0 ? -1 : 0);*/
         chunk_pos.x += (block_pos.x < 0 ? block_pos.x - chunk_size + 1: block_pos.x) / chunk_size ; 
         chunk_pos.y += (block_pos.y < 0 ? block_pos.y - chunk_size + 1 : block_pos.y) / chunk_size ; 
         chunk_pos.z += (block_pos.z < 0 ? block_pos.z - chunk_size + 1 : block_pos.z) / chunk_size ;
@@ -379,6 +377,18 @@ public class Biom_Manager : MonoBehaviour
             return null;
         }
         return ch.block_data[(block_pos.x+chunk_size)%chunk_size, (block_pos.y + chunk_size) % chunk_size, (block_pos.z + chunk_size) % chunk_size];
+    }
+
+    public Block_Node_TG get_block(Vector3 world_pos)
+    {
+        Vector3Int chunk_pos = world2chunk_pos(world_pos);
+        Vector3Int block_pos = world2block_pos(world_pos);
+        Chunk_TG ch = get_chunk(chunk_pos);
+        if (ch == null)
+        {
+            return null;
+        }
+        return ch.block_data[block_pos.x, block_pos.y,block_pos.z];
     }
 
     private Vector3Int get_player_chunk_pos() {

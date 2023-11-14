@@ -25,7 +25,13 @@ public class Weapon_position_J : MonoBehaviour
     {
         id = id_;
         if (player_tg != null) {
-            player_tg.block_in_hand = Biom_Manager.instance.block_prefabs_SO.get_prefab(id_);
+            if (id_ == Item_ID_TG.coal || id_ == Item_ID_TG.diamond)
+            {
+                player_tg.block_in_hand = null;
+            }
+            else {
+                player_tg.block_in_hand = Biom_Manager.instance.block_prefabs_SO.get_prefab(id_);
+            }            
         }
 
         if (current_hand != null) {
