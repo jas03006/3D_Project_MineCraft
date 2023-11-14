@@ -258,9 +258,18 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-    private void UIslot_minus()
+    public void UIslot_minus()
     {
-
+        UIItemList[UIslot_index].value_minus();
+        if (UIItemList[UIslot_index]._value <= 0)
+        {
+            //손 장비 초기화 메소드 넣을 자리
+            weapon_position.Equip_Weapon(Item_ID_TG.None);
+        }
+    }
+    public Item_ID_TG UIslot_Item()
+    {
+        return UIItemList[UIslot_index]._item_id;
     }
 
     public void check_recipe(Slot_Y slot_) {

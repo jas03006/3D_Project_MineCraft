@@ -16,7 +16,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
             }
             return number_private;
         }
-
         set
         {
             number_private = value;
