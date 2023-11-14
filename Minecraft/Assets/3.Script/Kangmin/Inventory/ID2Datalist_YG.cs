@@ -16,17 +16,20 @@ public class ID2Datalist_YG : ScriptableObject
             Item_ID_TG.bedrock,
             Item_ID_TG.coal,
             Item_ID_TG.iron,
+            Item_ID_TG.raw_iron, //원석
+            Item_ID_TG.bar_iron, //주괴
             Item_ID_TG.tree,
             Item_ID_TG.box,//상자
             Item_ID_TG.diamond,
             Item_ID_TG.craft_box,
             Item_ID_TG.furnace,//화로
             Item_ID_TG.apple,
+            Item_ID_TG.apple_pie,
+            Item_ID_TG.meat,
+            Item_ID_TG.steak,
             Item_ID_TG.stick,
             Item_ID_TG.door,
             Item_ID_TG.bed,
-            Item_ID_TG.meat,
-            Item_ID_TG.steak,
             Item_ID_TG.wood_sword,
             Item_ID_TG.stone_sword,
             Item_ID_TG.iron_sword,

@@ -6,7 +6,7 @@ public interface IEat
     void L_None(); //오른쪽 마우스
 }
 
-[CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Eat", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Inventory Data", menuName = "Scriptable Object/Food", order = int.MaxValue)]
 public class Food : InventoryData, IEat
 {
     //slot에 데이터 할당시키기??

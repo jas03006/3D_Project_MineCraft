@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0c59e30065166438ff4f08fd8493ad, type: 3}
+  m_Name: Wood_sword
+  m_EditorClassIdentifier: 
+  itemName: "\uB098\uBB34 \uCE7C"
+  maxValue: 1
+  itemsprite: {fileID: 21300000, guid: dc81f0ca9dbb52a438449a01bb26379a, type: 3}
+  classname: "\uC720\uC6A9\uD55C \uBB3C\uAC74"
+  isequipable: 0
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 1
+  fuel_efficiency: 1
+  baked_item: 0
+  Durability: 0
+  attack: 1
+  att_speed: 1
+  player_state: {fileID: 0}
+  player_animator: {fileID: 0}
+  useful_Type: 1

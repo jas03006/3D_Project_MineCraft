@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c2c067c3f1d9947a3913637d56597f, type: 3}
+  m_Name: Iron_boots
+  m_EditorClassIdentifier: 
+  itemName: "\uCCA0 \uBD80\uCE20"
+  maxValue: 1
+  itemsprite: {fileID: 21300000, guid: dc9b8596b9b6c9d45b25aefb4e9cf4d2, type: 3}
+  classname: "\uC804\uD22C"
+  isequipable: 1
+  isinstallable: 0
+  isinteractable: 0
+  iseatable: 0
+  isuseful: 0
+  fuel_efficiency: 0
+  baked_item: 0
+  type: 3
+  defense_power: 1
+  player_state: {fileID: 0}
+  player_animator: {fileID: 0}
