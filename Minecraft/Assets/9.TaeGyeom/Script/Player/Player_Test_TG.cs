@@ -14,7 +14,7 @@ public class Player_Raycast_Points {
 
     public int x_count = 4;
     public int y_count = 4;
-    public int z_count = 3;
+    public int z_count = 4;
     public Vector3 forward;
 
     public Player_Raycast_Points() {
@@ -77,8 +77,8 @@ public class Player_Raycast_Points {
         float x_angle = 120f / (x_count - 1);
         float y_len = (front_right_top.y - back_left_bottom.y) / (y_count - 1);
         float z_angle = 60f / (z_count - 1);
-        float x_len = (col.radius / 1.414f *2f )/ (x_count - 1);
-        float z_len = (col.radius / 1.414f * 2f) / (z_count - 1);
+        float x_len = (col.radius * 1.732f)/ (x_count - 1);
+        float z_len = (col.radius) / (z_count - 1);
         Vector3 temp;
         front.Clear();
         right.Clear();
@@ -96,7 +96,8 @@ public class Player_Raycast_Points {
             }
             for (int z = 0; z < z_count; z++)
             {
-                temp = new Vector3(x_len * x, 0, z * z_len);
+                temp = forward * z * z_len + col.transform.right * x_len * x + Vector3.down*0.05f;
+                //temp = new Vector3(x_len * x, 0, z * z_len);
                 //top.Add(front_right_top - temp);
                 bottom.Add(back_left_bottom + temp);
             }
@@ -220,37 +221,11 @@ public class Player_Test_TG : PlayerMovement_Y
     {
         attck_timer += Time.deltaTime;
 
-        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down);
-        if ((is_grounded == true) == isjump)
-        {
-            if (rigid.velocity.y < -0.5f)
-            {
-
-                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
-                Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0)
-                {
-                    player_state.OnDamage(dmg);
-                }
-
-            }
-        }
-        isjump = !is_grounded;
         
-
-        if (inventory.isInventoryOpen) {
+        if (inventory.isInventoryOpen)
+        {
             return;
         }
-
-        if (!isjump)
-        {
-            isjump = true;
-            if (Input.GetButtonDown("Jump"))
-            {
-                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-            }
-        }
-
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
@@ -333,7 +308,33 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        
+        //³«ÇÏ Ã¼Å©
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.15f);
+        if (is_grounded == true)
+        {
+            //Debug.Log(rigid.velocity.y);
+            if (rigid.velocity.y < -6f)
+            {
+
+                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                Debug.Log($"{rigid.velocity.y}, {dmg}");
+                if (dmg > 0)
+                {
+                    player_state.OnDamage(dmg);
+                }
+            }
+
+        }
+        isjump = !is_grounded;
+
+        if (!isjump)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                isjump = true;
+                rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            }
+        }
 
     }
 
@@ -575,11 +576,11 @@ public class Player_Test_TG : PlayerMovement_Y
         }
         return false;
     }
-    private bool raycast_all_points(List<Vector3> points, Vector3 dir)
+    private bool raycast_all_points(List<Vector3> points, Vector3 dir, float dis_ = 0.1f)
     {
         Ray ray;
         RaycastHit hit;
-        float dis = 0.1f;
+        float dis = dis_;
         Vector3 now_forward = transform.forward.normalized;
         now_forward.y = 0;
         foreach (Vector3 p in points)

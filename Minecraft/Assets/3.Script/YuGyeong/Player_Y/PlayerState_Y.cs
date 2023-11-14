@@ -200,35 +200,35 @@ public class PlayerState_Y : Living
         {
             return;
         }
-        Debug.Log($"hungry :{curhungry} / health :{curhealth}");
-        if (curhungry >= 20)
+        //Debug.Log($"hungry :{curhungry} / health :{curhealth}");
+        /*if (curhungry >= 20)
         {
-            Debug.Log($"curhungry >= 20");
+            //Debug.Log($"curhungry >= 20");
             StartCoroutine(Health(1, 0.5f, 6f));
             p_movement.canrun = true;
         }
         else if (curhungry >= 18)
         {
-            Debug.Log($"curhungry >= 18");
+            //Debug.Log($"curhungry >= 18");
             StartCoroutine(Health(1, 4f, 8f));
             p_movement.canrun = true;
         }
         else if (curhungry > 6)
         {
-            Debug.Log($"curhungry > 6");
+            //Debug.Log($"curhungry > 6");
             p_movement.canrun = true;
         }        
         else if (curhungry <= 0)
         {
-            Debug.Log($"curhungry <= 0");
+            //Debug.Log($"curhungry <= 0");
             StartCoroutine(Health(-1, 4f, 100f));
             p_movement.canrun = false;
         }
         else if (curhungry <= 6)
         {
-            Debug.Log($"curhungry <= 6");
+            //Debug.Log($"curhungry <= 6");
             p_movement.canrun = false;
-        }
+        }*/
     }
     public void Hungry_cure(int hungry_cure)
     {
@@ -262,7 +262,7 @@ public class PlayerState_Y : Living
             tmp += Time.time;
             curhealth += health;
             yield return new WaitForSeconds(playtime);
-            Debug.Log($"{health} / {playtime} / {endtime}");
+           // Debug.Log($"{health} / {playtime} / {endtime}");
         }
     }
     public override void Die()
