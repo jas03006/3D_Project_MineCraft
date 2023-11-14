@@ -993,14 +993,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726597369}
-  m_LocalRotation: {x: -0, y: 0.8729103, z: -0, w: 0.48788086}
-  m_LocalPosition: {x: 2.7789342, y: -0.5, z: -3.8005834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 328945403}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 121.597, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &726597371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1575,8 +1575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster_prefabs:
   - {fileID: 0}
-  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
-  - {fileID: 4801290438456569238, guid: 123b61ab2dbf41e49904b6426b25ebfd, type: 3}
+  - {fileID: 7675969586230303738, guid: ecb9c120c38851b428a07ab124cc89c1, type: 3}
+  - {fileID: 2177743325468852861, guid: 4fd8dfb4251e4bd41a07e8be5cc1edf0, type: 3}
 --- !u!4 &1000131131
 Transform:
   m_ObjectHideFlags: 0
@@ -2166,7 +2166,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3145783
+    m_Bits: 7340087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

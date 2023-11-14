@@ -76,6 +76,8 @@ public class PlayerState_Y : Living
     public Vector3 original_spawn_position;
     public Bed_TG respawn_bed =null;
 
+    private Coroutine hungry_recover_co = null;
+
     void Start()
     {
         starthealth = 20;
@@ -198,34 +200,35 @@ public class PlayerState_Y : Living
         {
             return;
         }
-        Debug.Log($"hungry :{curhungry} / health :{curhealth}");
-        if (curhungry >= 20)
+        //Debug.Log($"hungry :{curhungry} / health :{curhealth}");
+        /*if (curhungry >= 20)
         {
-            Debug.Log($"curhungry >= 20");
+            //Debug.Log($"curhungry >= 20");
             StartCoroutine(Health(1, 0.5f, 6f));
             p_movement.canrun = true;
         }
         else if (curhungry >= 18)
         {
-            Debug.Log($"curhungry >= 18");
+            //Debug.Log($"curhungry >= 18");
             StartCoroutine(Health(1, 4f, 8f));
             p_movement.canrun = true;
         }
         else if (curhungry > 6)
         {
-            Debug.Log($"curhungry > 6");
+            //Debug.Log($"curhungry > 6");
             p_movement.canrun = true;
+        }        
+        else if (curhungry <= 0)
+        {
+            //Debug.Log($"curhungry <= 0");
+            StartCoroutine(Health(-1, 4f, 100f));
+            p_movement.canrun = false;
         }
         else if (curhungry <= 6)
         {
-            Debug.Log($"curhungry <= 6");
+            //Debug.Log($"curhungry <= 6");
             p_movement.canrun = false;
-        }
-        else if (curhungry <= 0)
-        {
-            Debug.Log($"curhungry <= 0");
-            StartCoroutine(Health(-1, 4f, 100f));
-        }
+        }*/
     }
     public void Hungry_cure(int hungry_cure)
     {
@@ -259,7 +262,7 @@ public class PlayerState_Y : Living
             tmp += Time.time;
             curhealth += health;
             yield return new WaitForSeconds(playtime);
-            Debug.Log($"{health} / {playtime} / {endtime}");
+           // Debug.Log($"{health} / {playtime} / {endtime}");
         }
     }
     public override void Die()
@@ -277,7 +280,16 @@ public class PlayerState_Y : Living
         totalexp = 0;
         level = 1;
         isDead = false;
+        (p_movement as Player_Test_TG).stop();
+        StartCoroutine(lose_gravity_co());
         transform.position = get_respawn_position();
+
+    }
+
+    private IEnumerator lose_gravity_co() {
+        (p_movement as Player_Test_TG).deactivate_gravity();
+        yield return new WaitForSeconds(0.4f);
+        (p_movement as Player_Test_TG).activate_gravity();
     }
 
     public Vector3 get_respawn_position() {
