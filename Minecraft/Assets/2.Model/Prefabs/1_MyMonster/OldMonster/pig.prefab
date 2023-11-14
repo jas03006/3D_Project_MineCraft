@@ -987,4 +987,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curhealth: 100
   starthealth: 100
+  Monster_Speed: 0
+  Monster_Damage: 0
   player: {fileID: 0}
+  monsterID: 0
+  ani:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  piggyJumppower: 0
+  id: 0

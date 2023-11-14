@@ -74,7 +74,7 @@ public class Piggy : Monster_controll
 
     public override void MonsterHurt(int PlayerDamage)    // 몬스터가 맞는거 
     {
-        if (PigHp >0)
+        if (PigHp >0 )
         {
             PigHp = PigHp - PlayerDamage;
             StartCoroutine(MonsterRunout());

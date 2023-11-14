@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8724985016296894235}
   - component: {fileID: 2515624967772593346}
   - component: {fileID: 2266651685155627109}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: eye 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8378899336630578872}
   - component: {fileID: 317582134470620736}
   - component: {fileID: 4213672914488923974}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ear 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 8259278720363300431}
   - component: {fileID: 6656544682113496647}
   - component: {fileID: 7907396710894950725}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: queue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 7353838070451191874}
   - component: {fileID: 7108304930610996895}
   - component: {fileID: 454841813317135470}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: leg 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 2177743325468852857}
   - component: {fileID: 2177743325468852856}
   - component: {fileID: 2177743325468852859}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: piggy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 3071459449704017697}
   - component: {fileID: 1470334862108375954}
   - component: {fileID: 6146747122572203223}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: eye 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 4026604441637492640}
   - component: {fileID: 7774260839191797780}
   - component: {fileID: 1624110616055249866}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 4018294676497399728}
   - component: {fileID: 3905738988500932032}
   - component: {fileID: 814957029239566801}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: leg 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 8399175529956059098}
   - component: {fileID: 3099371561444975900}
   - component: {fileID: 8006034996701037254}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ear 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 6494983965504096226}
   - component: {fileID: 5713022090396262203}
   - component: {fileID: 130230943252453473}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 7998097415089873723}
   - component: {fileID: 1278445854560527809}
   - component: {fileID: 6119656516859478261}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: leg 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 2254113032820267663}
   - component: {fileID: 441037148868855019}
   - component: {fileID: 379603385580553006}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: leg 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1045,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8286763590000117046}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: pig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
