@@ -12,6 +12,7 @@ public class Piggy : Monster_controll
     [SerializeField]private Item_ID_TG id;
     protected bool move = true;
     private int PigHp;
+    private int ItemCount = 1;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Piggy : Monster_controll
     }
     private void Start()
     {
+        ItemCount = 1;
         StartCoroutine(MonsterStand());
     }
 
@@ -35,12 +37,11 @@ public class Piggy : Monster_controll
         {
             //StartCoroutine(MonsterRunout());
             MonsterHurt(20);
-            StartCoroutine(MonsterRunout());
             Invoke("MonsterHurt",3f);
         }
     }
 
-    private void PigRay()
+    private void PigRay()    //정면 레이
     {
         ray.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         ray.origin += transform.forward * 0.6f;
@@ -57,7 +58,7 @@ public class Piggy : Monster_controll
             
         
     }
-    private void PigRay_Bellybutton()
+    private void PigRay_Bellybutton()   //돼지 아래쪽 레이
     {
         ray.origin = new Vector3(this.transform.position.x, this.transform.position.y+0.1f, this.transform.position.z);
         ray.direction = transform.up * -1;
@@ -73,40 +74,48 @@ public class Piggy : Monster_controll
 
     public override void MonsterHurt(int PlayerDamage)    // 몬스터가 맞는거 
     {
-        PigHp = PigHp - PlayerDamage;
-        StopCoroutine(MonsterStand());
-        move = true;
-        OnDamage(PlayerDamage);
-        if (PigHp <= 0)
+        if (PigHp >0)
+        {
+            PigHp = PigHp - PlayerDamage;
+            StartCoroutine(MonsterRunout());
+            StopCoroutine(MonsterStand());
+            move = true;
+            OnDamage(PlayerDamage);
+        }
+        else if (PigHp <= 0)
         {
             StopAllCoroutines();
             StopCoroutine(MonsterRunout());
-            //Block_Objectpooling.instance.Get(id, transform.position);
-            animation.SetTrigger("isDead");
+            if (ItemCount ==1)
+            {
+                animation.SetTrigger("isDead");
+                Block_Objectpooling.instance.Get(id, transform.position);
+                ItemCount--;
+            }
             Invoke("MonsterDead", 2f);
         }
 
     }
-    protected override void MonsterDead()
+    protected override void MonsterDead() //죽었을때
     {
         Destroy(gameObject);
     }
 
 
 
-    private void Look_otherside()
+    private void Look_otherside()     // 플레이어 방대방향 보기
     {
         Vector3 dir = transform.position - player.transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
-        transform.rotation = rot;   //플레이어 반대방향
+        transform.rotation = rot;   
     }
-    protected override void MonsterMove()    //stand 에서 맞은거로 전환
+    protected override void MonsterMove()   
     {
     
     }
 
-    public IEnumerator MonsterRunout()
+    public IEnumerator MonsterRunout()    //맞았을 때 잠시 우왕좌왕
     {
         yield return StartCoroutine(MonsterFracture());
         yield return new WaitForSeconds(1f);
@@ -153,7 +162,7 @@ public class Piggy : Monster_controll
 
     }
 
-    protected override IEnumerator MonsterFracture()
+    protected override IEnumerator MonsterFracture()       //맞았을때 피격판전 넉백
     {
         Vector3 dir = transform.position - player.transform.position;
         yield return new WaitForSeconds(0.1f);
@@ -167,7 +176,7 @@ public class Piggy : Monster_controll
 
     }
 
-    protected override IEnumerator MonsterStand()
+    protected override IEnumerator MonsterStand()    //평상시
     {
         var moveTime = CurveWeighedRandom(ani);
         var dir = new Vector3();
