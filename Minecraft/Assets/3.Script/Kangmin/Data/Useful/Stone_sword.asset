@@ -28,4 +28,4 @@ MonoBehaviour:
   att_speed: 1
   player_state: {fileID: 0}
   player_animator: {fileID: 0}
-  useful_Type: 1
+  useful_Type: 2

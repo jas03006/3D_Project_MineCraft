@@ -1,42 +1,36 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-#region ½ºÄÉÄ¡
-/*
- <Ä³¸¯ÅÍ Ã¼·Â ±¸Çö>
-- »ó¼Ó : Living script
-//º¯¼ö
-    //Ã¼·Â
-        //»óÅÂº° ½ºÇÁ¶óÀÌÆ®[]
-        //¹Ù²Ü ÀÌ¹ÌÁö[]
 
-//¸Þ¼­µå
-    //Start
-        // 
-    //Update
-        // 
-    //Ã¼·Â
-        //µ¥¹ÌÁö
-        //À½½Ä¸Ô±â
-        //Á×±â
-        //UIÇÁ¸°Æ®ÇÏ±â
-
-//Ãß°¡·Î ÇØ¾ßÇÒ °Í
- */
-#endregion
 public class PlayerState_Y : Living
 {
     private PlayerMovement_Y p_movement;
-    [Header("Ã¼·Â")]
+    [Header("health")]
     //Living : startHealth, curhealth
     public Sprite[] H_State; //0:emty,1:half,2:full
     public Image[] H_object;
     [SerializeField] private AudioClip hitclip;
     [SerializeField] private AudioClip healclip;
+    public int Curhealth
+    {
+        get
+        {
+            return curhealth;
+        }
+        set
+        {
+            curhealth = value;
+            if (value > 20)
+            {
+                curhealth = 20;
+            }
+        }
+    }
 
-    [Header("¹è°íÇÄ")]
+    [Header("hungry")]
     private int starthungry;
-    [SerializeField] public int curhungry
+    [SerializeField]
+    public int curhungry
     {
         get
         {
@@ -44,13 +38,10 @@ public class PlayerState_Y : Living
         }
         set
         {
+            private_curhungry = value;
             if (value > 20)
             {
                 private_curhungry = 20;
-            }
-            else
-            {
-                private_curhungry = value;
             }
         }
     }
@@ -59,54 +50,66 @@ public class PlayerState_Y : Living
     public Image[] F_object;
     [SerializeField] private AudioClip eatclip;
 
-    [Header("°æÇèÄ¡")]
+    [Header("exp")]
     private int level;
     private float totalexp;
-    private float curexp;
+    private float curexp
+    {
+        get { return private_curexp; }
+        set
+        {
+            private_curexp = value;
+        }
+    }
+    private float private_curexp;
     [SerializeField] private Slider expslider;
     [SerializeField] private Text exptext;
     [SerializeField] private PlayerData_Y maxexpdata;
     [SerializeField] private AudioClip expclip;
 
-    [Header("°ø°Ý°ü·Ã ½ºÅÈ")]
-    public int attack_power; //°ø°Ý·Â¸¸Å­ ´õÇØ¼­ µ¥¹ÌÁö ÀÔÈ÷±â
-    public int att_speed; //°ø°Ý ¼Óµµ
-    public int defense_power; //¹æ¾î·Â¸¸Å­ »©¼­ µ¥¹ÌÁö ÀÔ±â
+    [Header("damage")]
+    public int attack_power = 1;
+    public float att_speed = 1;
+    public int defense_power = 1;
 
     public Vector3 original_spawn_position;
-    public Bed_TG respawn_bed =null;
+    public Bed_TG respawn_bed = null;
 
-    private Coroutine hungry_recover_co = null;
+    public Coroutine hungry_recover_co;
 
     void Start()
     {
-        starthealth = 20;
-        starthungry = 20;
-        level = 1;
         OnEnable();
         p_movement = GetComponentInParent<PlayerMovement_Y>();
+        StartCoroutine(Hungry(1, 5));
     }
 
-    protected override void OnEnable()
+    protected override void OnEnable() // ì´ˆê¸°í™”
     {
         base.OnEnable();
+        starthealth = 20;
+        starthungry = 20;
         curhungry = starthungry;
         curexp = 0;
         totalexp = 0;
+        level = 1;
         expslider.maxValue = maxexpdata.maxexp[0];
+
+        UpdateUI_health();
+        UpdateUI_hungry();
+        UpdateUI_exp();
     }
 
     void Update()
     {
-        Test(); //µð¹ö±×¿ë
-        HungryInteraction();
-        UpdateUI();
+        Test();
+       // Debug.Log($"curhealth :{Curhealth}");
     }
 
-    private void UpdateUI()
+    private void UpdateUI_health()
     {
-        //Ã¼·Â
-        int tmp = curhealth;
+        //health
+        int tmp = Curhealth;
         for (int i = 0; i < starthealth / 2; i++)
         {
             if (tmp <= 0)
@@ -124,8 +127,10 @@ public class PlayerState_Y : Living
             }
             tmp -= 2;
         }
-
-        //¹è°íÇÄ
+    }//Update UI
+    private void UpdateUI_hungry()
+    {
+        //hungry
         int tmp2 = curhungry;
         for (int i = 0; i < starthungry / 2; i++)
         {
@@ -144,156 +149,169 @@ public class PlayerState_Y : Living
             }
             tmp2 -= 2;
         }
-
+    }//Update UI
+    private void UpdateUI_exp()
+    {
         //exp
         expslider.value = curexp;
-    }
+    }//Update UI
+
     private void Test()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            //OnDamage(Combat_system.instance.cal_combat_block(Item_ID_TG.stone));
             OnDamage(1);
-            Debug.Log("Ã¼·Â" + curhealth);
+            //Debug.Log($"OnDamage(1) / curhealth :{Curhealth}");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             curhungry -= 1;
-            //HungryInteraction();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             GetExp(1);
-            Debug.Log($"Level:{level}/EXP:{curexp} /TotalEXP:{totalexp}");
+            //Debug.Log($"Level:{level}/EXP:{curexp} /TotalEXP:{totalexp}");
         }
-    }
+    } //Test
+
     public override void OnDamage(int Damage)
     {
-        /*if (curhealth <= 0)
-        {
-            return;
-        }*/
         base.OnDamage(Damage);
+        UpdateUI_health();
     }
+    IEnumerator Health(int health, float playtime, float endtime)
+    {
+        float time = 0;
+        while (time < endtime)
+        {
+            //Debug.Log($"{health} / {playtime} / {endtime} / curhealth : {curhealth}");
+            time += playtime;
+            Curhealth += health;
+            UpdateUI_health();
+            yield return new WaitForSeconds(playtime);
+        }
+    }
+
     public void GetExp(float exp)
     {
         curexp += exp;
         totalexp += exp;
         LevelUp();
         exptext.text = $"{level}";
+        UpdateUI_exp();
     }
+
     private void LevelUp()
     {
         if (curexp >= maxexpdata.maxexp[level - 1])
         {
-            Debug.Log("·¹º§¾÷!");
             expslider.maxValue = maxexpdata.maxexp[level];
             curexp = 0;
             expslider.value = 0;
             level++;
         }
     }
+
     private void HungryInteraction()
     {
-        if (curhealth >= 20)
+        Debug.Log("HungryInteraction");
+        if (curhungry == 0 && curhealth != 0) //ë°°ê³ í””0ì´ê³  ì•ˆì£½ì—ˆì„ë•Œ
         {
-            return;
+            if (hungry_recover_co != null)
+            {
+                StopCoroutine(hungry_recover_co);
+                //Debug.Log("StopCoroutine(hungry_recover_co);");
+            }
+            hungry_recover_co = StartCoroutine(Health(-1, 1, 1000));
         }
-        //Debug.Log($"hungry :{curhungry} / health :{curhealth}");
-        /*if (curhungry >= 20)
+
+        if (curhungry == starthungry && curhealth != starthealth) // í’€í”¼ ì•„ë‹ˆê³  ë°°ê³ í”” í’€ì¼ë•Œ
         {
-            //Debug.Log($"curhungry >= 20");
-            StartCoroutine(Health(1, 0.5f, 6f));
+            if (hungry_recover_co != null)
+            {
+                StopCoroutine(hungry_recover_co);
+                Debug.Log("StopCoroutine(hungry_recover_co);");
+            }
+            hungry_recover_co = StartCoroutine(Health(1, 1, 4));
+        }
+
+        if (curhungry < starthungry && curhungry > starthungry - 2 && curhealth != starthealth) // í’€í”¼> í˜„ìž¬ì²´ë ¥> í’€í”¼-2 ì´ê³  í’€í”¼ ì•„ë‹ë•Œ
+        {
+            if (hungry_recover_co != null)
+            {
+                StopCoroutine(hungry_recover_co);
+                //Debug.Log("StopCoroutine(hungry_recover_co);");
+            }
+            hungry_recover_co = StartCoroutine(Health(1, 4, 8));
+        }
+
+        //ë°°ê³ í”” 6ì´í•˜ë©´ ë›¸ ìˆ˜ ì—†ìŒ
+        if (curhungry > 6)
+        {
             p_movement.canrun = true;
         }
-        else if (curhungry >= 18)
+        else
         {
-            //Debug.Log($"curhungry >= 18");
-            StartCoroutine(Health(1, 4f, 8f));
-            p_movement.canrun = true;
-        }
-        else if (curhungry > 6)
-        {
-            //Debug.Log($"curhungry > 6");
-            p_movement.canrun = true;
-        }        
-        else if (curhungry <= 0)
-        {
-            //Debug.Log($"curhungry <= 0");
-            StartCoroutine(Health(-1, 4f, 100f));
             p_movement.canrun = false;
         }
-        else if (curhungry <= 6)
-        {
-            //Debug.Log($"curhungry <= 6");
-            p_movement.canrun = false;
-        }*/
     }
     public void Hungry_cure(int hungry_cure)
     {
         curhungry += hungry_cure;
+        HungryInteraction();
     }
-    IEnumerator Hungry(int hungry, float playtime, float endtime)
+    IEnumerator Hungry(int hungry, float playtime)
     {
-        if (curhungry >= 20)
-        {
-            curhungry = 20;
-            yield break;
-        }
         float tmp = 0;
-        while (tmp < endtime)
+        while (true)
         {
-            tmp += Time.time;
-            curhungry += hungry;
             yield return new WaitForSeconds(playtime);
+            tmp += playtime;
+            curhungry -= hungry;
+            HungryInteraction();
+            UpdateUI_hungry();
         }
     }
-    IEnumerator Health(int health, float playtime, float endtime)
-    {
-        if (curhealth >= 20)
-        {
-            curhealth = 20;
-            yield break;
-        }
-        float tmp = 0;
-        while (tmp < endtime)
-        {
-            tmp += Time.time;
-            curhealth += health;
-            yield return new WaitForSeconds(playtime);
-           // Debug.Log($"{health} / {playtime} / {endtime}");
-        }
-    }
+
     public override void Die()
     {
         base.Die();
         respawn();
-        //Invoke("respawn", 2f);
-        Debug.Log("Á×±â ¼º°ø");
     }
-
-    public void respawn() {
-        curhealth = 20;
+    public void respawn()
+    {
+        Curhealth = 20;
         curhungry = 20;
         curexp = 0;
         totalexp = 0;
         level = 1;
         isDead = false;
+
+        for (int i = 0; i < H_object.Length; i++)
+        {
+            H_object[i].gameObject.GetComponent<Outline>().enabled = true;
+            F_object[i].gameObject.GetComponent<Outline>().enabled = true;
+        }
+
         (p_movement as Player_Test_TG).stop();
         StartCoroutine(lose_gravity_co());
+
         transform.position = get_respawn_position();
 
     }
-
-    private IEnumerator lose_gravity_co() {
+    private IEnumerator lose_gravity_co()
+    {
         (p_movement as Player_Test_TG).deactivate_gravity();
         yield return new WaitForSeconds(0.4f);
         (p_movement as Player_Test_TG).activate_gravity();
     }
-
-    public Vector3 get_respawn_position() {
-        if (respawn_bed == null) {
+    public Vector3 get_respawn_position()
+    {
+        if (respawn_bed == null)
+        {
             return original_spawn_position;
         }
         return respawn_bed.get_respawn_position();
