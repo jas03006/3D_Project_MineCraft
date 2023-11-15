@@ -441,7 +441,8 @@ public class Chunk_TG : MonoBehaviour
             x = Random.Range(1, chunk_size - 1);
             y = Random.Range(1, chunk_size - 1);
             z = Random.Range(1, chunk_size - 1);
-            if (block_data[x, y, z].id != Item_ID_TG.None)
+            Vector3Int block_world_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + new Vector3Int(x, y, z);
+            if (block_data[x, y, z].id != Item_ID_TG.None && Biom_Manager.instance.get_mountain_height(block_world_pos) -5 > block_world_pos.y)
             {
                 block_data[x, y, z].id = id;
                 for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++)
@@ -465,10 +466,16 @@ public class Chunk_TG : MonoBehaviour
     private void decide_mineral_blocks() {
         int[] dir = { -1, 1 };
         int x, y, z;
-        if (chunk_pos.y < 0) {
-            decide_mineral_one_kind(Item_ID_TG.coal, 8, 12);
-            decide_mineral_one_kind(Item_ID_TG.iron, 4, 8);
-            x = Random.Range(1, chunk_size-1);
+        if (Biom_Manager.instance.get_mountain_height(chunk_pos, Vector3Int.zero)+5 <= Biom_Manager.instance.chunk2world_pos(chunk_pos).y) {
+            return;
+        }
+        decide_mineral_one_kind(Item_ID_TG.coal, 8, 12);
+        decide_mineral_one_kind(Item_ID_TG.iron, 4, 8);
+        
+        if (chunk_pos.y < 0)
+        {
+            decide_mineral_one_kind(Item_ID_TG.diamond, 1, 2);
+            /*x = Random.Range(1, chunk_size-1);
             y = Random.Range(1, chunk_size-1);
             z = Random.Range(1, chunk_size-1);
             if (block_data[x, y, z].id != Item_ID_TG.None)
@@ -489,8 +496,8 @@ public class Chunk_TG : MonoBehaviour
                         block_data[x, y, z + dir[dir_ind]].id = Item_ID_TG.diamond;
                     }
                 }
-            }
-            
+            }*/
+
         }
     }
 
@@ -501,11 +508,11 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         if (block_data[x, y, z] != null && block_data[x,y,z].id != Item_ID_TG.None) {
             return block_data[x, y, z].id;
         }
-        if (world_y <= 10 && is_in_cave(block_world_pos)) {
+        if (is_in_cave(block_world_pos)) {
             return Item_ID_TG.None;
         }
 
-        if (world_y == -1)
+       /* if (world_y == -1)
         {
             return Item_ID_TG.dirt;
         }
@@ -523,11 +530,28 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         else if (world_y < -1)
         {
             return Item_ID_TG.dirt;
-        }
+        }*/
 
         int h = Biom_Manager.instance.get_mountain_height(chunk_pos, block_pos);
         if (h > world_y)
         {
+            if (world_y == h - 5)
+            {
+                if (Random.Range(0, 3) < 1)
+                {
+                    return Item_ID_TG.dirt;
+                }
+                return Item_ID_TG.stone;
+            }
+            if (world_y < h - 5)
+            {
+                return Item_ID_TG.stone;
+            }
+
+            if (world_y <= h - 1)
+            {
+                return Item_ID_TG.dirt;
+            }
             return Item_ID_TG.dirt;
         }
         else if (h == world_y)
