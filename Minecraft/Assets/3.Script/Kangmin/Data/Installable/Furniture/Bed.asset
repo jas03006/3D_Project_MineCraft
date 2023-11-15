@@ -21,5 +21,5 @@ MonoBehaviour:
   isinteractable: 1
   iseatable: 0
   isuseful: 0
-  fuel_efficiency: 0
+  fuel_efficiency: 1
   baked_item: 0

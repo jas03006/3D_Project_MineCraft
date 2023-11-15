@@ -1,6 +1,8 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Player_Raycast_Points {
     public List<Vector3> front;
@@ -96,7 +98,7 @@ public class Player_Raycast_Points {
             }
             for (int z = 0; z < z_count; z++)
             {
-                temp = forward * z * z_len + col.transform.right * x_len * x + Vector3.down*0.05f;
+                temp = forward * z * z_len + col.transform.right * x_len * x + Vector3.down*0.08f;
                 //temp = new Vector3(x_len * x, 0, z * z_len);
                 //top.Add(front_right_top - temp);
                 bottom.Add(back_left_bottom + temp);
@@ -146,6 +148,8 @@ public class Player_Test_TG : PlayerMovement_Y
     //TG
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
+    [SerializeField]private Slider attack_charge_slider;//TG
+    private int basic_att_speed = 4;
 
     [SerializeField] public GameObject block_in_hand;//TG
     public bool is_sleeping = false;//TG
@@ -190,6 +194,9 @@ public class Player_Test_TG : PlayerMovement_Y
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;//CursorLockMode.Locked;
         player_state = GetComponent<PlayerState_Y>();
+        player_state.att_speed = basic_att_speed;
+        player_state.attack_power = 20;
+        attack_charge_slider.gameObject.SetActive(false);
     }
     private float angle_clamp_around0(float value, float min, float max) {
         float center = (min+max)/ 2f + 180f;
@@ -220,8 +227,14 @@ public class Player_Test_TG : PlayerMovement_Y
     protected void Update()
     {
         attck_timer += Time.deltaTime;
+        if (attack_charge_slider.value < attack_charge_slider.maxValue)
+        {
+            attack_charge_slider.value += player_state.att_speed / 2f * Time.deltaTime;
+        }
+        else {
+            attack_charge_slider.gameObject.SetActive(false);
+        }
 
-        
         if (inventory.isInventoryOpen)
         {
             return;
@@ -309,27 +322,26 @@ public class Player_Test_TG : PlayerMovement_Y
         rigid.MovePosition(transform.position + current_move_vec);
 
         //³«ÇÏ Ã¼Å©
-        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.15f);
-        if (is_grounded == true)
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y* Time.fixedDeltaTime);
+        if ((is_grounded == true) == isjump)
         {
-            //Debug.Log(rigid.velocity.y);
             if (rigid.velocity.y < -6f)
             {
 
-                int dmg = Mathf.CeilToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
-                Debug.Log($"{rigid.velocity.y}, {dmg}");
+                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                //Debug.Log($"{rigid.velocity.y}, {dmg}");
                 if (dmg > 0)
                 {
                     player_state.OnDamage(dmg);
+                    rigid.velocity = new Vector3(rigid.velocity.x,0, rigid.velocity.z);
                 }
             }
-
         }
         isjump = !is_grounded;
 
         if (!isjump)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButton("Jump"))
             {
                 isjump = true;
                 rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
@@ -339,6 +351,7 @@ public class Player_Test_TG : PlayerMovement_Y
     }
 
     private void left_click() { //TG
+        attack_charge_slider.gameObject.SetActive(true);
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
@@ -365,11 +378,14 @@ public class Player_Test_TG : PlayerMovement_Y
                 //objectHit.GetComponent<Block_TG>()
                 now_breaking_block.Destroy_Block(20f);//die();                           
             }
-            else { 
+            else {
                 
             }
         }
+        //Debug.Log((int)(player_state.attack_power * attack_charge_slider.value));
+        attack_charge_slider.value = 0;
     }
+
     private void stop_breaking() {
         if (now_breaking_block != null) {
             now_breaking_block.block_recover_hp();

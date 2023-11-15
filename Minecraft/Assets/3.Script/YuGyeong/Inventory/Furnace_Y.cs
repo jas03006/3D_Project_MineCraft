@@ -8,6 +8,7 @@ public class Furnace_Y : Box_Y
     public bool is_on=false;
     [SerializeField] public Slider fire_slider;
     [SerializeField] public GameObject fire_image;
+    public float slider_value = 0;
     public Furnace_TG furnace_tg;
     private int fuel_count = 0;
     // Start is called before the first frame update
@@ -33,8 +34,9 @@ public class Furnace_Y : Box_Y
             }
             return true;
         }
-        if (is_on == true || fire_slider.value>0)
+        if (is_on == true || slider_value > 0)
         {
+            slider_value = 0;
             fire_slider.value = 0;
             fire_image.SetActive(false);
             furnace_tg.is_open = false;
@@ -60,23 +62,25 @@ public class Furnace_Y : Box_Y
             slots[i].ResetItem();
             slots[i].GetItem(data[i].Key, data[i].Value);
         }
-        fire_slider.value = time_data[1];
+        slider_value = time_data[1];
         fuel_count = (int)time_data[3];
         is_on = false;
         fire_image.SetActive(false);
     }
     private void fire()
     {
-        fire_slider.value = fire_slider.value + Time.deltaTime;        
-        if (fire_slider.value >= fire_slider.maxValue) {
+        slider_value = slider_value + Time.deltaTime;
+        fire_slider.value = (int)(slider_value / fire_slider.maxValue * 10f) * (fire_slider.maxValue/10f);        
+        if (slider_value >= fire_slider.maxValue) {
+            slider_value = 0;
             fire_slider.value = 0;
-            
-            slots[0].number--;            
-            slots[2].GetItem(Furnace_System_TG.instance.get_furnace_result(slots[0].item_id), slots[2].number+1);
-            if (slots[0].number <= 0)
+
+            slots[2].GetItem(Furnace_System_TG.instance.get_furnace_result(slots[0].item_id), slots[2].number + 1);
+            slots[0].number--;           
+            /*if (slots[0].number <= 0)
             {
                 slots[0].ResetItem();
-            }
+            }*/
             fuel_count--;
             if (fuel_count == 0)
             {
@@ -85,17 +89,17 @@ public class Furnace_Y : Box_Y
 
         }
         furnace_tg.time_data[2] = Time.time;
-        furnace_tg.time_data[1] = fire_slider.value;
+        furnace_tg.time_data[1] = slider_value;
         furnace_tg.time_data[3] = fuel_count;
     }
 
     private void update_fuel_slot() {
         fuel_count = Furnace_System_TG.instance.get_fuel_energy(slots[1].item_id);
         slots[1].number--;
-        if (slots[1].number <= 0)
+        /*if (slots[1].number <= 0)
         {
             slots[1].ResetItem();
-        }        
+        }   */     
     }
     
 }

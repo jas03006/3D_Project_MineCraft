@@ -15,12 +15,31 @@ public class Cave_Point {
     public Cave_Point(Vector3 position_, float radius_)
     {
         position = position_;
-        if (position.y >= 0) {
-            position.y = -1;
-        }
         radius = radius_;
         if (radius < 2) {
             radius = 2;
+        }
+    }
+}
+public class Mountain_Point
+{
+    public Vector3 position;
+    public float slope; //tan ceta
+    public Mountain_Point()
+    {
+
+    }
+    public Mountain_Point(Vector3Int position_, float slope_)
+    {
+        position = position_;
+        if (position.y <= 0)
+        {
+            position.y = 1;
+        }
+        slope = slope_;
+        if (slope < 0)
+        {
+            slope = 0.1f;
         }
     }
 }
@@ -41,7 +60,8 @@ public class Biom_Manager : MonoBehaviour
     [SerializeField] public GameObject chunk_prefab;
     [SerializeField] private GameObject player;
     [SerializeField] Transform pool_transform;
-    private List<Vector3Int> mountain_point_list;
+    private List<Mountain_Point> mountain_point_list;
+    private Dictionary<Vector2Int, int> mountain_height_dict;
     private List<Cave_Point> cave_point_list;
 
     private List<GameObject> monster_controll_list;
@@ -82,12 +102,12 @@ public class Biom_Manager : MonoBehaviour
             block_ready_cnt = 1_000_000;
         }
         chunk_data = new Dictionary<Vector3Int, Chunk_TG>();
-        mountain_point_list = new List<Vector3Int>();
+        mountain_point_list = new List<Mountain_Point>();
         init_pool_list();
         init_block_ready_queue();
 
         decide_mountain_point();
-        decide_cave_point();
+        decide_cave_point(); // 산 생성 후에 실행되어야함
         update_start_pos();
 
         init_monster_controll_list();
@@ -409,18 +429,18 @@ public class Biom_Manager : MonoBehaviour
 
     public int get_mountain_height(Vector3Int chunk_pos, Vector3Int block_pos) {
         Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
-        temp_pos.y = 0;
+        /*temp_pos.y = 0;
         int h = 0;
         int temp_h=0;
         for (int i = 0; i < mountain_point_list.Count; i++) {
-            temp_pos = mountain_point_list[i] - temp_pos;
+            temp_pos = mountain_point_list[i].position - temp_pos;
             int d = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
-            if (temp_pos.y * temp_pos.y < d)
+            if (temp_pos.y * temp_pos.y / mountain_point_list[i].slope / mountain_point_list[i].slope < d)
             {
                 temp_h = 0;
             }
             else {
-                temp_h = temp_pos.y - (int)Mathf.Sqrt(d);
+                temp_h = temp_pos.y - (int)(Mathf.Sqrt(d) * mountain_point_list[i].slope);
                 //Debug.Log(temp_h);
             }
             if (temp_h > h) {
@@ -428,25 +448,36 @@ public class Biom_Manager : MonoBehaviour
             }
         }
         
-        return h;
+        return h;*/
+        return get_mountain_height(temp_pos);
     }
-    public int get_mountain_height(Vector3Int pos_)
+    /*public int get_mountain_height(Vector3Int pos_) {
+        return get_mountain_height(pos_);
+    }*/
+    public int get_mountain_height(Vector3 pos_)
     {
-        Vector3Int temp_pos = pos_;
+        Vector2Int key = new Vector2Int((int)pos_.x, (int)pos_.z);
+        if (mountain_height_dict.ContainsKey(key)) {
+            return mountain_height_dict[key];
+        }
+        Vector3 temp_pos = pos_;
         temp_pos.y = 0;
-        int h = 0;
-        int temp_h = 0;
+        float h = 0;
+        float temp_h = 0;
+        float mountain_radius;
+        float d_sqr;
         for (int i = 0; i < mountain_point_list.Count; i++)
         {
-            temp_pos = mountain_point_list[i] - temp_pos;
-            int d = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
-            if (temp_pos.y * temp_pos.y < d)
+            temp_pos = mountain_point_list[i].position - temp_pos;
+            d_sqr = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
+            mountain_radius = temp_pos.y / mountain_point_list[i].slope;
+            if (mountain_radius * mountain_radius < d_sqr)
             {
                 temp_h = 0;
             }
             else
             {
-                temp_h = temp_pos.y - (int)Mathf.Sqrt(d);
+                temp_h = temp_pos.y - (int)(Mathf.Sqrt(d_sqr) * mountain_point_list[i].slope);
                 //Debug.Log(temp_h);
             }
             if (temp_h > h)
@@ -454,53 +485,63 @@ public class Biom_Manager : MonoBehaviour
                 h = temp_h;
             }
         }
-
-        return h;
+        int h_ = (int)Mathf.Round(h);
+        mountain_height_dict[key] = h_;
+        return h_;
     }
 
     private void decide_mountain_point() {
-        int mountain_generate_range = 200;
-        int mountain_num = 100;
+        int mountain_generate_range = 150;
+        int mountain_num = 1200;
         int mountain_max_height = 32;
-        int mountain_min_height = 48;
+        int mountain_min_height = 8;
+        int y_pos;
+        mountain_height_dict = new Dictionary<Vector2Int, int>();
         for (int i =0; i < mountain_num; i++) {
-            mountain_point_list.Add(new Vector3Int(UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range), UnityEngine.Random.Range(mountain_min_height, mountain_max_height), UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range)));
+            y_pos = UnityEngine.Random.Range(mountain_min_height, mountain_max_height);
+            mountain_point_list.Add(new Mountain_Point(new Vector3Int(UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range), y_pos, UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range)),
+                                                            Mathf.Tan(UnityEngine.Random.Range(Mathf.PI*(1f+3f*(y_pos- mountain_min_height) /(mountain_max_height- mountain_min_height)) / 18f, Mathf.PI/3f))));
         }
     }
 
     private void decide_cave_point() {
         cave_point_list = new List<Cave_Point>();
-        cave_point_list.Add(new Cave_Point());
+        //cave_point_list.Add(new Cave_Point());
         int cave_generate_range = 200;
-        int cave_cnt = 30;
+        int cave_cnt = 100;
         int cave_depth = 10;
-        Cave_Point now_cp = new Cave_Point(Vector3.right * 40, 4);
+        Cave_Point now_cp;// = new Cave_Point(Vector3.right * 40, 4);
         Cave_Point next_cp;
         Vector3 gen_dir = Vector3.zero;
-        cave_point_list.Add(now_cp);
+        //cave_point_list.Add(now_cp);
         for (int ci = 0; ci < cave_cnt; ci++) {
             if (ci == 0)
             {
-                now_cp = new Cave_Point(Vector3.right*40, 4);
+                now_cp = new Cave_Point(Vector3.right*20, 4);
                 cave_depth = 10;
             }
             else {
                 now_cp = new Cave_Point(
                     new Vector3(
                         UnityEngine.Random.Range(-cave_generate_range, cave_generate_range),
-                    UnityEngine.Random.Range(-5, 0),
+                    0,//UnityEngine.Random.Range(-5, 0),
                     UnityEngine.Random.Range(-cave_generate_range, cave_generate_range)),
-                    4);
-                cave_depth = UnityEngine.Random.Range(3, 10);
-            }            
+                    4);                
+                cave_depth = UnityEngine.Random.Range(3, 13);
+            }
+            now_cp.position.y = get_mountain_height(now_cp.position);// + UnityEngine.Random.Range(-5, 0);
             next_cp = null;
-           
+            cave_point_list.Add(now_cp);
             for (int i = 1; i < cave_depth; i++)
             {
                 //temp_pos = 
                 get_next_gen_dir(ref gen_dir);
                 next_cp = new Cave_Point(now_cp.position + now_cp.radius * gen_dir * 8 / 10, get_next_radius(now_cp.radius));
                 next_cp.position += gen_dir * next_cp.radius * 8 / 10;
+                float h = get_mountain_height(next_cp.position);
+                if (next_cp.position.y > h) {
+                    next_cp.position.y = h;
+                }
                 cave_point_list.Add(next_cp);
                 gen_dir = next_cp.position - now_cp.position;
                 now_cp = next_cp;
@@ -517,7 +558,7 @@ public class Biom_Manager : MonoBehaviour
         gen_dir = Quaternion.Euler(0,UnityEngine.Random.Range(-180f,180f), 0)* gen_dir;
         gen_dir.y = 0;
         gen_dir = gen_dir.normalized;
-        gen_dir.y = UnityEngine.Random.Range(-0.7f,0.1f);
+        gen_dir.y = UnityEngine.Random.Range(-0.5f,0.1f);
         gen_dir = gen_dir.normalized;
     }
     private float get_next_radius(float radius) {
@@ -537,7 +578,7 @@ public class Biom_Manager : MonoBehaviour
         Vector3 world_center_pos = chunk2world_pos(chunk_pos);
         world_center_pos.x += chunk_size / 2 -(chunk_size+1)%2;
         world_center_pos.y += chunk_size / 2 - (chunk_size + 1) % 2;
-        world_center_pos.y += chunk_size / 2 - (chunk_size + 1) % 2;
+        world_center_pos.z += chunk_size / 2 - (chunk_size + 1) % 2;
         cp_list = new List<Cave_Point>();
         for (int i =0; i < cave_point_list.Count; i++) {
             Cave_Point cp = cave_point_list[i];
