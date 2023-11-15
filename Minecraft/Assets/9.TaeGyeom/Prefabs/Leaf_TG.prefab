@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4861730267239214055}
   - component: {fileID: 4861730267239214072}
   - component: {fileID: 4861730267239214073}
-  - component: {fileID: 3593326908382784155}
+  - component: {fileID: 5565079247724090208}
   m_Layer: 6
   m_Name: Block
   m_TagString: Stepable_Block
@@ -127,7 +127,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3593326908382784155
+--- !u!114 &5565079247724090208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861730267239214075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122d78203c2049044b74c96ead68b7fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eb436cdbfa6e2b4090e136d4b0dd5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 18
@@ -157,4 +157,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  is_open: 0
+  time_data: []
   space: []

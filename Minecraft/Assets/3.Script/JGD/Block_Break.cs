@@ -40,7 +40,7 @@ public class Block_Break : MonoBehaviour
     }
 
 
-    public void itemposition()
+    public virtual void itemposition()
     {
         Block_Objectpooling.instance.Get(id, transform.position);
         
