@@ -2,6 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum consumption_Y
+{
+    jump = 0,
+    mon_attack,
+    block_attack
+}
+
 public class PlayerState_Y : Living
 {
     private PlayerMovement_Y p_movement;
@@ -49,6 +56,9 @@ public class PlayerState_Y : Living
     public Sprite[] F_State; //0:emty,1:half,2:full
     public Image[] F_object;
     [SerializeField] private AudioClip eatclip;
+    public Coroutine hungry_recover_co;
+    [SerializeField] private float consumption;
+    [SerializeField] private int max_consumption;
 
     [Header("exp")]
     private int level;
@@ -75,12 +85,10 @@ public class PlayerState_Y : Living
     public Vector3 original_spawn_position;
     public Bed_TG respawn_bed = null;
 
-    public Coroutine hungry_recover_co;
-
     void Start()
     {
         OnEnable();
-        p_movement = GetComponentInParent<PlayerMovement_Y>();
+        p_movement = GetComponent<Player_Test_TG>();
         StartCoroutine(Hungry(1, 5));
     }
 
@@ -94,9 +102,10 @@ public class PlayerState_Y : Living
         totalexp = 0;
         level = 1;
         expslider.maxValue = maxexpdata.maxexp[0];
+        max_consumption = 4;
 
         UpdateUI_health();
-        UpdateUI_hungry();
+        Update_hungry();
         UpdateUI_exp();
     }
 
@@ -128,9 +137,12 @@ public class PlayerState_Y : Living
             tmp -= 2;
         }
     }//Update UI
-    private void UpdateUI_hungry()
+    private void Update_hungry()
     {
-        //hungry
+        //상호작용
+        HungryInteraction();
+
+        //Update UI
         int tmp2 = curhungry;
         for (int i = 0; i < starthungry / 2; i++)
         {
@@ -149,7 +161,8 @@ public class PlayerState_Y : Living
             }
             tmp2 -= 2;
         }
-    }//Update UI
+
+    }//Update UI + HungryInteraction
     private void UpdateUI_exp()
     {
         //exp
@@ -192,6 +205,31 @@ public class PlayerState_Y : Living
             Curhealth += health;
             UpdateUI_health();
             yield return new WaitForSeconds(playtime);
+        }
+    }
+
+    public void Consumption_Up(consumption_Y con)
+    {
+        float value = 0;
+        switch (con)
+        {
+            case consumption_Y.jump:
+                value = 0.05f;
+                break;
+            case consumption_Y.mon_attack:
+                value = 0.1f;
+                break;
+            case consumption_Y.block_attack:
+                value = 0.005f;
+                break;
+        }
+        consumption += value;
+
+        if (consumption > max_consumption)
+        {
+            consumption = 0;
+            curhungry--;
+            Update_hungry();
         }
     }
 
@@ -249,14 +287,14 @@ public class PlayerState_Y : Living
         }
 
         //배고픔 6이하면 뛸 수 없음
-        if (curhungry > 6)
-        {
-            p_movement.canrun = true;
-        }
-        else
-        {
-            p_movement.canrun = false;
-        }
+        //if (curhungry > 6)
+        //{
+        //    p_movement.canrun = true;
+        //}
+        //else
+        //{
+        //    p_movement.canrun = false;
+        //}
     }
     public void Hungry_cure(int hungry_cure)
     {
@@ -271,10 +309,10 @@ public class PlayerState_Y : Living
             yield return new WaitForSeconds(playtime);
             tmp += playtime;
             curhungry -= hungry;
-            HungryInteraction();
-            UpdateUI_hungry();
+            Update_hungry();
         }
     }
+    
 
     public override void Die()
     {
