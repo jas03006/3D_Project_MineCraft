@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.diamond_armor, 1);
+            GetItem(Item_ID_TG.diamond_pickaxe, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
@@ -88,16 +88,9 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            GetItem(Item_ID_TG.craft_box, 1);
+            GetItem(Item_ID_TG.diamond_sword, 1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            GetItem(Item_ID_TG.meat, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            GetItem(Item_ID_TG.coal, 1);
-        }
+
     }
     private void InventoryInteraction()
     {

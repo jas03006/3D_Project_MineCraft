@@ -5,7 +5,8 @@ using UnityEngine;
 public class Living : MonoBehaviour
 {
     [Header("체력")]
-    public int curhealth;
+    protected int curhealth;
+
     public int starthealth;
     public bool isDead { get; protected set; }
     // Start is called before the first frame update
