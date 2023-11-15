@@ -175,6 +175,8 @@ public class Player_Test_TG : PlayerMovement_Y
 
     public PlayerState_Y player_state;
     private bool is_grounded;
+
+    private float cam3Tocam1 =0f;
     protected override void Start()
     {
         base.Start();
@@ -197,6 +199,8 @@ public class Player_Test_TG : PlayerMovement_Y
         player_state.att_speed = basic_att_speed;
         player_state.attack_power = 20;
         attack_charge_slider.gameObject.SetActive(false);
+
+        cam3Tocam1 = (cam_pos_arr[0].transform.position - cam_pos_arr[2].transform.position).magnitude;
     }
     private float angle_clamp_around0(float value, float min, float max) {
         float center = (min+max)/ 2f + 180f;
@@ -355,7 +359,10 @@ public class Player_Test_TG : PlayerMovement_Y
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
-
+        ray.origin = cam_pos_arr[0].transform.position;
+        if (cam_state == Cam_State.cam2) {
+            ray.direction = ray.direction * -1f;
+        }
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
@@ -396,7 +403,11 @@ public class Player_Test_TG : PlayerMovement_Y
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
-
+        ray.origin = cam_pos_arr[0].transform.position;
+        if (cam_state == Cam_State.cam2)
+        {
+            ray.direction = ray.direction * -1f;
+        }
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
