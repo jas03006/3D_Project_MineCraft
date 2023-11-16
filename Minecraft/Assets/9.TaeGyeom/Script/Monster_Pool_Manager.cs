@@ -35,6 +35,9 @@ public class Monster_Pool_Manager : MonoBehaviour
             Queue<GameObject> qu = new Queue<GameObject>();
             for (int n = 0; n < pool_num; n++)
             {
+                if (monster_prefabs[(int)e] == null) {
+                    break;
+                }
                 GameObject go = Instantiate(monster_prefabs[(int) e], pool_position, Quaternion.identity);
                 go.SetActive(false);
                 qu.Enqueue(go);
@@ -45,7 +48,7 @@ public class Monster_Pool_Manager : MonoBehaviour
     }
 
     public GameObject get(Monster_ID_J id_, Vector3 position_ = new Vector3(), Quaternion rotation_ = new Quaternion(), bool is_active = true) {
-        if (id_ == Monster_ID_J.None)
+        if (id_ == Monster_ID_J.None || monster_prefabs[(int)id_] == null)
         {
             return null;
         }

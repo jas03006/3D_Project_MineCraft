@@ -9,7 +9,7 @@ public class Block_Break : MonoBehaviour
     public float Max_Block_Hp = 100f;
     public float blockHp = 100f;
     public float block_break = 0;
-
+    private GameObject player;
     public int i = 1;
 
     [SerializeField] GameObject Box;
@@ -17,9 +17,12 @@ public class Block_Break : MonoBehaviour
 
     MeshRenderer meshRenderer;
 
-
-    private void Start()
+    private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void Start()
+    {        
         meshRenderer = transform.parent.GetComponent<MeshRenderer>();
     }
 
@@ -43,7 +46,10 @@ public class Block_Break : MonoBehaviour
     public virtual void itemposition()
     {
         Block_Objectpooling.instance.Get(id, transform.position);
-        
+        if (id == Item_ID_TG.coal || id == Item_ID_TG.iron || id == Item_ID_TG.diamond)
+        {
+            Exp_pooling.instance.generate_exp(3, transform.position, Quaternion.LookRotation(player.transform.forward * -1f));
+        }
     }
 
 
@@ -51,8 +57,13 @@ public class Block_Break : MonoBehaviour
     protected void Block_break_motion()
     {
         //gameObject.GetComponent<MeshRenderer>().materials.SetValue(mat[((int)Max_Block_Hp - (int)blockHp)/10],1) ;
+        if (blockHp <= 0f)
+        {
+            blockHp = 0f;
+        }
+        float unit_ = Max_Block_Hp/ 10f;
         if (meshRenderer != null) {
-            meshRenderer.material = mat[((int)Max_Block_Hp - (int)blockHp) / 10];
+            meshRenderer.material = mat[(int)((Max_Block_Hp - blockHp) / unit_)];
         }
         //meshRenderer.material.name.StartsWith(mat[i].name) ?;
 

@@ -149,9 +149,12 @@ public class Player_Test_TG : PlayerMovement_Y
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
     [SerializeField]private Slider attack_charge_slider;//TG
-    private int basic_att_speed = 4;
+    public int basic_att_speed = 4;
 
     [SerializeField] public GameObject block_in_hand;//TG
+    public Item_ID_TG block_in_hand_id;//TG
+    public InventoryData block_in_hand_data;//TG
+
     public bool is_sleeping = false;//TG
     private Block_Break now_breaking_block = null;
 
@@ -175,6 +178,9 @@ public class Player_Test_TG : PlayerMovement_Y
 
     public PlayerState_Y player_state;
     private bool is_grounded;
+
+    private float cam3Tocam1 =0f;
+
     protected override void Start()
     {
         base.Start();
@@ -195,8 +201,10 @@ public class Player_Test_TG : PlayerMovement_Y
         Cursor.lockState = CursorLockMode.Confined;//CursorLockMode.Locked;
         player_state = GetComponent<PlayerState_Y>();
         player_state.att_speed = basic_att_speed;
-        player_state.attack_power = 20;
+        //player_state.attack_power = 20;
         attack_charge_slider.gameObject.SetActive(false);
+
+        cam3Tocam1 = (cam_pos_arr[0].transform.position - cam_pos_arr[2].transform.position).magnitude;
     }
     private float angle_clamp_around0(float value, float min, float max) {
         float center = (min+max)/ 2f + 180f;
@@ -235,6 +243,13 @@ public class Player_Test_TG : PlayerMovement_Y
             attack_charge_slider.gameObject.SetActive(false);
         }
 
+/*        if (Input.GetMouseButtonUp(0))
+        {
+            arm_animator.SetBool("is_crouch", false);
+            arm_animator.SetBool("is_walk", false);
+            //arm_animator.SetBool("is_active", false);
+        }*/
+
         if (inventory.isInventoryOpen)
         {
             return;
@@ -243,11 +258,24 @@ public class Player_Test_TG : PlayerMovement_Y
         {
             stop_breaking();
         }
+
+        if (attck_timer >= 0.1f)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                attck_timer = 0f;
+                throw_item();
+            }
+        }
+        
         if (attck_timer >= 0.2f)
         {
             if (Input.GetMouseButton(0))
             {
                 attck_timer = 0f;
+                arm_animator.SetBool("is_crouch", false);
+                arm_animator.SetBool("is_walk", false);
+                arm_animator.SetTrigger("is_active");
                 left_click();
             }
             if (Input.GetMouseButtonDown(1))
@@ -261,6 +289,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 right_click(true);
             }
         }
+        
     }
     protected override void FixedUpdate()
     {
@@ -351,11 +380,15 @@ public class Player_Test_TG : PlayerMovement_Y
     }
 
     private void left_click() { //TG
+
         attack_charge_slider.gameObject.SetActive(true);
         RaycastHit hit;
         
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
-
+        ray.origin = cam_pos_arr[0].transform.position;
+        if (cam_state == Cam_State.cam2) {
+            ray.direction = ray.direction * -1f;
+        }
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
@@ -376,10 +409,14 @@ public class Player_Test_TG : PlayerMovement_Y
                     }
                 }
                 //objectHit.GetComponent<Block_TG>()
-                now_breaking_block.Destroy_Block(20f);//die();                           
+                int dmg = 10 * Combat_system.instance.cal_combat_block(now_breaking_block.id);
+                now_breaking_block.Destroy_Block(dmg);//die();
+                Debug.Log("Damage: "+dmg);
             }
-            else {
-                
+            else {//monster
+                Monster_controll monster = objectHit.GetComponent<Monster_controll>();
+                monster.MonsterHurt(10 * Combat_system.instance.cal_combat_monster(Monster_ID_J.Pig));
+                //Debug.Log();
             }
         }
         //Debug.Log((int)(player_state.attack_power * attack_charge_slider.value));
@@ -393,10 +430,19 @@ public class Player_Test_TG : PlayerMovement_Y
         }
     }
     private void right_click(bool is_button_stay = false) { //TG
-        RaycastHit hit;
+        if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
+            (block_in_hand_data as Food).R_Eat();
+            //Inventory.instance.UIslot_minus();
+            return;
+        }
         
+        RaycastHit hit;
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
-
+        ray.origin = cam_pos_arr[0].transform.position;
+        if (cam_state == Cam_State.cam2)
+        {
+            ray.direction = ray.direction * -1f;
+        }
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
@@ -435,12 +481,13 @@ public class Player_Test_TG : PlayerMovement_Y
                         ,block_.space);
                     Inventory.instance.UIslot_minus();
                 }
-                                      
-                    
                     //objectHit.GetComponent<Block_TG>().die();
-                             
             }
         }
+    }
+
+    public void throw_item() {
+        Block_Objectpooling.instance.throw_item(block_in_hand_id, cam_pos_arr[0].position + head_tr.forward, head_tr.forward);
     }
     public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
         Vector3 result_dir = Vector3.zero;
@@ -488,6 +535,7 @@ public class Player_Test_TG : PlayerMovement_Y
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
         } else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Exp"))) {
+            Exp_pooling.instance.return_pool(col.gameObject);
             player_state.GetExp(1);
         }
     }
@@ -624,10 +672,24 @@ public class Player_Test_TG : PlayerMovement_Y
 
     public void check_and_grap() {
         Vector3 target_pos = transform.position + Vector3.up;
-        Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         float dis;
+        Rigidbody rigid;
+        Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         foreach (Collider col in cols) {
             //Debug.Log("check drop");
+            dis = (target_pos - col.transform.position).magnitude;
+            col.TryGetComponent<Rigidbody>(out rigid);
+            if (rigid != null) {
+                if (rigid.velocity.x != 0 || rigid.velocity.z != 0) {
+                    continue;
+                } 
+            }
+            col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
+        }
+
+        cols = Physics.OverlapBox(target_pos, Vector3.one * (interaction_range+1), Quaternion.identity,  LayerMask.GetMask("Exp"));
+        foreach (Collider col in cols)
+        {
             dis = (target_pos - col.transform.position).magnitude;
             col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
         }

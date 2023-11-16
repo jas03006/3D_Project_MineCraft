@@ -45,10 +45,10 @@ public class UISlot_Y : MonoBehaviour
         _image = GetComponent<Image>();
         text = GetComponentInChildren<Text>();
     }
-    private void Update()
+   /* private void Update()
     {
         Test();
-    }
+    }*/
 
     public void GetItem(Item_ID_TG item_id, int value, Color tem_color)
     {
