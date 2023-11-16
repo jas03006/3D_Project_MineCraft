@@ -58,11 +58,6 @@ public class Zombie : Monster_controll
         {
             MonsterHurt(55);
         }
-        //if (!player.gameObject)
-        //{
-        //    StopAllCoroutines();
-        //    StartCoroutine(MonsterStand());
-        //}
     }
     private void OnTriggerEnter(Collider other)   //좀비 Player인식
     {
@@ -165,11 +160,10 @@ public class Zombie : Monster_controll
 
     private IEnumerator MonsterFollow()    //좀비 어그로s
     {
-//        pos = this.transform.position;
+        //        pos = this.transform.position;
         while (true)
         {
             Zom_FrontScan();
-            animation.SetBool("ZombieWalk", true);
             Vector3 dir = player.transform.position - this.transform.position;
             dir.y = 0;
             transform.forward = dir.normalized;
@@ -182,9 +176,11 @@ public class Zombie : Monster_controll
             {
                 Zomattack = false;
                 this.Monster_Speed = 0f;
+                animation.SetBool("ZombieWalk", false);
             }
             else
             {
+                animation.SetBool("ZombieWalk", true);
                 Zomattack = true;
                 this.Monster_Speed = 1f;
             }
