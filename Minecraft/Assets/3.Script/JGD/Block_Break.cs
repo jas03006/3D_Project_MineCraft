@@ -57,8 +57,13 @@ public class Block_Break : MonoBehaviour
     protected void Block_break_motion()
     {
         //gameObject.GetComponent<MeshRenderer>().materials.SetValue(mat[((int)Max_Block_Hp - (int)blockHp)/10],1) ;
+        if (blockHp <= 0f)
+        {
+            blockHp = 0f;
+        }
+        float unit_ = Max_Block_Hp/ 10f;
         if (meshRenderer != null) {
-            meshRenderer.material = mat[((int)Max_Block_Hp - (int)blockHp) / 10];
+            meshRenderer.material = mat[(int)((Max_Block_Hp - blockHp) / unit_)];
         }
         //meshRenderer.material.name.StartsWith(mat[i].name) ?;
 

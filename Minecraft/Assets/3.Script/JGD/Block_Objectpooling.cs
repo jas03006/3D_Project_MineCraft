@@ -56,7 +56,7 @@ public class Block_Objectpooling : MonoBehaviour
             GameObject prefab_ = iD2Item.get_prefab(id);
             if (prefab_ != null)
             {
-                Debug.Log(iD2Item.ID2index(id));
+                //Debug.Log(iD2Item.ID2index(id));
                 select = Instantiate(prefab_, position, Quaternion.identity);
                 Blockpool[iD2Item.ID2index(id)].Add(select);
             }

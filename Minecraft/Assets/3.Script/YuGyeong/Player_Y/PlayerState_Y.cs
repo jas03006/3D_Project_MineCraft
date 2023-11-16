@@ -78,7 +78,7 @@ public class PlayerState_Y : Living
     [SerializeField] private AudioClip expclip;
 
     [Header("damage")]
-    public int attack_power = 1;
+    public int attack_power = 2;
     public float att_speed = 1;
     public int defense_power = 1;
 
@@ -255,7 +255,7 @@ public class PlayerState_Y : Living
 
     private void HungryInteraction()
     {
-        Debug.Log("HungryInteraction");
+        //Debug.Log("HungryInteraction");
         if (curhungry == 0 && curhealth != 0) //배고픔0이고 안죽었을때
         {
             if (hungry_recover_co != null)
@@ -271,7 +271,7 @@ public class PlayerState_Y : Living
             if (hungry_recover_co != null)
             {
                 StopCoroutine(hungry_recover_co);
-                Debug.Log("StopCoroutine(hungry_recover_co);");
+                //Debug.Log("StopCoroutine(hungry_recover_co);");
             }
             hungry_recover_co = StartCoroutine(Health(1, 1, 4));
         }

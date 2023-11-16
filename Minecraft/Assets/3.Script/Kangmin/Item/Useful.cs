@@ -18,7 +18,7 @@ public class Useful : InventoryData, IUseFul
 {
     public int Durability; //내구성 - 칠때마다 떨어짐
     public int attack; //공격력
-    public int att_speed; //공격 속도
+    public float att_speed; //공격 속도
     public PlayerState_Y player_state;
     public Animator player_animator;
     public Useful_type useful_Type;

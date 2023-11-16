@@ -74,7 +74,10 @@ public class PlayerMovement_Y : MonoBehaviour
     [SerializeField] protected Transform[] cam_pos_arr;
     protected Cam_State cam_state = Cam_State.cam1;
 
-
+    //animator
+    [SerializeField] protected Animator head_animator;
+    [SerializeField] protected Animator arm_animator;
+    [SerializeField] protected Animator body_animator;
     protected virtual void Start()
     {
         TryGetComponent(out rigid);
@@ -143,10 +146,42 @@ public class PlayerMovement_Y : MonoBehaviour
     }
     protected void PositionInput()
     {
+        //x,z�� ������
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+
+        if (horizontal != 0 || vertical !=0)
+        {
+            
+            if (!body_animator.GetBool("is_walk"))
+            {
+                body_animator.SetBool("is_crouch", false);
+                arm_animator.SetBool("is_crouch", false);
+                head_animator.SetBool("is_crouch", false);
+                body_animator.SetBool("is_walk", true);
+                if (!arm_animator.GetCurrentAnimatorStateInfo(0).IsName("righthand_active_Y")) {
+                    arm_animator.SetBool("is_walk", true);
+                }                   
+            }else if (!arm_animator.GetBool("is_walk") && !arm_animator.GetBool("is_crouch"))
+            {
+                if (!arm_animator.GetCurrentAnimatorStateInfo(0).IsName("righthand_active_Y") && !arm_animator.GetNextAnimatorStateInfo(0).IsName("righthand_active_Y"))
+                {
+                    body_animator.SetBool("is_walk", false);
+                }               
+            }
+        }
+        else
+        {
+            body_animator.SetBool("is_walk", false);
+            arm_animator.SetBool("is_walk", false);
+        }
+
         //�ӵ� ����
         if (Input.GetKeyDown(KeyCode.LeftControl) && canrun)
         {
-            currentspeed = runspeed;
+            currentspeed = runspeed;            
             //Debug.Log("�ٱ� ����");
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -158,19 +193,27 @@ public class PlayerMovement_Y : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             currentspeed = crouchspeed;
+            if (!body_animator.GetBool("is_crouch")) {
+                body_animator.SetBool("is_walk", false);
+                arm_animator.SetBool("is_walk", false);
+                body_animator.SetBool("is_crouch", true);
+                arm_animator.SetBool("is_crouch", true);
+                head_animator.SetBool("is_crouch", true);
+            }
+            
             //Debug.Log("��ũ���� ����");
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentspeed = walkspeed;
+            body_animator.SetBool("is_crouch", false);
+            arm_animator.SetBool("is_crouch", false);
+            head_animator.SetBool("is_crouch", false);
             //Debug.Log("��ũ���� ����");
         }
 
-        //x,z�� ������
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
+        
+
     }
 
     protected void RotationInput()

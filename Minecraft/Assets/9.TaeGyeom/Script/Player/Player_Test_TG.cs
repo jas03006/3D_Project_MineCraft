@@ -149,7 +149,7 @@ public class Player_Test_TG : PlayerMovement_Y
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
     [SerializeField]private Slider attack_charge_slider;//TG
-    private int basic_att_speed = 4;
+    public int basic_att_speed = 4;
 
     [SerializeField] public GameObject block_in_hand;//TG
     public Item_ID_TG block_in_hand_id;//TG
@@ -180,6 +180,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private bool is_grounded;
 
     private float cam3Tocam1 =0f;
+
     protected override void Start()
     {
         base.Start();
@@ -200,7 +201,7 @@ public class Player_Test_TG : PlayerMovement_Y
         Cursor.lockState = CursorLockMode.Confined;//CursorLockMode.Locked;
         player_state = GetComponent<PlayerState_Y>();
         player_state.att_speed = basic_att_speed;
-        player_state.attack_power = 20;
+        //player_state.attack_power = 20;
         attack_charge_slider.gameObject.SetActive(false);
 
         cam3Tocam1 = (cam_pos_arr[0].transform.position - cam_pos_arr[2].transform.position).magnitude;
@@ -242,6 +243,13 @@ public class Player_Test_TG : PlayerMovement_Y
             attack_charge_slider.gameObject.SetActive(false);
         }
 
+/*        if (Input.GetMouseButtonUp(0))
+        {
+            arm_animator.SetBool("is_crouch", false);
+            arm_animator.SetBool("is_walk", false);
+            //arm_animator.SetBool("is_active", false);
+        }*/
+
         if (inventory.isInventoryOpen)
         {
             return;
@@ -259,12 +267,15 @@ public class Player_Test_TG : PlayerMovement_Y
                 throw_item();
             }
         }
-
+        
         if (attck_timer >= 0.2f)
         {
             if (Input.GetMouseButton(0))
             {
                 attck_timer = 0f;
+                arm_animator.SetBool("is_crouch", false);
+                arm_animator.SetBool("is_walk", false);
+                arm_animator.SetTrigger("is_active");
                 left_click();
             }
             if (Input.GetMouseButtonDown(1))
@@ -369,6 +380,7 @@ public class Player_Test_TG : PlayerMovement_Y
     }
 
     private void left_click() { //TG
+
         attack_charge_slider.gameObject.SetActive(true);
         RaycastHit hit;
         
@@ -397,10 +409,14 @@ public class Player_Test_TG : PlayerMovement_Y
                     }
                 }
                 //objectHit.GetComponent<Block_TG>()
-                now_breaking_block.Destroy_Block(20f);//die();                           
+                int dmg = 10 * Combat_system.instance.cal_combat_block(now_breaking_block.id);
+                now_breaking_block.Destroy_Block(dmg);//die();
+                Debug.Log("Damage: "+dmg);
             }
-            else {
-                
+            else {//monster
+                Monster_controll monster = objectHit.GetComponent<Monster_controll>();
+                monster.MonsterHurt(10 * Combat_system.instance.cal_combat_monster(Monster_ID_J.Pig));
+                //Debug.Log();
             }
         }
         //Debug.Log((int)(player_state.attack_power * attack_charge_slider.value));

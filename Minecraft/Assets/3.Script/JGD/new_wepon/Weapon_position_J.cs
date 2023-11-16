@@ -26,6 +26,15 @@ public class Weapon_position_J : MonoBehaviour
     {
         id = id_;
         if (player_tg != null) {
+            Useful useful = datalist.Get_data(id_) as Useful;
+            if (useful != null)
+            {
+                player_tg.player_state.att_speed = useful.att_speed;
+            }
+            else {
+                player_tg.player_state.att_speed = player_tg.basic_att_speed;
+            }
+            
             player_tg.block_in_hand_data = datalist.Get_data(id_);
             player_tg.block_in_hand_id = id_;
             if (id_ == Item_ID_TG.coal || id_ == Item_ID_TG.diamond)
