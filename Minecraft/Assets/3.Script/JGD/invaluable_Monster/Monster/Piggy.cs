@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class Piggy : Monster_controll
 {
-    Ray ray;
+    Ray ray = new Ray();
+    Ray ray1 = new Ray();
+    Ray ray3 = new Ray();
+    Ray ray4 = new Ray();
     [SerializeField] private float piggyJumppower;
     Piggy piggy;
     Animator animation;
     [Header("몬스터 드롭 아이템")]
-    [SerializeField]private Item_ID_TG id;
+    [SerializeField] private Item_ID_TG id;
     protected bool move = true;
     private int PigHp;
     private int ItemCount = 1;
+    private int JumpCount = 1;
+    float Maxtimer = 0;
+    [Header("몬스터 레이 포인트")]
+    [SerializeField] private GameObject Ray1;
+    [SerializeField] private GameObject Ray2;
+    [SerializeField] private GameObject Ray3;
+    [SerializeField] private GameObject Ray4;
+    [SerializeField] private GameObject FloorRay;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         move = true;
-        ray = new Ray();
         PigHp = curhealth;
         animation = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
@@ -38,45 +48,135 @@ public class Piggy : Monster_controll
         {
             //StartCoroutine(MonsterRunout());
             MonsterHurt(20);
-            Invoke("MonsterHurt",3f);
+            Invoke("MonsterHurt", 3f);
         }
     }
-
+    
     private void PigRay()    //정면 레이
     {
-        ray.origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        ray.origin += transform.forward * 0.6f;
-        ray.direction = transform.forward;
-        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red);
+        ray.origin = new Vector3(Ray1.transform.position.x, Ray1.transform.position.y, Ray1.transform.position.z);
+
+        ray1.origin = new Vector3(Ray2.transform.position.x, Ray2.transform.position.y, Ray2.transform.position.z);
+
+        ray3.origin = new Vector3(Ray3.transform.position.x, Ray3.transform.position.y, Ray3.transform.position.z);
+        
+        ray4.origin = new Vector3(Ray4.transform.position.x, Ray4.transform.position.y, Ray4.transform.position.z);
+
+        ray.direction = Ray1.transform.forward;
+        ray1.direction = Ray2.transform.forward;
+        ray3.direction = Ray3.transform.forward;
+        ray4.direction = Ray4.transform.forward;
+
+        Debug.DrawRay(ray.origin, ray.direction * 0.5f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction * 0.5f, Color.blue);
+        Debug.DrawRay(ray3.origin, ray3.direction, Color.blue);
+        Debug.DrawRay(ray4.origin, ray4.direction, Color.blue);
         RaycastHit[] hit;
-        hit = Physics.RaycastAll(ray,0.2f);
-        for (int i =0; i < hit.Length;i++) {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block")) {
-                rigi.AddForce(transform.up * piggyJumppower);  
+
+        hit = Physics.RaycastAll(ray3, 1f);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+            {
+                return;
+            }
+        }
+        hit = Physics.RaycastAll(ray4, 1f);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+            {
+                return;
+            }
+        }
+
+        hit = Physics.RaycastAll(ray, 0.5f);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            {
+                JumpCount--;
+                Monster_Speed = 0.01f;
+                rigi.AddForce(transform.up * piggyJumppower);
+                rigi.AddForce(transform.forward * 10f);
                 break;
             }
         }
-            
-        
+        hit = Physics.RaycastAll(ray1, 0.5f);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            {
+                JumpCount--;
+                Monster_Speed = 0.01f;
+                rigi.AddForce(transform.up * piggyJumppower);
+                rigi.AddForce(transform.forward * 10f);
+                break;
+            }
+        }
+
+        //hit = Physics.RaycastAll(ray, 0.2f);
+        //for (int i = 0; i < hit.Length; i++)
+        //{
+        //    if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+        //    {
+        //        rigi.AddForce(transform.up * piggyJumppower);
+        //        break;
+        //    }
+        //}
+        //
+        //hit = Physics.RaycastAll(ray1, 0.2f);
+        //for (int i = 0; i < hit.Length; i++)
+        //{
+        //    if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+        //    {
+        //        rigi.AddForce(transform.up * piggyJumppower);
+        //        break;
+        //    }
+        //}
+
+        //if (Biom_Manager.instance.get_block(transform.position + transform.forward).id == Item_ID_TG.None) { 
+        //    
+        //}  //주변의 블록 정보 수집?
+
     }
     private void PigRay_Bellybutton()   //돼지 아래쪽 레이
     {
-        ray.origin = new Vector3(this.transform.position.x, this.transform.position.y+0.1f, this.transform.position.z);
+        ray.origin = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
         ray.direction = transform.up * -1;
-        Debug.DrawRay(ray.origin, ray.direction*0.1f, Color.black);
+        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.black);
         RaycastHit hit;
-        if (Physics.Raycast(ray,out hit,0.1f))
+        if (Physics.Raycast(ray, out hit, 0.1f))
         {
+            JumpCount = 1;
             PigRay();
         }
 
+    }
+
+    private void Pig_FrontScan()     //낭떠러지 스캔
+    {
+        ray.origin = FloorRay.transform.position;
+        ray.direction = transform.up * -1;
+        Debug.DrawRay(ray.origin, ray.direction * 1.1f, Color.black);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1.1f,LayerMask.GetMask("Default")))
+        {
+            move = true;
+            this.Monster_Speed = 1f;
+        }
+        else
+        {
+            animation.SetBool("isPigWalk", false);
+            this.Monster_Speed = 0f;
+        }
     }
 
 
     public override void MonsterHurt(int PlayerDamage)    // 몬스터가 맞는거 
     {
         PigHp = PigHp - PlayerDamage;
-        if (PigHp >0 )
+        if (PigHp > 0)
         {
             StartCoroutine(MonsterRunout());
             StopCoroutine(MonsterStand());
@@ -87,7 +187,7 @@ public class Piggy : Monster_controll
         {
             StopAllCoroutines();
             StopCoroutine(MonsterRunout());
-            if (ItemCount ==1)
+            if (ItemCount == 1)
             {
                 animation.SetTrigger("isDead");
                 Block_Objectpooling.instance.Get(id, transform.position);
@@ -109,11 +209,11 @@ public class Piggy : Monster_controll
         Vector3 dir = transform.position - player.transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
-        transform.rotation = rot;   
+        transform.rotation = rot;
     }
-    protected override void MonsterMove()   
+    protected override void MonsterMove()
     {
-    
+
     }
 
     public IEnumerator MonsterRunout()    //맞았을 때 잠시 우왕좌왕
@@ -136,7 +236,7 @@ public class Piggy : Monster_controll
             {
                 Maxtimer += Time.deltaTime;
                 Standtimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed*5 * Time.deltaTime;
+                this.transform.position += transform.forward * Monster_Speed * 2f * Time.deltaTime;
                 animation.SetBool("isPigWalk", true);
                 float distance = Vector3.Distance(transform.position, pos);
 
@@ -186,19 +286,19 @@ public class Piggy : Monster_controll
         dir.z = Random.Range(-3f, 3f);
         pos = dir + this.transform.position;
         transform.forward = dir.normalized;
-        if (move)
+        while (true)
         {
-            while (true)
+            if (move)
             {
 
-                float Maxtimer = 0f;
+                Pig_FrontScan();
+                PigRay_Bellybutton();
                 Maxtimer += Time.deltaTime;
                 this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
                 animation.SetBool("isPigWalk", true);
-                PigRay_Bellybutton();
                 float distance = Vector3.Distance(transform.position, pos);
 
-                if (distance <= 0.1f || Maxtimer >3f)
+                if (distance <= 0.1f || Maxtimer > 3f)
                 {
                     Maxtimer = 0f;
                     animation.SetBool("isPigWalk", false);
@@ -209,10 +309,10 @@ public class Piggy : Monster_controll
                     pos = dir + this.transform.position;
                     transform.forward = dir.normalized;
                 }
-                yield return null;
             }
+                yield return null;
         }
     }
-
 }
+
 
