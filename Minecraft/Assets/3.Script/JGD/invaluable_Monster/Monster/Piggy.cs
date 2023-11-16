@@ -16,11 +16,14 @@ public class Piggy : Monster_controll
     protected bool move = true;
     private int PigHp;
     private int ItemCount = 1;
+    private int JumpCount = 1;
+    float Maxtimer = 0;
     [Header("몬스터 레이 포인트")]
     [SerializeField] private GameObject Ray1;
     [SerializeField] private GameObject Ray2;
     [SerializeField] private GameObject Ray3;
     [SerializeField] private GameObject Ray4;
+    [SerializeField] private GameObject FloorRay;
 
     private void Awake()
     {
@@ -64,13 +67,13 @@ public class Piggy : Monster_controll
         ray3.direction = Ray3.transform.forward;
         ray4.direction = Ray4.transform.forward;
 
-        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.red);
-        Debug.DrawRay(ray1.origin, ray1.direction * 0.1f, Color.blue);
-        Debug.DrawRay(ray3.origin, ray3.direction * 0.2f, Color.blue);
-        Debug.DrawRay(ray4.origin, ray4.direction * 0.2f, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction * 0.5f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction * 0.5f, Color.blue);
+        Debug.DrawRay(ray3.origin, ray3.direction, Color.blue);
+        Debug.DrawRay(ray4.origin, ray4.direction, Color.blue);
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(ray3, 0.4f);
+        hit = Physics.RaycastAll(ray3, 1f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -78,7 +81,7 @@ public class Piggy : Monster_controll
                 return;
             }
         }
-        hit = Physics.RaycastAll(ray4, 0.4f);
+        hit = Physics.RaycastAll(ray4, 1f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -87,21 +90,27 @@ public class Piggy : Monster_controll
             }
         }
 
-        hit = Physics.RaycastAll(ray, 0.2f);
+        hit = Physics.RaycastAll(ray, 0.5f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
             {
+                JumpCount--;
+                Monster_Speed = 0.01f;
                 rigi.AddForce(transform.up * piggyJumppower);
+                rigi.AddForce(transform.forward * 10f);
                 break;
             }
         }
-        hit = Physics.RaycastAll(ray1, 0.2f);
+        hit = Physics.RaycastAll(ray1, 0.5f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
             {
+                JumpCount--;
+                Monster_Speed = 0.01f;
                 rigi.AddForce(transform.up * piggyJumppower);
+                rigi.AddForce(transform.forward * 10f);
                 break;
             }
         }
@@ -139,9 +148,28 @@ public class Piggy : Monster_controll
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 0.1f))
         {
+            JumpCount = 1;
             PigRay();
         }
 
+    }
+
+    private void Pig_FrontScan()     //낭떠러지 스캔
+    {
+        ray.origin = FloorRay.transform.position;
+        ray.direction = transform.up * -1;
+        Debug.DrawRay(ray.origin, ray.direction * 1.1f, Color.black);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1.1f,LayerMask.GetMask("Default")))
+        {
+            move = true;
+            this.Monster_Speed = 1f;
+        }
+        else
+        {
+            animation.SetBool("isPigWalk", false);
+            this.Monster_Speed = 0f;
+        }
     }
 
 
@@ -258,19 +286,19 @@ public class Piggy : Monster_controll
         dir.z = Random.Range(-3f, 3f);
         pos = dir + this.transform.position;
         transform.forward = dir.normalized;
-        if (move)
+        while (true)
         {
-            while (true)
+            if (move)
             {
 
+                Pig_FrontScan();
                 PigRay_Bellybutton();
-                float Maxtimer = 0f;
                 Maxtimer += Time.deltaTime;
                 this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
                 animation.SetBool("isPigWalk", true);
                 float distance = Vector3.Distance(transform.position, pos);
 
-                if (distance <= 0.1f || Maxtimer > 2f)
+                if (distance <= 0.1f || Maxtimer > 3f)
                 {
                     Maxtimer = 0f;
                     animation.SetBool("isPigWalk", false);
@@ -281,8 +309,8 @@ public class Piggy : Monster_controll
                     pos = dir + this.transform.position;
                     transform.forward = dir.normalized;
                 }
-                yield return null;
             }
+                yield return null;
         }
     }
 }

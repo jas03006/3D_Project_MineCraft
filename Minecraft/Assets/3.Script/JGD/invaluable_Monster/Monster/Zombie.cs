@@ -19,6 +19,7 @@ public class Zombie : Monster_controll
     [SerializeField] private GameObject Ray2;
     [SerializeField] private GameObject Ray3;
     [SerializeField] private GameObject Ray4;
+    [SerializeField] private GameObject FloorRay;
     private void Awake()
     {
         ZomHp = curhealth;
@@ -117,9 +118,9 @@ public class Zombie : Monster_controll
         dir.z = Random.Range(-10f, 10f);
         pos = dir + this.transform.position;
         transform.forward = dir.normalized;
-        if (move)
+        while (true)
         {
-            while (true)
+            if (move)
             {
 
                 float zombietimer = 0f;
@@ -139,8 +140,8 @@ public class Zombie : Monster_controll
                     pos = dir + this.transform.position;
                     transform.forward = dir.normalized;
                 }
-                yield return null;
             }
+                yield return null;
         }
     }
 
