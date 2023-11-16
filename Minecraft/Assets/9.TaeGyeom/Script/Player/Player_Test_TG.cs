@@ -152,6 +152,9 @@ public class Player_Test_TG : PlayerMovement_Y
     private int basic_att_speed = 4;
 
     [SerializeField] public GameObject block_in_hand;//TG
+    public Item_ID_TG block_in_hand_id;//TG
+    public InventoryData block_in_hand_data;//TG
+
     public bool is_sleeping = false;//TG
     private Block_Break now_breaking_block = null;
 
@@ -247,6 +250,16 @@ public class Player_Test_TG : PlayerMovement_Y
         {
             stop_breaking();
         }
+
+        if (attck_timer >= 0.1f)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                attck_timer = 0f;
+                throw_item();
+            }
+        }
+
         if (attck_timer >= 0.2f)
         {
             if (Input.GetMouseButton(0))
@@ -265,6 +278,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 right_click(true);
             }
         }
+        
     }
     protected override void FixedUpdate()
     {
@@ -400,8 +414,13 @@ public class Player_Test_TG : PlayerMovement_Y
         }
     }
     private void right_click(bool is_button_stay = false) { //TG
-        RaycastHit hit;
+        if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
+            (block_in_hand_data as Food).R_Eat();
+            //Inventory.instance.UIslot_minus();
+            return;
+        }
         
+        RaycastHit hit;
         Ray ray = camera.ScreenPointToRay( new Vector3( camera.pixelWidth/2f, camera.pixelHeight / 2f));
         ray.origin = cam_pos_arr[0].transform.position;
         if (cam_state == Cam_State.cam2)
@@ -446,12 +465,13 @@ public class Player_Test_TG : PlayerMovement_Y
                         ,block_.space);
                     Inventory.instance.UIslot_minus();
                 }
-                                      
-                    
                     //objectHit.GetComponent<Block_TG>().die();
-                             
             }
         }
+    }
+
+    public void throw_item() {
+        Block_Objectpooling.instance.throw_item(block_in_hand_id, cam_pos_arr[0].position + head_tr.forward, head_tr.forward);
     }
     public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
         Vector3 result_dir = Vector3.zero;
@@ -637,9 +657,16 @@ public class Player_Test_TG : PlayerMovement_Y
         Vector3 target_pos = transform.position + Vector3.up;
         Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         float dis;
+        Rigidbody rigid;
         foreach (Collider col in cols) {
             //Debug.Log("check drop");
             dis = (target_pos - col.transform.position).magnitude;
+            col.TryGetComponent<Rigidbody>(out rigid);
+            if (rigid != null) {
+                if (rigid.velocity.x != 0 || rigid.velocity.z != 0) {
+                    continue;
+                } 
+            }
             col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
         }
     }

@@ -63,11 +63,18 @@ public class Block_Objectpooling : MonoBehaviour
             
             
         }
-
-
-
-
         return select;
+    }
+
+    public void throw_item(Item_ID_TG id_, Vector3 position_, Vector3 forward_) {
+        GameObject go = Get(id_, position_);
+        if (go == null) {
+            return;
+        }
+        Rigidbody rigid = go.GetComponent<Rigidbody>();
+        if (rigid != null) {
+            rigid.AddForce((forward_ + Vector3.up * 0.5f)*3.5f,ForceMode.Impulse);
+        }
     }
 
 

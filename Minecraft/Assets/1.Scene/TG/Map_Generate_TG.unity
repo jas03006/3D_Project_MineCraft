@@ -482,6 +482,7 @@ MonoBehaviour:
   start_pos: {fileID: 281513283}
   end_pos: {fileID: 1341837798}
   forward_pos: {fileID: 0}
+  datalist: {fileID: 0}
 --- !u!23 &281513285
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1126,6 +1127,8 @@ MonoBehaviour:
   interaction_range: 4
   attack_charge_slider: {fileID: 1160651761}
   block_in_hand: {fileID: 4861730266974659017, guid: f2daeb78e60e49e479e8eb0ff331deeb, type: 3}
+  block_in_hand_id: 0
+  block_in_hand_data: {fileID: 0}
   is_sleeping: 0
   inventory: {fileID: 912284662168579602}
   head_tr: {fileID: 7605012879774994197}
@@ -1342,6 +1345,7 @@ MonoBehaviour:
   start_pos: {fileID: 781449804}
   end_pos: {fileID: 1341837798}
   forward_pos: {fileID: 281513283}
+  datalist: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
 --- !u!23 &781449806
 MeshRenderer:
   m_ObjectHideFlags: 0
