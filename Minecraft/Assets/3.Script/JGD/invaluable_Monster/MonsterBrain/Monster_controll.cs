@@ -20,18 +20,14 @@ public abstract class Monster_controll : Living
     [SerializeField] protected float Monster_Damage;
     [Header("플레이어 위치")]
     protected GameObject player;
-    protected Color monstercolor;
     [Header("몬스터 ID")]
     [SerializeField] protected Monster_ID_J monsterID;
     [Header("몬스터 설정")]
     [SerializeField] protected AnimationCurve ani;
     protected Color Hitcolor = new Color(1f, 0.3f, 0.3f, 1f);
+    protected Color monstercolor;
     protected Renderer render;
     protected Rigidbody rigi;
-    public virtual void MonsterAtteck()
-    {
-
-    }
     protected float CurveWeighedRandom(AnimationCurve curve)
     {
         return curve.Evaluate(Random.value);
@@ -40,12 +36,12 @@ public abstract class Monster_controll : Living
     //랜덤이동 
     //그러나 가만히도 있어야함
     protected abstract IEnumerator MonsterFracture();  //피격판정 넉백 도망까지
-    protected abstract void MonsterDead();
+    protected abstract void MonsterDead();   //몬스터 사망
 
 
     protected abstract void MonsterMove();
 
-    public abstract void MonsterHurt(int PlayerDamage);
+    public abstract void MonsterHurt(int PlayerDamage);     //몬스터가 맞았을때
 
 
 }
