@@ -90,6 +90,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                             Debug.Log($"{wear.type}/{armor_Type}");
                             GetItem(cursor_slot.item_id, cursor_slot.number);
                             cursor_slot.ResetItem();
+                            Make_Player_princess.instance.update_equipment(wear.type, item_id);
                             wear.defense_up();
                         }
                         else
@@ -127,6 +128,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                         if (wear.type == armor_Type)
                         {
                             wear.defense_down();
+                            Make_Player_princess.instance.update_equipment(wear.type, item_id);
                             cursor_slot.GetItem(item_id, number);
                             ResetItem();
                         }

@@ -432,7 +432,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private void right_click(bool is_button_stay = false) { //TG
         if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
             (block_in_hand_data as Food).R_Eat();
-            //Inventory.instance.UIslot_minus();
+            Inventory.instance.UIslot_minus();
             return;
         }
         
@@ -488,6 +488,7 @@ public class Player_Test_TG : PlayerMovement_Y
 
     public void throw_item() {
         Block_Objectpooling.instance.throw_item(block_in_hand_id, cam_pos_arr[0].position + head_tr.forward, head_tr.forward);
+        Inventory.instance.UIslot_minus();
     }
     public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
         Vector3 result_dir = Vector3.zero;

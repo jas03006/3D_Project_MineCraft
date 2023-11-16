@@ -78,6 +78,8 @@ public class PlayerMovement_Y : MonoBehaviour
     [SerializeField] protected Animator head_animator;
     [SerializeField] protected Animator arm_animator;
     [SerializeField] protected Animator body_animator;
+
+    public int camera_mask_basic=0;
     protected virtual void Start()
     {
         TryGetComponent(out rigid);
@@ -229,9 +231,20 @@ public class PlayerMovement_Y : MonoBehaviour
 
     protected void CamChange()
     {
+        if (camera_mask_basic == 0) {
+            camera_mask_basic = cam.GetComponent<Camera>().cullingMask | LayerMask.GetMask("Player_Right_Arm");
+        }
+        if (cam_state == Cam_State.cam1)
+        {
+            cam.GetComponent<Camera>().cullingMask = camera_mask_basic;
+        }
         cam_state = (Cam_State)(((int)cam_state + 1)%Enum.GetValues(typeof(Cam_State)).Length);
         cam.transform.position = cam_pos_arr[(int)cam_state].position;
         cam.transform.rotation = cam_pos_arr[(int)cam_state].rotation;
+        if (cam_state == Cam_State.cam1)
+        {
+            cam.GetComponent<Camera>().cullingMask = camera_mask_basic & ((-1>>32) ^ LayerMask.GetMask("Player_J"));
+        }
         /*tmp -= mouseY * r_speed;
         tmp = Mathf.Clamp(tmp, -90, 90);
         cam.rotation = Quaternion.Euler(tmp, 0, 0);*/

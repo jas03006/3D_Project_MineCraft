@@ -157,10 +157,10 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------10.iron_sword
-        else if (tG1 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
         tG2 == Item_ID_TG.None &&
         tG3 == Item_ID_TG.None &&
-        tG4 == Item_ID_TG.iron &&
+        tG4 == Item_ID_TG.bar_iron &&
         tG5 == Item_ID_TG.None &&
         tG6 == Item_ID_TG.None &&
         tG7 == Item_ID_TG.stick &&
@@ -214,9 +214,9 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------14.iron_pickaxe
-        else if (tG1 == Item_ID_TG.iron &&
-        tG2 == Item_ID_TG.iron &&
-        tG3 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
+        tG2 == Item_ID_TG.bar_iron &&
+        tG3 == Item_ID_TG.bar_iron &&
         tG4 == Item_ID_TG.None &&
         tG5 == Item_ID_TG.stick &&
         tG6 == Item_ID_TG.None &&
@@ -271,10 +271,10 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------18.iron_axe
-        else if (tG1 == Item_ID_TG.iron &&
-        tG2 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
+        tG2 == Item_ID_TG.bar_iron &&
         tG3 == Item_ID_TG.None &&
-        tG4 == Item_ID_TG.iron &&
+        tG4 == Item_ID_TG.bar_iron &&
         tG5 == Item_ID_TG.stick &&
         tG6 == Item_ID_TG.None &&
         tG7 == Item_ID_TG.None &&
@@ -288,7 +288,7 @@ public class Creat_Recipe : MonoBehaviour
         else if (tG1 == Item_ID_TG.diamond &&
         tG2 == Item_ID_TG.diamond &&
         tG3 == Item_ID_TG.None &&
-        tG4 == Item_ID_TG.iron &&
+        tG4 == Item_ID_TG.diamond &&
         tG5 == Item_ID_TG.stick &&
         tG6 == Item_ID_TG.None &&
         tG7 == Item_ID_TG.None &&
@@ -299,12 +299,12 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------20.iron_helmet
-        else if (tG1 == Item_ID_TG.iron &&
-        tG2 == Item_ID_TG.iron &&
-        tG3 == Item_ID_TG.iron &&
-        tG4 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
+        tG2 == Item_ID_TG.bar_iron &&
+        tG3 == Item_ID_TG.bar_iron &&
+        tG4 == Item_ID_TG.bar_iron &&
         tG5 == Item_ID_TG.None &&
-        tG6 == Item_ID_TG.iron &&
+        tG6 == Item_ID_TG.bar_iron &&
         tG7 == Item_ID_TG.None &&
         tG8 == Item_ID_TG.None &&
         tG9 == Item_ID_TG.None)
@@ -327,15 +327,15 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------22.iron_armor
-        else if (tG1 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
         tG2 == Item_ID_TG.None &&
-        tG3 == Item_ID_TG.iron &&
-        tG4 == Item_ID_TG.iron &&
-        tG5 == Item_ID_TG.iron &&
-        tG6 == Item_ID_TG.iron &&
-        tG7 == Item_ID_TG.iron &&
-        tG8 == Item_ID_TG.iron &&
-        tG9 == Item_ID_TG.iron)
+        tG3 == Item_ID_TG.bar_iron &&
+        tG4 == Item_ID_TG.bar_iron &&
+        tG5 == Item_ID_TG.bar_iron &&
+        tG6 == Item_ID_TG.bar_iron &&
+        tG7 == Item_ID_TG.bar_iron &&
+        tG8 == Item_ID_TG.bar_iron &&
+        tG9 == Item_ID_TG.bar_iron)
         {
             id = Item_ID_TG.iron_armor;
             ItemCount = 1;
@@ -355,15 +355,15 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------24.iron_leggings
-        else if (tG1 == Item_ID_TG.iron &&
-        tG2 == Item_ID_TG.iron &&
-        tG3 == Item_ID_TG.iron &&
-        tG4 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
+        tG2 == Item_ID_TG.bar_iron &&
+        tG3 == Item_ID_TG.bar_iron &&
+        tG4 == Item_ID_TG.bar_iron &&
         tG5 == Item_ID_TG.None &&
-        tG6 == Item_ID_TG.iron &&
-        tG7 == Item_ID_TG.iron &&
+        tG6 == Item_ID_TG.bar_iron &&
+        tG7 == Item_ID_TG.bar_iron &&
         tG8 == Item_ID_TG.None &&
-        tG9 == Item_ID_TG.iron)
+        tG9 == Item_ID_TG.bar_iron)
         {
             id = Item_ID_TG.iron_leggings;
             ItemCount = 1;
@@ -383,12 +383,12 @@ public class Creat_Recipe : MonoBehaviour
             ItemCount = 1;
         }
         //---------------------------------------------26.iron_boots
-        else if (tG1 == Item_ID_TG.iron &&
+        else if (tG1 == Item_ID_TG.bar_iron &&
         tG2 == Item_ID_TG.None &&
-        tG3 == Item_ID_TG.iron &&
-        tG4 == Item_ID_TG.iron &&
+        tG3 == Item_ID_TG.bar_iron &&
+        tG4 == Item_ID_TG.bar_iron &&
         tG5 == Item_ID_TG.None &&
-        tG6 == Item_ID_TG.iron &&
+        tG6 == Item_ID_TG.bar_iron &&
         tG7 == Item_ID_TG.None &&
         tG8 == Item_ID_TG.None &&
         tG9 == Item_ID_TG.None)
