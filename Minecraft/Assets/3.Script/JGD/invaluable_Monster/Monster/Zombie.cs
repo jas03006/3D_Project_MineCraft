@@ -58,6 +58,11 @@ public class Zombie : Monster_controll
         {
             MonsterHurt(55);
         }
+        //if (!player.gameObject)
+        //{
+        //    StopAllCoroutines();
+        //    StartCoroutine(MonsterStand());
+        //}
     }
     private void OnTriggerEnter(Collider other)   //좀비 Player인식
     {
