@@ -88,8 +88,8 @@ public class PlayerState_Y : Living
     void Start()
     {
         OnEnable();
-        p_movement = GetComponent<Player_Test_TG>();
-        StartCoroutine(Hungry(1, 5));
+        p_movement = GetComponentInParent<PlayerMovement_Y>();
+        StartCoroutine(Hungry(1, 30));
     }
 
     protected override void OnEnable() // 초기화
@@ -321,6 +321,9 @@ public class PlayerState_Y : Living
     }
     public void respawn()
     {
+        if (hungry_recover_co != null) {
+            StopCoroutine(hungry_recover_co);
+        }
         Curhealth = 20;
         curhungry = 20;
         curexp = 0;
