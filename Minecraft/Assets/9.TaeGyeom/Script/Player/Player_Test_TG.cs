@@ -519,6 +519,7 @@ public class Player_Test_TG : PlayerMovement_Y
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
         } else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Exp"))) {
+            Exp_pooling.instance.return_pool(col.gameObject);
             player_state.GetExp(1);
         }
     }
@@ -655,9 +656,9 @@ public class Player_Test_TG : PlayerMovement_Y
 
     public void check_and_grap() {
         Vector3 target_pos = transform.position + Vector3.up;
-        Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         float dis;
         Rigidbody rigid;
+        Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));
         foreach (Collider col in cols) {
             //Debug.Log("check drop");
             dis = (target_pos - col.transform.position).magnitude;
@@ -667,6 +668,13 @@ public class Player_Test_TG : PlayerMovement_Y
                     continue;
                 } 
             }
+            col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
+        }
+
+        cols = Physics.OverlapBox(target_pos, Vector3.one * (interaction_range+1), Quaternion.identity,  LayerMask.GetMask("Exp"));
+        foreach (Collider col in cols)
+        {
+            dis = (target_pos - col.transform.position).magnitude;
             col.transform.position = Vector3.Lerp(col.transform.position, target_pos, Mathf.Min(0.1f / dis, 1f));
         }
     }

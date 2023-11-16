@@ -61,10 +61,16 @@ public class Exp_pooling : MonoBehaviour
         }
     }
 
+    public void generate_exp(int exp_num, Vector3 transform, Quaternion quaternion) {
+        for (int i =0; i < exp_num; i++) {
+            GameObject go = get_pool(transform + Vector3.forward * Random.Range(-0.3f, 0.3f) + Vector3.right * Random.Range(-0.3f, 0.3f), quaternion);
+        }
+    }
+
     //큐에 반납하기
     public void return_pool(GameObject exp)
     {
-        exp = Exp_queue.Dequeue();
+        Exp_queue.Enqueue(exp);
         exp.SetActive(false);
     }
 

@@ -126,6 +126,7 @@ public class Chunk_TG : MonoBehaviour
 
         }
         decide_mineral_blocks();
+        
         yield return null;
         //check_open_and_show_all();
     }

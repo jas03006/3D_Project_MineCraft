@@ -292,7 +292,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252362553
 GameObject:
@@ -697,6 +697,51 @@ Transform:
   - {fileID: 2080202853}
   m_Father: {fileID: 726597370}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &394211188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394211190}
+  - component: {fileID: 394211189}
+  m_Layer: 0
+  m_Name: ExpPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &394211189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394211188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f98b2b443431554bb153b2a4389a13a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp_prefab: {fileID: 6753938314313974396, guid: 79bf41ddadae8bf4e8837bf8d663e9f9, type: 3}
+  pooling_point: {x: 900, y: 1000, z: 900}
+--- !u!4 &394211190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394211188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.272031, y: -4.2837934, z: 12.149877}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501813994
 GameObject:
@@ -1209,6 +1254,8 @@ MonoBehaviour:
   - {fileID: 757624661869077916}
   - {fileID: 757624661285087562}
   eatclip: {fileID: 0}
+  consumption: 0
+  max_consumption: 0
   expslider: {fileID: 2120883914580440217}
   exptext: {fileID: 2120883914718009779}
   maxexpdata: {fileID: 11400000, guid: 8d2021886127221418600f32a6bf1882, type: 2}
@@ -1677,8 +1724,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster_prefabs:
   - {fileID: 0}
-  - {fileID: 7675969586230303738, guid: ecb9c120c38851b428a07ab124cc89c1, type: 3}
-  - {fileID: 2177743325468852861, guid: 4fd8dfb4251e4bd41a07e8be5cc1edf0, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1000131131
 Transform:
   m_ObjectHideFlags: 0
@@ -2393,7 +2440,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7340087
+    m_Bits: 7340215
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3531,9 +3578,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 15, z: 0}
+    m_Position: {x: 0, y: 12, z: 0}
     m_Rotation: {x: 90, y: 0, z: 0}
-    m_Scale: {x: 48, y: 48, z: 32}
+    m_Scale: {x: 60, y: 60, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6519,7 +6566,7 @@ ParticleSystem:
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByCollisionAngle: 0
     m_Planes: []
     m_Dampen:
       serializedVersion: 2

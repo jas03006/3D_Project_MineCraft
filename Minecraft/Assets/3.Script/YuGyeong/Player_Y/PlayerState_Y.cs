@@ -338,19 +338,19 @@ public class PlayerState_Y : Living
         }
 
         (p_movement as Player_Test_TG).stop();
-        StartCoroutine(lose_gravity_co());
 
+        Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
-
+        StartCoroutine(lose_gravity_co());
     }
     private IEnumerator lose_gravity_co()
     {
         (p_movement as Player_Test_TG).deactivate_gravity();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1.2f);
         (p_movement as Player_Test_TG).activate_gravity();
     }
-    public Vector3 get_respawn_position()
-    {
+    public Vector3 get_respawn_position()    {
+        
         if (respawn_bed == null)
         {
             return original_spawn_position;

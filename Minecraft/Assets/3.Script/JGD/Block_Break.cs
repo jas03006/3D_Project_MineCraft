@@ -9,7 +9,7 @@ public class Block_Break : MonoBehaviour
     public float Max_Block_Hp = 100f;
     public float blockHp = 100f;
     public float block_break = 0;
-
+    private GameObject player;
     public int i = 1;
 
     [SerializeField] GameObject Box;
@@ -17,9 +17,12 @@ public class Block_Break : MonoBehaviour
 
     MeshRenderer meshRenderer;
 
-
-    private void Start()
+    private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    private void Start()
+    {        
         meshRenderer = transform.parent.GetComponent<MeshRenderer>();
     }
 
@@ -43,7 +46,10 @@ public class Block_Break : MonoBehaviour
     public virtual void itemposition()
     {
         Block_Objectpooling.instance.Get(id, transform.position);
-        
+        if (id == Item_ID_TG.coal || id == Item_ID_TG.iron || id == Item_ID_TG.diamond)
+        {
+            Exp_pooling.instance.generate_exp(3, transform.position, Quaternion.LookRotation(player.transform.forward * -1f));
+        }
     }
 
 
