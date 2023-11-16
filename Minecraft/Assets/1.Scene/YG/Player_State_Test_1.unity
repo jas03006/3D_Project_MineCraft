@@ -19461,6 +19461,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544671993}
   m_CullTransparentMesh: 1
+--- !u!1 &1556211930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556211932}
+  - component: {fileID: 1556211931}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1556211931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556211930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a4956bc3c194645af5f03ba9e9d2ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyclip: {fileID: 0}
+  position_UI: {fileID: 0}
+--- !u!4 &1556211932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556211930}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582131619
 GameObject:
   m_ObjectHideFlags: 0
@@ -29967,10 +30012,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 424
-  current_hand: {fileID: 0}
+  current_hand: {fileID: 4429936875398998415}
   start_pos: {fileID: 3938795336597566634}
   end_pos: {fileID: 3938795335001169664}
   forward_pos: {fileID: 883677265}
+  datalist: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
 --- !u!1 &3938795336597566637
 GameObject:
   m_ObjectHideFlags: 0
@@ -30130,9 +30176,15 @@ MonoBehaviour:
   - {fileID: 3938795335300781577}
   - {fileID: 3938795334969778849}
   - {fileID: 3938795335838997517}
+  head_animator: {fileID: 1191619196290061494}
+  arm_animator: {fileID: 7573283532572787613}
+  body_animator: {fileID: 1057007670923775303}
   interaction_range: 8
   attack_charge_slider: {fileID: 827609534}
+  basic_att_speed: 4
   block_in_hand: {fileID: 4861730266974659017, guid: d9cdcf9a5b69bf949a5408ecfd37879f, type: 3}
+  block_in_hand_id: 0
+  block_in_hand_data: {fileID: 0}
   is_sleeping: 0
   inventory: {fileID: 4429936876506453078}
   head_tr: {fileID: 6855331401115189747}

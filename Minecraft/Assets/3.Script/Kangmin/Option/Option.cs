@@ -7,7 +7,6 @@ public class Option : MonoBehaviour
 {
     [SerializeField]private Transform[] children;
     [SerializeField]private bool isOptionOpen = false; // 버튼으로 bool값 바꾸기 위해
-    
 
     private void Start()
     {
