@@ -50,6 +50,7 @@ public class Piggy : Monster_controll
             MonsterHurt(20);
             Invoke("MonsterHurt", 3f);
         }
+
     }
     
     private void PigRay()    //정면 레이
@@ -67,13 +68,13 @@ public class Piggy : Monster_controll
         ray3.direction = Ray3.transform.forward;
         ray4.direction = Ray4.transform.forward;
 
-        Debug.DrawRay(ray.origin, ray.direction * 0.5f, Color.red);
-        Debug.DrawRay(ray1.origin, ray1.direction * 0.5f, Color.blue);
-        Debug.DrawRay(ray3.origin, ray3.direction, Color.blue);
-        Debug.DrawRay(ray4.origin, ray4.direction, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction*0.8f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction*0.8f, Color.blue);
+        Debug.DrawRay(ray3.origin, ray3.direction*1.5f, Color.blue);
+        Debug.DrawRay(ray4.origin, ray4.direction*1.5f, Color.blue);
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(ray3, 1f);
+        hit = Physics.RaycastAll(ray3, 1.5f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -81,7 +82,7 @@ public class Piggy : Monster_controll
                 return;
             }
         }
-        hit = Physics.RaycastAll(ray4, 1f);
+        hit = Physics.RaycastAll(ray4, 1.5f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -90,55 +91,38 @@ public class Piggy : Monster_controll
             }
         }
 
-        hit = Physics.RaycastAll(ray, 0.5f);
+        hit = Physics.RaycastAll(ray, 0.8f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
             {
                 JumpCount--;
                 Monster_Speed = 0.01f;
-                rigi.AddForce(transform.up * piggyJumppower);
-                rigi.AddForce(transform.forward * 10f);
-                break;
+                rigi.AddForce(transform.up * piggyJumppower* 0.5f, ForceMode.Impulse);
+                Invoke("Pigjump", 0.2f);
+                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                return;
             }
         }
-        hit = Physics.RaycastAll(ray1, 0.5f);
+        hit = Physics.RaycastAll(ray1, 0.8f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
             {
                 JumpCount--;
                 Monster_Speed = 0.01f;
-                rigi.AddForce(transform.up * piggyJumppower);
-                rigi.AddForce(transform.forward * 10f);
-                break;
+                rigi.AddForce(transform.up * piggyJumppower*0.5f, ForceMode.Impulse);
+                Invoke("Pigjump", 0.2f);
+                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                return;
             }
         }
 
-        //hit = Physics.RaycastAll(ray, 0.2f);
-        //for (int i = 0; i < hit.Length; i++)
-        //{
-        //    if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-        //    {
-        //        rigi.AddForce(transform.up * piggyJumppower);
-        //        break;
-        //    }
-        //}
-        //
-        //hit = Physics.RaycastAll(ray1, 0.2f);
-        //for (int i = 0; i < hit.Length; i++)
-        //{
-        //    if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-        //    {
-        //        rigi.AddForce(transform.up * piggyJumppower);
-        //        break;
-        //    }
-        //}
 
-        //if (Biom_Manager.instance.get_block(transform.position + transform.forward).id == Item_ID_TG.None) { 
-        //    
-        //}  //주변의 블록 정보 수집?
-
+    }
+    private void Pigjump()
+    {
+        rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
     }
     private void PigRay_Bellybutton()   //돼지 아래쪽 레이
     {
