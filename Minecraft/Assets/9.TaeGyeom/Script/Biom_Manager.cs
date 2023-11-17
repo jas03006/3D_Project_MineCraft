@@ -619,14 +619,20 @@ public class Biom_Manager : MonoBehaviour
         int monster_cnt = 400;
         int monster_spawn_range = 200;
         Vector3Int pos = Vector3Int.zero;
+        int monster_kind_cnt = Enum.GetValues(typeof(Monster_ID_J)).Length;
+
         for (int i =0; i < monster_cnt; i++) {
             pos.x = UnityEngine.Random.Range(-monster_spawn_range, monster_spawn_range+1);
             pos.z = UnityEngine.Random.Range(-monster_spawn_range, monster_spawn_range+1);
-            GameObject go = Monster_Pool_Manager.instance.get(Monster_ID_J.Pig, new Vector3(pos.x, get_mountain_height(pos) + 1, pos.z), Quaternion.identity, false);
+            GameObject go = Monster_Pool_Manager.instance.get((Monster_ID_J) UnityEngine.Random.Range(0, monster_kind_cnt), new Vector3(pos.x, get_mountain_height(pos) + 1, pos.z), Quaternion.identity, false);
             if (go != null) {
                 monster_controll_list.Add(go);
             }
         }
+    }
+    public void kill_monster(Monster_ID_J id_, GameObject go_) {
+        monster_controll_list.Remove(go_);
+        Monster_Pool_Manager.instance.back(id_, go_);
     }
 
     private void update_monsters_visiblity(bool only_check_out = false) {

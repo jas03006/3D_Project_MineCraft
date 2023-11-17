@@ -36,7 +36,12 @@ public abstract class Monster_controll : Living
     //랜덤이동 
     //그러나 가만히도 있어야함
     protected abstract IEnumerator MonsterFracture();  //피격판정 넉백 도망까지
-    protected abstract void MonsterDead();   //몬스터 사망
+    protected virtual void MonsterDead()   //몬스터 사망
+    {
+        //Destroy(gameObject);
+        Biom_Manager.instance.kill_monster(monsterID, this.gameObject);
+        
+    }
 
 
     protected abstract void MonsterMove();

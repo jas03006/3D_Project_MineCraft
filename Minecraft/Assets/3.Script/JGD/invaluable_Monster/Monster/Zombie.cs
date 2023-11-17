@@ -17,7 +17,7 @@ public class Zombie : Monster_controll
     List<Color>[] monsterco;
     //-------------------------좀비 컨트롤러
     [SerializeField] private float ZomJumppow;
-    protected bool move = true;
+   // protected bool move = true;
     private int ZomHp;
     private int ItemCount = 1;
     private int JumpCount = 1;
@@ -37,9 +37,10 @@ public class Zombie : Monster_controll
     [SerializeField] private AudioClip ZomDead;
     private AudioSource audioSource;
 
+    private Coroutine follow_co = null;
+    private Coroutine stand_co = null;
     private void Awake()
     {
-        ZomHp = starthealth;
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         rigi = GetComponent<Rigidbody>();
@@ -49,9 +50,10 @@ public class Zombie : Monster_controll
     }
     private void Start()
     {
+        ItemCount = 1;
+        ZomHp = starthealth;
         Rengering();
-        StartCoroutine(MonsterStand());
-        
+        stand_co = StartCoroutine(MonsterStand());
     }
     private void Update()
     {
@@ -69,14 +71,21 @@ public class Zombie : Monster_controll
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StopCoroutine(MonsterStand());
-            StartCoroutine(MonsterFollow());
+            //StopAllCoroutines();
+            if (stand_co != null) {
+                StopCoroutine(stand_co);
+                stand_co = null;
+            }            
+            if (follow_co != null) { 
+                StopCoroutine(follow_co);
+            }
+            follow_co = StartCoroutine(MonsterFollow());
         }
     }
     public override void MonsterHurt(int PlayerDamage)   //좀비가 맞을때
     {
         ZomHp -= PlayerDamage;
-        move = false;
+       // move = false;
         if (ZomHp > 0)
         {
             ZomHitSound();
@@ -138,7 +147,7 @@ public class Zombie : Monster_controll
         rigi.AddForce(transform.up * 125f);
         rigi.AddForce(dir * 5f);
 
-        move = true;
+       // move = true;
         yield break;
 
     }
@@ -146,7 +155,7 @@ public class Zombie : Monster_controll
     protected override IEnumerator MonsterStand()  //좀비가 가만히 있을때
     {
         var moveTime = CurveWeighedRandom(ani);
-        var dir = new Vector3();
+        Vector3 dir = new Vector3();
         dir.x = Random.Range(-10f, 10f);
         dir.y = 0;
         dir.z = Random.Range(-10f, 10f);
@@ -154,28 +163,28 @@ public class Zombie : Monster_controll
         transform.forward = dir.normalized;
         while (true)
         {
-            if (move)
+            /*if (move)
+            {*/
+
+            Zom_FrontScan();
+            ZomRay_Down();
+            zombietimer += Time.deltaTime;
+            this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
+            animation.SetBool("ZombieWalk", true);
+            float distance = Vector3.Distance(transform.position, pos);
+
+            if (distance <= 0.1f || zombietimer > 3f)
             {
+                zombietimer = 0f;
+                animation.SetBool("ZombieWalk", false);
+                yield return new WaitForSeconds(Random.Range(1f, moveTime));
 
-                Zom_FrontScan();
-                ZomRay_Down();
-                zombietimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-                animation.SetBool("ZombieWalk", true);
-                float distance = Vector3.Distance(transform.position, pos);
-
-                if (distance <= 0.1f || zombietimer > 3f)
-                {
-                    zombietimer = 0f;
-                    animation.SetBool("ZombieWalk", false);
-                    yield return new WaitForSeconds(Random.Range(1f, moveTime));
-
-                    dir.x = Random.Range(-3f, 3f);
-                    dir.z = Random.Range(-3f, 3f);
-                    pos = dir  + this.transform.position;
-                    transform.forward = dir.normalized;
-                }
+                dir.x = Random.Range(-3f, 3f);
+                dir.z = Random.Range(-3f, 3f);
+                pos = dir  + this.transform.position;
+                transform.forward = dir.normalized;
             }
+            //}
                 yield return null;
         }
     }
@@ -188,9 +197,10 @@ public class Zombie : Monster_controll
             Zom_FrontScan();
             Vector3 dir = player.transform.position - this.transform.position;
             dir.y = 0;
-            transform.forward = dir.normalized;
-            
+
+            this.transform.LookAt(player.transform.position, Vector3.up);
             this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
+            
             pos = player.transform.position;
             float distance = Vector3.Distance(transform.position, pos);
 
@@ -298,7 +308,7 @@ public class Zombie : Monster_controll
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1.3f, LayerMask.GetMask("Default"))&& Zomattack == true)
         {
-            move = true;
+           // move = true;
             this.Monster_Speed = 1f;
         }
         else
@@ -310,10 +320,6 @@ public class Zombie : Monster_controll
     private void Zomjump()   //엄청난 좀비의 점프실력
     {
         rigi.AddForce(transform.forward * 0.3f, ForceMode.Impulse);
-    }
-    protected override void MonsterDead()  //좀비 사망...
-    {
-        Destroy(gameObject);
     }
 
     private void ZomHitSound()  //좀비가 맞을때
