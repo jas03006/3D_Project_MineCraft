@@ -184,7 +184,8 @@ public class Piggy : Monster_controll
                 Block_Objectpooling.instance.Get(id, transform.position);
                 ItemCount--;
             }
-            Invoke("MonsterDead", 2f);
+            MonsterDead();
+            Invoke("MonsterHide", 2f);
         }
 
     }

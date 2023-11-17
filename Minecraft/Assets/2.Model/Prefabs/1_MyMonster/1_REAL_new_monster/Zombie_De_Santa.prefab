@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1101245476179949575}
   - component: {fileID: 4100443315000391586}
   - component: {fileID: 2234704820137739112}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: giftbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1595827706119576428}
   - component: {fileID: 3760111557199770796}
   - component: {fileID: 1885499618276564053}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5427084831247860961}
   - component: {fileID: 8723013451126749461}
   - component: {fileID: 1467997489287318559}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Object001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6026888522175543313}
   - component: {fileID: 6438495138694200532}
   - component: {fileID: 7818397833425671211}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: sfera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 4072720415489503920}
   - component: {fileID: 1092947777512848661}
   - component: {fileID: 2940315641827314143}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Scarf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3889720931290127489}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3889720931513886526}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3889720931526835429}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3889720932705582375}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3889720933060867364}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Floor_RayShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 1000429294362003303}
   - component: {fileID: 7710582014434392150}
   - component: {fileID: 6500254580206509628}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 1602737587538484360}
   - component: {fileID: 1755255648684167584}
   - component: {fileID: 1198709721946681017}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: hat3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 9036879163313375655}
   - component: {fileID: 5500873856025663111}
   - component: {fileID: 7766994930296371821}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: pelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5781641288083496721}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: christmashat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 7062656233274801844}
   - component: {fileID: 7062656233274801840}
   - component: {fileID: 7062656233274801833}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Zombie_De_Santa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7981207284219644369}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 5997677414605171667}
   - component: {fileID: 4426519525980234444}
   - component: {fileID: 2413571176880550308}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 3714239452755915264}
   - component: {fileID: 5523972244302131587}
   - component: {fileID: 6047076647512015270}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
