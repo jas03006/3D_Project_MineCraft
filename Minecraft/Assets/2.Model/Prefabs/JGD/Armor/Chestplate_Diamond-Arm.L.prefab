@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1016778822990796534}
   - component: {fileID: 4287333982101176058}
   - component: {fileID: 8896597467982830542}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Chestplate_Diamond-Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

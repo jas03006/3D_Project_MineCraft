@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4249262405381564345}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Diamond_helmet_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8582885750498418469}
   - component: {fileID: 8582885750498418470}
   - component: {fileID: 8582885750498418471}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Diamond_helmet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

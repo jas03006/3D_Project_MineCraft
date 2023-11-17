@@ -73,11 +73,26 @@ public class PlayerMovement_Y : MonoBehaviour
     [SerializeField] protected Transform cam;
     [SerializeField] protected Transform[] cam_pos_arr;
     protected Cam_State cam_state = Cam_State.cam1;
+    [SerializeField] MeshRenderer right_arm_renderer;
 
     //animator
     [SerializeField] protected Animator head_animator;
     [SerializeField] protected Animator arm_animator;
     [SerializeField] protected Animator body_animator;
+
+    public int camera_mask_basic=0;
+    private void Awake()
+    {
+        if (camera_mask_basic == 0)
+        {
+            camera_mask_basic = cam.GetComponent<Camera>().cullingMask | LayerMask.GetMask("Player_Right_Arm");
+        }
+        if (cam_state == Cam_State.cam1)//렌더링 모두 끄기
+        {
+            cam.GetComponent<Camera>().cullingMask = camera_mask_basic & ((-1 >> 32) ^ LayerMask.GetMask("Player_J"));
+            right_arm_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+    }
     protected virtual void Start()
     {
         TryGetComponent(out rigid);
@@ -229,9 +244,19 @@ public class PlayerMovement_Y : MonoBehaviour
 
     protected void CamChange()
     {
+        if (cam_state == Cam_State.cam1)
+        {
+            cam.GetComponent<Camera>().cullingMask = camera_mask_basic;
+            right_arm_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
         cam_state = (Cam_State)(((int)cam_state + 1)%Enum.GetValues(typeof(Cam_State)).Length);
         cam.transform.position = cam_pos_arr[(int)cam_state].position;
         cam.transform.rotation = cam_pos_arr[(int)cam_state].rotation;
+        if (cam_state == Cam_State.cam1)//1인칭이면 몸 렌더링 모두 끄기
+        {
+            cam.GetComponent<Camera>().cullingMask = camera_mask_basic & ((-1>>32) ^ LayerMask.GetMask("Player_J"));
+            right_arm_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
         /*tmp -= mouseY * r_speed;
         tmp = Mathf.Clamp(tmp, -90, 90);
         cam.rotation = Quaternion.Euler(tmp, 0, 0);*/

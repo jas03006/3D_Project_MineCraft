@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1708714352470848839}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Diamond_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5049364323847896605}
   - component: {fileID: 5049364323847896604}
   - component: {fileID: 5049364323847896603}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Diamond 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
