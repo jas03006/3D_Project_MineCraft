@@ -4,23 +4,51 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance = null;
+
     [Header("Lobby")]
     [SerializeField] private AudioClip lobbyclip;
 
     [Header("Position UI")]
-    [SerializeField] private Text position_UI;
+    [SerializeField] public Text position_UI;
     private Transform player_transform;
 
     [Header("Dead UI")]
     [SerializeField] private GameObject dead_UI;
     [SerializeField] private Text dead_score;
-    private PlayerState_Y playerState_Y;
+    public PlayerState_Y playerState_Y;
+    [SerializeField]private Option option;
 
-    private void Start()
+    private void Awake()
     {
-        //GameObject player = FindObjectOfType<Player_Test_TG>().gameObject;
-        //player_transform = player.transform;
-        //playerState_Y = player.GetComponent<PlayerState_Y>();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(position_UI);
+        DontDestroyOnLoad(option);
+        DontDestroyOnLoad(dead_UI);
+
+        //씬이 바뀔때 자동으로 실행되는 델리게이트
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        //Cursor.visible = false;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Game")
+        {
+            playerState_Y = FindObjectOfType<PlayerState_Y>();
+            player_transform = playerState_Y.gameObject.transform;
+        }
+        positon_UI_update();
     }
 
     public void go_lobby()
@@ -30,6 +58,7 @@ public class UIManager : MonoBehaviour
         {
             SceneManager.LoadScene("Lobby");
         }
+        option.save();
     }
 
     public void go_exit()
@@ -40,11 +69,12 @@ public class UIManager : MonoBehaviour
     public void go_game()
     {
         SceneManager.LoadScene("Game");
+        option.save();
     }
 
     public void positon_UI_update()
     {
-        if (SceneManager.GetActiveScene().name == "Game")
+        if (SceneManager.GetActiveScene().name == "Game" && !option.isOptionOpen && !dead_UI.activeSelf)
         {
             position_UI.enabled = true;
             position_UI.text = $"X : {player_transform.position.x} / Y : {player_transform.position.y} / Z : {player_transform.position.z}";
@@ -61,6 +91,4 @@ public class UIManager : MonoBehaviour
         dead_UI.SetActive(true);
         dead_score.text = $"점수 : {playerState_Y.totalexp}";
     }
-
-
 }
