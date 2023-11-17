@@ -191,8 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  Max_Block_Hp: 100
-  blockHp: 100
+  Max_Block_Hp: 200
+  blockHp: 200
   block_break: 0
   i: 1
   Box: {fileID: 4861730266974659017}
@@ -208,4 +208,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8bbc73e04e7540d42a2c02945591e823, type: 2}
   - {fileID: 2100000, guid: b45062e26cefc274ea7c0e969519d02c, type: 2}
   - {fileID: 2100000, guid: b61573c218323f34aa89427d0497025f, type: 2}
+  is_open: 0
+  time_data: []
   space: []

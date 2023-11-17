@@ -56,18 +56,25 @@ public class Block_Objectpooling : MonoBehaviour
             GameObject prefab_ = iD2Item.get_prefab(id);
             if (prefab_ != null)
             {
-                Debug.Log(iD2Item.ID2index(id));
+                //Debug.Log(iD2Item.ID2index(id));
                 select = Instantiate(prefab_, position, Quaternion.identity);
                 Blockpool[iD2Item.ID2index(id)].Add(select);
             }
             
             
         }
-
-
-
-
         return select;
+    }
+
+    public void throw_item(Item_ID_TG id_, Vector3 position_, Vector3 forward_) {
+        GameObject go = Get(id_, position_);
+        if (go == null) {
+            return;
+        }
+        Rigidbody rigid = go.GetComponent<Rigidbody>();
+        if (rigid != null) {
+            rigid.AddForce((forward_ + Vector3.up * 0.5f)*3.5f,ForceMode.Impulse);
+        }
     }
 
 

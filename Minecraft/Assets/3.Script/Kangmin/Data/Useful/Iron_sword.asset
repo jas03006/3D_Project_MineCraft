@@ -25,7 +25,7 @@ MonoBehaviour:
   baked_item: 0
   Durability: 0
   attack: 3
-  att_speed: 2
+  att_speed: 1.5
   player_state: {fileID: 0}
   player_animator: {fileID: 0}
   useful_Type: 2

@@ -78,7 +78,7 @@ public class PlayerState_Y : Living
     [SerializeField] private AudioClip expclip;
 
     [Header("damage")]
-    public int attack_power = 1;
+    public int attack_power = 2;
     public float att_speed = 1;
     public int defense_power = 1;
 
@@ -255,7 +255,7 @@ public class PlayerState_Y : Living
 
     private void HungryInteraction()
     {
-        Debug.Log("HungryInteraction");
+        //Debug.Log("HungryInteraction");
         if (curhungry == 0 && curhealth != 0) //배고픔0이고 안죽었을때
         {
             if (hungry_recover_co != null)
@@ -271,7 +271,7 @@ public class PlayerState_Y : Living
             if (hungry_recover_co != null)
             {
                 StopCoroutine(hungry_recover_co);
-                Debug.Log("StopCoroutine(hungry_recover_co);");
+                //Debug.Log("StopCoroutine(hungry_recover_co);");
             }
             hungry_recover_co = StartCoroutine(Health(1, 1, 4));
         }
@@ -338,19 +338,19 @@ public class PlayerState_Y : Living
         }
 
         (p_movement as Player_Test_TG).stop();
-        StartCoroutine(lose_gravity_co());
 
+        Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
-
+        StartCoroutine(lose_gravity_co());
     }
     private IEnumerator lose_gravity_co()
     {
         (p_movement as Player_Test_TG).deactivate_gravity();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1.2f);
         (p_movement as Player_Test_TG).activate_gravity();
     }
-    public Vector3 get_respawn_position()
-    {
+    public Vector3 get_respawn_position()    {
+        
         if (respawn_bed == null)
         {
             return original_spawn_position;
