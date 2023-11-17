@@ -678,7 +678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starthealth: 100
   Monster_Speed: 1
-  Monster_Damage: 20
+  Monster_Damage: 5
   monsterID: 2
   ani:
     serializedVersion: 2

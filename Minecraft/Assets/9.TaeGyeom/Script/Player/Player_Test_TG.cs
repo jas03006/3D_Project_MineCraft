@@ -148,6 +148,8 @@ public class Player_Test_TG : PlayerMovement_Y
     //TG
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
+    private float invincible_timer = 0f;
+    private float invincible_time = 1.5f;
     [SerializeField]private Slider attack_charge_slider;//TG
     public int basic_att_speed = 4;
 
@@ -234,6 +236,7 @@ public class Player_Test_TG : PlayerMovement_Y
     }
     protected void Update()
     {
+        invincible_timer += Time.deltaTime;
         attck_timer += Time.deltaTime;
         if (attack_charge_slider.value < attack_charge_slider.maxValue)
         {
@@ -362,6 +365,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 if (dmg > 0)
                 {
                     player_state.OnDamage(dmg);
+                    invincible_timer = 0f;
                     rigid.velocity = new Vector3(rigid.velocity.x,0, rigid.velocity.z);
                 }
             }
@@ -411,7 +415,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 //objectHit.GetComponent<Block_TG>()
                 int dmg = 10 * Combat_system.instance.cal_combat_block(now_breaking_block.id);
                 now_breaking_block.Destroy_Block(dmg);//die();
-                Debug.Log("Damage: "+dmg);
+                //Debug.Log("Damage: "+dmg);
             }
             else {//monster
                 Monster_controll monster = objectHit.GetComponent<Monster_controll>();
@@ -521,24 +525,49 @@ public class Player_Test_TG : PlayerMovement_Y
 
     private void OnTriggerEnter(Collider other)
     {
-        get_item(other);
+        if (!get_item(other) && invincible_timer > invincible_time) {
+            get_attacked(other);
+        }
     }
-    
-   /* protected void OnCollisionStay(Collision col)
+    private void OnTriggerStay(Collider other)
     {
-        get_item(col);
-    }*/
+        if (!get_item(other) && invincible_timer > invincible_time)
+        {
+            get_attacked(other);
+        }
+    }
 
-    private void get_item(Collider col) {
+    /* protected void OnCollisionStay(Collision col)
+     {
+         get_item(col);
+     }*/
+    public void get_attacked(Collider collider) {
+        if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Monster_Attack"))) {
+            Monster_controll mc = collider.gameObject.GetComponentInParent<Monster_controll>();
+            Debug.Log("Monster_Attack!");
+            if (mc != null)
+            {
+
+                int dmg = (int)mc.Monster_Damage - player_state.defense_power;
+                Debug.Log(dmg);
+                player_state.OnDamage((dmg < 0 ? 0 : dmg));
+                invincible_timer = 0f;
+            }
+        }        
+    }
+    private bool get_item(Collider col) {
         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
             //¾ÆÀÌÅÛ ½Àµæ
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
+            return true;
         } else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Exp"))) {
             Exp_pooling.instance.return_pool(col.gameObject);
             player_state.GetExp(1);
+            return true;
         }
+        return false;
     }
 
     

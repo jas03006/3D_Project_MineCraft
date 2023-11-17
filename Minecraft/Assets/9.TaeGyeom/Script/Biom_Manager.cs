@@ -135,7 +135,6 @@ public class Biom_Manager : MonoBehaviour
         }
 
         update_monsters_visiblity(only_check_out: true);
-
     }
 
     private void FixedUpdate()
@@ -391,6 +390,11 @@ public class Biom_Manager : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < monster_controll_list.Count; i++)
+        {
+            monster_controll_list[i].gameObject.SetActive(false);
+        }
     }
 
 
@@ -635,7 +639,7 @@ public class Biom_Manager : MonoBehaviour
         Monster_Pool_Manager.instance.back(id_, go_);
     }
 
-    private void update_monsters_visiblity(bool only_check_out = false) {
+    public void update_monsters_visiblity(bool only_check_out = false) {
         for (int i =0; i < monster_controll_list.Count; i++) {
             if (is_in_render_space(monster_controll_list[i].transform.position))
             {

@@ -17,7 +17,7 @@ public abstract class Monster_controll : Living
     protected Vector3 pos;
     [Header("스탯")]
     [SerializeField] protected float Monster_Speed;
-    [SerializeField] protected float Monster_Damage;
+    [SerializeField] public float Monster_Damage;
     [Header("플레이어 위치")]
     protected GameObject player;
     [Header("몬스터 ID")]
