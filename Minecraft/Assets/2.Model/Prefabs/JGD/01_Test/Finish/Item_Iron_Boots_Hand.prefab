@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406836707867361924}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_Boots_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8255354948134887377}
   - component: {fileID: 8255354948134887382}
   - component: {fileID: 8255354948134887383}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_Boots 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

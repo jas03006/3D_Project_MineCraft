@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1605655221523125475}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Wood_pickaxe_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8249973130617391708}
   - component: {fileID: 2581693924808463453}
   - component: {fileID: 5820815405049217905}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Wood_Pickaxe 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

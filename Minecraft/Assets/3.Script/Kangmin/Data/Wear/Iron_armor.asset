@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c2c067c3f1d9947a3913637d56597f, type: 3}
   m_Name: Iron_armor
   m_EditorClassIdentifier: 
-  itemName: "\uCCA0 \uD22C\uAD6C"
+  itemName: "\uCCA0 \uD749\uAC11"
   maxValue: 1
-  itemsprite: {fileID: 21300000, guid: d2fbb287166becf4aab59316010b0bc5, type: 3}
+  itemsprite: {fileID: 21300000, guid: e59f3a6bbcbfd8344b1a1b9232f87841, type: 3}
   classname: "\uC804\uD22C"
   isequipable: 1
   isinstallable: 0

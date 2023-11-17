@@ -30,12 +30,12 @@ public class Food : InventoryData, IEat
         //체력 회복 적용
         player_state.Hungry_cure(hungry_cure);
 
-        slot.number--;        //아이템 갯수--;
+        /*slot.number--;        //아이템 갯수--;
 
         if (slot.number == 0)
         {
             slot.ResetItem();        //아이템 갯수 0이면 초기화
-        }
+        }*/
         //player_animator.set 애니메이션 넣어줘야함
     }
 

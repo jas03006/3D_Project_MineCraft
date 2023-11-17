@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3917308781746567862}
   - component: {fileID: 3917308781746567857}
   - component: {fileID: 3917308781746567856}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_helmet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7019355638541869281}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_helmet_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

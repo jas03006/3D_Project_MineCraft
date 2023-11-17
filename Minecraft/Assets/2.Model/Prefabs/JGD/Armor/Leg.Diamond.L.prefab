@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7465810168597110839}
   - component: {fileID: 329133339970693365}
   - component: {fileID: 8313066307194883907}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Leg.Diamond.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

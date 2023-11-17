@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 6
   m_IsActive: 1
 --- !u!4 &4861730266974659016
 Transform:
@@ -100,7 +100,7 @@ GameObject:
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 6
   m_IsActive: 1
 --- !u!4 &4861730267239214074
 Transform:
@@ -209,5 +209,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b45062e26cefc274ea7c0e969519d02c, type: 2}
   - {fileID: 2100000, guid: b61573c218323f34aa89427d0497025f, type: 2}
   is_open: 0
+  time_data: []
   space: []
-  craft_UI: {fileID: 0}

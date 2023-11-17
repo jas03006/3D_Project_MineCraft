@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6699502086856983251}
   - component: {fileID: 8371706802525141913}
   - component: {fileID: 4975348227778305805}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6091502868707439499}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Axe_Wood_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
