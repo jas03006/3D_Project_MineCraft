@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5046657571751438786}
   - component: {fileID: 5046657571751438787}
   - component: {fileID: 5046657571751438812}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_chestplate 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6900650268759434742}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron_chestplate_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

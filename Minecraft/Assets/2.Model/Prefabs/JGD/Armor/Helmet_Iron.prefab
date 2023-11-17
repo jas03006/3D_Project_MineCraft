@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2872952191701310750}
   - component: {fileID: 3895718077867764124}
   - component: {fileID: 7299395163501559875}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Helmet_Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}

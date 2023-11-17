@@ -162,7 +162,7 @@ public class Player_Test_TG : PlayerMovement_Y
 
     protected Camera camera;
     [SerializeField] Transform head_tr;
-    [SerializeField] Transform body_tr;
+    [SerializeField] Transform body_tr;    
     
     private Vector3 temp_vec3;
     private float temp_float;

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 476342899857683950}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Axe_Iron_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1075370086095045814}
   - component: {fileID: 2754888201207610876}
   - component: {fileID: 1666030699058551144}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
