@@ -24,12 +24,17 @@ public class Piggy : Monster_controll
     [SerializeField] private GameObject Ray3;
     [SerializeField] private GameObject Ray4;
     [SerializeField] private GameObject FloorRay;
+    [Header("몬스터 사운드")]
+    [SerializeField] private AudioClip[] PigHit;
+    [SerializeField] private AudioClip PigDead;
+    private AudioSource audioSource;
+
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         move = true;
-        PigHp = curhealth;
         animation = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody>();
         render = GetComponentInChildren<Renderer>();
@@ -37,6 +42,7 @@ public class Piggy : Monster_controll
     }
     private void Start()
     {
+        PigHp = starthealth;
         ItemCount = 1;
         StartCoroutine(MonsterStand());
     }
@@ -48,7 +54,6 @@ public class Piggy : Monster_controll
         {
             //StartCoroutine(MonsterRunout());
             MonsterHurt(20);
-            Invoke("MonsterHurt", 3f);
         }
 
     }
@@ -120,7 +125,7 @@ public class Piggy : Monster_controll
 
 
     }
-    private void Pigjump()
+    private void Pigjump() //돼지의 정교한 점프실력
     {
         rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
     }
@@ -162,6 +167,7 @@ public class Piggy : Monster_controll
         PigHp = PigHp - PlayerDamage;
         if (PigHp > 0)
         {
+            PigHitSound();
             StartCoroutine(MonsterRunout());
             StopCoroutine(MonsterStand());
             move = true;
@@ -170,9 +176,10 @@ public class Piggy : Monster_controll
         else if (PigHp <= 0)
         {
             StopAllCoroutines();
-            StopCoroutine(MonsterRunout());
+            //StopCoroutine(MonsterRunout());
             if (ItemCount == 1)
             {
+                Pig_Dead();
                 animation.SetTrigger("isDead");
                 Block_Objectpooling.instance.Get(id, transform.position);
                 ItemCount--;
@@ -185,9 +192,7 @@ public class Piggy : Monster_controll
     {
         Destroy(gameObject);
     }
-
-
-
+    
     private void Look_otherside()     // 플레이어 방대방향 보기
     {
         Vector3 dir = transform.position - player.transform.position;
@@ -296,6 +301,19 @@ public class Piggy : Monster_controll
             }
                 yield return null;
         }
+    }
+
+
+    private void PigHitSound()  //돼지가 맞을때
+    {
+        audioSource.clip = PigHit[Random.Range(1, 3)];
+        audioSource.Play();
+    }
+
+    private void Pig_Dead()     //돼지가 죽을때
+    {
+        audioSource.clip = PigDead;
+        audioSource.Play();
     }
 }
 

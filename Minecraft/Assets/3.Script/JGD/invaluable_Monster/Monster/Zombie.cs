@@ -32,9 +32,15 @@ public class Zombie : Monster_controll
     [SerializeField] private GameObject Ray3;
     [SerializeField] private GameObject Ray4;
     [SerializeField] private GameObject FloorRay;
+    [Header("몬스터 사운드")]
+    [SerializeField] private AudioClip[] ZomHit;
+    [SerializeField] private AudioClip ZomDead;
+    private AudioSource audioSource;
+
     private void Awake()
     {
-        ZomHp = curhealth;
+        ZomHp = starthealth;
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         rigi = GetComponent<Rigidbody>();
         renders = GetComponentsInChildren<Renderer>();
@@ -56,7 +62,7 @@ public class Zombie : Monster_controll
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            MonsterHurt(55);
+            MonsterHurt(20);
         }
     }
     private void OnTriggerEnter(Collider other)   //좀비 Player인식
@@ -67,14 +73,30 @@ public class Zombie : Monster_controll
             StartCoroutine(MonsterFollow());
         }
     }
-    public override void MonsterHurt(int PlayerDamage)
+    public override void MonsterHurt(int PlayerDamage)   //좀비가 맞을때
     {
         ZomHp -= PlayerDamage;
         move = false;
-        StartCoroutine(MonsterFracture());
+        if (ZomHp > 0)
+        {
+            ZomHitSound();
+            StartCoroutine(MonsterFracture());
+            OnDamage(PlayerDamage);
+        }
+        else if (ZomHp <=0 && ItemCount ==1)
+        {
+            Zom_Dead();
+            StopAllCoroutines();
+            StartCoroutine(MonsterFracture());
+            animation.SetTrigger("ZombieDead");
+            Block_Objectpooling.instance.Get(id, transform.position);
+            ItemCount--;
+            Invoke("MonsterDead", 2f);
+        }
+        
     }
 
-    private void Rengering()               //배열안에 배열
+    private void Rengering()       //배열안에 배열
     {
         monsterco = new List<Color>[renders.Length];
         for (int i = 0; i < renders.Length; i++)
@@ -113,8 +135,8 @@ public class Zombie : Monster_controll
             }
         }
 
-        rigi.AddForce(transform.up * 150f);
-        rigi.AddForce(dir * 15f);
+        rigi.AddForce(transform.up * 125f);
+        rigi.AddForce(dir * 5f);
 
         move = true;
         yield break;
@@ -285,15 +307,25 @@ public class Zombie : Monster_controll
             this.Monster_Speed = 0f;
         }
     }
-    private void Zomjump()
+    private void Zomjump()   //엄청난 좀비의 점프실력
     {
         rigi.AddForce(transform.forward * 0.3f, ForceMode.Impulse);
     }
-    protected override void MonsterDead()
+    protected override void MonsterDead()  //좀비 사망...
     {
         Destroy(gameObject);
     }
 
+    private void ZomHitSound()  //좀비가 맞을때
+    {
+        audioSource.clip = ZomHit[Random.Range(1, 2)];
+        audioSource.Play();
+    }
 
+    private void Zom_Dead()     //좀비가 죽을때
+    {
+        audioSource.clip = ZomDead;
+        audioSource.Play();
+    }
 
 }
