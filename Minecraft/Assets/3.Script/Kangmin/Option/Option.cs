@@ -30,8 +30,8 @@ public class Option : MonoBehaviour
         {
             children[i].gameObject.SetActive(false);
         }
-        SceneManager.sceneLoaded += snow_active;
     }
+
 
     public void Interaction()
     {
@@ -98,9 +98,11 @@ public class Option : MonoBehaviour
         PlayerPrefs.SetFloat("BGM", bgm_slider.value);
         PlayerPrefs.SetFloat("SFX", sfx_slider.value);
         PlayerPrefs.SetInt("is_snow", System.Convert.ToInt16(is_snow));
+        Debug.Log("저장완료");
+        Debug.Log($"저장값 : BGM{bgm_slider.value} / SFX{sfx_slider.value} /is_snow{System.Convert.ToInt16(is_snow)}");
     }
 
-    public void load()
+    public void load(Scene scene, LoadSceneMode mode)
     {
         if (PlayerPrefs.HasKey("BGM"))
         {
@@ -124,5 +126,7 @@ public class Option : MonoBehaviour
         {
             is_snow = System.Convert.ToBoolean(PlayerPrefs.GetInt("is_snow"));
         }
+        Debug.Log("불러오기 완료");
+        Debug.Log($"불러온 값 : BGM{bgm_slider.value} / SFX{sfx_slider.value} /is_snow{System.Convert.ToInt16(is_snow)}");
     }
 }

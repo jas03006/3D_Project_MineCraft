@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/TG/Map_Generate_TG.unity
     guid: 5371bce73078a6349ac3da1069b7e331
+  - enabled: 1
+    path: Assets/1.Scene/YG/Lobby_Y.unity
+    guid: d70d60f8d4c06964d94522f70867ca48
+  - enabled: 1
+    path: Assets/1.Scene/YG/Player_State_Test_1.unity
+    guid: dceeb80379d89ed42859c8827cccebf3
   m_configObjects: {}

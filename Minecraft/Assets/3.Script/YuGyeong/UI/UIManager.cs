@@ -1,11 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
+    [SerializeField] Canvas canvas;
+    [SerializeField] GameObject logo_image;
     [Header("Lobby")]
     [SerializeField] private AudioClip lobbyclip;
 
@@ -17,14 +19,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dead_UI;
     [SerializeField] private Text dead_score;
     public PlayerState_Y playerState_Y;
-    [SerializeField]private Option option;
+    [SerializeField] public Option option;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -32,33 +34,44 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(position_UI);
-        DontDestroyOnLoad(option);
-        DontDestroyOnLoad(dead_UI);
+        DontDestroyOnLoad(canvas);
+    }
 
-        //씬이 바뀔때 자동으로 실행되는 델리게이트
+    private void OnEnable()
+    {
+        //씬이 바뀔때 자동으로 실행되는 이벤트
+        Debug.Log("OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        //Cursor.visible = false;
+        SceneManager.sceneLoaded += option.snow_active;
+    }
+    private void OnDisable()
+    {
+        // 이벤트 해제
+        Debug.Log("OnDisable");
+        option.save();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= option.snow_active;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Game")
+        Debug.Log("OnSceneLoaded");
+        if (scene.name == "Player_State_Test_1")
         {
             playerState_Y = FindObjectOfType<PlayerState_Y>();
             player_transform = playerState_Y.gameObject.transform;
+            if (player_transform == null)
+            {
+                Debug.Log("player_transform == null");
+            }
         }
         positon_UI_update();
     }
 
     public void go_lobby()
     {
-        //로비 씬 이름 Lobby로 박아둠 
-        if (SceneManager.GetActiveScene().name != "Lobby")
-        {
-            SceneManager.LoadScene("Lobby");
-        }
-        option.save();
+        logo_image.SetActive(true);
+        SceneManager.LoadScene("Lobby_Y");
     }
 
     public void go_exit()
@@ -68,13 +81,13 @@ public class UIManager : MonoBehaviour
 
     public void go_game()
     {
-        SceneManager.LoadScene("Game");
-        option.save();
+        logo_image.SetActive(false);
+        SceneManager.LoadScene("Player_State_Test_1");
     }
 
     public void positon_UI_update()
     {
-        if (SceneManager.GetActiveScene().name == "Game" && !option.isOptionOpen && !dead_UI.activeSelf)
+        if (SceneManager.GetActiveScene().name == "Player_State_Test_1" && !option.isOptionOpen && !dead_UI.activeSelf)
         {
             position_UI.enabled = true;
             position_UI.text = $"X : {player_transform.position.x} / Y : {player_transform.position.y} / Z : {player_transform.position.z}";

@@ -715,10 +715,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a4956bc3c194645af5f03ba9e9d2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 995854503}
+  logo_image: {fileID: 166291293}
   lobbyclip: {fileID: 0}
   position_UI: {fileID: 4324067267388630163}
   dead_UI: {fileID: 6286368380804274045}
   dead_score: {fileID: 956763726785888744}
+  playerState_Y: {fileID: 0}
   option: {fileID: 3857721076856843016}
 --- !u!4 &194162415
 Transform:
@@ -732,7 +735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251593438
 GameObject:
@@ -2104,7 +2107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440758371
 GameObject:
@@ -3619,6 +3622,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3857721076856843016}
         m_TargetAssemblyTypeName: Option, Assembly-CSharp
+        m_MethodName: save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3857721076856843016}
+        m_TargetAssemblyTypeName: Option, Assembly-CSharp
         m_MethodName: Interaction
         m_Mode: 1
         m_Arguments:
@@ -3669,6 +3684,7 @@ MonoBehaviour:
   sfx_slider: {fileID: 137191225}
   mixer: {fileID: 24100000, guid: f66788f607dca6e47a35f8ebc8654ec4, type: 2}
   is_snow: 1
+  snow_particle: {fileID: 0}
   snow_text: {fileID: 569082933}
 --- !u!224 &3857721076856843017
 RectTransform:
