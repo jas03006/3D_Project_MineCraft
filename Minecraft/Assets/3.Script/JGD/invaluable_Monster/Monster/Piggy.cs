@@ -184,14 +184,12 @@ public class Piggy : Monster_controll
                 Block_Objectpooling.instance.Get(id, transform.position);
                 ItemCount--;
             }
-            Invoke("MonsterDead", 2f);
+            MonsterDead();
+            Invoke("MonsterHide", 2f);
         }
 
     }
-    protected override void MonsterDead() //죽었을때
-    {
-        Destroy(gameObject);
-    }
+
     
     private void Look_otherside()     // 플레이어 방대방향 보기
     {

@@ -389,7 +389,7 @@ public class Player_Test_TG : PlayerMovement_Y
         if (cam_state == Cam_State.cam2) {
             ray.direction = ray.direction * -1f;
         }
-        if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
+        if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default") | LayerMask.GetMask("Monster_J")))
         {
             Transform objectHit = hit.transform;
             if (objectHit.CompareTag("Stepable_Block"))
@@ -415,7 +415,7 @@ public class Player_Test_TG : PlayerMovement_Y
             }
             else {//monster
                 Monster_controll monster = objectHit.GetComponent<Monster_controll>();
-                monster.MonsterHurt(10 * Combat_system.instance.cal_combat_monster(Monster_ID_J.Pig));
+                monster.MonsterHurt(10 * Combat_system.instance.cal_combat_monster(monster.monsterID));
                 //Debug.Log();
             }
         }
@@ -672,7 +672,7 @@ public class Player_Test_TG : PlayerMovement_Y
     }
 
     public void check_and_grap() {
-        Vector3 target_pos = transform.position + Vector3.up;
+        Vector3 target_pos = transform.position + Vector3.up*1.5f;
         float dis;
         Rigidbody rigid;
         Collider[] cols = Physics.OverlapBox(target_pos, Vector3.one * 2f, Quaternion.identity, LayerMask.GetMask("Floating_Item"));

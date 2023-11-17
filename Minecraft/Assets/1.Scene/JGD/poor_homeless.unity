@@ -6270,9 +6270,11 @@ MonoBehaviour:
   - {fileID: 5337562794647927164}
   - {fileID: 5337562794647927164}
   - {fileID: 5337562794647927164}
+  right_arm_renderer: {fileID: 0}
   head_animator: {fileID: 0}
   arm_animator: {fileID: 0}
   body_animator: {fileID: 0}
+  camera_mask_basic: 0
 --- !u!4 &5337562796618627413
 Transform:
   m_ObjectHideFlags: 0

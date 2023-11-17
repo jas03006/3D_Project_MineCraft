@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211434642945171339}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211434643429922696}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Floor_RayShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211434644864204333}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211434644974667154}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211434644987092553}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RayShoot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 4248590999044220363}
   - component: {fileID: 6635288074538769146}
   - component: {fileID: 7863761302977838224}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 8954522486026069581}
   - component: {fileID: 5627921322877737913}
   - component: {fileID: 2543238376669490867}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Object001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 2391902830637070784}
   - component: {fileID: 232678300464436736}
   - component: {fileID: 3260212289753988857}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 333155588523790508}
   - component: {fileID: 8916332698849153839}
   - component: {fileID: 7277731272232264458}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 7217086506987997567}
   - component: {fileID: 754935859232735328}
   - component: {fileID: 1615244252549370632}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Box003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 6131547851428109336}
   - component: {fileID: 6131547851428109340}
   - component: {fileID: 6131547851428109316}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 5dc5d75d84690f7449a7b58a89930c68, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -973,7 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6473585374429473661}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
