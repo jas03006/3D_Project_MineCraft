@@ -61,9 +61,9 @@ public class Exp_pooling : MonoBehaviour
         }
     }
 
-    public void generate_exp(int exp_num, Vector3 transform, Quaternion quaternion) {
+    public void generate_exp(int exp_num, Vector3 transform, Vector3 player_forward) {
         for (int i =0; i < exp_num; i++) {
-            GameObject go = get_pool(transform + Vector3.forward * Random.Range(-0.3f, 0.3f) + Vector3.right * Random.Range(-0.3f, 0.3f), quaternion);
+            GameObject go = get_pool(transform + Vector3.forward * Random.Range(-0.3f, 0.3f) + Vector3.right * Random.Range(-0.3f, 0.3f), Quaternion.LookRotation(player_forward * -1f));
         }
     }
 
