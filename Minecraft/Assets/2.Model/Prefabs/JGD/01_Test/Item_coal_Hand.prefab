@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5472300908198044560}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_coal_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7476007212052724882}
   - component: {fileID: 7476007212052724881}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_coal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

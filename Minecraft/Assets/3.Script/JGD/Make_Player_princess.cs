@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Make_Player_princess : MonoBehaviour
 {
+    public static Make_Player_princess instance = null;
+
     [SerializeField] private GameObject Dia_Helmat;
     [SerializeField] private GameObject Boot_Diamond_L;
     [SerializeField] private GameObject Boot_Diamond_R;
@@ -23,12 +25,31 @@ public class Make_Player_princess : MonoBehaviour
     [SerializeField] private GameObject Waist_Diamond;
     [SerializeField] private GameObject Waist_Iron;
 
-    public Item_ID_TG[] id; // [Çï¸ä, °©¿Ê , ¹ÙÁö , ½Å¹ß ] 
+    
 
-    private void Update()
+    public Item_ID_TG[] id = new Item_ID_TG[4] {Item_ID_TG.None, Item_ID_TG.None, Item_ID_TG.None, Item_ID_TG.None }; // [Çï¸ä, °©¿Ê , ¹ÙÁö , ½Å¹ß ] 
+
+    /*private void Update()
     {
         Player_Makeup();  //Å×½ºÆ®¿ë
+    }*/
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else {
+            Destroy(this.gameObject);
+        }
     }
+
+    public void update_equipment(armor_type a_type, Item_ID_TG id_) {
+        id[(int)a_type] = id_;
+        Player_Makeup();
+    }
+
     public void Player_Makeup()
     {
         switch (id[0])

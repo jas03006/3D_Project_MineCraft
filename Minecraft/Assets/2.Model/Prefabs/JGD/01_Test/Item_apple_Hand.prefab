@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3758055906502525784}
   - component: {fileID: 3758055906502525787}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8133319625847330475}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_apple_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

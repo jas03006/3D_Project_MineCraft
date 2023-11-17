@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744747823040706035}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Food_roastbeef_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3744747823201913405}
   - component: {fileID: 3744747823201913411}
   - component: {fileID: 3744747823201913410}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Item_Food_roastbeef
   m_TagString: Untagged
   m_Icon: {fileID: 0}

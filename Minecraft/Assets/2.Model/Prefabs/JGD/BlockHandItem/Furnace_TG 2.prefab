@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7681371509666213693}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: FireOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 508252005004102589}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Furnace_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1644658829341809601}
   - component: {fileID: 4188145281229300642}
   - component: {fileID: 6371805154437253068}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Forward_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 7743716444455902812}
   - component: {fileID: 1627104434387095342}
   - component: {fileID: 5711660475021727342}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 8332404417248589988}
   - component: {fileID: 6156861632928393815}
   - component: {fileID: 6544149588344620562}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Back_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 3826293771133631726}
   - component: {fileID: 6362054877499280261}
   - component: {fileID: 3718098750528687512}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 4196728549549180640}
   - component: {fileID: 4058470269370620498}
   - component: {fileID: 1792047323721191202}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 5430171970675251564}
   - component: {fileID: 2108641922380777113}
   - component: {fileID: 6042420972201537928}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Furnace_TG 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 5430171970939736926}
   - component: {fileID: 5430171970939736899}
   - component: {fileID: 5430171970939736924}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Block
   m_TagString: Stepable_Block
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 7869955743560791953}
   - component: {fileID: 7514466271327181149}
   - component: {fileID: 2753530833823590600}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

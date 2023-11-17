@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2682588053419503572}
   - component: {fileID: 7164458804202836726}
   - component: {fileID: 2997892575849362170}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Waist.Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uCCA0 \uB808\uAE45\uC2A4"
   maxValue: 1
-  itemsprite: {fileID: 0}
+  itemsprite: {fileID: 21300000, guid: 88956fbf24ffd474ab1d130baeedb48c, type: 3}
   classname: "\uC804\uD22C"
   isequipable: 1
   isinstallable: 0

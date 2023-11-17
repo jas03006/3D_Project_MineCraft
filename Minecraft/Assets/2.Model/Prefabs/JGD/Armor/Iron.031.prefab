@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8298452428393018625}
   - component: {fileID: 4740500236020660351}
   - component: {fileID: 4524129056433430073}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: Iron.031
   m_TagString: Untagged
   m_Icon: {fileID: 0}

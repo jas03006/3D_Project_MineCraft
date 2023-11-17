@@ -342,6 +342,7 @@ public class PlayerState_Y : Living
         Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
         StartCoroutine(lose_gravity_co());
+        Snow_TG.instance.reset_snows();
     }
     private IEnumerator lose_gravity_co()
     {
