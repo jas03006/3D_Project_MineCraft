@@ -21,7 +21,7 @@ public abstract class Monster_controll : Living
     [Header("플레이어 위치")]
     protected GameObject player;
     [Header("몬스터 ID")]
-    [SerializeField] protected Monster_ID_J monsterID;
+    [SerializeField] public Monster_ID_J monsterID;
     [Header("몬스터 설정")]
     [SerializeField] protected AnimationCurve ani;
     protected Color Hitcolor = new Color(1f, 0.3f, 0.3f, 1f);
@@ -39,10 +39,12 @@ public abstract class Monster_controll : Living
     protected virtual void MonsterDead()   //몬스터 사망
     {
         //Destroy(gameObject);
-        Biom_Manager.instance.kill_monster(monsterID, this.gameObject);
-        
+        Exp_pooling.instance.generate_exp(4, transform.position, player.transform.forward);
     }
 
+    protected virtual void MonsterHide() {
+        Biom_Manager.instance.kill_monster(monsterID, this.gameObject);
+    }
 
     protected abstract void MonsterMove();
 

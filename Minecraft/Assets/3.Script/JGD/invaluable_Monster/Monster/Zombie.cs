@@ -100,7 +100,8 @@ public class Zombie : Monster_controll
             animation.SetTrigger("ZombieDead");
             Block_Objectpooling.instance.Get(id, transform.position);
             ItemCount--;
-            Invoke("MonsterDead", 2f);
+            MonsterDead();
+            Invoke("MonsterHide", 2f);
         }
         
     }
@@ -195,10 +196,11 @@ public class Zombie : Monster_controll
         while (true)
         {
             Zom_FrontScan();
+            ZomRay_Down();
             Vector3 dir = player.transform.position - this.transform.position;
             dir.y = 0;
 
-            this.transform.LookAt(player.transform.position, Vector3.up);
+            this.transform.forward = dir.normalized;
             this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
             
             pos = player.transform.position;
