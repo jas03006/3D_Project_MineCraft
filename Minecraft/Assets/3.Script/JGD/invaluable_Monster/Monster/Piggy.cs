@@ -188,10 +188,7 @@ public class Piggy : Monster_controll
         }
 
     }
-    protected override void MonsterDead() //죽었을때
-    {
-        Destroy(gameObject);
-    }
+
     
     private void Look_otherside()     // 플레이어 방대방향 보기
     {
