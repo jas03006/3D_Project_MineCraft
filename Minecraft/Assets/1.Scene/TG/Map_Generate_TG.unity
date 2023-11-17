@@ -2062,7 +2062,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster_prefabs:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5850088284899512222, guid: 6fbaadc2558ee464ba77d54870f516e9, type: 3}
+  - {fileID: 6131547851428109337, guid: 01e619b8d0b590b4a9692233404b6645, type: 3}
+  - {fileID: 7696328284883267326, guid: 29fe90c2dbc14714a8d4c3d6b16a9ae8, type: 3}
+  - {fileID: 7062656233274801845, guid: fda12ffa4185ed343ab5c1029618f91c, type: 3}
   - {fileID: 0}
 --- !u!4 &1000131131
 Transform:
@@ -2823,7 +2826,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7340983
+    m_Bits: 15729591
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
