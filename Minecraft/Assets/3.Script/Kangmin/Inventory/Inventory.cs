@@ -70,6 +70,7 @@ public class Inventory : MonoBehaviour
 
         // 로딩 중 UI 끄기
         UIManager.instance.loading_page.SetActive(false);
+        UIManager.instance.position_UI.gameObject.SetActive(true);
     }
     private void Update()
     {
@@ -198,7 +199,9 @@ public class Inventory : MonoBehaviour
             {
                 playerItemList[i].number += num;
                 if (i >= playerItemList.Count- UIItemList.Count) {
-                    UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
+                    UIItemList[i - playerItemList.Count + UIItemList.Count].GetItem(id, playerItemList[i].number, Color.white);
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count]._value = playerItemList[i].number;
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
                 }                
                 return;
             }

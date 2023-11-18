@@ -495,6 +495,7 @@ public class Player_Test_TG : PlayerMovement_Y
     public void throw_item() {
         Block_Objectpooling.instance.throw_item(block_in_hand_id, cam_pos_arr[0].position + head_tr.forward, head_tr.forward);
         Inventory.instance.UIslot_minus();
+        //Debug.Log("throw");
     }
     public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
         Vector3 result_dir = Vector3.zero;
@@ -717,7 +718,7 @@ public class Player_Test_TG : PlayerMovement_Y
             dis = (target_pos - col.transform.position).magnitude;
             col.TryGetComponent<Rigidbody>(out rigid);
             if (rigid != null) {
-                if (rigid.velocity.x != 0 || rigid.velocity.z != 0) {
+                if (Mathf.Abs( rigid.velocity.x) + Mathf.Abs(rigid.velocity.z) > 0.1f) {
                     continue;
                 } 
             }
