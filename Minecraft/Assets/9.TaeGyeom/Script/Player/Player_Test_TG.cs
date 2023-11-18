@@ -364,9 +364,10 @@ public class Player_Test_TG : PlayerMovement_Y
                 //Debug.Log($"{rigid.velocity.y}, {dmg}");
                 if (dmg > 0)
                 {
+                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+                    knock_back(transform.position + rigid.velocity.normalized);
                     player_state.OnDamage(dmg);
                     invincible_timer = 0f;
-                    rigid.velocity = new Vector3(rigid.velocity.x,0, rigid.velocity.z);
                 }
             }
         }
@@ -544,16 +545,21 @@ public class Player_Test_TG : PlayerMovement_Y
     public void get_attacked(Collider collider) {
         if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Monster_Attack"))) {
             Monster_controll mc = collider.gameObject.GetComponentInParent<Monster_controll>();
-            Debug.Log("Monster_Attack!");
+            //Debug.Log("Monster_Attack!");
             if (mc != null)
             {
 
                 int dmg = (int)mc.Monster_Damage - player_state.defense_power;
-                Debug.Log(dmg);
+                //Debug.Log(dmg);                
+                knock_back(mc.transform.position);
                 player_state.OnDamage((dmg < 0 ? 0 : dmg));
                 invincible_timer = 0f;
             }
         }        
+    }
+
+    public void knock_back(Vector3 enemy_position, float force_mag = 8f) {
+        rigid.AddForce((transform.position + Vector3.up - enemy_position).normalized * force_mag, ForceMode.Impulse);
     }
     private bool get_item(Collider col) {
         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))

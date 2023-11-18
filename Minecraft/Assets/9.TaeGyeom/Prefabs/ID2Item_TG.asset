@@ -15,8 +15,8 @@ MonoBehaviour:
   Item_prefab_list:
   - {fileID: 0}
   - {fileID: 4861730266974659017, guid: 397ed543134e34042a3a81f50281dfbe, type: 3}
-  - {fileID: 3765177714233013956, guid: 19e807cfce511ae47aba3e182ee8b365, type: 3}
-  - {fileID: 3765177714233013956, guid: 19e807cfce511ae47aba3e182ee8b365, type: 3}
+  - {fileID: 4861730266974659017, guid: 69e1725bed7f5c54a9c33253a78471e4, type: 3}
+  - {fileID: 4861730266974659017, guid: 69e1725bed7f5c54a9c33253a78471e4, type: 3}
   - {fileID: 4861730266974659017, guid: e0ef6a32aac960f4181bd98e329be3a5, type: 3}
   - {fileID: 4861730266974659017, guid: e5ccba42b1d095440af131ea2d9c5cd5, type: 3}
   - {fileID: 6753938314313974396, guid: 5053614718ff7484ab83d70260ad5885, type: 3}

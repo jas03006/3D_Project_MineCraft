@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public enum consumption_Y
 {
     jump = 0,
@@ -195,6 +195,7 @@ public class PlayerState_Y : Living
         base.OnDamage(Damage);
         UpdateUI_health();
     }
+
     IEnumerator Health(int health, float playtime, float endtime)
     {
         float time = 0;

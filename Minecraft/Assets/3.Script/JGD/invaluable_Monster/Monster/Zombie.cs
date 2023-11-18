@@ -49,8 +49,9 @@ public class Zombie : Monster_controll
         sensor = GetComponent<Collider>();
         Rengering();
     }
-    private void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         ItemCount = 1;
         ZomHp = starthealth;        
         stand_co = StartCoroutine(MonsterStand());

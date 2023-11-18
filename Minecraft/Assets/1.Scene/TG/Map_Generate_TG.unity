@@ -2673,6 +2673,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 1
+  is_furnace_result_slot: 1
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -3073,6 +3074,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -3271,6 +3273,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -9075,6 +9078,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -11238,6 +11242,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -11430,6 +11435,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -11639,6 +11645,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -11747,6 +11754,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725767396862}
   is_craft_slot: 0
@@ -11908,6 +11916,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -12065,6 +12074,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -12538,6 +12548,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726187531081}
   is_craft_slot: 0
@@ -12730,6 +12741,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -12847,6 +12859,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726934514832}
   is_craft_slot: 0
@@ -13208,6 +13221,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -13584,6 +13598,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726414650108}
   is_craft_slot: 0
@@ -13868,6 +13883,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -13968,6 +13984,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -14177,6 +14194,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -14479,6 +14497,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -14702,6 +14721,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -15128,6 +15148,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -15265,6 +15286,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -15392,6 +15414,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -15653,6 +15676,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726888526951}
   is_craft_slot: 0
@@ -15824,6 +15848,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -16056,6 +16081,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -16089,6 +16115,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -16550,6 +16577,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -16707,6 +16735,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -16824,6 +16853,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725974234378}
   is_craft_slot: 0
@@ -16941,6 +16971,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -17058,6 +17089,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -17175,6 +17207,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -17442,6 +17475,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -17594,6 +17628,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -17751,6 +17786,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554727315629979}
   is_craft_slot: 0
@@ -17868,6 +17904,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -17985,6 +18022,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -18102,6 +18140,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -18135,6 +18174,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -18411,6 +18451,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -18638,6 +18679,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726835430339}
   is_craft_slot: 0
@@ -18851,6 +18893,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -18968,6 +19011,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 1
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -19049,6 +19093,7 @@ MonoBehaviour:
   is_cursor_slot: 1
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -19226,6 +19271,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -19324,6 +19370,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -19460,6 +19507,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -19708,6 +19756,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 1
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726533695018}
   is_craft_slot: 0
@@ -19844,6 +19893,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -22224,6 +22274,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -22341,6 +22392,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -22925,6 +22977,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -23117,6 +23170,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -23392,6 +23446,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -23659,6 +23714,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -23939,6 +23995,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -24640,6 +24697,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -24757,6 +24815,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -25021,6 +25080,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -25443,6 +25503,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -25938,6 +25999,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -26455,6 +26517,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -26952,6 +27015,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 1
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -27804,6 +27868,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -28056,6 +28121,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -28648,6 +28714,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -29030,6 +29097,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -29487,6 +29555,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -29869,6 +29938,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -29967,6 +30037,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -31460,6 +31531,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -31814,6 +31886,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -32149,6 +32222,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -32333,6 +32407,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -34017,6 +34092,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -34253,6 +34329,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -34852,6 +34929,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -35064,6 +35142,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -35490,6 +35569,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -35875,6 +35955,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -36746,6 +36827,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -36903,6 +36985,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
@@ -37190,6 +37273,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -37647,6 +37731,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
@@ -37745,6 +37830,7 @@ MonoBehaviour:
   is_cursor_slot: 0
   have_UIClone: 0
   is_result_slot: 0
+  is_furnace_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0

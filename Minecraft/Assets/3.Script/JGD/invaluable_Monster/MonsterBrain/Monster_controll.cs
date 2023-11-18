@@ -39,7 +39,7 @@ public abstract class Monster_controll : Living
     protected virtual void MonsterDead()   //∏ÛΩ∫≈Õ ªÁ∏¡
     {
         //Destroy(gameObject);
-        Exp_pooling.instance.generate_exp(4, transform.position, player.transform.forward);
+        Exp_pooling.instance.generate_exp(4, transform.position);
     }
 
     protected virtual void MonsterHide() {

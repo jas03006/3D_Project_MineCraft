@@ -48,7 +48,7 @@ public class Block_Break : MonoBehaviour
         Block_Objectpooling.instance.Get(id, transform.position);
         if (id == Item_ID_TG.coal || id == Item_ID_TG.iron || id == Item_ID_TG.diamond)
         {
-            Exp_pooling.instance.generate_exp(3, transform.position, player.transform.forward );
+            Exp_pooling.instance.generate_exp(3, transform.position);
         }
     }
 

@@ -40,12 +40,20 @@ public class Piggy : Monster_controll
         render = GetComponentInChildren<Renderer>();
         monstercolor = render.material.color;
     }
-    private void Start()
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        ItemCount = 1;
+        PigHp = starthealth;
+        StartCoroutine(MonsterStand());
+    }
+  /*  private void Start()
     {
         PigHp = starthealth;
         ItemCount = 1;
         StartCoroutine(MonsterStand());
-    }
+    }*/
 
 
     private void Update()
