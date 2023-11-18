@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
         {
             /*if (SceneManager.GetActiveScene().name == "Map_Generate_TG")
             {*/
-                position_UI.text = $"X : {player_transform.position.x} / Y : {player_transform.position.y} / Z : {player_transform.position.z}";
+                position_UI.text = $"X : {player_transform.position.x.ToString("F3")} / Y : {player_transform.position.y.ToString("F3")} / Z : {player_transform.position.z.ToString("F3")}";
                 yield return null;
             /*}
             else

@@ -10,6 +10,7 @@ public class Option : MonoBehaviour
     
     [Header("Camera")]
     [SerializeField] private Slider camera_slider;
+    [SerializeField] private Text camera_text;
     [SerializeField] private Camera main_camera;
 
     [Header("Sound")]
@@ -30,6 +31,8 @@ public class Option : MonoBehaviour
         {
             children[i].gameObject.SetActive(false);
         }
+
+        camera_text.text = $"시야 범위 : {camera_slider.value.ToString("F1")}";
     }
 
     private void Update()
@@ -66,6 +69,7 @@ public class Option : MonoBehaviour
     public void camera_FOV_setting()
     {
         main_camera.fieldOfView = camera_slider.value;
+        camera_text.text = $"시야 범위 : {camera_slider.value.ToString("F1")}";
     }
 
     public void BGM_setting()
