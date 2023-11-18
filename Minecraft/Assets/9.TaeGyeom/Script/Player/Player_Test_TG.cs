@@ -153,7 +153,7 @@ public class Player_Test_TG : PlayerMovement_Y
     [SerializeField]private Slider attack_charge_slider;//TG
     public int basic_att_speed = 4;
 
-    [SerializeField] public GameObject block_in_hand;//TG
+    public GameObject block_in_hand;//TG
     public Item_ID_TG block_in_hand_id;//TG
     public InventoryData block_in_hand_data;//TG
 
@@ -246,21 +246,21 @@ public class Player_Test_TG : PlayerMovement_Y
             attack_charge_slider.gameObject.SetActive(false);
         }
 
-/*        if (Input.GetMouseButtonUp(0))
-        {
-            arm_animator.SetBool("is_crouch", false);
-            arm_animator.SetBool("is_walk", false);
-            //arm_animator.SetBool("is_active", false);
-        }*/
-
-        if (inventory.isInventoryOpen)
-        {
-            return;
-        }
+        /*        if (Input.GetMouseButtonUp(0))
+                {
+                    arm_animator.SetBool("is_crouch", false);
+                    arm_animator.SetBool("is_walk", false);
+                    //arm_animator.SetBool("is_active", false);
+                }*/
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
         }
+
+        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf)
+        {
+            return;
+        }        
 
         if (attck_timer >= 0.1f)
         {
@@ -297,7 +297,28 @@ public class Player_Test_TG : PlayerMovement_Y
     protected override void FixedUpdate()
     {
         check_and_grap();
-        if (inventory.isInventoryOpen)
+
+        //開馬 端滴
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y * Time.fixedDeltaTime);
+        if ((is_grounded == true) == isjump)
+        {
+            if (rigid.velocity.y < -6f)
+            {
+
+                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                //Debug.Log($"{rigid.velocity.y}, {dmg}");
+                if (dmg > 0)
+                {
+                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+                    knock_back(transform.position + rigid.velocity.normalized);
+                    player_state.OnDamage(dmg);
+                    invincible_timer = 0f;
+                }
+            }
+        }
+        isjump = !is_grounded;
+
+        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf)
         {
             return;
         }
@@ -352,26 +373,6 @@ public class Player_Test_TG : PlayerMovement_Y
         current_move_vec = (transform.forward * vertical + transform.right * horizontal) * currentspeed * Time.deltaTime;
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
-
-        //開馬 端滴
-        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y* Time.fixedDeltaTime);
-        if ((is_grounded == true) == isjump)
-        {
-            if (rigid.velocity.y < -6f)
-            {
-
-                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
-                //Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0)
-                {
-                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
-                    knock_back(transform.position + rigid.velocity.normalized);
-                    player_state.OnDamage(dmg);
-                    invincible_timer = 0f;
-                }
-            }
-        }
-        isjump = !is_grounded;
 
         if (!isjump)
         {

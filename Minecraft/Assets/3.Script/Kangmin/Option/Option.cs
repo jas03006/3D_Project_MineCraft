@@ -49,7 +49,7 @@ public class Option : MonoBehaviour
                 children[i].gameObject.SetActive(true);
             }
             isOptionOpen = true;
-
+            UIManager.instance.position_UI.gameObject.SetActive(false);
         }
 
         else if (isOptionOpen == true)
@@ -59,6 +59,8 @@ public class Option : MonoBehaviour
                 children[i].gameObject.SetActive(false);
             }
             isOptionOpen = false;
+            UIManager.instance.position_UI.gameObject.SetActive(true);
+
         }
     }
     public void camera_FOV_setting()
@@ -93,7 +95,7 @@ public class Option : MonoBehaviour
     }
     public void snow_active(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name == "Game")
+        if (SceneManager.GetActiveScene().name == "Map_Generate_TG")
         {
             if (snow_particle == null)
             {

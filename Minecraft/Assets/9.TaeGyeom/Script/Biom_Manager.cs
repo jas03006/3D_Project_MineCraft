@@ -72,7 +72,6 @@ public class Biom_Manager : MonoBehaviour
     private Queue<Block_Node_TG> block_ready_queue;
     private int block_ready_cnt = 150000;
     private int ready_block_generate_cnt = 3000;
-        
 
     private void Awake()
     {
@@ -115,6 +114,7 @@ public class Biom_Manager : MonoBehaviour
         player.GetComponent<Player_Test_TG>().deactivate_gravity();
         generate_start_map();
         set_safe_respown();
+
         player.GetComponent<Player_Test_TG>().activate_gravity();
 
     }

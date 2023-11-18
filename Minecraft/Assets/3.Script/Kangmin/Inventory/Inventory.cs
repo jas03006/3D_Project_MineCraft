@@ -67,6 +67,9 @@ public class Inventory : MonoBehaviour
         {
             children[i].gameObject.SetActive(false);
         }
+
+        // 로딩 중 UI 끄기
+        UIManager.instance.loading_page.SetActive(false);
     }
     private void Update()
     {

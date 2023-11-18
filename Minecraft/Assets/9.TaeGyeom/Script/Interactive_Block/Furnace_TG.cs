@@ -76,8 +76,9 @@ public class Furnace_TG : Block_TG, Interactive_TG
         Inventory.instance.hide();
         if (contain_data != null)
         {
+            Exp_pooling.instance.generate_exp(contain_data[contain_data.Count-1].Value,transform.position);
             for (int i = 0; i < contain_data.Count; i++)
-            {
+            {                
                 for (int n = 0; n < contain_data[i].Value; n++)
                 {
                     Block_Objectpooling.instance.Get(contain_data[i].Key, transform.position);

@@ -12,16 +12,18 @@ public class UIManager : MonoBehaviour
     [Header("Lobby")]
     [SerializeField] private AudioClip lobbyclip;
     [SerializeField] private GameObject lobby_buttons;
+    [SerializeField] public GameObject loading_page;
 
     [Header("Position UI")]
     [SerializeField] public Text position_UI;
-    [SerializeField]private Transform player_transform;
+    [SerializeField] public Transform player_transform;
 
     [Header("Dead UI")]
-    [SerializeField] private GameObject dead_UI;
+    [SerializeField] public GameObject dead_UI;
     [SerializeField] private Text dead_score;
     public PlayerState_Y playerState_Y;
     [SerializeField] public Option option;
+
 
     private void Awake()
     {
@@ -62,7 +64,7 @@ public class UIManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded");
-        if (scene.name == "Player_State_Test_1")
+        if (scene.name == "Map_Generate_TG")
         {
             playerState_Y = FindObjectOfType<PlayerState_Y>();
             player_transform = playerState_Y.gameObject.transform;
@@ -90,7 +92,9 @@ public class UIManager : MonoBehaviour
         Debug.Log("게임 실행");
         logo_image.SetActive(false);
         lobby_buttons.SetActive(false);
-        SceneManager.LoadScene("Player_State_Test_1");
+        loading_page.SetActive(true);
+        SceneManager.LoadScene("Map_Generate_TG");
+        position_UI.enabled = true;
         StartCoroutine(positon_UI_update());
     }
 
@@ -99,28 +103,32 @@ public class UIManager : MonoBehaviour
         yield return null;
         while (true)
         {
-            if (SceneManager.GetActiveScene().name == "Player_State_Test_1" && !option.isOptionOpen && !dead_UI.activeSelf)
-            {
-                position_UI.enabled = true;
+            /*if (SceneManager.GetActiveScene().name == "Map_Generate_TG")
+            {*/
                 position_UI.text = $"X : {player_transform.position.x} / Y : {player_transform.position.y} / Z : {player_transform.position.z}";
                 yield return null;
-            }
+            /*}
             else
             {
                 break;
-            }
+            }*/
         }
     }
 
     public void open_dead_UI()
     {
-        position_UI.enabled = false;
+        //position_UI.enabled = false;
         dead_UI.SetActive(true);
         dead_score.text = $"점수 : {playerState_Y.totalexp}";
+        Cursor.visible = true;
     }
 
     public void respawn_button()
     {
+        if (!Inventory.instance.isInventoryOpen && !UIManager.instance.option.isOptionOpen) {
+            Cursor.visible = false;
+        }
+        dead_UI.SetActive(false);
         playerState_Y.respawn();
     }
 
