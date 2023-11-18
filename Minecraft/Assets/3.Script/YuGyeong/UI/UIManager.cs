@@ -1,18 +1,127 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UIManager instance = null;
+
+    [SerializeField] Canvas canvas;
+    [SerializeField] GameObject logo_image;
+    [Header("Lobby")]
+    [SerializeField] private AudioClip lobbyclip;
+    [SerializeField] private GameObject lobby_buttons;
+
+    [Header("Position UI")]
+    [SerializeField] public Text position_UI;
+    [SerializeField]private Transform player_transform;
+
+    [Header("Dead UI")]
+    [SerializeField] private GameObject dead_UI;
+    [SerializeField] private Text dead_score;
+    public PlayerState_Y playerState_Y;
+    [SerializeField] public Option option;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(canvas);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        //씬이 바뀔때 자동으로 실행되는 이벤트
+        Debug.Log("OnEnable");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += option.snow_active;
+        SceneManager.sceneLoaded += option.load;
+        SceneManager.sceneLoaded += option.find_camera;
         
     }
+    private void OnDisable()
+    {
+        // 이벤트 해제
+        Debug.Log("OnDisable");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= option.snow_active;
+        SceneManager.sceneLoaded -= option.load;
+        SceneManager.sceneLoaded -= option.find_camera;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded");
+        if (scene.name == "Player_State_Test_1")
+        {
+            playerState_Y = FindObjectOfType<PlayerState_Y>();
+            player_transform = playerState_Y.gameObject.transform;
+            if (player_transform == null)
+            {
+                Debug.Log("player_transform == null");
+            }
+        }
+    }
+
+    public void go_lobby()
+    {
+        logo_image.SetActive(true);
+        SceneManager.LoadScene("Lobby_Y");
+        StopCoroutine(positon_UI_update());
+    }
+
+    public void go_exit()
+    {
+        Application.Quit();
+    }
+
+    public void go_game()
+    {
+        Debug.Log("게임 실행");
+        logo_image.SetActive(false);
+        lobby_buttons.SetActive(false);
+        SceneManager.LoadScene("Player_State_Test_1");
+        StartCoroutine(positon_UI_update());
+    }
+
+    IEnumerator positon_UI_update()
+    {
+        yield return null;
+        while (true)
+        {
+            if (SceneManager.GetActiveScene().name == "Player_State_Test_1" && !option.isOptionOpen && !dead_UI.activeSelf)
+            {
+                position_UI.enabled = true;
+                position_UI.text = $"X : {player_transform.position.x} / Y : {player_transform.position.y} / Z : {player_transform.position.z}";
+                yield return null;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    public void open_dead_UI()
+    {
+        position_UI.enabled = false;
+        dead_UI.SetActive(true);
+        dead_score.text = $"점수 : {playerState_Y.totalexp}";
+    }
+
+    public void respawn_button()
+    {
+        playerState_Y.respawn();
+    }
+
 }
