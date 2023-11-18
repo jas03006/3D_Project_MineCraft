@@ -72,7 +72,6 @@ public class Biom_Manager : MonoBehaviour
     private Queue<Block_Node_TG> block_ready_queue;
     private int block_ready_cnt = 150000;
     private int ready_block_generate_cnt = 3000;
-        
 
     private void Awake()
     {
@@ -114,8 +113,40 @@ public class Biom_Manager : MonoBehaviour
         
         player.GetComponent<Player_Test_TG>().deactivate_gravity();
         generate_start_map();
+        set_safe_respown();
+
         player.GetComponent<Player_Test_TG>().activate_gravity();
 
+    }
+
+    private void set_safe_respown() {
+        Vector3 now_pos = Vector3.zero;
+        PlayerState_Y psy = player.GetComponent<PlayerState_Y>();
+        int[] dir_x = { 0, 1, -1};
+        int[] dir_z = { 0, 1, -1};
+        for (int x=0; x<6; x++) {
+            for (int z = 0; z < 6; z++)
+            {
+                for (int ind_x = 0; ind_x < dir_x.Length; ind_x++) {
+                    for (int ind_z = 0; ind_z < dir_z.Length; ind_z++)
+                    {
+                        if (ind_x ==0 && ind_z ==0) {
+                            continue;
+                        }
+                        now_pos.x = x* dir_x[ind_x];
+                        now_pos.z = z * dir_z[ind_z];
+                        now_pos.y = get_mountain_height(now_pos);
+                        if (get_block(now_pos).id != Item_ID_TG.None)
+                        {
+                            now_pos.y += 1;
+                            player.transform.position = now_pos;
+                            psy.original_spawn_position = player.transform.position;
+                            return;
+                        }
+                    }
+                }                
+            }
+        }
     }
 
     private void Update()
@@ -135,7 +166,6 @@ public class Biom_Manager : MonoBehaviour
         }
 
         update_monsters_visiblity(only_check_out: true);
-
     }
 
     private void FixedUpdate()
@@ -391,6 +421,11 @@ public class Biom_Manager : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < monster_controll_list.Count; i++)
+        {
+            monster_controll_list[i].gameObject.SetActive(false);
+        }
     }
 
 
@@ -526,7 +561,7 @@ public class Biom_Manager : MonoBehaviour
         for (int ci = 0; ci < cave_cnt; ci++) {
             if (ci == 0)
             {
-                now_cp = new Cave_Point(Vector3.right*20, UnityEngine.Random.Range(3,5));
+                now_cp = new Cave_Point(Vector3.right * 20, UnityEngine.Random.Range(3,5));
                 cave_depth = 8;
             }
             else {
@@ -635,7 +670,7 @@ public class Biom_Manager : MonoBehaviour
         Monster_Pool_Manager.instance.back(id_, go_);
     }
 
-    private void update_monsters_visiblity(bool only_check_out = false) {
+    public void update_monsters_visiblity(bool only_check_out = false) {
         for (int i =0; i < monster_controll_list.Count; i++) {
             if (is_in_render_space(monster_controll_list[i].transform.position))
             {

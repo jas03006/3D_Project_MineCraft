@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public enum consumption_Y
 {
     jump = 0,
@@ -197,6 +197,7 @@ public class PlayerState_Y : Living
         base.OnDamage(Damage);
         UpdateUI_health();
     }
+
     IEnumerator Health(int health, float playtime, float endtime)
     {
         float time = 0;
@@ -351,6 +352,7 @@ public class PlayerState_Y : Living
         (p_movement as Player_Test_TG).deactivate_gravity();
         yield return new WaitForSeconds(1.2f);
         (p_movement as Player_Test_TG).activate_gravity();
+        Biom_Manager.instance.update_monsters_visiblity();
     }
     public Vector3 get_respawn_position()    {
         

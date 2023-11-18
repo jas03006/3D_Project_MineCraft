@@ -17,7 +17,7 @@ public abstract class Monster_controll : Living
     protected Vector3 pos;
     [Header("스탯")]
     [SerializeField] protected float Monster_Speed;
-    [SerializeField] protected float Monster_Damage;
+    [SerializeField] public float Monster_Damage;
     [Header("플레이어 위치")]
     protected GameObject player;
     [Header("몬스터 ID")]
@@ -39,7 +39,7 @@ public abstract class Monster_controll : Living
     protected virtual void MonsterDead()   //몬스터 사망
     {
         //Destroy(gameObject);
-        Exp_pooling.instance.generate_exp(4, transform.position, player.transform.forward);
+        Exp_pooling.instance.generate_exp(4, transform.position);
     }
 
     protected virtual void MonsterHide() {
