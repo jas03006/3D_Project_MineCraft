@@ -32,17 +32,24 @@ public class Option : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Interaction();
+        }
+    }
 
     public void Interaction()
     {
         if (isOptionOpen == false)
         {
-            for (int i = 1; i < children.Length; i++) // 0번째 인덱스 = gameObject.name("E")
+            for (int i = 1; i < children.Length; i++) 
             {
                 children[i].gameObject.SetActive(true);
             }
             isOptionOpen = true;
-            UIManager.instance.positon_UI_update();
+
         }
 
         else if (isOptionOpen == true)
@@ -52,7 +59,6 @@ public class Option : MonoBehaviour
                 children[i].gameObject.SetActive(false);
             }
             isOptionOpen = false;
-            UIManager.instance.positon_UI_update();
         }
     }
     public void camera_FOV_setting()
@@ -89,6 +95,10 @@ public class Option : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Game")
         {
+            if (snow_particle == null)
+            {
+                snow_particle = FindObjectOfType<Snow_TG>().gameObject;
+            }
             snow_particle.SetActive(is_snow);
         }
     }
@@ -128,5 +138,11 @@ public class Option : MonoBehaviour
         }
         Debug.Log("불러오기 완료");
         Debug.Log($"불러온 값 : BGM{bgm_slider.value} / SFX{sfx_slider.value} /is_snow{System.Convert.ToInt16(is_snow)}");
+    }
+
+    public void find_camera(Scene scene, LoadSceneMode mode)
+    {
+        main_camera = Camera.main;
+        Debug.Log($"find camera : {main_camera.name}");
     }
 }

@@ -315,11 +315,11 @@ public class PlayerState_Y : Living
         }
     }
     
-
     public override void Die()
     {
         base.Die();
-        respawn();
+        UIManager.instance.open_dead_UI();
+        //respawn();
     }
     public void respawn()
     {
