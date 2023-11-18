@@ -70,6 +70,7 @@ public class Inventory : MonoBehaviour
 
         // 로딩 중 UI 끄기
         UIManager.instance.loading_page.SetActive(false);
+        UIManager.instance.position_UI.gameObject.SetActive(true);
     }
     private void Update()
     {

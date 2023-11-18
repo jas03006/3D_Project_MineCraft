@@ -34,10 +34,12 @@ public class Chunk_TG : MonoBehaviour
                     Item_ID_TG temp_index = get_prefabs_index(i, j, k);
                     if (block_data[i, j, k] == null) {
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
-                        block_data[i, j, k].id = temp_index;
                         block_data[i, j, k].set_local_pos(i, j, k);
                         block_data[i, j, k].chunk = this;
                     }
+                        block_data[i, j, k].id = temp_index;
+                        
+                    
 
                     /* if (temp_index == Item_ID_TG.None) {
                          continue;
@@ -101,10 +103,10 @@ public class Chunk_TG : MonoBehaviour
                     Item_ID_TG temp_index = get_prefabs_index(i, j, k);
                     if (block_data[i, j, k] == null) {
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
-                        block_data[i, j, k].id = temp_index;
                         block_data[i, j, k].set_local_pos(i, j, k);
                         block_data[i, j, k].chunk = this;
                     }
+                    block_data[i, j, k].id = temp_index;
 
                     /*if (temp_index == Item_ID_TG.None)
                     {
@@ -565,6 +567,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                 Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
                 if ((bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) && Random.Range(0, 30) < 1)
                 {
+                    // 唱公 关 扁嫡 积己
                     return Item_ID_TG.tree;
                 }
             }
@@ -592,18 +595,24 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                                 {
                                     if (is_in_range(x + j, y + i, z + k))
                                     {
-                                        if (block_data[x + j, y + i, z + k] == null){
+                                        if (block_data[x + j, y + i, z + k] == null)
+                                        {
                                             block_data[x + j, y + i, z + k] = Biom_Manager.instance.get_block_node();
                                             block_data[x + j, y + i, z + k].chunk = this;
                                             block_data[x + j, y + i, z + k].set_local_pos(x + j, y + i, z + k);
+                                            block_data[x + j, y + i, z + k].id = Item_ID_TG.leaf;
                                         }
-                                        block_data[x + j, y + i, z + k].id = Item_ID_TG.leaf;
+                                        else if(block_data[x + j, y + i, z + k].id == Item_ID_TG.None)
+                                        {
+                                            block_data[x + j, y + i, z + k].id = Item_ID_TG.leaf;
+                                        }
                                     }
                                     else {
                                         bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + j, y + i, z + k));
-                                        if (bn != null) { 
+                                        if (bn != null)
+                                        {
                                             bn.id = Item_ID_TG.leaf;
-                                        }                                         
+                                        }                      
                                     }                                    
                                 }
                             }                            
