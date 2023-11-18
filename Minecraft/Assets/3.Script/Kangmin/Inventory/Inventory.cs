@@ -199,7 +199,9 @@ public class Inventory : MonoBehaviour
             {
                 playerItemList[i].number += num;
                 if (i >= playerItemList.Count- UIItemList.Count) {
-                    UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
+                    UIItemList[i - playerItemList.Count + UIItemList.Count].GetItem(id, playerItemList[i].number, Color.white);
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count]._value = playerItemList[i].number;
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
                 }                
                 return;
             }
