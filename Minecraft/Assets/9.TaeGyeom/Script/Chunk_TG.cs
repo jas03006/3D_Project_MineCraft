@@ -36,8 +36,9 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
                         block_data[i, j, k].set_local_pos(i, j, k);
                         block_data[i, j, k].chunk = this;
-                    }
                         block_data[i, j, k].id = temp_index;
+                    }
+                        
                         
                     
 
@@ -105,8 +106,9 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k] = Biom_Manager.instance.get_block_node();//new Block_Node_TG();
                         block_data[i, j, k].set_local_pos(i, j, k);
                         block_data[i, j, k].chunk = this;
+                        block_data[i, j, k].id = temp_index;
                     }
-                    block_data[i, j, k].id = temp_index;
+                    
 
                     /*if (temp_index == Item_ID_TG.None)
                     {
@@ -508,7 +510,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         Vector3Int block_pos = new Vector3Int(x, y, z);
         Vector3Int block_world_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + block_pos;
         int world_y = block_world_pos.y;
-        if (block_data[x, y, z] != null && block_data[x,y,z].id != Item_ID_TG.None) {
+        if (block_data[x, y, z] != null && block_data[x,y,z].id != Item_ID_TG.None && block_data[x, y, z].id != Item_ID_TG.leaf) {
             return block_data[x, y, z].id;
         }
         if (is_in_cave(block_world_pos)) {
