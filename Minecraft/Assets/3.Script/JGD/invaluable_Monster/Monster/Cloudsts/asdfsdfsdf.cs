@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class asdfsdfsdf : MonoBehaviour
 {
-    public Vector3 inputVec;
     public float moveSpeed;
     private Rigidbody charRigidbody;
 
-
-    private void Awake()
+    void Start()
     {
         charRigidbody = GetComponent<Rigidbody>();
-
     }
 
-    private void Update()
+    void Update()
     {
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.z = Input.GetAxisRaw("Vertical");
-        Vector3 inputDir = new Vector3(inputVec.x, 0, inputVec.z);
+        float hAxis = Input.GetAxisRaw("Horizontal");
+        float vAxis = Input.GetAxisRaw("Vertical");
+
+        Vector3 inputDir = new Vector3(hAxis, 0, vAxis).normalized;
 
         charRigidbody.velocity = inputDir * moveSpeed;
 
-        transform.LookAt(transform.position + inputDir);
-
+        //transform.LookAt(transform.position + inputDir);
     }
 }

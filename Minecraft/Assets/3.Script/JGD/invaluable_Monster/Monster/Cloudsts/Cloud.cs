@@ -11,24 +11,30 @@ public class Cloud : MonoBehaviour
     private static float directionZ;
     GameObject player;
     Rigidbody rigi;
+    Rigidbody cloudrigii;
+
+    Cloud_Pooling _Pooling;
     
     private void Awake()
     {
+        _Pooling = GetComponent<Cloud_Pooling>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Start()
     {
+        cloudrigii = GetComponent<Rigidbody>();
         rigi = player.GetComponent<Rigidbody>();
     }
     private void Update()
     {
         CloudMovement();
+        CloudScroll(48);
     }
 
     private void CloudMovement()
     {
         Direction();
-        rigi.velocity = new Vector3(directionX,0,directionZ);
+        cloudrigii.velocity = new Vector3(directionX,0,directionZ);
     }
 
     private void Direction()
@@ -45,7 +51,7 @@ public class Cloud : MonoBehaviour
 
     private void CloudScroll(float lender)         //¿Ã∞‘ «ŸΩ…
     {
-        lender *= 2f;
+        lender *= 3;
         Vector3 pos = player.transform.position;
         pos.y = 0;
         Vector3 myPos = this.transform.position;
@@ -60,19 +66,18 @@ public class Cloud : MonoBehaviour
         Debug.Log(rigi.velocity);
         float dirX = playerDir.x < 0 ? -1 : 1;
         float dirZ = playerDir.z < 0 ? -1 : 1;
-
-        if (distance <= lender)
+        
+        if (distance >= lender)
         {
             if (difX > difZ)
             {
-                transform.Translate(new Vector3(1, 0, 0) * dirX * lender);
+                transform.Translate(playerDir * 10 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
             }
             else if (difX < difZ)
             {
-                transform.Translate(new Vector3(0, 0, 1) * dirZ * lender);
+                transform.Translate(playerDir * 10 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
             }
-            return;
         }
-
     }
+
 }

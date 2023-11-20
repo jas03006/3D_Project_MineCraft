@@ -6,7 +6,7 @@ public class Cloud_Pooling : MonoBehaviour
 {
     public static Cloud_Pooling instance = null;
     [SerializeField] private int CloudCount;
-    [SerializeField] private int Cloudhight;
+    [SerializeField] public int Cloudhight;
     GameObject player;
     Rigidbody rigi;
     public Queue<GameObject> CloudPool = new Queue<GameObject>();
