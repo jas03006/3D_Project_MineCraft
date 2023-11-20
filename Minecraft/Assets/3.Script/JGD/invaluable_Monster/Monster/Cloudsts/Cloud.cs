@@ -57,27 +57,46 @@ public class Cloud : MonoBehaviour
         Vector3 myPos = this.transform.position;
         myPos.y = 0;
 
-        float distance = Vector3.Distance(myPos, pos);
+        float distance = (myPos- pos).sqrMagnitude;
 
         float difX = Mathf.Abs(pos.x - myPos.x);
         float difZ = Mathf.Abs(pos.z - myPos.z);
 
         Vector3 playerDir = rigi.velocity;
         Debug.Log(rigi.velocity);
-        float dirX = playerDir.x < 0 ? -1 : 1;
-        float dirZ = playerDir.z < 0 ? -1 : 1;
-        
-        if (distance >= lender)
+        playerDir.y = 0;
+        /*float dirX = playerDir.x < 0 ? -1 : 1;
+        float dirZ = playerDir.z < 0 ? -1 : 1;*/
+        float dirX = myPos.x - pos.x  < 0 ? -1 : 1;
+        float dirZ = myPos.z - pos.z < 0 ? -1 : 1;
+        if (difX >= lender)
         {
-            if (difX > difZ)
+            dirX = -1f * dirX * (lender * 2f - Random.Range(0.1f, 3f));
+            //transform.Translate(new Vector3(dirX * (lender *2f - Random.Range(0, 3f)), 0f, dirZ * (lender * 2f -Random.Range(0, 3f))));
+            /*if (difX > difZ)
             {
                 transform.Translate(playerDir * 10 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
             }
             else if (difX < difZ)
             {
                 transform.Translate(playerDir * 10 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)));
-            }
+            }*/
         }
+        else {
+            dirX = 0;
+        }
+        if (difZ >= lender)
+        {
+            dirZ = -1f * dirZ * (lender * 2f - Random.Range(0.1f, 3f));
+        }
+        else
+        {
+            dirZ = 0;
+        }
+        if (dirX !=0|| dirZ != 0) {
+            transform.Translate(new Vector3(dirX,0,dirZ));
+        }
+        
     }
 
 }
