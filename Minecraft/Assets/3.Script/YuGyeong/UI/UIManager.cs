@@ -1,7 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
         SceneManager.sceneLoaded += option.snow_active;
         SceneManager.sceneLoaded += option.load;
         SceneManager.sceneLoaded += option.find_camera;
-        
+
     }
     private void OnDisable()
     {
@@ -103,21 +103,13 @@ public class UIManager : MonoBehaviour
         yield return null;
         while (true)
         {
-            /*if (SceneManager.GetActiveScene().name == "Map_Generate_TG")
-            {*/
-                position_UI.text = $"X : {player_transform.position.x.ToString("F3")} / Y : {player_transform.position.y.ToString("F3")} / Z : {player_transform.position.z.ToString("F3")}";
-                yield return null;
-            /*}
-            else
-            {
-                break;
-            }*/
+            position_UI.text = $"X : {player_transform.position.x.ToString("F3")} / Y : {player_transform.position.y.ToString("F3")} / Z : {player_transform.position.z.ToString("F3")}";
+            yield return null;
         }
     }
 
     public void open_dead_UI()
     {
-        //position_UI.enabled = false;
         dead_UI.SetActive(true);
         dead_score.text = $"Á¡¼ö : {playerState_Y.totalexp}";
         Cursor.visible = true;
@@ -125,7 +117,8 @@ public class UIManager : MonoBehaviour
 
     public void respawn_button()
     {
-        if (!Inventory.instance.isInventoryOpen && !UIManager.instance.option.isOptionOpen) {
+        if (!Inventory.instance.isInventoryOpen && !UIManager.instance.option.isOptionOpen)
+        {
             Cursor.visible = false;
         }
         dead_UI.SetActive(false);
