@@ -194,6 +194,7 @@ public class PlayerState_Y : Living
     public override void OnDamage(int Damage)
     {
         base.OnDamage(Damage);
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.attacked);
         UpdateUI_health();
     }
 
@@ -237,6 +238,7 @@ public class PlayerState_Y : Living
 
     public void GetExp(float exp)
     {
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.exp, 0.1f);
         curexp += exp;
         totalexp += exp;
         LevelUp();
@@ -319,7 +321,7 @@ public class PlayerState_Y : Living
     public override void Die()
     {
         base.Die();
-        transform.GetChild(0).Rotate(transform.forward, 90f);
+        StartCoroutine(die_fall());
         UIManager.instance.open_dead_UI();
         //respawn();
     }
@@ -344,7 +346,7 @@ public class PlayerState_Y : Living
 
         Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
-        transform.GetChild(0).localRotation= Quaternion.identity;
+        transform.GetChild(0).localRotation = Quaternion.identity;        
         StartCoroutine(lose_gravity_co());
         Snow_TG.instance.reset_snows();
     }
@@ -363,5 +365,14 @@ public class PlayerState_Y : Living
             return original_spawn_position;
         }
         return respawn_bed.get_respawn_position();
+    }
+
+    public IEnumerator die_fall() {
+        float timer_ =0f;
+        while (isDead && timer_ < 1f) {
+            transform.GetChild(0).Rotate(transform.forward, Time.deltaTime*90f );
+            timer_ += Time.deltaTime;
+            yield return null;
+        }
     }
 }

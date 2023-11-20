@@ -30,6 +30,7 @@ public class Block_Break : MonoBehaviour
     {
         blockHp -= damage;
         Block_break_motion();
+        
         if (blockHp <= 0f) { 
             blockHp = 0f;            
             itemposition();
