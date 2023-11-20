@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.diamond, 1);
+            GetItem(Item_ID_TG.diamond, 10);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
@@ -227,13 +227,15 @@ public class Inventory : MonoBehaviour
             int i = i_ % playerItemList.Count;
             if (playerItemList[i].item_id == id && playerItemList[i].number < playerItemList[i].id2data.Get_data(playerItemList[i].item_id).MaxValue)
             {
-                playerItemList[i].number += num;
+                num =playerItemList[i].GetItem(id, playerItemList[i].number+num);                
                 if (i >= playerItemList.Count- UIItemList.Count) {
                     UIItemList[i - playerItemList.Count + UIItemList.Count].GetItem(id, playerItemList[i].number, Color.white);
                     //UIItemList[i - playerItemList.Count + UIItemList.Count]._value = playerItemList[i].number;
                     //UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
-                }                
-                return;
+                }
+                if (num == 0) {
+                    return;
+                }               
             }
         }
 
@@ -244,7 +246,7 @@ public class Inventory : MonoBehaviour
             if (playerItemList[i].item_id == Item_ID_TG.None)
             {
                 playerItemList[i].GetItem(id, num);
-                break;
+                return;
             }
         }
     }
@@ -317,7 +319,7 @@ public class Inventory : MonoBehaviour
         {
             slot_list_[slot_list_.Count - 1].GetItem(result_.Key, result_.Value);
         }
-        Debug.Log($"Craft: {result_.Key} / {result_.Value} ");
+        //Debug.Log($"Craft: {result_.Key} / {result_.Value} ");
     }
 
     public void use_recipe(Slot_Y slot_) {
