@@ -504,15 +504,16 @@ public class Biom_Manager : MonoBehaviour
         if (mountain_height_dict.ContainsKey(key)) {
             return mountain_height_dict[key];
         }
-        Vector3 temp_pos = pos_;
-        temp_pos.y = 0;
+        Vector3 temp_pos;
+        Vector3 temp_pos_orign = pos_;
+        temp_pos_orign.y = 0;
         float h = 0;
         float temp_h = 0;
         float mountain_radius;
         float d_sqr;
         for (int i = 0; i < mountain_point_list.Count; i++)
         {
-            temp_pos = mountain_point_list[i].position - temp_pos;
+            temp_pos = mountain_point_list[i].position - temp_pos_orign;
             d_sqr = temp_pos.x * temp_pos.x + temp_pos.z * temp_pos.z;
             mountain_radius = temp_pos.y / mountain_point_list[i].slope;
             if (mountain_radius * mountain_radius < d_sqr)
@@ -531,21 +532,32 @@ public class Biom_Manager : MonoBehaviour
         }
         int h_ = (int)Mathf.Round(h);
         mountain_height_dict[key] = h_;
+        //Debug.Log("H: "+h_);
         return h_;
     }
 
     private void decide_mountain_point() {
-        int mountain_generate_range = 150;
+        int mountain_generate_range = 200;
         int mountain_num = 1200;
-        int mountain_max_height = 32;
-        int mountain_min_height = 8;
+        int mountain_max_height = 56;
+        int mountain_min_height = 5;
         int y_pos;
+        float temp_v;
+        float tan_;
         mountain_height_dict = new Dictionary<Vector2Int, int>();
         for (int i =0; i < mountain_num; i++) {
-            y_pos = UnityEngine.Random.Range(mountain_min_height, mountain_max_height);
+            temp_v = get_random_domain_1divideX(0.5f, 20f);
+            y_pos = mountain_min_height + (int)(temp_v * (mountain_max_height - mountain_min_height));
+            tan_ = Mathf.Tan(Mathf.PI * UnityEngine.Random.Range((0.5f + 2f * (y_pos - mountain_min_height) / (mountain_max_height - mountain_min_height)) / 18f,
+                                                                    (1f - 0.5f * (mountain_max_height - y_pos) / (mountain_max_height - mountain_min_height)) / 3f));
             mountain_point_list.Add(new Mountain_Point(new Vector3Int(UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range), y_pos, UnityEngine.Random.Range(-mountain_generate_range, mountain_generate_range)),
-                                                            Mathf.Tan(UnityEngine.Random.Range(Mathf.PI*(1f+3f*(y_pos- mountain_min_height) /(mountain_max_height- mountain_min_height)) / 18f, Mathf.PI/3f))));
+                                     tan_));
+            //Debug.Log("tan ceta: "+tan_);
         }
+    }
+
+    private float get_random_domain_1divideX(float domain_adjust_min, float domain_adjust_max) { 
+        return (1 / UnityEngine.Random.Range(domain_adjust_min, domain_adjust_max) - 1/ domain_adjust_max) / (1/ domain_adjust_min  - 1/ domain_adjust_max);
     }
 
     private void decide_cave_point() {

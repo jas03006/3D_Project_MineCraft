@@ -150,6 +150,8 @@ public class Player_Test_TG : PlayerMovement_Y
     private float attck_timer = 1f;//TG
     private float invincible_timer = 0f;
     private float invincible_time = 1.5f;
+    private float jump_timer = 0f;
+    private float jump_time = 0.5f;
     [SerializeField]private Slider attack_charge_slider;//TG
     public int basic_att_speed = 4;
 
@@ -238,6 +240,7 @@ public class Player_Test_TG : PlayerMovement_Y
     {
         invincible_timer += Time.deltaTime;
         attck_timer += Time.deltaTime;
+        jump_timer += Time.deltaTime;
         if (attack_charge_slider.value < attack_charge_slider.maxValue)
         {
             attack_charge_slider.value += player_state.att_speed / 2f * Time.deltaTime;
@@ -302,18 +305,16 @@ public class Player_Test_TG : PlayerMovement_Y
         is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y * Time.fixedDeltaTime);
         if ((is_grounded == true) == isjump)
         {
-            if (rigid.velocity.y < -6f)
-            {
-
-                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+            int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+            rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
                 //Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0)
-                {
-                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
-                    knock_back(transform.position + rigid.velocity.normalized);
-                    player_state.OnDamage(dmg);
-                    invincible_timer = 0f;
-                }
+            if (dmg > 0)
+            {
+                    
+                knock_back(transform.position + rigid.velocity.normalized, dmg /2f);
+                player_state.OnDamage(dmg);
+                invincible_timer = 0f;
+                is_grounded = false;
             }
         }
         isjump = !is_grounded;
@@ -374,10 +375,11 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        if (!isjump)
+        if (!isjump && jump_timer > jump_time)
         {
             if (Input.GetButton("Jump"))
             {
+                jump_timer = 0f;
                 isjump = true;
                 rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
             }
