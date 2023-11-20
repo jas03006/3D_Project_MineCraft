@@ -564,14 +564,22 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             return Item_ID_TG.grass;
         }
         else {
-            if (h + 1 == world_y && x > 3 && x < 13 && z > 3 && z < 13 && y < chunk_size-8)
+            if (h + 1 == world_y)
             {
-                Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
-                if (bn != null && (bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) && Random.Range(0, 30) < 1)
-                {
-                    // 唱公 关 扁嫡 积己
-                    return Item_ID_TG.tree;
-                }
+                if (x > 3 && x < 13 && z > 3 && z < 13 && y < chunk_size - 8) {
+                    Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
+                    if (bn != null && (bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) )
+                    {
+                        float decide_flag = Random.Range(0, 30);
+                        if (decide_flag < 1) {
+                            // 唱公 关 扁嫡 积己
+                            return Item_ID_TG.tree;
+                        } else if (decide_flag <2) {
+                            build_house(x, y, z);
+                            return Item_ID_TG.board;
+                        }                        
+                    }
+                }                
             }
             else if (h + 5 >= world_y)
             {
@@ -627,7 +635,27 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
 
         return Item_ID_TG.None;
     }
-
+    private void build_house(int x, int y, int z) {
+        Block_Node_TG bn;
+        for (int i =0; i < 4; i++) {
+            for (int j = 0; j < 4; j++)
+            {
+                for (int k = 0; k < 4; k++)
+                {
+                    //Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + j, y + i, z + k));
+                    bn = block_data[x + i, y + j, z + k];
+                    if (bn == null)
+                    {
+                        bn = Biom_Manager.instance.get_block_node();
+                        bn.chunk = this;
+                        bn.set_local_pos(x + i, y + j, z + k);
+                        block_data[x + i, y + j, z + k] = bn;
+                    }
+                    bn.id = Item_ID_TG.board;
+                }
+            }
+        }
+    }
     public void pool_back_all()
     {
         is_active = false;

@@ -44,6 +44,11 @@ public class Box_TG : Block_TG, Interactive_TG
         animator.SetBool("Is_Open", is_open);
     }
 
+    public override void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_, List<float> time_data)
+    {
+        init(is_open_, contain_data_);
+    }
+
     public override void drop_items()
     {
         Inventory.instance.hide();
