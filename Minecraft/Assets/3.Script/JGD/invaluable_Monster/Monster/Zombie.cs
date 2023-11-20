@@ -23,7 +23,8 @@ public class Zombie : Monster_controll
     private int JumpCount = 1;
     private float zombietimer = 0f;
     protected bool Zomattack = true;
-
+    [Header("몬스터 인식거리")]
+    [SerializeField] private float Scandistance;
     [Header("몬스터 드롭 아이템")]
     [SerializeField] private Item_ID_TG id;
     [Header("몬스터 레이 포인트")]
@@ -58,26 +59,24 @@ public class Zombie : Monster_controll
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            StopAllCoroutines();
-            StartCoroutine(MonsterFollow());
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            MonsterHurt(20);
+        if (follow_co == null) {
+            MonsterScanner();
         }
     }
-    private void OnTriggerEnter(Collider other)   //좀비 Player인식
+    private void MonsterScanner()          //좀비 Player인식
     {
-        if (other.gameObject.CompareTag("Player"))
+        pos = player.transform.position;
+        float sqr_distance = (pos - transform.position).sqrMagnitude;
+
+        if (sqr_distance <= Scandistance)
         {
-            //StopAllCoroutines();
-            if (stand_co != null) {
+            if (stand_co != null)
+            {
                 StopCoroutine(stand_co);
                 stand_co = null;
-            }            
-            if (follow_co != null) { 
+            }
+            if (follow_co != null)
+            {
                 StopCoroutine(follow_co);
             }
             follow_co = StartCoroutine(MonsterFollow());
@@ -169,7 +168,7 @@ public class Zombie : Monster_controll
             {*/
 
             Zom_FrontScan();
-            ZomRay_Down();
+            ZomRay();
             zombietimer += Time.deltaTime;
             this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
             animation.SetBool("ZombieWalk", true);
@@ -191,13 +190,14 @@ public class Zombie : Monster_controll
         }
     }
 
-    private IEnumerator MonsterFollow()    //좀비 어그로s
+    protected IEnumerator MonsterFollow()    //좀비 어그로s
     {
         //        pos = this.transform.position;
         while (true)
         {
+            
             Zom_FrontScan();
-            ZomRay_Down();
+            ZomRay();
             Vector3 dir = player.transform.position - this.transform.position;
             dir.y = 0;
 
@@ -222,6 +222,7 @@ public class Zombie : Monster_controll
 
              yield return null;
         }
+        follow_co = null;
     }
     private void ZomRay()    //정면 레이
     {
@@ -238,10 +239,10 @@ public class Zombie : Monster_controll
         ray3.direction = Ray3.transform.forward;
         ray4.direction = Ray4.transform.forward;
 
-        Debug.DrawRay(ray.origin, ray.direction*1.5f, Color.red);
-        Debug.DrawRay(ray1.origin, ray1.direction * 1.5f, Color.blue);
-        Debug.DrawRay(ray3.origin, ray3.direction*2, Color.blue);
-        Debug.DrawRay(ray4.origin, ray4.direction*2, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction*1f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction * 1f, Color.blue);
+        Debug.DrawRay(ray3.origin, ray3.direction*1.5f, Color.blue);
+        Debug.DrawRay(ray4.origin, ray4.direction*1.5f, Color.blue);
         RaycastHit[] hit;
 
         hit = Physics.RaycastAll(ray3, 1.5f);
@@ -261,48 +262,25 @@ public class Zombie : Monster_controll
             }
         }
 
-        hit = Physics.RaycastAll(ray, 0.8f);
+        hit = Physics.RaycastAll(ray, 0.5f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
             {
-                JumpCount--;
-                Monster_Speed = 0f;
-                rigi.AddForce(transform.up * ZomJumppow*0.5f ,ForceMode.Impulse);
-                Invoke("Zomjump", 0.2f);
-                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                rigi.velocity = Vector3.up* ZomJumppow;
                 return;
             }
         }
         hit = Physics.RaycastAll(ray1, 0.8f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
             {
-                JumpCount--;
-                Monster_Speed = 0f;
-                rigi.AddForce(transform.up * ZomJumppow * 0.5f, ForceMode.Impulse);
-                Invoke("Zomjump", 0.2f);
-                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                rigi.velocity = Vector3.up*ZomJumppow;
                 return;
             }
         }
     }
-
-    private void ZomRay_Down()   //좀비 아래쪽 레이
-    {
-        ray.origin = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
-        ray.direction = transform.up * -1;
-        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.black);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 0.1f))
-        {
-            JumpCount = 1;
-            ZomRay();
-        }
-
-    }
-
     private void Zom_FrontScan()     //낭떠러지 스캔
     {
         ray.origin = FloorRay.transform.position;
@@ -319,10 +297,6 @@ public class Zombie : Monster_controll
             animation.SetBool("ZombieWalk", false);
             this.Monster_Speed = 0f;
         }
-    }
-    private void Zomjump()   //엄청난 좀비의 점프실력
-    {
-        rigi.AddForce(transform.forward * 0.3f, ForceMode.Impulse);
     }
 
     private void ZomHitSound()  //좀비가 맞을때

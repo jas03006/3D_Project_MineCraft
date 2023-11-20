@@ -859,7 +859,6 @@ GameObject:
   - component: {fileID: 7586393562476618767}
   - component: {fileID: 7062656233274801847}
   - component: {fileID: 7062656233274801846}
-  - component: {fileID: 7062656233274801841}
   - component: {fileID: 7062656233274801844}
   - component: {fileID: 7062656233274801840}
   - component: {fileID: 7062656233274801833}
@@ -919,19 +918,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!135 &7062656233274801841
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7062656233274801845}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 8
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7062656233274801844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,7 +979,8 @@ MonoBehaviour:
   - {fileID: 7766994930296371821}
   - {fileID: 7818397833425671211}
   - {fileID: 2940315641827314143}
-  ZomJumppow: 2.35
+  ZomJumppow: 4
+  Scandistance: 64
   id: 15
   Ray1: {fileID: 3889720931513886525}
   Ray2: {fileID: 3889720931290127488}
