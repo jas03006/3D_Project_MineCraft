@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 public enum consumption_Y
 {
     jump = 0,
@@ -41,11 +40,13 @@ public class PlayerState_Y : Living
     {
         get
         {
+            //Debug.Log($"현재 배고픔 : {private_curhungry}");
             return private_curhungry;
         }
         set
         {
             private_curhungry = value;
+            //Debug.Log($"현재 배고픔 :{private_curhungry}");
             if (value > 20)
             {
                 private_curhungry = 20;
@@ -112,16 +113,15 @@ public class PlayerState_Y : Living
     void Update()
     {
         Test();
-       // Debug.Log($"curhealth :{Curhealth}");
     }
 
-    private void UpdateUI_health()
+    public void UpdateUI_health()
     {
         //health
         int tmp = Curhealth;
         for (int i = 0; i < starthealth / 2; i++)
         {
-            if (tmp == 0)
+            if (tmp <= 0)
             {
                 H_object[i].sprite = H_State[0];
                 H_object[i].gameObject.GetComponent<Outline>().enabled = false;
@@ -129,7 +129,7 @@ public class PlayerState_Y : Living
             else if (tmp == 1)
             {
                 H_object[i].sprite = H_State[1];
-                H_object[i].gameObject.GetComponent<Outline>().enabled = true;
+                H_object[i].gameObject.GetComponent<Outline>().enabled = false;
             }
             else
             {
@@ -139,11 +139,10 @@ public class PlayerState_Y : Living
             tmp -= 2;
         }
     }//Update UI
-    private void Update_hungry()
+    public void Update_hungry()
     {
         //상호작용
         HungryInteraction();
-
         //Update UI
         int tmp2 = curhungry;
         for (int i = 0; i < starthungry / 2; i++)
@@ -195,6 +194,7 @@ public class PlayerState_Y : Living
     public override void OnDamage(int Damage)
     {
         base.OnDamage(Damage);
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.attacked);
         UpdateUI_health();
     }
 
@@ -238,6 +238,7 @@ public class PlayerState_Y : Living
 
     public void GetExp(float exp)
     {
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.exp, 0.1f);
         curexp += exp;
         totalexp += exp;
         LevelUp();
@@ -303,6 +304,7 @@ public class PlayerState_Y : Living
     {
         curhungry += hungry_cure;
         HungryInteraction();
+        Update_hungry();
     }
     IEnumerator Hungry(int hungry, float playtime)
     {
@@ -315,17 +317,18 @@ public class PlayerState_Y : Living
             Update_hungry();
         }
     }
-    
+
     public override void Die()
     {
         base.Die();
-        transform.GetChild(0).Rotate(transform.forward, 90f);
+        StartCoroutine(die_fall());
         UIManager.instance.open_dead_UI();
         //respawn();
     }
     public void respawn()
     {
-        if (hungry_recover_co != null) {
+        if (hungry_recover_co != null)
+        {
             StopCoroutine(hungry_recover_co);
         }
         Curhealth = 20;
@@ -335,17 +338,15 @@ public class PlayerState_Y : Living
         level = 1;
         isDead = false;
 
-        for (int i = 0; i < H_object.Length; i++)
-        {
-            H_object[i].gameObject.GetComponent<Outline>().enabled = true;
-            F_object[i].gameObject.GetComponent<Outline>().enabled = true;
-        }
+        UpdateUI_health();
+        Update_hungry();
+        UpdateUI_exp();
 
         (p_movement as Player_Test_TG).stop();
 
         Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
-        transform.GetChild(0).localRotation= Quaternion.identity;
+        transform.GetChild(0).localRotation = Quaternion.identity;        
         StartCoroutine(lose_gravity_co());
         Snow_TG.instance.reset_snows();
     }
@@ -356,12 +357,22 @@ public class PlayerState_Y : Living
         (p_movement as Player_Test_TG).activate_gravity();
         Biom_Manager.instance.update_monsters_visiblity();
     }
-    public Vector3 get_respawn_position()    {
-        
+    public Vector3 get_respawn_position()
+    {
+
         if (respawn_bed == null)
         {
             return original_spawn_position;
         }
         return respawn_bed.get_respawn_position();
+    }
+
+    public IEnumerator die_fall() {
+        float timer_ =0f;
+        while (isDead && timer_ < 1f) {
+            transform.GetChild(0).Rotate(transform.forward, Time.deltaTime*90f );
+            timer_ += Time.deltaTime;
+            yield return null;
+        }
     }
 }

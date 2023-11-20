@@ -7,7 +7,13 @@ public class Box_TG : Block_TG, Interactive_TG
 {
     //private bool is_open = false;
     [SerializeField] private Animator animator;
+    [SerializeField] private List<AudioClip> clip_list; //{open, close}
+    private AudioSource audio_source;
 
+    private void Awake()
+    {
+        TryGetComponent<AudioSource>(out audio_source);
+    }
     private void OnEnable()
     {
         is_open = false;
@@ -16,6 +22,7 @@ public class Box_TG : Block_TG, Interactive_TG
     public void react()
     {
         is_open = true;
+        audio_source.PlayOneShot(clip_list[0]);
         animator.SetBool("Is_Open",is_open);
         Action<List<Slot_Y>> callback = close;
         Inventory.instance.show_box(contain_data,callback);
@@ -28,6 +35,7 @@ public class Box_TG : Block_TG, Interactive_TG
             contain_data.Add(new KeyValuePair<Item_ID_TG, int>(data[i].item_id, data[i].number));
         }
         is_open = false;
+        audio_source.PlayOneShot(clip_list[1]);
         animator.SetBool("Is_Open", is_open);
     }
     public override void init(bool is_open_, List<KeyValuePair<Item_ID_TG, int>> contain_data_) {

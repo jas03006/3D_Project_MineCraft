@@ -1,7 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -44,17 +44,15 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         //씬이 바뀔때 자동으로 실행되는 이벤트
-        Debug.Log("OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneLoaded += option.snow_active;
         SceneManager.sceneLoaded += option.load;
         SceneManager.sceneLoaded += option.find_camera;
-        
+
     }
     private void OnDisable()
     {
         // 이벤트 해제
-        Debug.Log("OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded -= option.snow_active;
         SceneManager.sceneLoaded -= option.load;
@@ -63,7 +61,6 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded");
         if (scene.name == "Map_Generate_TG")
         {
             playerState_Y = FindObjectOfType<PlayerState_Y>();
@@ -103,21 +100,13 @@ public class UIManager : MonoBehaviour
         yield return null;
         while (true)
         {
-            /*if (SceneManager.GetActiveScene().name == "Map_Generate_TG")
-            {*/
-                position_UI.text = $"X : {player_transform.position.x.ToString("F3")} / Y : {player_transform.position.y.ToString("F3")} / Z : {player_transform.position.z.ToString("F3")}";
-                yield return null;
-            /*}
-            else
-            {
-                break;
-            }*/
+            position_UI.text = $"X : {player_transform.position.x.ToString("F3")} / Y : {player_transform.position.y.ToString("F3")} / Z : {player_transform.position.z.ToString("F3")}";
+            yield return null;
         }
     }
 
     public void open_dead_UI()
     {
-        //position_UI.enabled = false;
         dead_UI.SetActive(true);
         dead_score.text = $"점수 : {playerState_Y.totalexp}";
         Cursor.visible = true;
@@ -125,7 +114,8 @@ public class UIManager : MonoBehaviour
 
     public void respawn_button()
     {
-        if (!Inventory.instance.isInventoryOpen && !UIManager.instance.option.isOptionOpen) {
+        if (!Inventory.instance.isInventoryOpen && !UIManager.instance.option.isOptionOpen)
+        {
             Cursor.visible = false;
         }
         dead_UI.SetActive(false);
