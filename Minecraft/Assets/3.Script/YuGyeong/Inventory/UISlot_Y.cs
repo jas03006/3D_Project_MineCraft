@@ -13,18 +13,18 @@ public class UISlot_Y : MonoBehaviour
         set
         {
             _value_private = value;
-            if (_value < 0)
+            if (_value_private < 0)
             {
-                _value = 0;
+                _value_private = 0;
             }
-            if (_value <= 0 && _item_id != Item_ID_TG.None)
+            if (_value_private <= 0 && _item_id != Item_ID_TG.None)
             {
                 clone_slot.ResetItem();
-                _value = 0;
+                _value_private = 0;
             }
             else if (_item_id != Item_ID_TG.None)
             {
-                if (clone_slot.item_id == _item_id && clone_slot.number == _value)
+                if (clone_slot.item_id == _item_id && clone_slot.number == _value_private)
                 {
                     return;
                 }

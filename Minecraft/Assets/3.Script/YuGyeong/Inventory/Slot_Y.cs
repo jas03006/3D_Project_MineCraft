@@ -33,6 +33,8 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                     ResetItem();
                     Debug.Log($"{gameObject.name}");
                 }
+            } else if (number_private > id2data.Get_data(item_id).MaxValue) {
+                number_private = id2data.Get_data(item_id).MaxValue;
             }
             else
             {
@@ -151,14 +153,27 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 }
                 else if (cursor_slot.item_id == item_id)
                 {
-                    GetItem(item_id, number + cursor_slot.number);
-                    cursor_slot.ResetItem();
+                    int surplus = GetItem(item_id, number + cursor_slot.number);
+                    if (surplus == 0)
+                    {
+                        cursor_slot.ResetItem();
+                    }
+                    else {                       
+                        cursor_slot.GetItem(item_id, surplus);
+                    }
                 }
 
                 if (is_result_slot)
                 {
                     Inventory.instance.use_recipe(this);
-                    Inventory.instance.check_recipe(this);                    
+                    Inventory.instance.check_recipe(this);
+                    if (Input.GetKey(KeyCode.LeftShift)) {
+                        while (number >0) {
+                            cursor_slot.GetItem(item_id, cursor_slot.number + number);
+                            Inventory.instance.use_recipe(this);                                                  
+                            Inventory.instance.check_recipe(this);
+                        }
+                    }
                 }
             }
             if (is_craft_slot)
@@ -168,19 +183,21 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         }
     }
 
-    public virtual void GetItem(Item_ID_TG itemID, int _num)
+    public virtual int GetItem(Item_ID_TG itemID, int _num)
     {
+        int surplus = 0;
         if (itemID == Item_ID_TG.None || itemID == Item_ID_TG.Fill)
         {
-            return;
+            return _num;
         }
 
+        int max_v = id2data.Get_data(itemID).MaxValue;
+        if (_num >= max_v) {
+            //cursor_slot.GetItem(itemID, cursor_slot.number + _num - max_v);
+            surplus = _num - max_v;
+            _num = max_v;
+        }
         item_id = itemID;
-
-        if (number >= id2data.Get_data(item_id).MaxValue)
-        {
-            return;
-        }
         number = _num;
         havedata = true;
         image.sprite = id2data.Get_data(itemID).Itemsprite;
@@ -197,6 +214,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 Inventory.instance.weapon_position.Equip_Weapon(item_id);
             }
         }
+        return surplus;
     }
 
     public virtual void ResetItem()
@@ -263,13 +281,15 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
             }
             else if (cursor_slot.item_id == item_id)
             {
-                cursor_slot.number--;
-                number++;
+                if (number < id2data.Get_data(item_id).MaxValue) {
+                    cursor_slot.number--;
+                    number++;
 
-                if (number == 0)
-                {
-                    ResetItem();
-                }
+                    if (number == 0)
+                    {
+                        ResetItem();
+                    }
+                }                
             }
             else if (item_id == Item_ID_TG.None)
             {
