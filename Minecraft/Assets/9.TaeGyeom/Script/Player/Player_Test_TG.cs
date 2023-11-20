@@ -148,10 +148,12 @@ public class Player_Test_TG : PlayerMovement_Y
     //TG
     [SerializeField] private float interaction_range = 4f;//TG
     private float attck_timer = 1f;//TG
+    private float invincible_timer = 0f;
+    private float invincible_time = 1.5f;
     [SerializeField]private Slider attack_charge_slider;//TG
     public int basic_att_speed = 4;
 
-    [SerializeField] public GameObject block_in_hand;//TG
+    public GameObject block_in_hand;//TG
     public Item_ID_TG block_in_hand_id;//TG
     public InventoryData block_in_hand_data;//TG
 
@@ -234,6 +236,7 @@ public class Player_Test_TG : PlayerMovement_Y
     }
     protected void Update()
     {
+        invincible_timer += Time.deltaTime;
         attck_timer += Time.deltaTime;
         if (attack_charge_slider.value < attack_charge_slider.maxValue)
         {
@@ -243,21 +246,21 @@ public class Player_Test_TG : PlayerMovement_Y
             attack_charge_slider.gameObject.SetActive(false);
         }
 
-/*        if (Input.GetMouseButtonUp(0))
-        {
-            arm_animator.SetBool("is_crouch", false);
-            arm_animator.SetBool("is_walk", false);
-            //arm_animator.SetBool("is_active", false);
-        }*/
-
-        if (inventory.isInventoryOpen)
-        {
-            return;
-        }
+        /*        if (Input.GetMouseButtonUp(0))
+                {
+                    arm_animator.SetBool("is_crouch", false);
+                    arm_animator.SetBool("is_walk", false);
+                    //arm_animator.SetBool("is_active", false);
+                }*/
         if (Input.GetMouseButtonUp(0))
         {
             stop_breaking();
         }
+
+        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf)
+        {
+            return;
+        }        
 
         if (attck_timer >= 0.1f)
         {
@@ -294,7 +297,28 @@ public class Player_Test_TG : PlayerMovement_Y
     protected override void FixedUpdate()
     {
         check_and_grap();
-        if (inventory.isInventoryOpen)
+
+        //³«ÇÏ Ã¼Å©
+        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y * Time.fixedDeltaTime);
+        if ((is_grounded == true) == isjump)
+        {
+            if (rigid.velocity.y < -6f)
+            {
+
+                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+                //Debug.Log($"{rigid.velocity.y}, {dmg}");
+                if (dmg > 0)
+                {
+                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
+                    knock_back(transform.position + rigid.velocity.normalized);
+                    player_state.OnDamage(dmg);
+                    invincible_timer = 0f;
+                }
+            }
+        }
+        isjump = !is_grounded;
+
+        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf)
         {
             return;
         }
@@ -350,24 +374,6 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        //³«ÇÏ Ã¼Å©
-        is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y* Time.fixedDeltaTime);
-        if ((is_grounded == true) == isjump)
-        {
-            if (rigid.velocity.y < -6f)
-            {
-
-                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
-                //Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0)
-                {
-                    player_state.OnDamage(dmg);
-                    rigid.velocity = new Vector3(rigid.velocity.x,0, rigid.velocity.z);
-                }
-            }
-        }
-        isjump = !is_grounded;
-
         if (!isjump)
         {
             if (Input.GetButton("Jump"))
@@ -411,7 +417,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 //objectHit.GetComponent<Block_TG>()
                 int dmg = 10 * Combat_system.instance.cal_combat_block(now_breaking_block.id);
                 now_breaking_block.Destroy_Block(dmg);//die();
-                Debug.Log("Damage: "+dmg);
+                //Debug.Log("Damage: "+dmg);
             }
             else {//monster
                 Monster_controll monster = objectHit.GetComponent<Monster_controll>();
@@ -471,7 +477,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
                 
                 set_dir = hit.collider.transform.position + set_dir;
-                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
+                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default")).Length == 0)
                 {
                     //List<Vector3Int> space_ = new List<Vector3Int>();
                     //space_.Add(Vector3Int.up);
@@ -489,6 +495,7 @@ public class Player_Test_TG : PlayerMovement_Y
     public void throw_item() {
         Block_Objectpooling.instance.throw_item(block_in_hand_id, cam_pos_arr[0].position + head_tr.forward, head_tr.forward);
         Inventory.instance.UIslot_minus();
+        //Debug.Log("throw");
     }
     public Vector3 six_dir_normalization_cube(Vector3 dir,  float threshold = 0.49f) {
         Vector3 result_dir = Vector3.zero;
@@ -521,24 +528,54 @@ public class Player_Test_TG : PlayerMovement_Y
 
     private void OnTriggerEnter(Collider other)
     {
-        get_item(other);
+        if (!get_item(other) && invincible_timer > invincible_time) {
+            get_attacked(other);
+        }
     }
-    
-   /* protected void OnCollisionStay(Collision col)
+    private void OnTriggerStay(Collider other)
     {
-        get_item(col);
-    }*/
+        if (!get_item(other) && invincible_timer > invincible_time)
+        {
+            get_attacked(other);
+        }
+    }
 
-    private void get_item(Collider col) {
+    /* protected void OnCollisionStay(Collision col)
+     {
+         get_item(col);
+     }*/
+    public void get_attacked(Collider collider) {
+        if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Monster_Attack"))) {
+            Monster_controll mc = collider.gameObject.GetComponentInParent<Monster_controll>();
+            //Debug.Log("Monster_Attack!");
+            if (mc != null)
+            {
+
+                int dmg = (int)mc.Monster_Damage - player_state.defense_power;
+                //Debug.Log(dmg);                
+                knock_back(mc.transform.position);
+                player_state.OnDamage((dmg < 0 ? 0 : dmg));
+                invincible_timer = 0f;
+            }
+        }        
+    }
+
+    public void knock_back(Vector3 enemy_position, float force_mag = 8f) {
+        rigid.AddForce((transform.position + Vector3.up - enemy_position).normalized * force_mag, ForceMode.Impulse);
+    }
+    private bool get_item(Collider col) {
         if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Floating_Item")))
         {
             //¾ÆÀÌÅÛ ½Àµæ
             inventory.GetItem(col.gameObject.GetComponent<Break_Block_Item>().id, 1);
             col.gameObject.SetActive(false);
+            return true;
         } else if (col.gameObject.layer.Equals(LayerMask.NameToLayer("Exp"))) {
             Exp_pooling.instance.return_pool(col.gameObject);
             player_state.GetExp(1);
+            return true;
         }
+        return false;
     }
 
     
@@ -681,7 +718,7 @@ public class Player_Test_TG : PlayerMovement_Y
             dis = (target_pos - col.transform.position).magnitude;
             col.TryGetComponent<Rigidbody>(out rigid);
             if (rigid != null) {
-                if (rigid.velocity.x != 0 || rigid.velocity.z != 0) {
+                if (Mathf.Abs( rigid.velocity.x) + Mathf.Abs(rigid.velocity.z) > 0.1f) {
                     continue;
                 } 
             }

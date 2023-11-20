@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Furnace_Y : Box_Y
-{   // 0: 재료, 1: 연료, 2: 결과물
+{   
+    // 0: 재료, 1: 연료, 2: 결과물
     public bool is_on=false;
     [SerializeField] public Slider fire_slider;
     [SerializeField] public GameObject fire_image;
     public float slider_value = 0;
-    public Furnace_TG furnace_tg;
+    public static Furnace_TG furnace_tg;
     private int fuel_count = 0;
     // Start is called before the first frame update
     private void Update()

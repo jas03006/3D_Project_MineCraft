@@ -47,12 +47,13 @@ public class Zombie : Monster_controll
         renders = GetComponentsInChildren<Renderer>();
         animation = GetComponent<Animator>();
         sensor = GetComponent<Collider>();
-    }
-    private void Start()
-    {
-        ItemCount = 1;
-        ZomHp = starthealth;
         Rengering();
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        ItemCount = 1;
+        ZomHp = starthealth;        
         stand_co = StartCoroutine(MonsterStand());
     }
     private void Update()

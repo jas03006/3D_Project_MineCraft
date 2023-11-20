@@ -55,6 +55,6 @@ public class Snow_Particle_System_TG : MonoBehaviour
         if (emit.rateOverTime.constant == 0) {
             emit.rateOverTime = 1;
         }
-        Debug.Log(emit.rateOverTime);
+        //Debug.Log(emit.rateOverTime);
     }
 }

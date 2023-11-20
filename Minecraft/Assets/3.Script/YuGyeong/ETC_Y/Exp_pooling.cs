@@ -8,6 +8,7 @@ public class Exp_pooling : MonoBehaviour
     [SerializeField] private GameObject exp_prefab;
     [SerializeField] private Vector3 pooling_point;
     private int init_count;
+    public GameObject player;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Exp_pooling : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         init_count = 10;
         init_pool();
     }
@@ -61,9 +63,9 @@ public class Exp_pooling : MonoBehaviour
         }
     }
 
-    public void generate_exp(int exp_num, Vector3 transform, Vector3 player_forward) {
+    public void generate_exp(int exp_num, Vector3 transform) {
         for (int i =0; i < exp_num; i++) {
-            GameObject go = get_pool(transform + Vector3.forward * Random.Range(-0.3f, 0.3f) + Vector3.right * Random.Range(-0.3f, 0.3f), Quaternion.LookRotation(player_forward * -1f));
+            GameObject go = get_pool(transform + Vector3.forward * Random.Range(-0.3f, 0.3f) + Vector3.right * Random.Range(-0.3f, 0.3f), Quaternion.LookRotation(player.transform.forward * -1f));
         }
     }
 

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public enum consumption_Y
 {
     jump = 0,
@@ -62,7 +62,7 @@ public class PlayerState_Y : Living
 
     [Header("exp")]
     private int level;
-    private float totalexp;
+    public float totalexp;
     private float curexp
     {
         get { return private_curexp; }
@@ -121,7 +121,7 @@ public class PlayerState_Y : Living
         int tmp = Curhealth;
         for (int i = 0; i < starthealth / 2; i++)
         {
-            if (tmp <= 0)
+            if (tmp == 0)
             {
                 H_object[i].sprite = H_State[0];
                 H_object[i].gameObject.GetComponent<Outline>().enabled = false;
@@ -129,10 +129,12 @@ public class PlayerState_Y : Living
             else if (tmp == 1)
             {
                 H_object[i].sprite = H_State[1];
+                H_object[i].gameObject.GetComponent<Outline>().enabled = true;
             }
             else
             {
                 H_object[i].sprite = H_State[2];
+                H_object[i].gameObject.GetComponent<Outline>().enabled = true;
             }
             tmp -= 2;
         }
@@ -154,10 +156,12 @@ public class PlayerState_Y : Living
             else if (tmp2 == 1)
             {
                 F_object[i].sprite = F_State[1];
+                F_object[i].gameObject.GetComponent<Outline>().enabled = true;
             }
             else
             {
                 F_object[i].sprite = F_State[2];
+                F_object[i].gameObject.GetComponent<Outline>().enabled = true;
             }
             tmp2 -= 2;
         }
@@ -173,20 +177,18 @@ public class PlayerState_Y : Living
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //OnDamage(Combat_system.instance.cal_combat_block(Item_ID_TG.stone));
             OnDamage(1);
-            //Debug.Log($"OnDamage(1) / curhealth :{Curhealth}");
+            Debug.Log(curhealth);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            curhungry -= 1;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             GetExp(1);
-            //Debug.Log($"Level:{level}/EXP:{curexp} /TotalEXP:{totalexp}");
         }
     } //Test
 
@@ -195,6 +197,7 @@ public class PlayerState_Y : Living
         base.OnDamage(Damage);
         UpdateUI_health();
     }
+
     IEnumerator Health(int health, float playtime, float endtime)
     {
         float time = 0;
@@ -313,11 +316,12 @@ public class PlayerState_Y : Living
         }
     }
     
-
     public override void Die()
     {
         base.Die();
-        respawn();
+        transform.GetChild(0).Rotate(transform.forward, 90f);
+        UIManager.instance.open_dead_UI();
+        //respawn();
     }
     public void respawn()
     {
@@ -341,6 +345,7 @@ public class PlayerState_Y : Living
 
         Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
+        transform.GetChild(0).localRotation= Quaternion.identity;
         StartCoroutine(lose_gravity_co());
         Snow_TG.instance.reset_snows();
     }
@@ -349,6 +354,7 @@ public class PlayerState_Y : Living
         (p_movement as Player_Test_TG).deactivate_gravity();
         yield return new WaitForSeconds(1.2f);
         (p_movement as Player_Test_TG).activate_gravity();
+        Biom_Manager.instance.update_monsters_visiblity();
     }
     public Vector3 get_respawn_position()    {
         

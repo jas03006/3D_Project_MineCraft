@@ -49,6 +49,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     [SerializeField] private bool is_cursor_slot;
     [SerializeField] private bool have_UIClone;
     [SerializeField] private bool is_result_slot;
+    [SerializeField] private bool is_furnace_result_slot;
     [SerializeField] private Slot_Y cursor_slot;
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
@@ -138,6 +139,11 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                         return;
                     }
                 }
+                if (is_furnace_result_slot)
+                {
+                    Exp_pooling.instance.generate_exp(1*number, Furnace_Y.furnace_tg.transform.position);
+                }
+
                 if (cursor_slot.item_id == Item_ID_TG.None)
                 {
                     cursor_slot.GetItem(item_id, number);
@@ -152,7 +158,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 if (is_result_slot)
                 {
                     Inventory.instance.use_recipe(this);
-                    Inventory.instance.check_recipe(this);
+                    Inventory.instance.check_recipe(this);                    
                 }
             }
             if (is_craft_slot)

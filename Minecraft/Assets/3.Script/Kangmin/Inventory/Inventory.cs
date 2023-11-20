@@ -67,6 +67,10 @@ public class Inventory : MonoBehaviour
         {
             children[i].gameObject.SetActive(false);
         }
+
+        // 로딩 중 UI 끄기
+        UIManager.instance.loading_page.SetActive(false);
+        UIManager.instance.position_UI.gameObject.SetActive(true);
     }
     private void Update()
     {
@@ -79,19 +83,13 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            GetItem(Item_ID_TG.diamond_pickaxe, 1);
+            GetItem(Item_ID_TG.apple, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            GetItem(Item_ID_TG.diamond_axe, 1);
+            GetItem(Item_ID_TG.apple_pie, 1);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            GetItem(Item_ID_TG.diamond_sword, 1);
-        }
-
     }
     private void InventoryInteraction()
     {
@@ -134,7 +132,7 @@ public class Inventory : MonoBehaviour
         show(callback);
         furnace_UI.SetActive(true);
         furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
-        furnace_y.furnace_tg = furnace_tg;
+        Furnace_Y.furnace_tg = furnace_tg;
         furnace_y.Get_data(data, time_data);
         
     }
@@ -187,28 +185,32 @@ public class Inventory : MonoBehaviour
     public void hide_furnace()
     {
         furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
-        furnace_y.furnace_tg = null;
+        Furnace_Y.furnace_tg = null;
         furnace_y.reset_data();
         furnace_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
     {
         //같은거 있으면 갯수++
-        for (int i = 0; i < playerItemList.Count; i++)
+        for (int i_ = 27; i_ < playerItemList.Count+ 27; i_++)
         {
+            int i = i_ % playerItemList.Count;
             if (playerItemList[i].item_id == id && playerItemList[i].number < playerItemList[i].id2data.Get_data(playerItemList[i].item_id).MaxValue)
             {
                 playerItemList[i].number += num;
                 if (i >= playerItemList.Count- UIItemList.Count) {
-                    UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
+                    UIItemList[i - playerItemList.Count + UIItemList.Count].GetItem(id, playerItemList[i].number, Color.white);
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count]._value = playerItemList[i].number;
+                    //UIItemList[i - playerItemList.Count + UIItemList.Count].text.text = $"{playerItemList[i].number}";
                 }                
                 return;
             }
         }
 
         //같은거 없으면 새로 생성
-        for (int i = 0; i < playerItemList.Count; i++)
+        for (int i_ = 27; i_ < playerItemList.Count + 27; i_++)
         {
+            int i = i_ % playerItemList.Count;
             if (playerItemList[i].item_id == Item_ID_TG.None)
             {
                 playerItemList[i].GetItem(id, num);
