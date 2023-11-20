@@ -48,12 +48,6 @@ public class Piggy : Monster_controll
         PigHp = starthealth;
         StartCoroutine(MonsterStand());
     }
-  /*  private void Start()
-    {
-        PigHp = starthealth;
-        ItemCount = 1;
-        StartCoroutine(MonsterStand());
-    }*/
 
 
     private void Update()
@@ -81,13 +75,13 @@ public class Piggy : Monster_controll
         ray3.direction = Ray3.transform.forward;
         ray4.direction = Ray4.transform.forward;
 
-        Debug.DrawRay(ray.origin, ray.direction*0.8f, Color.red);
-        Debug.DrawRay(ray1.origin, ray1.direction*0.8f, Color.blue);
-        Debug.DrawRay(ray3.origin, ray3.direction*1.5f, Color.blue);
-        Debug.DrawRay(ray4.origin, ray4.direction*1.5f, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction*0.45f, Color.red);
+        Debug.DrawRay(ray1.origin, ray1.direction*0.45f, Color.blue);
+        Debug.DrawRay(ray3.origin, ray3.direction*1f, Color.blue);
+        Debug.DrawRay(ray4.origin, ray4.direction*1f, Color.blue);
         RaycastHit[] hit;
 
-        hit = Physics.RaycastAll(ray3, 1.5f);
+        hit = Physics.RaycastAll(ray3, 1f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -95,7 +89,7 @@ public class Piggy : Monster_controll
                 return;
             }
         }
-        hit = Physics.RaycastAll(ray4, 1.5f);
+        hit = Physics.RaycastAll(ray4, 1f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
@@ -104,50 +98,25 @@ public class Piggy : Monster_controll
             }
         }
 
-        hit = Physics.RaycastAll(ray, 0.8f);
+        hit = Physics.RaycastAll(ray, 0.45f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
             {
-                JumpCount--;
-                Monster_Speed = 0.01f;
-                rigi.AddForce(transform.up * piggyJumppower* 0.5f, ForceMode.Impulse);
-                Invoke("Pigjump", 0.2f);
-                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                rigi.velocity = Vector3.up * piggyJumppower;
                 return;
             }
         }
-        hit = Physics.RaycastAll(ray1, 0.8f);
+        hit = Physics.RaycastAll(ray1, 0.45f);
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block") && JumpCount == 1)
+            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
             {
-                JumpCount--;
-                Monster_Speed = 0.01f;
-                rigi.AddForce(transform.up * piggyJumppower*0.5f, ForceMode.Impulse);
-                Invoke("Pigjump", 0.2f);
-                //rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
+                rigi.velocity = Vector3.up * piggyJumppower;
                 return;
             }
         }
 
-
-    }
-    private void Pigjump() //돼지의 정교한 점프실력
-    {
-        rigi.AddForce(transform.forward * 0.5f, ForceMode.Impulse);
-    }
-    private void PigRay_Bellybutton()   //돼지 아래쪽 레이
-    {
-        ray.origin = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
-        ray.direction = transform.up * -1;
-        Debug.DrawRay(ray.origin, ray.direction * 0.1f, Color.black);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 0.1f))
-        {
-            JumpCount = 1;
-            PigRay();
-        }
 
     }
 
@@ -287,7 +256,7 @@ public class Piggy : Monster_controll
             {
 
                 Pig_FrontScan();
-                PigRay_Bellybutton();
+                PigRay();
                 Maxtimer += Time.deltaTime;
                 this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
                 animation.SetBool("isPigWalk", true);
