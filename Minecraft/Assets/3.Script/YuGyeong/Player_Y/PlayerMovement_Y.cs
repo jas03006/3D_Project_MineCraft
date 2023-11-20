@@ -103,7 +103,7 @@ public class PlayerMovement_Y : MonoBehaviour
 
         isjump = false;
         if (jumpforce == 0) {
-            jumpforce = 11f;
+            jumpforce = 9.5f;
         }
         if (crouchspeed == 0) { 
             crouchspeed = 1f;

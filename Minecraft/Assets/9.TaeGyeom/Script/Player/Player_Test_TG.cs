@@ -150,6 +150,10 @@ public class Player_Test_TG : PlayerMovement_Y
     private float attck_timer = 1f;//TG
     private float invincible_timer = 0f;
     private float invincible_time = 1.5f;
+    private float jump_timer = 0f;
+    private float jump_time = 0.5f;
+    private float step_timer = 0f;
+    private float step_time = 0.2f;
     [SerializeField]private Slider attack_charge_slider;//TG
     public int basic_att_speed = 4;
 
@@ -238,6 +242,8 @@ public class Player_Test_TG : PlayerMovement_Y
     {
         invincible_timer += Time.deltaTime;
         attck_timer += Time.deltaTime;
+        jump_timer += Time.deltaTime;
+        step_timer += Time.deltaTime;
         if (attack_charge_slider.value < attack_charge_slider.maxValue)
         {
             attack_charge_slider.value += player_state.att_speed / 2f * Time.deltaTime;
@@ -279,6 +285,11 @@ public class Player_Test_TG : PlayerMovement_Y
                 arm_animator.SetBool("is_crouch", false);
                 arm_animator.SetBool("is_walk", false);
                 arm_animator.SetTrigger("is_active");
+
+                if (block_in_hand_id >= Item_ID_TG.wood_sword && block_in_hand_id <= Item_ID_TG.diamond_sword) {
+                    Audio_Manager_TG.instance.play_random_sound(Sound_Id.attack);
+                }
+
                 left_click();
             }
             if (Input.GetMouseButtonDown(1))
@@ -302,18 +313,20 @@ public class Player_Test_TG : PlayerMovement_Y
         is_grounded = raycast_all_points(raycast_points.bottom, Vector3.down, 0.1f - rigid.velocity.y * Time.fixedDeltaTime);
         if ((is_grounded == true) == isjump)
         {
-            if (rigid.velocity.y < -6f)
-            {
-
-                int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+            if (step_timer > step_time) {
+                Audio_Manager_TG.instance.play_random_sound(Sound_Id.step);
+                step_time = 0;
+            }        
+            int dmg = Mathf.FloorToInt(rigid.velocity.y * rigid.velocity.y / -Physics.gravity.y / 2f) - 3;
+            rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
                 //Debug.Log($"{rigid.velocity.y}, {dmg}");
-                if (dmg > 0)
-                {
-                    rigid.velocity = new Vector3(rigid.velocity.x, 0, rigid.velocity.z);
-                    knock_back(transform.position + rigid.velocity.normalized);
-                    player_state.OnDamage(dmg);
-                    invincible_timer = 0f;
-                }
+            if (dmg > 0)
+            {
+                    
+                knock_back(transform.position + rigid.velocity.normalized, dmg /2f);
+                player_state.OnDamage(dmg);
+                invincible_timer = 0f;
+                is_grounded = false;
             }
         }
         isjump = !is_grounded;
@@ -374,10 +387,11 @@ public class Player_Test_TG : PlayerMovement_Y
         raycast_forward(current_move_vec,ref current_move_vec);
         rigid.MovePosition(transform.position + current_move_vec);
 
-        if (!isjump)
+        if (!isjump && jump_timer > jump_time)
         {
             if (Input.GetButton("Jump"))
             {
+                jump_timer = 0f;
                 isjump = true;
                 rigid.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
             }
@@ -438,6 +452,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private void right_click(bool is_button_stay = false) { //TG
         if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
             (block_in_hand_data as Food).R_Eat();
+            Audio_Manager_TG.instance.play_random_sound(Sound_Id.eat);
             Inventory.instance.UIslot_minus();
             return;
         }
@@ -486,6 +501,7 @@ public class Player_Test_TG : PlayerMovement_Y
                         Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
                         ,block_.space);
                     Inventory.instance.UIslot_minus();
+                    Audio_Manager_TG.instance.play_block_set();
                 }
                     //objectHit.GetComponent<Block_TG>().die();
             }
