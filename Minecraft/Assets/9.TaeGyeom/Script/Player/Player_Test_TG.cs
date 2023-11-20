@@ -477,7 +477,7 @@ public class Player_Test_TG : PlayerMovement_Y
                 Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
                 
                 set_dir = hit.collider.transform.position + set_dir;
-                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f).Length == 0)
+                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default")).Length == 0)
                 {
                     //List<Vector3Int> space_ = new List<Vector3Int>();
                     //space_.Add(Vector3Int.up);
