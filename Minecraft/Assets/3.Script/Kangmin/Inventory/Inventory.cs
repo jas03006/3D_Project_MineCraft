@@ -81,14 +81,24 @@ public class Inventory : MonoBehaviour
     }
     private void Test()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             GetItem(Item_ID_TG.apple, 1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            GetItem(Item_ID_TG.diamond, 1);
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            GetItem(Item_ID_TG.apple_pie, 1);
+            GetItem(Item_ID_TG.tree, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            GetItem(Item_ID_TG.stone, 1);
         }
     }
     private void InventoryInteraction()
@@ -140,19 +150,27 @@ public class Inventory : MonoBehaviour
     public void hide() {
         cursorController.Reset_info();//cursor_slot.hide_info();
         List<Slot_Y> callback_param = null;
-        if (craft_UI.activeSelf == true) {
+        if (craft_UI.activeSelf == true)
+        {
             hide_craft();
         }
-        else if (box_UI.activeSelf == true) {
+        else if (box_UI.activeSelf == true)
+        {
             callback_param = box_UI.GetComponent<Box_Y>().Get_slots();
-        } else if (furnace_UI.activeSelf == true) {
+        }
+        else if (furnace_UI.activeSelf == true)
+        {
             callback_param = furnace_UI.GetComponent<Furnace_Y>().Get_slots();
+        }
+        else {
+            hide_craft_small();
         }
         
         for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
         }
+
         isInventoryOpen = false;
         Cursor.visible = false;
         if (hide_callback != null) {
@@ -166,6 +184,7 @@ public class Inventory : MonoBehaviour
             hide_furnace();
         }
         inven_camera.SetActive(false);
+
     }
     public void hide_craft()
     {
@@ -176,6 +195,17 @@ public class Inventory : MonoBehaviour
         }
         CraftList[CraftList.Count - 1].ResetItem();
         craft_UI.SetActive(false);
+    }
+
+    public void hide_craft_small()
+    {
+        for (int i = 0; i < CraftList_Small.Count - 1; i++)
+        {
+            Slot_Y slot_ = CraftList_Small[i];
+            GetItem(slot_.item_id, slot_.number);
+            slot_.ResetItem();
+        }
+        CraftList_Small[CraftList_Small.Count - 1].ResetItem();
     }
 
     public void hide_box() {
