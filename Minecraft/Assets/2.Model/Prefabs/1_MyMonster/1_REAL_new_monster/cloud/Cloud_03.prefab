@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4819165119311236844}
   - component: {fileID: 6136535364651068670}
   - component: {fileID: 2014093698251480242}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cloud_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionTimeControll: 5
-  Player: {fileID: 0}
 --- !u!54 &2014093698251480242
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class Cloud_Pooling : MonoBehaviour
     }
     private void MakeSkyGOAT(float location)
     {
-        location *= 2f;
+        location *= 3f;
         for (int i = 0; i < CloudCount; i++)
         {
             GameObject cloud = CloudPool.Dequeue();
