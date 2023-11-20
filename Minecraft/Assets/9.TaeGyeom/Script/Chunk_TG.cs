@@ -570,12 +570,11 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                     Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
                     if (bn != null && (bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) )
                     {
-                        float decide_flag = Random.Range(0, 30);
-                        if (decide_flag < 1) {
+                        float decide_flag = Random.Range(0f, 1f);
+                        if (decide_flag < 0.033f) {
                             // 唱公 关 扁嫡 积己
                             return Item_ID_TG.tree;
-                        } else if (decide_flag <2) {
-                            build_house(x, y, z);
+                        } else if (decide_flag < 0.05f && build_house(x, y, z)) {                            
                             return Item_ID_TG.board;
                         }                        
                     }
@@ -635,14 +634,28 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
 
         return Item_ID_TG.None;
     }
-    private void build_house(int x, int y, int z) {
+    private bool build_house(int x, int y, int z) {
         Block_Node_TG bn;
-        for (int i =0; i < 4; i++) {
-            for (int j = 0; j < 4; j++)
+        int size_ = 4;
+        for (int i = 0; i < size_; i++)
+        {
+            for (int j = 0; j < size_; j++)
             {
-                for (int k = 0; k < 4; k++)
+                for (int k = 0; k < size_; k++)
                 {
-                    //Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + j, y + i, z + k));
+                    bn = block_data[x + i, y + j, z + k];
+                    if (bn != null && bn.id ==Item_ID_TG.board)
+                    {
+                        return false;
+                    }                   
+                }
+            }
+        }
+        for (int i =0; i < size_; i++) {
+            for (int j = 0; j < size_; j++)
+            {
+                for (int k = 0; k < size_; k++)
+                {
                     bn = block_data[x + i, y + j, z + k];
                     if (bn == null)
                     {
@@ -655,6 +668,24 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                 }
             }
         }
+
+        for (int i = 1; i < size_-1; i++)
+        {
+            for (int j = 1; j < size_-1; j++)
+            {
+                for (int k = 1; k < size_-1; k++)
+                {
+                    block_data[x + i, y + j, z + k].id = Item_ID_TG.None;
+                }
+            }
+        }
+        block_data[x+ size_ - 1, y+2, z].id = Item_ID_TG.None;
+        bn = block_data[x + size_ - 1, y + 1, z];
+        bn.set_block(Item_ID_TG.door, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + size_ - 1, y + 1, z),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,1,0)});
+        bn = block_data[x + 2, y + 1, z + 1];
+        bn.set_block(Item_ID_TG.bed, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + 2, y + 1, z + 1),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,0,1)});
+        return true;
+
     }
     public void pool_back_all()
     {
