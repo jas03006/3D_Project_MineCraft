@@ -63,7 +63,7 @@ public class Cloud : MonoBehaviour
         float difZ = Mathf.Abs(pos.z - myPos.z);
 
         Vector3 playerDir = rigi.velocity;
-        Debug.Log(rigi.velocity);
+        //Debug.Log(rigi.velocity);
         playerDir.y = 0;
         /*float dirX = playerDir.x < 0 ? -1 : 1;
         float dirZ = playerDir.z < 0 ? -1 : 1;*/
