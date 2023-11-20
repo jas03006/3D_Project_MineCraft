@@ -194,6 +194,7 @@ public class PlayerState_Y : Living
     public override void OnDamage(int Damage)
     {
         base.OnDamage(Damage);
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.attacked);
         UpdateUI_health();
     }
 
@@ -237,6 +238,7 @@ public class PlayerState_Y : Living
 
     public void GetExp(float exp)
     {
+        Audio_Manager_TG.instance.play_random_sound(Sound_Id.exp, 0.1f);
         curexp += exp;
         totalexp += exp;
         LevelUp();

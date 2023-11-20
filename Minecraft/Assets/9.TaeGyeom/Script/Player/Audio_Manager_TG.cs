@@ -17,6 +17,7 @@ public class Audio_Manager_TG : MonoBehaviour
 {
     public static Audio_Manager_TG instance = null;
     [SerializeField] private AudioSource audio_source;
+    [SerializeField] private AudioClip break_clip;
 
     public int sound_cnt_per_id = 3;
     private Dictionary<Sound_Id, int> SoundID2index_dict;
@@ -62,6 +63,8 @@ public class Audio_Manager_TG : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        TryGetComponent<AudioSource>(out audio_source);
+
         ID2index_dict = new Dictionary<Item_ID_TG, int>();
         int i = 0;
         foreach (Item_ID_TG e in dig_clip_id_list)
@@ -81,18 +84,26 @@ public class Audio_Manager_TG : MonoBehaviour
     public AudioSource get_audio_player() {
         return audio_source;
     }
-    public void play_random_sound(Sound_Id id_) {
+    public void play_random_sound(Sound_Id id_, float audio_scale = 1f) {
         if (!SoundID2index_dict.ContainsKey(id_))
         {
             return;
         }
-        get_audio_player().PlayOneShot(audio_clip_list[SoundID2index_dict[id_]*sound_cnt_per_id + Random.Range(0, sound_cnt_per_id)]);
+        get_audio_player().PlayOneShot(audio_clip_list[SoundID2index_dict[id_]*sound_cnt_per_id + Random.Range(0, sound_cnt_per_id)], audio_scale);
     }
-    public void play_random_dig_sound(Item_ID_TG id_)
+    public void play_random_dig_sound(Item_ID_TG id_, float audio_scale = 1f)
     {
         if (!ID2index_dict.ContainsKey(id_)) {
             return;
         }
-        get_audio_player().PlayOneShot(dig_audio_clip_list[ID2index_dict[id_] * dig_sound_cnt_per_id + Random.Range(0, dig_sound_cnt_per_id)]);
+        get_audio_player().PlayOneShot(dig_audio_clip_list[ID2index_dict[id_] * dig_sound_cnt_per_id + Random.Range(0, dig_sound_cnt_per_id)], audio_scale);
+    }
+
+    public void play_block_break() {
+        get_audio_player().PlayOneShot(break_clip, 1f);
+    }
+    public void play_block_set()
+    {
+        get_audio_player().PlayOneShot(break_clip, 1f);
     }
 }

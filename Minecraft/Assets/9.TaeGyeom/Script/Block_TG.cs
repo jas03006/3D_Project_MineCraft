@@ -21,13 +21,18 @@ public class Block_TG : Block_Break
     {
         blockHp -= damage;
         Block_break_motion();
+
         if (blockHp <= 0f)
         {
+            Audio_Manager_TG.instance.play_block_break();// play_random_dig_sound(id, 1.0f);
             blockHp = 0f;
             itemposition();
             block_return();
             die();
             die_late();
+        }
+        else {
+            Audio_Manager_TG.instance.play_random_dig_sound(id);
         }
     }
     public virtual void init(bool is_open_)
