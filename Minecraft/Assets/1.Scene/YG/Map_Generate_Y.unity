@@ -8416,7 +8416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start_chunk_pos: {x: 0, y: 0, z: 0}
   chunk_size: 16
-  render_distance: 48
+  render_distance: 16
   pooling_distance: 0
   chunk_update_time: 1
   block_prefabs_SO: {fileID: 11400000, guid: 3511a637eb9a13e4bb09df0a304fd6de, type: 2}
