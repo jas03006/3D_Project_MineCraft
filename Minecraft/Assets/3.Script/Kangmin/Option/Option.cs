@@ -52,6 +52,7 @@ public class Option : MonoBehaviour
                 children[i].gameObject.SetActive(true);
             }
             isOptionOpen = true;
+            Cursor.visible = true;
             UIManager.instance.position_UI.gameObject.SetActive(false);
         }
 
@@ -63,7 +64,7 @@ public class Option : MonoBehaviour
             }
             isOptionOpen = false;
             UIManager.instance.position_UI.gameObject.SetActive(true);
-
+            Cursor.visible = false;
         }
     }
     public void camera_FOV_setting()

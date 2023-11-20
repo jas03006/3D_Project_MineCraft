@@ -174,7 +174,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         {
             return;
         }
+
         item_id = itemID;
+
+        if (number >= id2data.Get_data(item_id).MaxValue)
+        {
+            return;
+        }
         number = _num;
         havedata = true;
         image.sprite = id2data.Get_data(itemID).Itemsprite;
