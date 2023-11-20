@@ -40,13 +40,13 @@ public class PlayerState_Y : Living
     {
         get
         {
-            Debug.Log($"현재 배고픔 : {private_curhungry}");
+            //Debug.Log($"현재 배고픔 : {private_curhungry}");
             return private_curhungry;
         }
         set
         {
             private_curhungry = value;
-            Debug.Log($"현재 배고픔 :{private_curhungry}");
+            //Debug.Log($"현재 배고픔 :{private_curhungry}");
             if (value > 20)
             {
                 private_curhungry = 20;
@@ -129,7 +129,7 @@ public class PlayerState_Y : Living
             else if (tmp == 1)
             {
                 H_object[i].sprite = H_State[1];
-                H_object[i].gameObject.GetComponent<Outline>().enabled = true;
+                H_object[i].gameObject.GetComponent<Outline>().enabled = false;
             }
             else
             {
@@ -338,6 +338,7 @@ public class PlayerState_Y : Living
 
         UpdateUI_health();
         Update_hungry();
+        UpdateUI_exp();
 
         (p_movement as Player_Test_TG).stop();
 

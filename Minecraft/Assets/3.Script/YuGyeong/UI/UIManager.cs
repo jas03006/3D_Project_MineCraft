@@ -44,7 +44,6 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         //씬이 바뀔때 자동으로 실행되는 이벤트
-        Debug.Log("OnEnable");
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneLoaded += option.snow_active;
         SceneManager.sceneLoaded += option.load;
@@ -54,7 +53,6 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         // 이벤트 해제
-        Debug.Log("OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded -= option.snow_active;
         SceneManager.sceneLoaded -= option.load;
@@ -63,7 +61,6 @@ public class UIManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded");
         if (scene.name == "Map_Generate_TG")
         {
             playerState_Y = FindObjectOfType<PlayerState_Y>();
