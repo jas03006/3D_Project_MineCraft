@@ -319,6 +319,7 @@ public class PlayerState_Y : Living
     public override void Die()
     {
         base.Die();
+        transform.GetChild(0).Rotate(transform.forward, 90f);
         UIManager.instance.open_dead_UI();
         //respawn();
     }
@@ -344,6 +345,7 @@ public class PlayerState_Y : Living
 
         Biom_Manager.instance.return_all_chunk();
         transform.position = get_respawn_position();
+        transform.GetChild(0).localRotation= Quaternion.identity;
         StartCoroutine(lose_gravity_co());
         Snow_TG.instance.reset_snows();
     }
