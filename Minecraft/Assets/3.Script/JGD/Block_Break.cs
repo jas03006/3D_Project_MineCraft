@@ -30,6 +30,7 @@ public class Block_Break : MonoBehaviour
     {
         blockHp -= damage;
         Block_break_motion();
+        Audio_Manager_TG.instance.play_random_dig_sound(id);
         if (blockHp <= 0f) { 
             blockHp = 0f;            
             itemposition();
