@@ -301,7 +301,7 @@ public class Zombie : Monster_controll
 
     private void ZomHitSound()  //좀비가 맞을때
     {
-        audioSource.clip = ZomHit[Random.Range(1, 2)];
+        audioSource.clip = ZomHit[Random.Range(0, 2)];
         audioSource.Play();
     }
 
