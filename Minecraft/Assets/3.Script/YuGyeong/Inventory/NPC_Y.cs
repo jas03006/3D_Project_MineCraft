@@ -1,20 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class NPC_Y : MonoBehaviour
+
+public class NPC_Y : Living
 {
-
     [Header("Slot")]
     [SerializeField] Slot_Y slot_1;
     [SerializeField] Slot_Y slot_2;
     [SerializeField] Slot_Y result_slot;
 
     [Header("Recipe")]
-    [SerializeField] public Button_Y button;
+    [SerializeField] public Button_Y selected_button;
+    [SerializeField] public Button_Y[] buttons;
     [SerializeField] Slot_Y cursor_slot;
-
+    [SerializeField] int[] recipe_num;
 
     public void click_button()
     {
@@ -23,25 +22,31 @@ public class NPC_Y : MonoBehaviour
 
         for (int i = 0; i < inven.Count; i++)
         {
-            if (inven[i].item_id == button.item_id_1 && inven[i].number >= button.num_1)
+            if (inven[i].item_id == selected_button.item_id_1 && inven[i].number >= selected_button.num_1)
             {
                 for (int j = 0; j < inven.Count; j++)
                 {
-                    if (inven[i].item_id == button.item_id_2 && inven[i].number >= button.num_2)
+                    if (inven[j].item_id == selected_button.item_id_2 && inven[j].number >= selected_button.num_2)
                     {
                         //인벤에서 꺼내서 거래 슬롯으로 옮기기
-                        slot_1.GetItem(inven[i].item_id, inven[i].number);
-                        inven[i].ResetItem();
+                        slot_1.GetItem(inven[i].item_id, slot_1.number + 1);
+                        inven[i].number--;
 
-                        slot_2.GetItem(inven[j].item_id, inven[j].number);
-                        inven[i].ResetItem();
+                        slot_2.GetItem(inven[j].item_id, slot_2.number + 1);
+                        inven[j].number--;
 
+                        //남은 아이템 없으면 슬롯 리셋
+                        if (inven[i].number == 0 && inven[j].number == 0)
+                        {
+                            slot_1.ResetItem();
+                            slot_2.ResetItem();
+                            result_slot.ResetItem();
+                        }
                         //result 슬롯에 결과물 띄우기
-                        result_slot.GetItem(button.item_result, button.num_result);
+                        result_slot.GetItem(selected_button.item_result, selected_button.num_result);
                     }
                 }
             }
         }
-        return;
     }
 }

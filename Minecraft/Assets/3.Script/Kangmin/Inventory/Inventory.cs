@@ -56,6 +56,7 @@ public class Inventory : MonoBehaviour
     {
         children = GetComponentsInChildren<Transform>();
         StartCoroutine(start_co());
+
         /*for (int i = 1; i < children.Length; i++)
         {
             children[i].gameObject.SetActive(false);
@@ -78,7 +79,6 @@ public class Inventory : MonoBehaviour
         InventoryInteraction();
         UIslot_select();
         Test(); //디버그용
-
     }
     private void Test()
     {
@@ -100,10 +100,6 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             GetItem(Item_ID_TG.stone, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            NPC_UI.SetActive(!NPC_UI.activeSelf);
         }
     }
     private void InventoryInteraction()
@@ -154,7 +150,7 @@ public class Inventory : MonoBehaviour
 
     public void show_NPC()
     {
-        
+        NPC_UI.SetActive(true);
     }
 
     public void hide() {
