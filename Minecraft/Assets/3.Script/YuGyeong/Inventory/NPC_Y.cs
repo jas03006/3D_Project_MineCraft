@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class NPC_Y : Living
+public class NPC_Y : MonoBehaviour
 {
     [Header("Slot")]
     [SerializeField] Slot_Y slot_1;
@@ -12,9 +12,15 @@ public class NPC_Y : Living
     [Header("Recipe")]
     [SerializeField] public Button_Y selected_button;
     [SerializeField] public Button_Y[] buttons;
+    [SerializeField] public recipe2NPC_Y recipe2NPC_Y;
     [SerializeField] Slot_Y cursor_slot;
     [SerializeField] int[] recipe_num;
 
+
+    private void OnEnable()
+    {
+        send_data();
+    }
     public void click_button()
     {
         //인벤토리에 item 들고있는지 확인
@@ -49,4 +55,21 @@ public class NPC_Y : Living
             }
         }
     }
+
+    public void send_data()
+    {
+        Debug.Log("send_data");
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            //버튼에 레시피 보내기
+            buttons[i].get_recipe(recipe2NPC_Y.get_recipe(recipe_num[i]));
+            buttons[i].update_Button();
+        }
+    }
+
+    public void set_index(int[] index)
+    {
+        recipe_num = index;
+    }
+
 }

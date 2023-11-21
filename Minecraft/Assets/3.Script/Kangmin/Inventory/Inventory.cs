@@ -101,6 +101,10 @@ public class Inventory : MonoBehaviour
         {
             GetItem(Item_ID_TG.stone, 1);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            NPC_UI.SetActive(!NPC_UI.activeSelf);
+        }
     }
     private void InventoryInteraction()
     {
@@ -224,6 +228,11 @@ public class Inventory : MonoBehaviour
         Furnace_Y.furnace_tg = null;
         furnace_y.reset_data();
         furnace_UI.SetActive(false);
+    }
+    public void hide_NPC()
+    {
+        NPC_UI.GetComponent<Box_Y>().reset_data();
+        NPC_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
     {
