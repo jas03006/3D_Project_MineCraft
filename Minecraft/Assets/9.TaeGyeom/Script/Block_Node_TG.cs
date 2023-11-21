@@ -10,7 +10,7 @@ public class Block_Node_TG
         get { return _id; }  
         set {
             _id = value;
-            if (_id == Item_ID_TG.door || _id == Item_ID_TG.bed || _id == Item_ID_TG.Fill)
+            if (_id == Item_ID_TG.door || _id == Item_ID_TG.bed || _id == Item_ID_TG.Fill || _id == Item_ID_TG.box)
             {
                 is_blocking = false;
             }

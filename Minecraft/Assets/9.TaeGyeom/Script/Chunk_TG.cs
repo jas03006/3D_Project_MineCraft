@@ -619,11 +619,12 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
     }
     private bool build_house(int x, int y, int z) {
         Block_Node_TG bn;
-        int size_ = 4;
+        int size_ = 5;
+        int height_ = 5;
         int ceiling_adjustment;
-        for (int j = 0; j < size_+1; j++)
+        for (int j = 0; j < height_; j++)
         {
-            ceiling_adjustment = (j == 2 ? 1 : (j == 4 ? -1 : 0));
+            ceiling_adjustment = 0;// (j == height_ - 3 ? 1 : (j == height_ - 1 ? -1 : 0));
             for (int i = 0 - ceiling_adjustment; i < size_ + ceiling_adjustment; i++)
             {
                 for (int k = 0; k < size_; k++)
@@ -631,7 +632,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                     if (is_in_range(x + i, y + j, z + k))
                     {
                         bn = block_data[x + i, y + j, z + k];
-                        if (bn != null && bn.id == Item_ID_TG.board)
+                        if (bn != null && (bn.id == Item_ID_TG.board || bn.id == Item_ID_TG.tree))
                         {
                             return false;
                         }
@@ -645,9 +646,9 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             }
         }
         
-        for (int j = 0; j < size_+1; j++)
+        for (int j = 0; j < height_; j++)
         {
-            ceiling_adjustment = (j == 2 ? 1 : (j == 4 ? -1 : 0));
+            ceiling_adjustment = 0;// (j == height_ - 3 ? 1 : (j == height_ - 1 ? -1 : 0));
             for (int i = 0- ceiling_adjustment; i < size_ + ceiling_adjustment; i++)
             {
                 for (int k = 0; k < size_; k++)
@@ -660,16 +661,19 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                         bn.set_local_pos(x + i, y + j, z + k);
                         block_data[x + i, y + j, z + k] = bn;
                     }
-                    /*if () { 
-                    
-                    }*/
-                    bn.id = Item_ID_TG.board;
+                    /*if (j == size_ || i < 0 || i >= size_  || (j == size_-1 && (i==0 || i == size_-1)))
+                    {
+                        bn.id = Item_ID_TG.board;
+                    }
+                    else {*/
+                        bn.id = Item_ID_TG.board;
+                    //}                    
                 }
             }
         }
 
         
-        for (int j = 1; j < size_; j++)
+        for (int j = 1; j < height_-1; j++)
         {
             for (int i = 1; i < size_ - 1; i++)
             {
@@ -679,11 +683,15 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                 }
             }
         }
-        block_data[x+1, y+2, z + size_ - 1].id = Item_ID_TG.None;
-        bn = block_data[x + 1, y + 1, z + size_ - 1];
-        bn.set_block(Item_ID_TG.door, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + 1, y + 1, z + size_ - 1),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,1,0)});
-        bn = block_data[x + 2, y + 1, z + 1];
-        bn.set_block(Item_ID_TG.bed, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + 2, y + 1, z + 1),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,0,1)});
+        block_data[x+(size_-1)/2, y+2, z + size_ - 1].id = Item_ID_TG.None;
+        bn = block_data[x + (size_ - 1) / 2, y + 1, z + size_ - 1];
+        bn.set_block(Item_ID_TG.door, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + (size_ - 1) / 2, y + 1, z + size_ - 1),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,1,0)});
+        bn = block_data[x + (size_ -2), y + 1, z + 1];
+        bn.set_block(Item_ID_TG.bed, Biom_Manager.instance.chunk2world_pos_int(chunk_pos)+ new Vector3Int(x + (size_ - 2), y + 1, z + 1),Quaternion.identity,new List<Vector3Int> { new Vector3Int(0,0,1)});
+        bn = block_data[x + 1, y + 1, z + 1];
+        bn.set_block(Item_ID_TG.box, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + new Vector3Int(x + 1, y + 1, z + 1), Quaternion.Euler(0,90f,0));
+        bn = block_data[x + 1, y + 1, z + 2];
+        bn.set_block(Item_ID_TG.furnace, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + new Vector3Int(x + 1, y + 1, z + 2), Quaternion.Euler(0, 90f, 0));
         return true;
 
     }

@@ -534,14 +534,20 @@ public class Player_Test_TG : PlayerMovement_Y
                 Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
                 
                 set_dir = hit.collider.transform.position + set_dir;
-                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default")).Length == 0)
+                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length == 0)
                 {
-                    //List<Vector3Int> space_ = new List<Vector3Int>();
-                    //space_.Add(Vector3Int.up);
-                    
-                    Biom_Manager.instance.set_block(id_, set_dir,
-                        Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
-                        ,block_.space);
+                    Quaternion rot_ = Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f));
+                    Vector3 temp_space_v = Vector3.zero;
+                    if (block_.space!=null) {
+                        for(int ind_ =0; ind_ < block_.space.Count; ind_++) {                            
+                            temp_space_v = rot_* (Vector3)block_.space[ind_];
+                            block_.space[ind_] = new Vector3Int( Mathf.RoundToInt(temp_space_v.x), Mathf.RoundToInt(temp_space_v.y), Mathf.RoundToInt(temp_space_v.z));                            
+                            if (Physics.OverlapBox(set_dir+ block_.space[ind_], Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length != 0) {
+                                return;
+                            }
+                        }
+                    }
+                    Biom_Manager.instance.set_block(id_, set_dir, rot_, block_.space);
                     Inventory.instance.UIslot_minus();
                     Audio_Manager_TG.instance.play_block_set();
                 }
