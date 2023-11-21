@@ -37,6 +37,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public CursorController cursorController;
 
     [SerializeField] public GameObject inven_camera;
+    [SerializeField] public GameObject NPC_UI;
     private void Awake()
     {
         if (instance == null)
@@ -100,6 +101,10 @@ public class Inventory : MonoBehaviour
         {
             GetItem(Item_ID_TG.stone, 1);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            NPC_UI.SetActive(!NPC_UI.activeSelf);
+        }
     }
     private void InventoryInteraction()
     {
@@ -144,6 +149,11 @@ public class Inventory : MonoBehaviour
         furnace_UI.TryGetComponent<Furnace_Y>(out Furnace_Y furnace_y);
         Furnace_Y.furnace_tg = furnace_tg;
         furnace_y.Get_data(data, time_data);
+        
+    }
+
+    public void show_NPC()
+    {
         
     }
 
