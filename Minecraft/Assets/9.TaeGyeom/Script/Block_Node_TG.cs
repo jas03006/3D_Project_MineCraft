@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class Block_Node_TG 
 {
-    public Item_ID_TG id;
+    public bool is_blocking = true;
+    private Item_ID_TG _id;
+    public Item_ID_TG id { 
+        get { return _id; }  
+        set {
+            _id = value;
+            if (_id == Item_ID_TG.door || _id == Item_ID_TG.bed || _id == Item_ID_TG.Fill)
+            {
+                is_blocking = false;
+            }
+            else
+            {
+                is_blocking = true;
+            }
+        } 
+    }
     public Chunk_TG chunk;
     public Block_Node_TG parent;
     public List<Block_Node_TG> children;
     public Vector3Int local_pos_in_chunk = Vector3Int.one * -1;
-    public bool is_blocking = true;
+    
     public GameObject gameObject = null;
     public Transform transform = null;
     public int open_flag=0;
@@ -53,6 +68,7 @@ public class Block_Node_TG
             }
         }
         id = id_;
+        
         if (gameObject != null)
         {
             Biom_Manager.instance.pool_return(id, gameObject);
@@ -168,5 +184,9 @@ public class Block_Node_TG
         local_pos_in_chunk.x = x;
         local_pos_in_chunk.y = y;
         local_pos_in_chunk.z = z;
+    }
+
+    public Vector3 get_world_position() {
+        return Biom_Manager.instance.chunk2world_pos(chunk.chunk_pos) + local_pos_in_chunk;
     }
 }
