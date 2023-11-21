@@ -39,23 +39,6 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k].id = temp_index;
                     }
                         
-                        
-                    
-
-                    /* if (temp_index == Item_ID_TG.None) {
-                         continue;
-                     }*/
-                    // GameObject go = Biom_Manager.instance.pool_get(temp_index, new Vector3(origin_pos.x + i, origin_pos.y + j, origin_pos.z + k), Quaternion.identity);
-
-                    //go.transform.SetParent(transform);
-                    //go.GetComponent<Block_Node_TG>();
-                    //  block_data[i, j, k].set_gameobject(go);
-
-
-                    /*GameObject go = GameObject.Instantiate(Biom_Manager.instance.block_prefabs_SO.get_prefab(temp_index), new Vector3(origin_pos.x+i, origin_pos.y+j, origin_pos.z+ k), Quaternion.identity);
-                    go.transform.SetParent(transform);
-                    block_data[i, j , k] = go.GetComponent<Block_Node_TG>();
-                    block_data[i, j, k].set_local_pos(i,j,k);*/
                 }
 
             }
@@ -109,20 +92,6 @@ public class Chunk_TG : MonoBehaviour
                         block_data[i, j, k].id = temp_index;
                     }
                     
-
-                    /*if (temp_index == Item_ID_TG.None)
-                    {
-                        continue;
-                    }
-                    new_pos.x = origin_pos.x + i;
-                    new_pos.y = origin_pos.y + j;
-                    new_pos.z = origin_pos.z + k;
-                    // GameObject go = GameObject.Instantiate(Biom_Manager.instance.block_prefabs_SO.get_prefab(temp_index), new Vector3(origin_pos.x + i, origin_pos.y + j, origin_pos.z + k), Quaternion.identity);
-                    GameObject go = Biom_Manager.instance.pool_get(temp_index, new_pos, Quaternion.identity);
- 
-                    go.transform.SetParent(transform);
-                    //go.GetComponent<Block_Node_TG>();                    
-                    block_data[i, j, k].set_gameobject(go); */
 
                 }
 
@@ -480,29 +449,6 @@ public class Chunk_TG : MonoBehaviour
         if (chunk_pos.y < 0)
         {
             decide_mineral_one_kind(Item_ID_TG.diamond, 1, 2);
-            /*x = Random.Range(1, chunk_size-1);
-            y = Random.Range(1, chunk_size-1);
-            z = Random.Range(1, chunk_size-1);
-            if (block_data[x, y, z].id != Item_ID_TG.None)
-            {
-                block_data[x, y, z].id = Item_ID_TG.diamond;
-                for (int dir_ind = 0; dir_ind < dir.Length; dir_ind++)
-                {
-                    if (Random.Range(0, 4) < 3)
-                    {
-                        block_data[x + dir[dir_ind], y, z].id = Item_ID_TG.diamond;
-                    }
-                    if (Random.Range(0, 4) < 3)
-                    {
-                        block_data[x, y + dir[dir_ind], z].id = Item_ID_TG.diamond;
-                    }
-                    if (Random.Range(0, 4) < 3)
-                    {
-                        block_data[x, y, z + dir[dir_ind]].id = Item_ID_TG.diamond;
-                    }
-                }
-            }*/
-
         }
     }
 
