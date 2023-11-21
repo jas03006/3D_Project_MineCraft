@@ -187,6 +187,8 @@ public class Player_Test_TG : PlayerMovement_Y
 
     private float cam3Tocam1 =0f;
 
+    [SerializeField] PlayerMouth player_mouth;
+
     protected override void Start()
     {
         base.Start();
@@ -494,6 +496,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private void right_click(bool is_button_stay = false) { //TG
         if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
             (block_in_hand_data as Food).R_Eat();
+            StartCoroutine(player_mouth.PlayerSalad(block_in_hand_id));
             Audio_Manager_TG.instance.play_random_sound(Sound_Id.eat);
             Inventory.instance.UIslot_minus();
             return;

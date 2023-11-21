@@ -10,6 +10,7 @@ public class Chunk_TG : MonoBehaviour
     public bool is_open_checked = false;
     public bool is_active = true;
     public List<Cave_Point> valid_cave_point_list;
+    public List<Village_Point> valid_village_point_list;
 
     // Start is called before the first frame update
 
@@ -20,6 +21,7 @@ public class Chunk_TG : MonoBehaviour
         block_data = new Block_Node_TG[chunk_size, chunk_size, chunk_size];
         is_open_checked = false;
         Biom_Manager.instance.get_valid_cave_points(chunk_pos, ref valid_cave_point_list);
+        Biom_Manager.instance.get_valid_village_points(chunk_pos, ref valid_village_point_list);
     }
     public void generate_blocks()
     {
@@ -500,12 +502,13 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
                     if (bn != null && (bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) )
                     {
                         float decide_flag = Random.Range(0f, 1f);
-                        if (decide_flag < 0.033f) {
+
+                        if (is_in_village(block_world_pos) && decide_flag < 0.06f && build_house(x, y, z)) {
+                            return Item_ID_TG.board;
+                        }else if (decide_flag < 0.093f) {
                             // 唱公 关 扁嫡 积己
                             return Item_ID_TG.tree;
-                        } else if (decide_flag < 0.05f && build_house(x, y, z)) {                            
-                            return Item_ID_TG.board;
-                        }                        
+                        }                       
                     }
                 }                
             }
@@ -672,4 +675,19 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         }
         return false;
     }
+    private bool is_in_village(Vector3 block_world_pos)
+    {
+        if (valid_village_point_list != null)
+        {
+            for (int i = 0; i < valid_village_point_list.Count; i++)
+            {
+                if (valid_village_point_list[i].is_inner(block_world_pos))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
