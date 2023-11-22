@@ -525,7 +525,7 @@ public class Biom_Manager : MonoBehaviour
         Vector3 temp_pos;
         for (int i =0; i < village_num; i++) {
             temp_pos = new Vector3(UnityEngine.Random.Range(-village_generate_range, village_generate_range), 0, UnityEngine.Random.Range(-village_generate_range, village_generate_range));
-            temp_pos.y = get_mountain_height(temp_pos);
+            temp_pos.y = get_mountain_height(temp_pos, false);
             if (temp_pos.y > 25) {
                 temp_pos.y = 25;
             }
@@ -560,7 +560,7 @@ public class Biom_Manager : MonoBehaviour
     /*public int get_mountain_height(Vector3Int pos_) {
         return get_mountain_height(pos_);
     }*/
-    public int get_mountain_height(Vector3 pos_)
+    public int get_mountain_height(Vector3 pos_, bool apply = true)
     {
         Vector2Int key = new Vector2Int((int)pos_.x, (int)pos_.z);
         if (mountain_height_dict.ContainsKey(key)) {
@@ -568,8 +568,11 @@ public class Biom_Manager : MonoBehaviour
         }
         for (int i =0; i < village_point_list.Count; i++) {
             if (village_point_list[i].is_inner(pos_)) {
-                mountain_height_dict[key] = (int)village_point_list[i].position.y;
-                return mountain_height_dict[key];
+                if (apply)
+                {
+                    mountain_height_dict[key] = (int)village_point_list[i].position.y;
+                }
+                return (int)village_point_list[i].position.y;
             }
         }
         Vector3 temp_pos;
@@ -599,7 +602,10 @@ public class Biom_Manager : MonoBehaviour
             }
         }
         int h_ = (int)Mathf.Round(h);
-        mountain_height_dict[key] = h_;
+        if (apply) {
+            mountain_height_dict[key] = h_;
+        }
+        
         //Debug.Log("H: "+h_);
         return h_;
     }
