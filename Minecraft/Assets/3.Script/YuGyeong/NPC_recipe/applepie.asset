@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: applepie
   m_EditorClassIdentifier: 
   id2data: {fileID: 0}
-  item_id_1: 260
-  num_1: 5
-  item_id_2: 0
-  num_2: 0
-  item_result: 700
-  num_result: 1
+  item_id_list: 0401000000000000bc020000
+  num_list: 050000000000000001000000

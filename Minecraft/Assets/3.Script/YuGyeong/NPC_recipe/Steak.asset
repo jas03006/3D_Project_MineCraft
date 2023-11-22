@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
-  item_id_1: 363
-  num_1: 5
-  item_id_2: 5
-  num_2: 1
-  item_result: 364
-  num_result: 1
+  item_id_list: 6b010000000000006c010000
+  num_list: 050000000000000001000000

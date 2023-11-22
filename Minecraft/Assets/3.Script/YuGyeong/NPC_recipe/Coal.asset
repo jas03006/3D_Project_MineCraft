@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   id2data: {fileID: 11400000, guid: 780429fb2c48edd4e980357401e6a50f, type: 2}
-  item_id_1: 260
-  num_1: 1
-  item_id_2: 0
-  num_2: 0
-  item_result: 15
-  num_result: 1
+  item_id_list: 04010000000000000f000000
+  num_list: 010000000000000001000000

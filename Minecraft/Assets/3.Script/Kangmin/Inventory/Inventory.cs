@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private List<UISlot_Y> UIItemList = new List<UISlot_Y>(9);
     [SerializeField] private List<Slot_Y> CraftList = new List<Slot_Y>(10); //짱규동 데이터
     [SerializeField] private List<Slot_Y> CraftList_Small = new List<Slot_Y>(5); //짱규동 데이터
+    [SerializeField] private List<Slot_Y> CraftList_very_Small = new List<Slot_Y>(2); //짱규동 데이터
     [SerializeField] public Weapon_position_J weapon_position;
     public int UIslot_index = 0;
 
@@ -152,8 +153,9 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void show_NPC()
+    public void show_NPC(Action<List<Slot_Y>> callback = null)
     {
+        show(callback);
         NPC_UI.SetActive(true);
     }
 
@@ -172,7 +174,12 @@ public class Inventory : MonoBehaviour
         {
             callback_param = furnace_UI.GetComponent<Furnace_Y>().Get_slots();
         }
-        else {
+        else if (NPC_UI.activeSelf == true)
+        {
+            hide_craft_very_small();
+        }
+        else
+        {
             hide_craft_small();
         }
         
@@ -192,6 +199,10 @@ public class Inventory : MonoBehaviour
             hide_box();
         } else if (furnace_UI.activeSelf == true) {
             hide_furnace();
+        }
+        else if (NPC_UI.activeSelf == true)
+        {
+            hide_NPC();
         }
         inven_camera.SetActive(false);
 
@@ -218,6 +229,17 @@ public class Inventory : MonoBehaviour
         CraftList_Small[CraftList_Small.Count - 1].ResetItem();
     }
 
+    public void hide_craft_very_small()
+    {
+        for (int i = 0; i < CraftList_very_Small.Count - 1; i++)
+        {
+            Slot_Y slot_ = CraftList_very_Small[i];
+            GetItem(slot_.item_id, slot_.number);
+            slot_.ResetItem();
+        }
+        CraftList_very_Small[CraftList_very_Small.Count - 1].ResetItem();
+    }
+
     public void hide_box() {
         box_UI.GetComponent<Box_Y>().reset_data();
         box_UI.SetActive(false);
@@ -231,7 +253,6 @@ public class Inventory : MonoBehaviour
     }
     public void hide_NPC()
     {
-        NPC_UI.GetComponent<Box_Y>().reset_data();
         NPC_UI.SetActive(false);
     }
     public void GetItem(Item_ID_TG id, int num)
