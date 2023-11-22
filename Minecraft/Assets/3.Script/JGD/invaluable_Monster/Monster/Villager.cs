@@ -11,23 +11,24 @@ public class Villager : Monster_controll
     [SerializeField] private float piggyJumppower;
     Villager villager;
     Animator animation;
-    [Header("몬스터 드롭 아이템")]
-    [SerializeField] private Item_ID_TG id;
     protected bool move = true;
     private int VillagerHp;
     private int ItemCount = 1;
     private int JumpCount = 1;
     float Maxtimer = 0;
-    [Header("몬스터 레이 포인트")]
+    [Header("마을사람 레이 포인트")]
     [SerializeField] private GameObject Ray1;
     [SerializeField] private GameObject Ray2;
     [SerializeField] private GameObject Ray3;
     [SerializeField] private GameObject Ray4;
     [SerializeField] private GameObject FloorRay;
-    [Header("몬스터 사운드")]
-    [SerializeField] private AudioClip[] PigHit;
-    [SerializeField] private AudioClip PigDead;
+    [Header("마을사람 사운드")]
+    [SerializeField] private AudioClip[] VillgerCall;
+    [SerializeField] private AudioClip[] VillgerHit;
+    [SerializeField] private AudioClip VillgerDead;
     private AudioSource audioSource;
+    [Header("마을사람 맞을때")]
+    [SerializeField] private GameObject Eyes;
 
     private void Awake()
     {
@@ -46,6 +47,15 @@ public class Villager : Monster_controll
         ItemCount = 1;
         VillagerHp = starthealth;
         StartCoroutine(MonsterStand());
+        Eyes.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            MonsterHurt(20);
+        }
     }
     protected override IEnumerator MonsterStand()
     {
@@ -65,13 +75,13 @@ public class Villager : Monster_controll
                 VillagerRay();
                 Maxtimer += Time.deltaTime;
                 this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-                animation.SetBool("isPigWalk", true);
+                //animation.SetBool("isPigWalk", true);
                 float distance = Vector3.Distance(transform.position, pos);
 
                 if (distance <= 0.1f || Maxtimer > 3f)
                 {
                     Maxtimer = 0f;
-                    animation.SetBool("isPigWalk", false);
+                    //animation.SetBool("isPigWalk", false);
                     yield return new WaitForSeconds(Random.Range(1f, moveTime));
 
                     dir.x = Random.Range(-3f, 3f);
@@ -105,6 +115,7 @@ public class Villager : Monster_controll
     public override void MonsterHurt(int PlayerDamage)
     {
         VillagerHp = VillagerHp - PlayerDamage;
+        Eyes.SetActive(true);
         if (VillagerHp > 0)
         {
             VillagerHitSound();
@@ -112,16 +123,15 @@ public class Villager : Monster_controll
             StopCoroutine(MonsterStand());
             move = true;
             OnDamage(PlayerDamage);
+            Invoke("Villagerfrighten",2f);
         }
         else if (VillagerHp <= 0)
         {
             StopAllCoroutines();
-            //StopCoroutine(MonsterRunout());
             if (ItemCount == 1)
             {
                 Villager_Dead();
-                animation.SetTrigger("isDead");
-                Block_Objectpooling.instance.Get(id, transform.position);
+                //animation.SetTrigger("isDead");
                 ItemCount--;
             }
             MonsterDead();
@@ -231,13 +241,13 @@ public class Villager : Monster_controll
                 Maxtimer += Time.deltaTime;
                 Standtimer += Time.deltaTime;
                 this.transform.position += transform.forward * Monster_Speed * 2f * Time.deltaTime;
-                animation.SetBool("isPigWalk", true);
+                //animation.SetBool("isPigWalk", true);
                 float distance = Vector3.Distance(transform.position, pos);
 
                 if (distance <= 0.1f || Maxtimer > 3f)
                 {
                     Maxtimer = 0f;
-                    animation.SetBool("isPigWalk", false);
+                    //animation.SetBool("isPigWalk", false);
                     yield return new WaitForSeconds(0.1f);
 
                     dir.x = Random.Range(-3f, 3f);
@@ -255,16 +265,19 @@ public class Villager : Monster_controll
             }
         }
     }
-
+    private void Villagerfrighten()
+    {
+        Eyes.SetActive(false);
+    }
     private void VillagerHitSound()  //마을사람 맞을때
     {
-        audioSource.clip = PigHit[Random.Range(1, 3)];
+        audioSource.clip = VillgerHit[Random.Range(0,2)]; //이거 픽스
         audioSource.Play();
     }
 
     private void Villager_Dead()     //마을사람 죽을때
     {
-        audioSource.clip = PigDead;
+        audioSource.clip = VillgerDead;
         audioSource.Play();
     }
 }
