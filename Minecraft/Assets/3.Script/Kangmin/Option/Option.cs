@@ -37,7 +37,7 @@ public class Option : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Map_Generate_TG")
         {
             Interaction();
         }
@@ -65,6 +65,11 @@ public class Option : MonoBehaviour
             isOptionOpen = false;
             UIManager.instance.position_UI.gameObject.SetActive(true);
             Cursor.visible = false;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Lobby_Y")
+        {
+            Cursor.visible = true;
         }
     }
     public void camera_FOV_setting()
