@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6351,7 +6351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   natural_movement: 1
-  inner_gameObject: {fileID: 1504215929}
   id: 700
   render: {fileID: 6753938313685636595}
   sprite_test: {fileID: 21300000, guid: fae3faaedc0ea204ab6a5fc281353036, type: 3}
