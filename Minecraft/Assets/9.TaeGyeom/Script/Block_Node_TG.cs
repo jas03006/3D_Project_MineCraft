@@ -116,7 +116,7 @@ public class Block_Node_TG
                 is_open = bt.is_open;
                 contain_data = bt.contain_data;
                 time_data = bt.time_data;
-                Debug.Log($"Save : {bt.time_data}");
+                //Debug.Log($"Save : {bt.time_data}");
             }
         }      
                 
