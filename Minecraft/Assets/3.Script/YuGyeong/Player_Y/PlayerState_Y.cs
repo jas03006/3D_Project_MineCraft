@@ -84,7 +84,7 @@ public class PlayerState_Y : Living
     public int defense_power = 1;
 
     public Vector3 original_spawn_position;
-    public Bed_TG respawn_bed = null;
+    public Block_Node_TG respawn_bed = null;
 
     void Start()
     {
@@ -342,10 +342,13 @@ public class PlayerState_Y : Living
         Update_hungry();
         UpdateUI_exp();
 
-        (p_movement as Player_Test_TG).stop();
+        Player_Test_TG ptt = p_movement as Player_Test_TG;
+        ptt.stop();
 
         Biom_Manager.instance.return_all_chunk();
-        transform.position = get_respawn_position();
+        if (!ptt.wake_up(get_respawn_position())) {
+            transform.position = get_respawn_position();
+        }
         transform.GetChild(0).localRotation = Quaternion.identity;        
         StartCoroutine(lose_gravity_co());
         Snow_TG.instance.reset_snows();
@@ -353,7 +356,7 @@ public class PlayerState_Y : Living
     private IEnumerator lose_gravity_co()
     {
         (p_movement as Player_Test_TG).deactivate_gravity();
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.5f);
         (p_movement as Player_Test_TG).activate_gravity();
         Biom_Manager.instance.update_monsters_visiblity();
     }
@@ -364,7 +367,7 @@ public class PlayerState_Y : Living
         {
             return original_spawn_position;
         }
-        return respawn_bed.get_respawn_position();
+        return respawn_bed.get_world_position();
     }
 
     public IEnumerator die_fall() {

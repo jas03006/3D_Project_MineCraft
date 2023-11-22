@@ -5,10 +5,9 @@ using UnityEngine;
 public class PlayerMouth : MonoBehaviour
 {
     [SerializeField] private float natural_movement;
-    [SerializeField] private GameObject inner_gameObject;
+   // [SerializeField] private GameObject inner_gameObject;
     [SerializeField] private Item_ID_TG id;
     [SerializeField] private SpriteRenderer render;
-    private GameObject player;
     Animator ani;
     [SerializeField] private Sprite sprite_test;
     [SerializeField] Material FoodColor;
@@ -16,19 +15,18 @@ public class PlayerMouth : MonoBehaviour
 
     private void Start()
     {
-        inner_gameObject = transform.GetChild(0).gameObject;
-        inner_gameObject.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player");
+        //inner_gameObject = transform.GetChild(0).gameObject;
+        //inner_gameObject.SetActive(false);
         ani = GetComponentInParent<Animator>();
 
     }
-    private void Update()
+   /* private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
             StartCoroutine(PlayerSalad(id));
         }
-    }
+    }*/
 
 
     public IEnumerator PlayerSalad(Item_ID_TG _id)
@@ -44,7 +42,7 @@ public class PlayerMouth : MonoBehaviour
         }
         else if (_id == Item_ID_TG.apple_pie)
         {
-            FoodColor.color = new Color(216f/255f, 105f / 255f, 50f / 255f, 255f / 255f);
+            FoodColor.color = new Color(216f / 255f, 105f / 255f, 50f / 255f, 255f / 255f);
         }
         else if (_id == Item_ID_TG.steak)
         {
@@ -52,9 +50,13 @@ public class PlayerMouth : MonoBehaviour
         }
 
         ani.SetTrigger("stuffed");
-        inner_gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.85f);
-        inner_gameObject.SetActive(false);
+
+        //inner_gameObject.SetActive(true);
+        /*while(ani.GetCurrentAnimatorStateInfo(0).Equals("PlayerEat")){
+            yield return null;
+        }*/
+        //yield return new WaitForSeconds(1.85f);
+        //inner_gameObject.SetActive(false);
         yield return null;
     }
 

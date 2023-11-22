@@ -43,6 +43,27 @@ public class Mountain_Point
         }
     }
 }
+
+public class Village_Point {
+    public Vector3 position;
+    public float radius;
+    public float sqr_radius;
+
+    public Village_Point(Vector3 position_, float radius_) {
+        position = position_;
+        radius = radius_;
+        sqr_radius = radius * radius;
+    }
+    public bool is_inner(Vector3 pos_)
+    {
+        pos_.y = position.y;
+        return sqr_radius >= (position - pos_).sqrMagnitude;
+    }
+    public bool is_inner(Vector3Int pos_) {
+        pos_.y = (int)position.y;
+        return sqr_radius >= (position-pos_).sqrMagnitude;
+    }
+}
 public class Biom_Manager : MonoBehaviour
 {
     public static Biom_Manager instance = null;
@@ -60,11 +81,14 @@ public class Biom_Manager : MonoBehaviour
     [SerializeField] public GameObject chunk_prefab;
     [SerializeField] private GameObject player;
     [SerializeField] Transform pool_transform;
+
     private List<Mountain_Point> mountain_point_list;
     private Dictionary<Vector2Int, int> mountain_height_dict;
     private List<Cave_Point> cave_point_list;
+    private List<Village_Point> village_point_list;
 
     private List<GameObject> monster_controll_list;
+    [SerializeField] private GameObject npc_prefab;
 
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private Queue<GameObject>[] pool_list;
@@ -106,6 +130,7 @@ public class Biom_Manager : MonoBehaviour
         init_block_ready_queue();
 
         decide_mountain_point();
+        decide_village_point();
         decide_cave_point(); // 산 생성 후에 실행되어야함
         update_start_pos();
 
@@ -491,6 +516,44 @@ public class Biom_Manager : MonoBehaviour
         return new Vector3Int((int)player.transform.position.x%chunk_size, (int)player.transform.position.y % chunk_size, (int)player.transform.position.z % chunk_size);
     }
 
+
+    public void decide_village_point() {
+        village_point_list = new List<Village_Point>();
+        int village_generate_range = 100;
+        int village_num = 30;
+        int village_max_raidus = 17;
+        int village_min_raidus = 10;
+        Vector3 temp_pos;
+        for (int i =0; i < village_num; i++) {
+            temp_pos = new Vector3(UnityEngine.Random.Range(-village_generate_range, village_generate_range), 0, UnityEngine.Random.Range(-village_generate_range, village_generate_range));
+            temp_pos.y = get_mountain_height(temp_pos, false);
+            if (temp_pos.y > 25) {
+                temp_pos.y = 25;
+            }
+            Village_Point vp = new Village_Point(temp_pos, UnityEngine.Random.Range(village_min_raidus, village_max_raidus));
+            village_point_list.Add(vp);
+        }
+    }
+
+    public void get_valid_village_points(Vector3Int chunk_pos, ref List<Village_Point> vp_list)
+    {
+        Vector3 world_center_pos = chunk2world_pos(chunk_pos);
+        world_center_pos.x += chunk_size / 2 - (chunk_size + 1) % 2;
+        world_center_pos.y += chunk_size / 2 - (chunk_size + 1) % 2;
+        world_center_pos.z += chunk_size / 2 - (chunk_size + 1) % 2;
+        vp_list = new List<Village_Point>();
+        for (int i = 0; i < village_point_list.Count; i++)
+        {
+            Village_Point vp = village_point_list[i];
+            if (Mathf.Abs(vp.position.y - world_center_pos.y)*2 <= chunk_size && vp.is_inner(world_center_pos))
+            {
+                vp_list.Add(vp);
+            }
+        }
+        //return cp_list;
+    }
+
+
     public int get_mountain_height(Vector3Int chunk_pos, Vector3Int block_pos) {
         Vector3Int temp_pos = chunk2world_pos_int(chunk_pos) + block_pos;
         return get_mountain_height(temp_pos);
@@ -498,11 +561,20 @@ public class Biom_Manager : MonoBehaviour
     /*public int get_mountain_height(Vector3Int pos_) {
         return get_mountain_height(pos_);
     }*/
-    public int get_mountain_height(Vector3 pos_)
+    public int get_mountain_height(Vector3 pos_, bool apply = true)
     {
         Vector2Int key = new Vector2Int((int)pos_.x, (int)pos_.z);
         if (mountain_height_dict.ContainsKey(key)) {
             return mountain_height_dict[key];
+        }
+        for (int i =0; i < village_point_list.Count; i++) {
+            if (village_point_list[i].is_inner(pos_)) {
+                if (apply)
+                {
+                    mountain_height_dict[key] = (int)village_point_list[i].position.y;
+                }
+                return (int)village_point_list[i].position.y;
+            }
         }
         Vector3 temp_pos;
         Vector3 temp_pos_orign = pos_;
@@ -531,7 +603,10 @@ public class Biom_Manager : MonoBehaviour
             }
         }
         int h_ = (int)Mathf.Round(h);
-        mountain_height_dict[key] = h_;
+        if (apply) {
+            mountain_height_dict[key] = h_;
+        }
+        
         //Debug.Log("H: "+h_);
         return h_;
     }
@@ -694,5 +769,10 @@ public class Biom_Manager : MonoBehaviour
                 monster_controll_list[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void generate_npc(Vector3 position_, Quaternion rotation_) {
+        GameObject go = Instantiate(npc_prefab, position_, rotation_);
+        monster_controll_list.Add(go);
     }
 }
