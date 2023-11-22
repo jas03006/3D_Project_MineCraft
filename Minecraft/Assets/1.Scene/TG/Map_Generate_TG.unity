@@ -4030,7 +4030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1913094924
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8948,7 +8948,7 @@ MonoBehaviour:
   chunk_prefab: {fileID: 2185991642140033117, guid: 089f737e68cfa6e41a983c4903459e18, type: 3}
   player: {fileID: 726597369}
   pool_transform: {fileID: 294580167}
-  npc_prefab: {fileID: 7696328284883267326, guid: 29fe90c2dbc14714a8d4c3d6b16a9ae8, type: 3}
+  npc_prefab: {fileID: 8404806615292999321, guid: 3d59fd1d1dc1845449d6e8058c207d75, type: 3}
 --- !u!1 &1997776482
 GameObject:
   m_ObjectHideFlags: 0

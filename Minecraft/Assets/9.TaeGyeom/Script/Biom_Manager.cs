@@ -772,7 +772,8 @@ public class Biom_Manager : MonoBehaviour
     }
 
     public void generate_npc(Vector3 position_, Quaternion rotation_) {
-        GameObject go = Instantiate(npc_prefab, position_, rotation_);
+        GameObject go = Instantiate(npc_prefab, position_+Vector3.up, rotation_);
+        go.SetActive(false);
         monster_controll_list.Add(go);
     }
 }
