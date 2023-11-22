@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2093385719}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1171,7 +1171,7 @@ RectTransform:
   m_LocalScale: {x: 2.925, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 912284662847836615}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16564,7 +16564,7 @@ RectTransform:
   - {fileID: 912284663526413832}
   - {fileID: 912284661831074629}
   m_Father: {fileID: 912284662847836615}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16955,11 +16955,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 359699815}
   - {fileID: 912284662803658972}
   - {fileID: 912284663165378651}
   - {fileID: 912284663163189010}
   - {fileID: 912284662878837042}
-  - {fileID: 359699815}
   m_Father: {fileID: 912284662168579601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17158,7 +17158,7 @@ RectTransform:
   - {fileID: 8564832927014228908}
   - {fileID: 912284663645345774}
   m_Father: {fileID: 912284662847836615}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18736,7 +18736,7 @@ RectTransform:
   - {fileID: 912284662574520847}
   - {fileID: 912284663042133187}
   m_Father: {fileID: 912284662847836615}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18772,7 +18772,7 @@ RectTransform:
   m_Children:
   - {fileID: 912284663626581304}
   m_Father: {fileID: 912284662847836615}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

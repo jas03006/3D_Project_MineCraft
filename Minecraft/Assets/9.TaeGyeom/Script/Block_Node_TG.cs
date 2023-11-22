@@ -73,8 +73,10 @@ public class Block_Node_TG
         {
             Biom_Manager.instance.pool_return(id, gameObject);
         }
+        
         set_gameobject(Biom_Manager.instance.pool_get(id, world_pos, rotate));
-        show();     
+
+        show();
     }
 
     public bool is_data_defendent(Item_ID_TG id_) {
@@ -114,7 +116,7 @@ public class Block_Node_TG
                 is_open = bt.is_open;
                 contain_data = bt.contain_data;
                 time_data = bt.time_data;
-                Debug.Log($"Save : {bt.time_data}");
+                //Debug.Log($"Save : {bt.time_data}");
             }
         }      
                 

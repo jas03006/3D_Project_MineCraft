@@ -463,6 +463,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         Vector3Int block_pos = new Vector3Int(x, y, z);
         Vector3Int block_world_pos = Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + block_pos;
         int world_y = block_world_pos.y;
+        //float decide_flag = Random.Range(0f, 1f);
         
         if (is_in_cave(block_world_pos)) {
             return Item_ID_TG.None;
@@ -498,15 +499,21 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         else {
             if (h + 1 == world_y)
             {
+                Village_Point vp = find_village_point(block_world_pos);
+                if (vp != null && Random.Range(0f, 1f) < 0.07f && build_house(x, y, z, vp.position - block_world_pos))
+                {
+                    return Item_ID_TG.board;
+                }
                 if (x > 3 && x < 13 && z > 3 && z < 13 && y < chunk_size - 8) {
                     Block_Node_TG bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x, y - 1, z));
                     if (bn != null && (bn.id == Item_ID_TG.dirt || bn.id == Item_ID_TG.grass) )
                     {
-                        float decide_flag = Random.Range(0f, 1f);
+                        /*float decide_flag = Random.Range(0f, 1f);
                         Village_Point vp = find_village_point(block_world_pos);
-                        if (vp !=null && decide_flag < 0.1f && build_house(x, y, z, vp.position - block_world_pos)) {
+                        if (vp !=null && decide_flag < 0.2f && build_house(x, y, z, vp.position - block_world_pos)) {
                             return Item_ID_TG.board;
-                        }else if (decide_flag < 0.133f) {
+                        }else if*/ 
+                        if(Random.Range(0f, 1f) < 0.033f) {
                             // 唱公 关 扁嫡 积己
                             return Item_ID_TG.tree;
                         }                       
@@ -571,26 +578,37 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         Block_Node_TG bn;
         int size_ = 5;
         int height_ = 5;
-        for (int j = 0; j < height_; j++)
+        for (int j = -1; j < height_; j++)
         {
-            for (int i = 0; i < size_+1 ; i++)
+            for (int i = -1; i < size_+1 ; i++)
             {
-                for (int k = 0; k < size_+1; k++)
+                for (int k = -1; k < size_+1; k++)
                 {
                     if (is_in_range(x + i, y + j, z + k))
                     {
                         bn = block_data[x + i, y + j, z + k];
-                        //bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y + j, z + k));
-                        
+                        if (j == -1 && bn != null && bn.id == Item_ID_TG.None) {
+                            return false;
+                        }
                         if (bn != null && (bn.id == Item_ID_TG.board || bn.id == Item_ID_TG.tree))
                         {
                             return false;
                         }
                     }
                     else {
-                        return false;
-                    }
-                        
+                        bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y + j, z + k));
+                        if (bn == null) {
+                            return false;
+                        }
+                        if (j == -1 && bn.id == Item_ID_TG.None)
+                        {
+                            return false;
+                        }
+                        if ( (bn.id == Item_ID_TG.board || bn.id == Item_ID_TG.tree))
+                        {
+                            return false;
+                        }
+                    }                       
                                     
                 }
             }
@@ -602,13 +620,23 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             {
                 for (int k = 0; k < size_; k++)
                 {
-                    bn = block_data[x + i, y + j, z + k];
+                    bn = Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y + j, z + k));//= block_data[x + i, y + j, z + k];
                     if (bn == null)
                     {
                         bn = Biom_Manager.instance.get_block_node();
-                        bn.chunk = this;
-                        bn.set_local_pos(x + i, y + j, z + k);
-                        block_data[x + i, y + j, z + k] = bn;
+
+                        Vector3Int ch_pos = Biom_Manager.instance.get_chunk_pos(chunk_pos, new Vector3Int(x + i, y + j, z + k));
+                        if (Biom_Manager.instance.get_chunk(ch_pos) == null)
+                        {
+                            bn.chunk = Biom_Manager.instance.set_new_chunk(ch_pos);
+                        }
+                        else {
+                            bn.chunk = this;
+                        }                        
+                        //bn.chunk = this;
+                        bn.set_local_pos((x + i) % chunk_size, (y + j) % chunk_size, (z + k) % chunk_size);
+                        //bn.chunk.block_data[x + i, y + j, z + k] = bn;
+                        bn.chunk.block_data[bn.local_pos_in_chunk.x, bn.local_pos_in_chunk.y, bn.local_pos_in_chunk.z] = bn;
                     }
                     /*if (j == size_ || i < 0 || i >= size_  || (j == size_-1 && (i==0 || i == size_-1)))
                     {
@@ -628,7 +656,8 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             {
                 for (int k = 1; k < size_-1; k++)
                 {
-                    block_data[x + i, y + j, z + k].id = Item_ID_TG.None;
+                    //block_data[x + i, y + j, z + k].id = Item_ID_TG.None;
+                    Biom_Manager.instance.get_block(chunk_pos, new Vector3Int(x + i, y + j, z + k)).id = Item_ID_TG.None;
                 }
             }
         }
@@ -641,12 +670,12 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             
             if (forward_dir.x < 0)
             {
-                rot_ = Quaternion.Euler(0, -90f, 0); //Quaternion.FromToRotation(Vector3.forward, Vector3.left); //Quaternion.LookRotation(Vector3.left, Vector3.up);
+                rot_ = Quaternion.Euler(0, -90f, 0);
                 pivot_pos = new Vector3(x, y, z+ size_ - 1);
             }
             else
             {
-                rot_ = Quaternion.Euler(0, 90f, 0); //Quaternion.LookRotation(Vector3.right, Vector3.up);
+                rot_ = Quaternion.Euler(0, 90f, 0); 
                 pivot_pos = new Vector3(x + size_ - 1, y, z);
             }
         }
@@ -654,12 +683,12 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         {
             if (forward_dir.z < 0)
             {
-                rot_ = Quaternion.Euler(0,180f,0); //Quaternion.LookRotation(Vector3.back, Vector3.up);
+                rot_ = Quaternion.Euler(0,180f,0); 
                 pivot_pos = new Vector3(x, y, z);                
             }
             else
             {
-                rot_ = Quaternion.identity;//Quaternion.FromToRotation(Vector3.forward, Vector3.forward); //Quaternion.LookRotation(Vector3.forward, Vector3.up);                
+                rot_ = Quaternion.identity;                
                 pivot_pos = new Vector3(x+size_ - 1, y, z+size_ - 1);               
             }
         }
@@ -674,9 +703,12 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         temp_pos.x = Mathf.RoundToInt(pivot_pos.x + furniture_pos.x);
         temp_pos.y = Mathf.RoundToInt(pivot_pos.y + furniture_pos.y);
         temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
-        block_data[temp_pos.x, temp_pos.y + 1, temp_pos.z].id = Item_ID_TG.None;
-        bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
+        //block_data[temp_pos.x, temp_pos.y + 1, temp_pos.z].id = Item_ID_TG.None;
+        Biom_Manager.instance.get_block(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos + Vector3.up).id = Item_ID_TG.None;
+        //bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
+        bn = Biom_Manager.instance.get_block(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos);
         bn.set_block(Item_ID_TG.door, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_, new List<Vector3Int> { new Vector3Int(0, 1, 0) });
+        //bn.hide();
 
         furniture_pos.x = -(size_ - 2);
         furniture_pos.z = -3;
@@ -684,10 +716,10 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         temp_pos.x = Mathf.RoundToInt(pivot_pos.x + furniture_pos.x);
         temp_pos.y = Mathf.RoundToInt(pivot_pos.y + furniture_pos.y);
         temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
-        bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
+        bn = Biom_Manager.instance.get_block(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos); //bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
         space_ = rot_ * new Vector3Int(0, 0, 1);
         bn.set_block(Item_ID_TG.bed, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_, new List<Vector3Int> { new Vector3Int((int)space_.x, 0, (int)space_.y) });
-        
+        //bn.hide();
 
         furniture_pos.x = -1;
         furniture_pos.z = -2;
@@ -695,9 +727,11 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         temp_pos.x = Mathf.RoundToInt(pivot_pos.x + furniture_pos.x);
         temp_pos.y = Mathf.RoundToInt(pivot_pos.y + furniture_pos.y);
         temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
-        bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
-        bn.set_block(Item_ID_TG.box, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_*Quaternion.Euler(0, -90f, 0));
-        init_block_node_contain_data_random(bn);
+        bn = Biom_Manager.instance.get_block(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos); //bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
+        //init_block_node_contain_data_random(bn);
+        bn.set_block(Item_ID_TG.box, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_ * Quaternion.Euler(0, -90f, 0));
+        //bn.hide();
+        //init_block_node_contain_data_random(bn);
 
         furniture_pos.x = -1;
         furniture_pos.z = -3;
@@ -705,9 +739,9 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         temp_pos.x = Mathf.RoundToInt(pivot_pos.x + furniture_pos.x);
         temp_pos.y = Mathf.RoundToInt(pivot_pos.y + furniture_pos.y);
         temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
-        bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
-        bn.set_block(Item_ID_TG.furnace, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_*Quaternion.Euler(0, -90f, 0));
-
+        bn = Biom_Manager.instance.get_block(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos); //bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
+        bn.set_block(Item_ID_TG.furnace, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_ * Quaternion.Euler(0, -90f, 0));
+        //bn.hide();
 
         /*block_data[x+(size_-1)/2, y+2, z + size_ - 1].id = Item_ID_TG.None;
         bn = block_data[x + (size_ - 1) / 2, y + 1, z + size_ - 1];
@@ -734,10 +768,8 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
     }
 
     private void init_block_node_contain_data_random(Block_Node_TG bn) {
-        if (bn.contain_data == null) {
-            bn.contain_data = new List<KeyValuePair<Item_ID_TG, int>>();
-        }
-        bn.contain_data.Add(new KeyValuePair<Item_ID_TG, int>(Item_ID_TG.apple, 2));
+        bn.contain_data = new List<KeyValuePair<Item_ID_TG, int>>();
+        bn.contain_data.Add(new KeyValuePair<Item_ID_TG, int>(Item_ID_TG.apple, Random.Range(0,10)));
     }
     public void pool_back_all()
     {
