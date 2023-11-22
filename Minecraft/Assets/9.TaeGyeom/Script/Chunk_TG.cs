@@ -500,7 +500,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
             if (h + 1 == world_y)
             {
                 Village_Point vp = find_village_point(block_world_pos);
-                if (vp != null && Random.Range(0f, 1f) < 0.15f && build_house(x, y, z, vp.position - block_world_pos))
+                if (vp != null && Random.Range(0f, 1f) < 0.07f && build_house(x, y, z, vp.position - block_world_pos))
                 {
                     return Item_ID_TG.board;
                 }
