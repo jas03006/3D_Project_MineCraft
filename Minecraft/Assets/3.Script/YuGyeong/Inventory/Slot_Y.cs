@@ -56,6 +56,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     private Button button;
 
     [SerializeField] private bool is_craft_slot = false;
+    [SerializeField] private bool is_nonclick = false;
     [SerializeField] private bool is_equipment;
     [SerializeField] private armor_type armor_Type;
     public virtual void Start()
@@ -72,6 +73,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     }
     public virtual void PushSlot()
     {
+        if (is_nonclick)
+        {
+            return;
+        }
         if (!is_cursor_slot)
         {
             if (!havedata)
@@ -257,6 +262,10 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (is_result_slot)
+        {
+            return;
+        }
+        if (is_nonclick)
         {
             return;
         }

@@ -1719,6 +1719,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100.00004, z: 100.00003}
   m_Children:
   - {fileID: 5725323675392079492}
+  - {fileID: 6772258960668102637}
   m_Father: {fileID: 9216633931583204387}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -2678,17 +2679,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6246550993100887383}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.08600003, y: 1.483, z: 0.021999963}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.00022, y: 0.00077, z: 0.015893094}
+  m_LocalScale: {x: 0.010000001, y: 0.009999995, z: 0.009999996}
   m_Children:
   - {fileID: 5546548084044444856}
   - {fileID: 7333005576654758106}
   - {fileID: 2914513024939615813}
   - {fileID: 5252706857518800064}
   - {fileID: 7994429621785126325}
-  m_Father: {fileID: 9216633931583204387}
-  m_RootOrder: 11
+  m_Father: {fileID: 674860697893834804}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6258640177274357967
 GameObject:
@@ -3930,9 +3931,10 @@ GameObject:
   - component: {fileID: 8404806615292999324}
   - component: {fileID: 8404806615292999323}
   - component: {fileID: 8404806615292999322}
+  - component: {fileID: 3942689622545398715}
   m_Layer: 0
   m_Name: Villager
-  m_TagString: Untagged
+  m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3959,7 +3961,6 @@ Transform:
   - {fileID: 5433781274539004947}
   - {fileID: 5614613032953318182}
   - {fileID: 5390209772477530059}
-  - {fileID: 6772258960668102637}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -4140,6 +4141,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3942689622545398715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404806615292999321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f296b87e4edc634281a3f49bf824ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc_UI: {fileID: 0}
+  recipe_num: 0000000000000000
 --- !u!1 &8571916736837087948
 GameObject:
   m_ObjectHideFlags: 0
