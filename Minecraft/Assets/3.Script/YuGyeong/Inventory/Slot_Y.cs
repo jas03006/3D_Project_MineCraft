@@ -31,7 +31,6 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 else
                 {
                     ResetItem();
-                    Debug.Log($"{gameObject.name}");
                 }
             } else if (number_private > id2data.Get_data(item_id).MaxValue) {
                 number_private = id2data.Get_data(item_id).MaxValue;
