@@ -15,6 +15,7 @@ public class NPC_UI_Y : MonoBehaviour
     [SerializeField] public recipe2NPC_Y recipe2NPC_Y;
     [SerializeField] Slot_Y cursor_slot;
     [SerializeField] int[] recipe_num;
+    [SerializeField] bool is_hide;
 
     private void OnEnable()
     {
@@ -34,6 +35,7 @@ public class NPC_UI_Y : MonoBehaviour
         int num_2 = selected_button.num_list[1];
         int num_result = selected_button.num_list[2];
 
+
         for (int i = 0; i < inven.Count; i++)
         {
             if (inven[i].item_id == item_id_1 && inven[i].number >= num_1)
@@ -47,17 +49,21 @@ public class NPC_UI_Y : MonoBehaviour
                         inven[i].number -= num_1;
 
                         slot_2.GetItem(inven[j].item_id, num_2);
-                        inven[j].number-= num_2;
+                        inven[j].number -= num_2;
 
-                        //남은 아이템 없으면 슬롯 리셋
-                        //if (inven[i].number <= num_1 && inven[j].number <= num_2)
-                        //{
-                            slot_1.ResetItem();
-                            slot_2.ResetItem();
-                            result_slot.ResetItem();
-                        //}
                         //result 슬롯에 결과물 띄우기
-                        result_slot.GetItem(item_result,num_result);
+                        result_slot.GetItem(item_result, num_result);
+
+                        if ((inven[i].number < num_1 || inven[j].number < num_2))
+                        {
+                            is_hide = true;
+                            Debug.Log($"is_hide {is_hide}");
+                        }
+                        else
+                        {
+                            is_hide = false;
+                            Debug.Log($"is_hide {is_hide}");
+                        }
                         break;
                     }
                 }
@@ -80,6 +86,14 @@ public class NPC_UI_Y : MonoBehaviour
     {
         recipe_num = index;
     }
-    
+
+    public void reset_data()
+    {
+        if (is_hide)
+        {
+            slot_1.ResetItem();
+            slot_2.ResetItem();
+        }
+    }
 
 }
