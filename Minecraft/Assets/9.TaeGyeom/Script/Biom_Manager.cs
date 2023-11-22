@@ -482,7 +482,20 @@ public class Biom_Manager : MonoBehaviour
         }
         return null;
     }
-
+    public Vector3Int get_chunk_pos(Vector3Int chunk_pos, Vector3Int block_pos)
+    {
+        chunk_pos.x += (block_pos.x < 0 ? block_pos.x - chunk_size + 1 : block_pos.x) / chunk_size;
+        chunk_pos.y += (block_pos.y < 0 ? block_pos.y - chunk_size + 1 : block_pos.y) / chunk_size;
+        chunk_pos.z += (block_pos.z < 0 ? block_pos.z - chunk_size + 1 : block_pos.z) / chunk_size;
+        return chunk_pos;
+    }
+    public Chunk_TG set_new_chunk(Vector3Int chunk_pos) {
+        Chunk_TG new_chunk = Instantiate(chunk_prefab, chunk2world_pos(chunk_pos), Quaternion.identity).GetComponent<Chunk_TG>();
+        new_chunk.transform.SetParent(transform);
+        new_chunk.init(chunk_size, chunk_pos);
+        chunk_data[chunk_pos] = new_chunk;
+        return new_chunk;
+    }
     public Block_Node_TG get_block(Vector3Int chunk_pos, Vector3Int block_pos) {
         chunk_pos.x += (block_pos.x < 0 ? block_pos.x - chunk_size + 1: block_pos.x) / chunk_size ; 
         chunk_pos.y += (block_pos.y < 0 ? block_pos.y - chunk_size + 1 : block_pos.y) / chunk_size ; 
