@@ -131,7 +131,7 @@ public class Villager : Monster_controll
             if (ItemCount == 1)
             {
                 Villager_Dead();
-                //animation.SetTrigger("isDead");
+                animation.SetTrigger("NPCDead");
                 ItemCount--;
             }
             MonsterDead();
