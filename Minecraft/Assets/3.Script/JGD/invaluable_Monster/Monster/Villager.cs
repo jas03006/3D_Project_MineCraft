@@ -88,6 +88,10 @@ public class Villager : Monster_controll
 
     public override void MonsterHurt(int PlayerDamage)
     {
+        if (VillagerHp <= 0)
+        {
+            return;
+        }
         VillagerHp = VillagerHp - PlayerDamage;
         Eyes.SetActive(true);
         if (VillagerHp > 0)

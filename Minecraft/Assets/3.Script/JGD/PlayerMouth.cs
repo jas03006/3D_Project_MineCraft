@@ -31,7 +31,7 @@ public class PlayerMouth : MonoBehaviour
 
     public IEnumerator PlayerSalad(Item_ID_TG _id)
     {
-        render.sprite = sprite_test;//Inventory.instance.cursor_slot.id2data.Get_data(_id).Itemsprite;
+        render.sprite = Inventory.instance.cursor_slot.id2data.Get_data(_id).Itemsprite;
         if (_id == Item_ID_TG.apple)
         {
             FoodColor.color = Color.red;

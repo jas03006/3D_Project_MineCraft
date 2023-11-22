@@ -767,6 +767,10 @@ public class Biom_Manager : MonoBehaviour
     }
     public void kill_monster(Monster_ID_J id_, GameObject go_) {
         monster_controll_list.Remove(go_);
+        if (id_ == Monster_ID_J.None) {
+            Destroy(go_);
+            return;
+        }
         Monster_Pool_Manager.instance.back(id_, go_);
     }
 
