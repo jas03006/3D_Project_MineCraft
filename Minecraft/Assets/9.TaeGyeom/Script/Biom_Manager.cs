@@ -88,6 +88,7 @@ public class Biom_Manager : MonoBehaviour
     private List<Village_Point> village_point_list;
 
     private List<GameObject> monster_controll_list;
+    [SerializeField] private GameObject npc_prefab;
 
     private Dictionary<Vector3Int, Chunk_TG> chunk_data;
     private Queue<GameObject>[] pool_list;
@@ -768,5 +769,10 @@ public class Biom_Manager : MonoBehaviour
                 monster_controll_list[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void generate_npc(Vector3 position_, Quaternion rotation_) {
+        GameObject go = Instantiate(npc_prefab, position_, rotation_);
+        monster_controll_list.Add(go);
     }
 }

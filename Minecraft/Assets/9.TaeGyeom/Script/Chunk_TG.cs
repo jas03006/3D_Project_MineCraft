@@ -687,7 +687,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
         space_ = rot_ * new Vector3Int(0, 0, 1);
         bn.set_block(Item_ID_TG.bed, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_, new List<Vector3Int> { new Vector3Int((int)space_.x, 0, (int)space_.y) });
-
+        
 
         furniture_pos.x = -1;
         furniture_pos.z = -2;
@@ -697,6 +697,7 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
         bn = block_data[temp_pos.x, temp_pos.y, temp_pos.z];
         bn.set_block(Item_ID_TG.box, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_*Quaternion.Euler(0, -90f, 0));
+        init_block_node_contain_data_random(bn);
 
         furniture_pos.x = -1;
         furniture_pos.z = -3;
@@ -721,9 +722,22 @@ private Item_ID_TG get_prefabs_index(int x, int y, int z) {
         bn = block_data[x + 1, y + 1, z + 2];
         bn.set_block(Item_ID_TG.furnace, Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + new Vector3Int(x + 1, y + 1, z + 2), Quaternion.Euler(0, 90f, 0));
         */
-
+        furniture_pos.x = -(size_ - 1) / 2;
+        furniture_pos.z = -(size_ - 1) / 2;
+        furniture_pos = rot_ * furniture_pos;
+        temp_pos.x = Mathf.RoundToInt(pivot_pos.x + furniture_pos.x);
+        temp_pos.y = Mathf.RoundToInt(pivot_pos.y + furniture_pos.y);
+        temp_pos.z = Mathf.RoundToInt(pivot_pos.z + furniture_pos.z);
+        Biom_Manager.instance.generate_npc(Biom_Manager.instance.chunk2world_pos_int(chunk_pos) + temp_pos, rot_);
         return true;
 
+    }
+
+    private void init_block_node_contain_data_random(Block_Node_TG bn) {
+        if (bn.contain_data == null) {
+            bn.contain_data = new List<KeyValuePair<Item_ID_TG, int>>();
+        }
+        bn.contain_data.Add(new KeyValuePair<Item_ID_TG, int>(Item_ID_TG.apple, 2));
     }
     public void pool_back_all()
     {
