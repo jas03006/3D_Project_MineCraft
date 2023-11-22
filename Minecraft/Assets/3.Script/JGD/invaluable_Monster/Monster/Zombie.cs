@@ -37,7 +37,7 @@ public class Zombie : Monster_controll
     [SerializeField] private AudioClip[] ZomHit;
     [SerializeField] private AudioClip ZomDead;
     private AudioSource audioSource;
-
+    private float Monster_Speedcontroll = 1;
     private Coroutine follow_co = null;
     private Coroutine stand_co = null;
     private void Awake()
@@ -82,10 +82,15 @@ public class Zombie : Monster_controll
             follow_co = StartCoroutine(MonsterFollow());
         }
     }
+    private IEnumerator Stop1sec()
+    {
+        yield return new WaitForSeconds(1f);
+        yield break;
+    }
     public override void MonsterHurt(int PlayerDamage)   //좀비가 맞을때
     {
         ZomHp -= PlayerDamage;
-       // move = false;
+        // move = false;
         if (ZomHp > 0)
         {
             ZomHitSound();
@@ -125,8 +130,11 @@ public class Zombie : Monster_controll
     }
     protected override IEnumerator MonsterFracture()   //좀비 맞았을때 넉백
     {
+        Monster_Speedcontroll = 0;
         Vector3 dir = this.transform.position - player.transform.position;
-
+        rigi.AddForce(transform.up * 125f);
+        dir.y = 0;
+        rigi.AddForce(dir * 100f);
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < renders.Length; i++)
         {
@@ -144,15 +152,12 @@ public class Zombie : Monster_controll
                 renders[i].materials[j].color = monsterco[i][j];
             }
         }
-
-        rigi.AddForce(transform.up * 125f);
-        rigi.AddForce(dir * 15f);
-
-       // move = true;
+        yield return new WaitForSeconds(0.3f);
+        // move = true;
+        Monster_Speedcontroll = 1;
         yield break;
 
     }
-
     protected override IEnumerator MonsterStand()  //좀비가 가만히 있을때
     {
         var moveTime = CurveWeighedRandom(ani);
@@ -202,7 +207,7 @@ public class Zombie : Monster_controll
             dir.y = 0;
 
             this.transform.forward = dir.normalized;
-            this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
+            this.transform.position += transform.forward * Monster_Speed* Monster_Speedcontroll * Time.deltaTime;
             
             pos = player.transform.position;
             float distance = Vector3.Distance(transform.position, pos);

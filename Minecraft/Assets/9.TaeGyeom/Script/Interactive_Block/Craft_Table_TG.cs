@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Craft_Table_TG : Block_TG, Interactive_TG
 {
-    private Inventory inventory = null;
-    private void Start()
-    {
-        //inventory = GameObject.FindObjectOfType<Inventory>();
-    }
+    //private Inventory inventory = null;
+
     public void react()
     {
-        if (inventory == null) {
+        /*if (inventory == null) {
             inventory = GameObject.FindObjectOfType<Inventory>();
-        }
-        inventory.show_craft();
+        }*/
+        Inventory.instance.show_craft();
     }
 }
