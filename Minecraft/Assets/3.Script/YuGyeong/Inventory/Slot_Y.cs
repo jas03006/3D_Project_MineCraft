@@ -43,7 +43,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
         }
     }
     private int number_private;
-    public ID2Datalist_YG id2data; 
+    public ID2Datalist_YG id2data;
     public Text text;
     [SerializeField] private Image image;
     [SerializeField] private bool havedata;
@@ -51,6 +51,7 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     [SerializeField] private bool have_UIClone;
     [SerializeField] private bool is_result_slot;
     [SerializeField] private bool is_furnace_result_slot;
+    [SerializeField] private bool is_NPC_result_slot;
     [SerializeField] private Slot_Y cursor_slot;
     [SerializeField] private UISlot_Y uISlot;
     private Button button;
@@ -59,6 +60,13 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
     [SerializeField] private bool is_nonclick = false;
     [SerializeField] private bool is_equipment;
     [SerializeField] private armor_type armor_Type;
+
+    [SerializeField] private NPC_UI_Y npc_UI;
+
+    public void Awake()
+    {
+        npc_UI = FindObjectOfType<NPC_UI_Y>();
+    }
     public virtual void Start()
     {
         image = GetComponentInChildren<Image>();
@@ -148,6 +156,12 @@ public class Slot_Y : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
                 if (is_furnace_result_slot)
                 {
                     Exp_pooling.instance.generate_exp(1*number, Furnace_Y.furnace_tg.transform.position);
+                }
+                if (is_NPC_result_slot)
+                {
+                    //남은 아이템 없으면 슬롯 리셋
+                    Debug.Log("is_NPC_result_slot");
+                    npc_UI.reset_data();
                 }
 
                 if (cursor_slot.item_id == Item_ID_TG.None)
