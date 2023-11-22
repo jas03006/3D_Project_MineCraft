@@ -187,6 +187,8 @@ public class Player_Test_TG : PlayerMovement_Y
 
     private float cam3Tocam1 =0f;
 
+    [SerializeField] PlayerMouth player_mouth;
+
     protected override void Start()
     {
         base.Start();
@@ -263,7 +265,7 @@ public class Player_Test_TG : PlayerMovement_Y
             stop_breaking();
         }
 
-        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf)
+        if (inventory.isInventoryOpen || UIManager.instance.option.isOptionOpen || UIManager.instance.dead_UI.activeSelf || is_sleeping)
         {
             return;
         }        
@@ -341,11 +343,10 @@ public class Player_Test_TG : PlayerMovement_Y
         }
         if (is_sleeping)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                is_sleeping = false;
                 transform.rotation = Quaternion.identity;
-                transform.Translate(Vector3.up * 0.5f);
+                wake_up(transform.position);
                 return;
             }
             return;
@@ -397,6 +398,49 @@ public class Player_Test_TG : PlayerMovement_Y
             }
         }
 
+    }
+    public void sleep(Vector3 pos_, Quaternion rot_, Block_Node_TG bed_) {
+        is_sleeping = true;        
+        player_state.respawn_bed = bed_;
+        transform.position = pos_;
+        transform.rotation = rot_;
+        head_tr.localRotation = Quaternion.identity;
+    }
+    public bool wake_up(Vector3 bed_position_) {
+        is_sleeping = false;
+        //transform.rotation = Quaternion.identity;
+        Vector3 temp_pos;
+        Vector3 temp_origin = new Vector3();
+        temp_origin.x = Mathf.RoundToInt(bed_position_.x);
+        temp_origin.y = Mathf.RoundToInt(bed_position_.y);
+        temp_origin.z = Mathf.RoundToInt(bed_position_.z);
+        int[] dir_ = {-1,1 };
+        for (int L = 0; L < 2; L++)
+        {
+            for (int i = 0; i < L+1; i++)
+            {
+                for (int k = 0; k < L+1; k++)
+                {
+                    if (i != L && k != L) {
+                        continue;
+                    }
+                    for (int d_i = 0; d_i < dir_.Length; d_i++)
+                    {
+                        for (int d_k = 0; d_k < dir_.Length; d_k++)
+                        {
+                            temp_pos = temp_origin + Vector3.right * i * dir_[d_i] + Vector3.forward * k * dir_[d_k];
+                            if (Biom_Manager.instance.get_block(temp_pos).id == Item_ID_TG.None
+                                && Biom_Manager.instance.get_block(temp_pos + Vector3.up).id == Item_ID_TG.None)
+                            {
+                                transform.position = temp_pos;
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private void left_click() { //TG
@@ -452,6 +496,7 @@ public class Player_Test_TG : PlayerMovement_Y
     private void right_click(bool is_button_stay = false) { //TG
         if (block_in_hand_data != null &&  block_in_hand_data.Iseatable) {
             (block_in_hand_data as Food).R_Eat();
+            StartCoroutine(player_mouth.PlayerSalad(block_in_hand_id));
             Audio_Manager_TG.instance.play_random_sound(Sound_Id.eat);
             Inventory.instance.UIslot_minus();
             return;
@@ -492,14 +537,20 @@ public class Player_Test_TG : PlayerMovement_Y
                 Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
                 
                 set_dir = hit.collider.transform.position + set_dir;
-                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default")).Length == 0)
+                if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length == 0)
                 {
-                    //List<Vector3Int> space_ = new List<Vector3Int>();
-                    //space_.Add(Vector3Int.up);
-                    
-                    Biom_Manager.instance.set_block(id_, set_dir,
-                        Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f))
-                        ,block_.space);
+                    Quaternion rot_ = Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f));
+                    Vector3 temp_space_v = Vector3.zero;
+                    if (block_.space!=null) {
+                        for(int ind_ =0; ind_ < block_.space.Count; ind_++) {                            
+                            temp_space_v = rot_* (Vector3)block_.space[ind_];
+                            block_.space[ind_] = new Vector3Int( Mathf.RoundToInt(temp_space_v.x), Mathf.RoundToInt(temp_space_v.y), Mathf.RoundToInt(temp_space_v.z));                            
+                            if (Physics.OverlapBox(set_dir+ block_.space[ind_], Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length != 0) {
+                                return;
+                            }
+                        }
+                    }
+                    Biom_Manager.instance.set_block(id_, set_dir, rot_, block_.space);
                     Inventory.instance.UIslot_minus();
                     Audio_Manager_TG.instance.play_block_set();
                 }

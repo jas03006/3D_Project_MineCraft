@@ -27,9 +27,9 @@ public class Block_TG : Block_Break
             Audio_Manager_TG.instance.play_block_break();// play_random_dig_sound(id, 1.0f);
             blockHp = 0f;
             itemposition();
+            die_early();
             block_return();
-            die();
-            die_late();
+            die();            
         }
         else {
             Audio_Manager_TG.instance.play_random_dig_sound(id);
@@ -48,7 +48,7 @@ public class Block_TG : Block_Break
         
     }
 
-    public virtual void die_late() { 
+    public virtual void die_early() { 
     
     }
 }
