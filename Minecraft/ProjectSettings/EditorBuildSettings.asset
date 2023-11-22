@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/TG/Map_Generate_TG.unity
     guid: 5371bce73078a6349ac3da1069b7e331
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scene/YG/Map_Generate_Y.unity
     guid: 3bb4b958de0bdb44e8c805142cd03926
   m_configObjects: {}

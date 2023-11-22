@@ -146,7 +146,7 @@ public class Zombie : Monster_controll
         }
 
         rigi.AddForce(transform.up * 125f);
-        rigi.AddForce(dir * 5f);
+        rigi.AddForce(dir * 15f);
 
        // move = true;
         yield break;
