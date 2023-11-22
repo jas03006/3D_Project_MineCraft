@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Villager : Monster_controll
 {
-    Ray ray = new Ray();
-    Ray ray1 = new Ray();
-    Ray ray3 = new Ray();
-    Ray ray4 = new Ray();
     [SerializeField] private float piggyJumppower;
     Villager villager;
     Animator animation;
@@ -16,12 +12,7 @@ public class Villager : Monster_controll
     private int ItemCount = 1;
     private int JumpCount = 1;
     float Maxtimer = 0;
-    [Header("마을사람 레이 포인트")]
-    [SerializeField] private GameObject Ray1;
-    [SerializeField] private GameObject Ray2;
-    [SerializeField] private GameObject Ray3;
-    [SerializeField] private GameObject Ray4;
-    [SerializeField] private GameObject FloorRay;
+    [SerializeField] private GameObject body;
     [Header("마을사람 사운드")]
     [SerializeField] private AudioClip[] VillgerCall;
     [SerializeField] private AudioClip[] VillgerHit;
@@ -59,36 +50,18 @@ public class Villager : Monster_controll
     }
     protected override IEnumerator MonsterStand()
     {
-        var moveTime = CurveWeighedRandom(ani);
-        var dir = new Vector3();
-        dir.x = Random.Range(-3f, 3f);
-        dir.y = 0;
-        dir.z = Random.Range(-3f, 3f);
-        pos = dir + this.transform.position;
-        transform.forward = dir.normalized;
         while (true)
         {
-            if (move)
+            pos = player.transform.position;
+            float sqr_distance = (pos - this.transform.position).sqrMagnitude;
+            if (sqr_distance <= 4f)
             {
-
-                Villager_FrontScan();
-                VillagerRay();
-                Maxtimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed * Time.deltaTime;
-                //animation.SetBool("isPigWalk", true);
-                float distance = Vector3.Distance(transform.position, pos);
-
-                if (distance <= 0.1f || Maxtimer > 3f)
-                {
-                    Maxtimer = 0f;
-                    //animation.SetBool("isPigWalk", false);
-                    yield return new WaitForSeconds(Random.Range(1f, moveTime));
-
-                    dir.x = Random.Range(-3f, 3f);
-                    dir.z = Random.Range(-3f, 3f);
-                    pos = dir + this.transform.position;
-                    transform.forward = dir.normalized;
-                }
+                Vector3 look = pos - body.transform.position;
+                look.y = 90;
+                body.transform.rotation = Quaternion.LookRotation(look).normalized;
+            }
+            else
+            {
             }
             yield return null;
         }
@@ -106,6 +79,7 @@ public class Villager : Monster_controll
 
         yield break;
     }
+   
 
     protected override void MonsterMove()
     {
@@ -119,7 +93,7 @@ public class Villager : Monster_controll
         if (VillagerHp > 0)
         {
             VillagerHitSound();
-            StartCoroutine(MonsterRunout());
+            StartCoroutine(MonsterFracture());
             StopCoroutine(MonsterStand());
             move = true;
             OnDamage(PlayerDamage);
@@ -130,6 +104,7 @@ public class Villager : Monster_controll
             StopAllCoroutines();
             if (ItemCount == 1)
             {
+                StartCoroutine(MonsterFracture());
                 Villager_Dead();
                 animation.SetTrigger("NPCDead");
                 ItemCount--;
@@ -139,80 +114,6 @@ public class Villager : Monster_controll
         }
     }
 
-    private void VillagerRay()    //정면 레이
-    {
-        ray.origin = new Vector3(Ray1.transform.position.x, Ray1.transform.position.y, Ray1.transform.position.z);
-
-        ray1.origin = new Vector3(Ray2.transform.position.x, Ray2.transform.position.y, Ray2.transform.position.z);
-
-        ray3.origin = new Vector3(Ray3.transform.position.x, Ray3.transform.position.y, Ray3.transform.position.z);
-
-        ray4.origin = new Vector3(Ray4.transform.position.x, Ray4.transform.position.y, Ray4.transform.position.z);
-
-        ray.direction = Ray1.transform.forward;
-        ray1.direction = Ray2.transform.forward;
-        ray3.direction = Ray3.transform.forward;
-        ray4.direction = Ray4.transform.forward;
-
-        Debug.DrawRay(ray.origin, ray.direction * 0.45f, Color.red);
-        Debug.DrawRay(ray1.origin, ray1.direction * 0.45f, Color.blue);
-        Debug.DrawRay(ray3.origin, ray3.direction * 1f, Color.blue);
-        Debug.DrawRay(ray4.origin, ray4.direction * 1f, Color.blue);
-        RaycastHit[] hit;
-
-        hit = Physics.RaycastAll(ray3, 1f);
-        for (int i = 0; i < hit.Length; i++)
-        {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-            {
-                return;
-            }
-        }
-        hit = Physics.RaycastAll(ray4, 1f);
-        for (int i = 0; i < hit.Length; i++)
-        {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-            {
-                return;
-            }
-        }
-
-        hit = Physics.RaycastAll(ray, 0.45f);
-        for (int i = 0; i < hit.Length; i++)
-        {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-            {
-                rigi.velocity = Vector3.up * piggyJumppower;
-                return;
-            }
-        }
-        hit = Physics.RaycastAll(ray1, 0.45f);
-        for (int i = 0; i < hit.Length; i++)
-        {
-            if (hit[i].collider.gameObject.CompareTag("Stepable_Block"))
-            {
-                rigi.velocity = Vector3.up * piggyJumppower;
-                return;
-            }
-        }
-    }
-    private void Villager_FrontScan()     //낭떠러지 스캔
-    {
-        ray.origin = FloorRay.transform.position;
-        ray.direction = transform.up * -1;
-        Debug.DrawRay(ray.origin, ray.direction * 1.1f, Color.black);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1.1f, LayerMask.GetMask("Default")))
-        {
-            move = true;
-            this.Monster_Speed = 1f;
-        }
-        else
-        {
-            animation.SetBool("isPigWalk", false);
-            this.Monster_Speed = 0f;
-        }
-    }
     private void Look_otherside()     // 플레이어 방대방향 보기
     {
         Vector3 dir = transform.position - player.transform.position;
@@ -220,51 +121,7 @@ public class Villager : Monster_controll
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
         transform.rotation = rot;
     }
-    public IEnumerator MonsterRunout()    //맞았을 때 잠시 우왕좌왕
-    {
-        yield return StartCoroutine(MonsterFracture());
-        yield return new WaitForSeconds(1f);
-        if (!isDead)
-        {
-
-            move = false;
-            var dir = new Vector3();
-            dir.x = Random.Range(-3f, 3f);
-            dir.y = 0;
-            dir.z = Random.Range(-3f, 3f);
-            pos = dir + this.transform.position;
-            transform.forward = dir.normalized;
-            float Standtimer = 0f;
-            float Maxtimer = 0f;
-            while (true)
-            {
-                Maxtimer += Time.deltaTime;
-                Standtimer += Time.deltaTime;
-                this.transform.position += transform.forward * Monster_Speed * 2f * Time.deltaTime;
-                //animation.SetBool("isPigWalk", true);
-                float distance = Vector3.Distance(transform.position, pos);
-
-                if (distance <= 0.1f || Maxtimer > 3f)
-                {
-                    Maxtimer = 0f;
-                    //animation.SetBool("isPigWalk", false);
-                    yield return new WaitForSeconds(0.1f);
-
-                    dir.x = Random.Range(-3f, 3f);
-                    dir.z = Random.Range(-3f, 3f);
-                    pos = dir + this.transform.position;
-                    transform.forward = dir.normalized;
-
-                }
-                yield return null;
-                if (Standtimer > 5f)
-                {
-                    move = true;
-                    yield break;
-                }
-            }
-        }
-    }
+   
     private void Villagerfrighten()
     {
         Eyes.SetActive(false);
