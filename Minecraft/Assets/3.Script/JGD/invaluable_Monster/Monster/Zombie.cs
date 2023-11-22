@@ -37,7 +37,7 @@ public class Zombie : Monster_controll
     [SerializeField] private AudioClip[] ZomHit;
     [SerializeField] private AudioClip ZomDead;
     private AudioSource audioSource;
-    private float Monster_Speedcontroll = 0;
+    private float Monster_Speedcontroll = 1;
     private Coroutine follow_co = null;
     private Coroutine stand_co = null;
     private void Awake()
