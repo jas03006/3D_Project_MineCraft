@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2093385719}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1141,6 +1141,81 @@ Transform:
   m_Father: {fileID: 726597370}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &359699814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359699815}
+  - component: {fileID: 359699817}
+  - component: {fileID: 359699816}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &359699815
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359699814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.925, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 912284662847836615}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 91.1, y: 63}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &359699816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359699814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.77647066, g: 0.77647066, b: 0.77647066, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &359699817
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359699814}
+  m_CullTransparentMesh: 1
 --- !u!1 &382805078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,12 +3508,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 1
   is_furnace_result_slot: 1
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &1416584299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,12 +4152,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &1785311149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4370,12 +4449,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &1908359193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10318,12 +10399,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!224 &728835475008869790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12483,12 +12566,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284661831074628
 GameObject:
   m_ObjectHideFlags: 0
@@ -12677,12 +12762,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284661861625848
 GameObject:
   m_ObjectHideFlags: 0
@@ -12888,12 +12975,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284661938383657
 GameObject:
   m_ObjectHideFlags: 0
@@ -12998,12 +13087,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725767396862}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284661972269437
 GameObject:
   m_ObjectHideFlags: 0
@@ -13161,12 +13252,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284661973918998
 GameObject:
   m_ObjectHideFlags: 0
@@ -13320,12 +13413,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &912284661980206080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13795,12 +13890,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726187531081}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662043355943
 GameObject:
   m_ObjectHideFlags: 0
@@ -13989,12 +14086,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662072719839
 GameObject:
   m_ObjectHideFlags: 0
@@ -14108,12 +14207,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726934514832}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662080448095
 GameObject:
   m_ObjectHideFlags: 0
@@ -14471,12 +14572,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662168579600
 GameObject:
   m_ObjectHideFlags: 0
@@ -14853,12 +14956,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726414650108}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662292616348
 GameObject:
   m_ObjectHideFlags: 0
@@ -15139,12 +15244,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662329675193
 GameObject:
   m_ObjectHideFlags: 0
@@ -15241,12 +15348,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662347115620
 GameObject:
   m_ObjectHideFlags: 0
@@ -15452,12 +15561,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662452830114
 GameObject:
   m_ObjectHideFlags: 0
@@ -15756,12 +15867,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 1
   armor_Type: 2
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662574520846
 GameObject:
   m_ObjectHideFlags: 0
@@ -15981,12 +16094,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662676910701
 GameObject:
   m_ObjectHideFlags: 0
@@ -16409,12 +16524,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 1
   armor_Type: 1
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662803658963
 GameObject:
   m_ObjectHideFlags: 0
@@ -16548,12 +16665,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662826117359
 GameObject:
   m_ObjectHideFlags: 0
@@ -16677,12 +16796,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662844614429
 GameObject:
   m_ObjectHideFlags: 0
@@ -16838,6 +16959,7 @@ RectTransform:
   - {fileID: 912284663165378651}
   - {fileID: 912284663163189010}
   - {fileID: 912284662878837042}
+  - {fileID: 359699815}
   m_Father: {fileID: 912284662168579601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16940,12 +17062,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726888526951}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662874207527
 GameObject:
   m_ObjectHideFlags: 0
@@ -17114,12 +17238,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662889530182
 GameObject:
   m_ObjectHideFlags: 0
@@ -17348,12 +17474,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!222 &912284662945288080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17383,12 +17511,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284662945288085
 GameObject:
   m_ObjectHideFlags: 0
@@ -17846,12 +17976,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663014564102
 GameObject:
   m_ObjectHideFlags: 0
@@ -18005,12 +18137,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 1
   armor_Type: 3
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663064720602
 GameObject:
   m_ObjectHideFlags: 0
@@ -18124,12 +18258,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725974234378}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663129757328
 GameObject:
   m_ObjectHideFlags: 0
@@ -18243,12 +18379,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663135371200
 GameObject:
   m_ObjectHideFlags: 0
@@ -18362,12 +18500,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663140438987
 GameObject:
   m_ObjectHideFlags: 0
@@ -18481,12 +18621,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663158583396
 GameObject:
   m_ObjectHideFlags: 0
@@ -18750,12 +18892,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &912284663214912680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18904,12 +19048,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663226558182
 GameObject:
   m_ObjectHideFlags: 0
@@ -19063,12 +19209,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554727315629979}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663278237312
 GameObject:
   m_ObjectHideFlags: 0
@@ -19182,12 +19330,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663294873794
 GameObject:
   m_ObjectHideFlags: 0
@@ -19301,12 +19451,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663323762075
 GameObject:
   m_ObjectHideFlags: 0
@@ -19420,12 +19572,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!222 &912284663337166320
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19455,12 +19609,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663337166325
 GameObject:
   m_ObjectHideFlags: 0
@@ -19733,12 +19889,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!224 &912284663404291280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19962,12 +20120,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726835430339}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663435805086
 GameObject:
   m_ObjectHideFlags: 0
@@ -20177,12 +20337,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663526413839
 GameObject:
   m_ObjectHideFlags: 0
@@ -20296,12 +20458,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 1
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663626581311
 GameObject:
   m_ObjectHideFlags: 0
@@ -20379,12 +20543,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663645345773
 GameObject:
   m_ObjectHideFlags: 0
@@ -20558,12 +20724,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!224 &912284663664556024
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20658,12 +20826,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663664556031
 GameObject:
   m_ObjectHideFlags: 0
@@ -20796,12 +20966,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663714487097
 GameObject:
   m_ObjectHideFlags: 0
@@ -21046,12 +21218,14 @@ MonoBehaviour:
   have_UIClone: 1
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726533695018}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663850831471
 GameObject:
   m_ObjectHideFlags: 0
@@ -21184,12 +21358,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 1
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &912284663890167144
 GameObject:
   m_ObjectHideFlags: 0
@@ -28311,12 +28487,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348440152559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28430,12 +28608,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348462316783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29016,12 +29196,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348563812886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29210,12 +29392,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348567016212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29487,12 +29671,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348594141071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29756,12 +29942,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348607485951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30038,12 +30226,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348655981994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30741,12 +30931,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348813411629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30860,12 +31052,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348847823811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31126,12 +31320,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!1 &3590312348865967148
 GameObject:
   m_ObjectHideFlags: 0
@@ -31550,12 +31746,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348938400962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32047,12 +32245,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312348975403525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32566,12 +32766,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349035053220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33065,12 +33267,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 1
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349102597982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33919,12 +34123,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349163937285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34173,12 +34379,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349185133995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34767,12 +34975,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349251660654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35151,12 +35361,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349342985156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35610,12 +35822,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349413125396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35994,12 +36208,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349444276835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36094,12 +36310,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349446073786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37589,12 +37807,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349649443007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37945,12 +38165,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349686888081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38282,12 +38504,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349722408391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38468,12 +38692,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349763450596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40153,12 +40379,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312349973354800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40391,12 +40619,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350004623994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40992,12 +41222,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350062497079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41206,12 +41438,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350089283999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41634,12 +41868,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!224 &3590312350170085856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42021,12 +42257,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350250463628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42894,12 +43132,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350403884529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43053,12 +43293,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350428963621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43342,12 +43584,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350434948805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43801,12 +44045,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350481632814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43901,12 +44147,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &3590312350486882042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44946,12 +45194,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 1
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!114 &5396894679605702270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48902,6 +49152,7 @@ MonoBehaviour:
   recipe2NPC_Y: {fileID: 11400000, guid: fbce772422627be4a874a41b0a1ba049, type: 2}
   cursor_slot: {fileID: 912284663645345770}
   recipe_num: 0000000001000000
+  is_hide: 0
 --- !u!224 &8564832927071034106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49111,14 +49362,16 @@ MonoBehaviour:
   havedata: 0
   is_cursor_slot: 0
   have_UIClone: 0
-  is_result_slot: 1
+  is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 1
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!224 &8564832927124740703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49674,12 +49927,14 @@ MonoBehaviour:
   have_UIClone: 0
   is_result_slot: 0
   is_furnace_result_slot: 0
+  is_NPC_result_slot: 0
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
   is_nonclick: 1
   is_equipment: 0
   armor_Type: 0
+  npc_UI: {fileID: 0}
 --- !u!222 &8564832927857534151
 CanvasRenderer:
   m_ObjectHideFlags: 0
