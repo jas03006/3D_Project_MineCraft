@@ -3993,7 +3993,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3946e71d4652ba74d9c1eb07171bd43b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -4154,7 +4154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc_UI: {fileID: 0}
-  recipe_num: 0000000000000000
 --- !u!1 &8571916736837087948
 GameObject:
   m_ObjectHideFlags: 0

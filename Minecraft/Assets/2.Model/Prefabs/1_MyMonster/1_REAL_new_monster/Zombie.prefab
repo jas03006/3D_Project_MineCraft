@@ -713,7 +713,7 @@ MonoBehaviour:
   - {fileID: 0}
   ZomJumppow: 4
   Scandistance: 64
-  id: 15
+  id: 280
   Ray1: {fileID: 211434644974667153}
   Ray2: {fileID: 211434644864204332}
   Ray3: {fileID: 211434644987092552}
