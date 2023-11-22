@@ -231,13 +231,13 @@ public class Inventory : MonoBehaviour
 
     public void hide_craft_very_small()
     {
-        for (int i = 0; i < CraftList_very_Small.Count - 1; i++)
-        {
-            Slot_Y slot_ = CraftList_very_Small[i];
-            GetItem(slot_.item_id, slot_.number);
-            slot_.ResetItem();
-        }
-        CraftList_very_Small[CraftList_very_Small.Count - 1].ResetItem();
+        //for (int i = 0; i < CraftList_very_Small.Count - 1; i++)
+        //{
+        //    Slot_Y slot_ = CraftList_very_Small[i];
+        //    GetItem(slot_.item_id, slot_.number);
+        //    slot_.ResetItem();
+        //}
+        //CraftList_very_Small[CraftList_very_Small.Count - 1].ResetItem();
     }
 
     public void hide_box() {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2093385719}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3436,6 +3436,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &1416584299
@@ -4077,6 +4078,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &1785311149
@@ -4371,6 +4373,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &1908359193
@@ -10318,6 +10321,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!224 &728835475008869790
@@ -12482,6 +12486,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284661831074628
@@ -12675,6 +12680,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284661861625848
@@ -12885,6 +12891,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284661938383657
@@ -12994,6 +13001,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725767396862}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284661972269437
@@ -13156,6 +13164,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284661973918998
@@ -13314,6 +13323,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &912284661980206080
@@ -13788,6 +13798,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726187531081}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662043355943
@@ -13981,6 +13992,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662072719839
@@ -14099,6 +14111,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726934514832}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662080448095
@@ -14461,6 +14474,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662168579600
@@ -14842,6 +14856,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726414650108}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662292616348
@@ -15127,6 +15142,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662329675193
@@ -15228,6 +15244,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662347115620
@@ -15438,6 +15455,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662452830114
@@ -15741,6 +15759,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 1
   armor_Type: 2
 --- !u!1 &912284662574520846
@@ -15965,6 +15984,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662676910701
@@ -16392,6 +16412,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 1
   armor_Type: 1
 --- !u!1 &912284662803658963
@@ -16530,6 +16551,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662826117359
@@ -16658,6 +16680,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662844614429
@@ -16920,6 +16943,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726888526951}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662874207527
@@ -17093,6 +17117,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662889530182
@@ -17326,6 +17351,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!222 &912284662945288080
@@ -17360,6 +17386,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284662945288085
@@ -17822,6 +17849,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663014564102
@@ -17980,6 +18008,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 1
   armor_Type: 3
 --- !u!1 &912284663064720602
@@ -18098,6 +18127,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554725974234378}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663129757328
@@ -18216,6 +18246,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663135371200
@@ -18334,6 +18365,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663140438987
@@ -18452,6 +18484,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663158583396
@@ -18720,6 +18753,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &912284663214912680
@@ -18873,6 +18907,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663226558182
@@ -19031,6 +19066,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554727315629979}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663278237312
@@ -19149,6 +19185,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663294873794
@@ -19267,6 +19304,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663323762075
@@ -19385,6 +19423,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!222 &912284663337166320
@@ -19419,6 +19458,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663337166325
@@ -19696,6 +19736,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!224 &912284663404291280
@@ -19924,6 +19965,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726835430339}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663435805086
@@ -20138,6 +20180,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663526413839
@@ -20256,6 +20299,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663626581311
@@ -20338,6 +20382,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663645345773
@@ -20516,6 +20561,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!224 &912284663664556024
@@ -20615,6 +20661,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663664556031
@@ -20752,6 +20799,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663714487097
@@ -21001,6 +21049,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 7277554726533695018}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &912284663850831471
@@ -21138,6 +21187,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 1
   armor_Type: 0
 --- !u!1 &912284663890167144
@@ -28264,6 +28314,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348440152559
@@ -28382,6 +28433,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348462316783
@@ -28967,6 +29019,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348563812886
@@ -29160,6 +29213,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348567016212
@@ -29436,6 +29490,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348594141071
@@ -29704,6 +29759,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348607485951
@@ -29985,6 +30041,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348655981994
@@ -30687,6 +30744,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348813411629
@@ -30805,6 +30863,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348847823811
@@ -31070,6 +31129,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!1 &3590312348865967148
@@ -31493,6 +31553,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348938400962
@@ -31989,6 +32050,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312348975403525
@@ -32507,6 +32569,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349035053220
@@ -33005,6 +33068,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349102597982
@@ -33858,6 +33922,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349163937285
@@ -34111,6 +34176,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349185133995
@@ -34704,6 +34770,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349251660654
@@ -35087,6 +35154,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349342985156
@@ -35545,6 +35613,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349413125396
@@ -35928,6 +35997,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349444276835
@@ -36027,6 +36097,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349446073786
@@ -37521,6 +37592,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349649443007
@@ -37876,6 +37948,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349686888081
@@ -38212,6 +38285,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349722408391
@@ -38397,6 +38471,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349763450596
@@ -40081,6 +40156,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312349973354800
@@ -40318,6 +40394,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350004623994
@@ -40918,6 +40995,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350062497079
@@ -41131,6 +41209,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350089283999
@@ -41558,6 +41637,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!224 &3590312350170085856
@@ -41944,6 +42024,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350250463628
@@ -42816,6 +42897,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350403884529
@@ -42974,6 +43056,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 1
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350428963621
@@ -43262,6 +43345,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350434948805
@@ -43720,6 +43804,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350481632814
@@ -43819,6 +43904,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &3590312350486882042
@@ -44863,6 +44949,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!114 &5396894679605702270
@@ -48792,7 +48879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8564832927014228911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49029,6 +49116,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 0
   is_equipment: 0
   armor_Type: 0
 --- !u!224 &8564832927124740703
@@ -49589,6 +49677,7 @@ MonoBehaviour:
   cursor_slot: {fileID: 912284663645345770}
   uISlot: {fileID: 0}
   is_craft_slot: 0
+  is_nonclick: 1
   is_equipment: 0
   armor_Type: 0
 --- !u!222 &8564832927857534151

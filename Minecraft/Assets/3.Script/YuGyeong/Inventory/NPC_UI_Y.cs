@@ -16,7 +16,6 @@ public class NPC_UI_Y : MonoBehaviour
     [SerializeField] Slot_Y cursor_slot;
     [SerializeField] int[] recipe_num;
 
-
     private void OnEnable()
     {
         send_data();
@@ -44,21 +43,22 @@ public class NPC_UI_Y : MonoBehaviour
                     if (inven[j].item_id == item_id_2 && inven[j].number >= num_2)
                     {
                         //인벤에서 꺼내서 거래 슬롯으로 옮기기
-                        slot_1.GetItem(inven[i].item_id, slot_1.number + 1);
-                        inven[i].number--;
+                        slot_1.GetItem(inven[i].item_id, num_1);
+                        inven[i].number -= num_1;
 
-                        slot_2.GetItem(inven[j].item_id, slot_2.number + 1);
-                        inven[j].number--;
+                        slot_2.GetItem(inven[j].item_id, num_2);
+                        inven[j].number-= num_2;
 
                         //남은 아이템 없으면 슬롯 리셋
-                        if (inven[i].number == 0 && inven[j].number == 0)
-                        {
+                        //if (inven[i].number <= num_1 && inven[j].number <= num_2)
+                        //{
                             slot_1.ResetItem();
                             slot_2.ResetItem();
                             result_slot.ResetItem();
-                        }
+                        //}
                         //result 슬롯에 결과물 띄우기
                         result_slot.GetItem(item_result,num_result);
+                        break;
                     }
                 }
             }

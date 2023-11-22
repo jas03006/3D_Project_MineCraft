@@ -3931,9 +3931,10 @@ GameObject:
   - component: {fileID: 8404806615292999324}
   - component: {fileID: 8404806615292999323}
   - component: {fileID: 8404806615292999322}
+  - component: {fileID: 3942689622545398715}
   m_Layer: 0
   m_Name: Villager
-  m_TagString: Untagged
+  m_TagString: Npc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4140,6 +4141,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3942689622545398715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404806615292999321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f296b87e4edc634281a3f49bf824ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc_UI: {fileID: 0}
+  recipe_num: 0000000000000000
 --- !u!1 &8571916736837087948
 GameObject:
   m_ObjectHideFlags: 0

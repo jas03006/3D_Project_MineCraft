@@ -512,8 +512,8 @@ public class Player_Test_TG : PlayerMovement_Y
         if (Physics.Raycast(ray, out hit, interaction_range, LayerMask.GetMask("Default")))
         {
             Transform objectHit = hit.transform;
-            if (objectHit.CompareTag("Stepable_Block") ) {
-               // Debug.Log(hit.point - transform.position);
+            if (objectHit.CompareTag("Stepable_Block")) {
+                // Debug.Log(hit.point - transform.position);
                 Vector3 dir = hit.point - transform.position;
                 if (!is_button_stay) {
                     Interactive_TG interactive_block = hit.transform.gameObject.GetComponentInChildren<Interactive_TG>();
@@ -521,31 +521,31 @@ public class Player_Test_TG : PlayerMovement_Y
                     {
                         interactive_block.react();
                         return;
-                    }                        
+                    }
                 }
-                    
+
                 if (block_in_hand == null)
                 {
                     return;
                 }
                 Block_TG block_ = block_in_hand.GetComponentInChildren<Block_TG>();
-                if(block_ ==null) {
+                if (block_ == null) {
                     return;
                 }
                 Item_ID_TG id_ = block_.id;
                 dir = hit.point - hit.collider.transform.position;
                 Vector3 set_dir = six_dir_normalization_cube(dir, 0.49f);
-                
+
                 set_dir = hit.collider.transform.position + set_dir;
                 if (Physics.OverlapBox(set_dir, Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length == 0)
                 {
                     Quaternion rot_ = Quaternion.LookRotation(six_dir_normalization_cube(new Vector3(-transform.forward.x, 0f, -transform.forward.z), 0.70711f));
                     Vector3 temp_space_v = Vector3.zero;
-                    if (block_.space!=null) {
-                        for(int ind_ =0; ind_ < block_.space.Count; ind_++) {                            
-                            temp_space_v = rot_* (Vector3)block_.space[ind_];
-                            block_.space[ind_] = new Vector3Int( Mathf.RoundToInt(temp_space_v.x), Mathf.RoundToInt(temp_space_v.y), Mathf.RoundToInt(temp_space_v.z));                            
-                            if (Physics.OverlapBox(set_dir+ block_.space[ind_], Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length != 0) {
+                    if (block_.space != null) {
+                        for (int ind_ = 0; ind_ < block_.space.Count; ind_++) {
+                            temp_space_v = rot_ * (Vector3)block_.space[ind_];
+                            block_.space[ind_] = new Vector3Int(Mathf.RoundToInt(temp_space_v.x), Mathf.RoundToInt(temp_space_v.y), Mathf.RoundToInt(temp_space_v.z));
+                            if (Physics.OverlapBox(set_dir + block_.space[ind_], Vector3.one / 2.1f, Quaternion.identity, LayerMask.GetMask("Default") | LayerMask.GetMask("Player_J")).Length != 0) {
                                 return;
                             }
                         }
@@ -554,7 +554,9 @@ public class Player_Test_TG : PlayerMovement_Y
                     Inventory.instance.UIslot_minus();
                     Audio_Manager_TG.instance.play_block_set();
                 }
-                    //objectHit.GetComponent<Block_TG>().die();
+                //objectHit.GetComponent<Block_TG>().die();
+            } else if (objectHit.CompareTag("Npc")) {
+                objectHit.GetComponent<NPC_Y>().active();
             }
         }
     }
