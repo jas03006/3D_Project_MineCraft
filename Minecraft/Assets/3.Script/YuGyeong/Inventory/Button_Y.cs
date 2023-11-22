@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Button_Y : MonoBehaviour
 {
+<<<<<<< Updated upstream
     [SerializeField] public Item_ID_TG[] item_id_list;
     #region ³»¿ë
     //[SerializeField] public Item_ID_TG item_id_1;
@@ -36,6 +37,33 @@ public class Button_Y : MonoBehaviour
     [SerializeField] ID2Datalist_YG id2data;
     [SerializeField] NPC_UI_Y npc;
 
+=======
+    [SerializeField] public Item_ID_TG[] item_id_list; //0:item_id_1,1:item_id_2,2:item_result
+    [SerializeField] public Item_ID_TG item_id_1;
+    [SerializeField] public Item_ID_TG item_id_2;
+    [SerializeField] public Item_ID_TG item_result;
+
+    [SerializeField] public int[] num_list; //0:num_1,1:num_2,2:num_result
+    [SerializeField] public int num_1;
+    [SerializeField] public int num_2;
+    [SerializeField] public int num_result;
+
+    [SerializeField] public Text text_1;//0:text_1,1:text_2,2:text_result
+    [SerializeField] public Text text_2;
+    [SerializeField] public Text text_result;
+
+    [SerializeField] ID2Datalist_YG id2data;
+    [SerializeField] Image image_1;//0:image_1,1:image_2,2:image_result
+    [SerializeField] Image image_2;
+    [SerializeField] Image image_result;
+
+    [SerializeField] NPC_Y npc;
+
+    private void OnEnable()
+    {
+        //get_recipe(recipe2NPC_Y.get_recipe(recipe_index));
+    }
+>>>>>>> Stashed changes
     public void update_Button()
     {
         for (int i = 0; i < item_id_list.Length; i++)
