@@ -89,6 +89,9 @@ public class Zombie : Monster_controll
     }
     public override void MonsterHurt(int PlayerDamage)   //좀비가 맞을때
     {
+        if (ZomHp <= 0) {
+            return;
+        }
         ZomHp -= PlayerDamage;
         // move = false;
         if (ZomHp > 0)

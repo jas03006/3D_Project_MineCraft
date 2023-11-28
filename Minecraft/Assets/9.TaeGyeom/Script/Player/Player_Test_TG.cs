@@ -479,7 +479,8 @@ public class Player_Test_TG : PlayerMovement_Y
             }
             else {//monster
                 Monster_controll monster = objectHit.GetComponent<Monster_controll>();
-                monster.MonsterHurt(10 * Combat_system.instance.cal_combat_monster(monster.monsterID));
+                monster.MonsterHurt((int) (10 * player_state.attack_power * attack_charge_slider.value * Combat_system.instance.cal_combat_monster(monster.monsterID)));
+                
                 //Debug.Log();
             }
         }

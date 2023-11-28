@@ -8,7 +8,7 @@ public class Villager : Monster_controll
     Villager villager;
     Animator animation;
     protected bool move = true;
-    private int VillagerHp;
+    [SerializeField]private int VillagerHp;
     private int ItemCount = 1;
     private int JumpCount = 1;
     float Maxtimer = 0;
@@ -101,7 +101,7 @@ public class Villager : Monster_controll
             StopCoroutine(MonsterStand());
             move = true;
             OnDamage(PlayerDamage);
-            Invoke("Villagerfrighten",2f);
+            Invoke("Villagerfrighten",1f);
         }
         else if (VillagerHp <= 0)
         {
