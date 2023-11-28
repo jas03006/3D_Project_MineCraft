@@ -35,6 +35,10 @@ public class NPC_UI_Y : MonoBehaviour
         int num_2 = selected_button.num_list[1];
         int num_result = selected_button.num_list[2];
 
+        if (result_slot.item_id != Item_ID_TG.None)
+        {
+            return;
+        }
 
         for (int i = 0; i < inven.Count; i++)
         {

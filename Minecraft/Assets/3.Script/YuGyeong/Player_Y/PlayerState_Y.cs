@@ -170,6 +170,7 @@ public class PlayerState_Y : Living
     {
         //exp
         expslider.value = curexp;
+        exptext.text = $"{level}";
     }//Update UI
 
     private void Test()

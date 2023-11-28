@@ -25,6 +25,9 @@ public class Combat_system : MonoBehaviour
         = new List<Monster_ID_J>() {
             Monster_ID_J.Pig,
             Monster_ID_J.zombie,
+            Monster_ID_J.pig_ribbon,
+            Monster_ID_J.zombie_santa,
+            Monster_ID_J.None
         };
 
     private PlayerState_Y psy;
